@@ -266,6 +266,14 @@ const ICONS={
   num:`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" ${SR}/><path d="M44 40 L54 36 V64 M46 64 H62" ${S}/></svg>`
 };
 function iconFor(k){return ICONS[k]||ICONS.spark;}
+function iconForCard(card){
+  // Zahlenkarten: echte Ziffer in den Kreis – sonst zeigt das num-Icon immer "1"
+  if(card.ic==='num' && /^\d+$/.test(card.de)){
+    const n=card.de, fs=n.length>1?30:40;
+    return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" ${SR}/><text x="50" y="50" text-anchor="middle" dominant-baseline="central" fill="#d7d1c2" font-family="'Inclusive Sans',system-ui,sans-serif" font-weight="600" font-size="${fs}">${n}</text></svg>`;
+  }
+  return iconFor(card.ic);
+}
 
 /* ---------- Persistenz ---------- */
 const Store={
@@ -374,16 +382,16 @@ function renderLearn(){
           <div class="kanji">${card.ja}</div>
           <div class="jp">${card.jp}</div>
           <div class="pron">${card.pr}</div>
-          <button class="speak" id="spk1">🔊 hören</button>
+          <button class="speak" id="spk1">▶︎ hören</button>
           <div class="tap-hint">tippen zum Umdrehen</div>
         </div>
         <div class="face back">
           <div class="cat-seal">${CATS[card.c]}</div>
-          <div class="svgwrap">${iconFor(card.ic)}</div>
+          <div class="svgwrap">${iconForCard(card)}</div>
           <div class="de">${card.de}</div>
           <div class="kanji-sm">${card.ja}</div>
           ${card.lit?`<div class="lit">${card.lit}</div>`:''}
-          <button class="speak" id="spk2">🔊 hören</button>
+          <button class="speak" id="spk2">▶︎ hören</button>
           <div class="boxdots"><span class="lab">Stufe</span>${dots}</div>
         </div>
       </div>
@@ -520,7 +528,7 @@ function voiceBoxHTML(){
     ? js.map(v=>`<option value="${(v.voiceURI||v.name).replace(/"/g,'&quot;')}" ${(v.voiceURI||v.name)===chosenVoiceURI?'selected':''}>${v.name}</option>`).join('')
     : '<option value="">keine japanische Stimme gefunden</option>';
   return `<div class="voicebox">
-    <div class="vlabel">🔊 Aussprache</div>
+    <div class="vlabel">▶︎ Aussprache</div>
     <div class="vrow"><select id="voicesel">${opts}</select><button class="vtest" id="vtest">▶︎ Test</button></div>
     <div class="vhint">Die App nutzt jetzt eingebaute japanische Audio-Aufnahmen – geräteunabhängig und offline. Die Auswahl hier betrifft nur die Computerstimme als Notfall-Rückfall.</div>
   </div>`;
@@ -534,7 +542,7 @@ function renderBrowse(){
     for(const v of items){
       const p=pget(v.jp);
       const dots=[1,2,3,4,5].map(i=>'<span class="'+(i<=p.box?'on':'')+'"></span>').join('');
-      h+=`<div class="row"><button class="rspeak" data-jp="${v.jp}">🔊</button>
+      h+=`<div class="row"><button class="rspeak" data-jp="${v.jp}">▶︎</button>
         <div class="rmid"><div class="rjp">${v.jp}<small>${v.ja}</small></div><div class="rde">${v.de} · <i>${v.pr}</i></div><div class="mdots">${dots}</div></div></div>`;
     }
   }
