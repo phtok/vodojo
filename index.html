@@ -121,6 +121,11 @@ nav.tabs button.active .ic{opacity:1;}
 .voicebox .vtest{flex:none;background:none;border:1px solid var(--line);color:var(--accent);border-radius:10px;padding:9px 14px;font-family:inherit;font-weight:600;font-size:.84rem;cursor:pointer;}
 .voicebox .vhint{font-size:.72rem;color:var(--muted);margin-top:9px;line-height:1.4;}
 .empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:.92rem;margin:auto;}
+.summary{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.sum-num{font-size:3rem;font-weight:600;color:var(--accent);line-height:1;}
+.sum-lbl{font-size:.92rem;color:var(--muted);margin-top:8px;}
+.sum-sub{font-size:.8rem;color:var(--muted);margin-top:12px;letter-spacing:.02em;}
+.sum-go{margin-top:30px;background:var(--accent);color:#10141a;border:none;border-radius:14px;padding:14px 30px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;}
 .fade{animation:fade .35s ease both;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 </style>
@@ -362,13 +367,28 @@ function bindChips(){ document.querySelectorAll('#catwrap .chip').forEach(c=>c.o
 function renderChips(){ const w=document.getElementById('catwrap'); if(w){ w.innerHTML=chipsHTML(); bindChips(); } }
 
 /* ---------- LERNEN ---------- */
-let learnQueue=[], learnIdx=0, isFlipped=false;
+const ROUND=10;  // Runden-Häppchen: so viele Karten/Fragen pro Durchgang
+let learnQueue=[], learnIdx=0, isFlipped=false, learnGot=0;
 function buildQueue(){
-  learnQueue=[...filtered()].sort((a,b)=>{ const pa=pget(a.jp),pb=pget(b.jp); if(pa.box!==pb.box) return pa.box-pb.box; return Math.random()-.5; });
-  learnIdx=0; isFlipped=false;
+  // schwächste Karten zuerst (niedrigste Leitner-Box), dann auf ein Häppchen begrenzen
+  learnQueue=[...filtered()].sort((a,b)=>{ const pa=pget(a.jp),pb=pget(b.jp); if(pa.box!==pb.box) return pa.box-pb.box; return Math.random()-.5; }).slice(0,ROUND);
+  learnIdx=0; isFlipped=false; learnGot=0;
+}
+function renderLearnSummary(){
+  const n=learnQueue.length, f=filtered();
+  const mastered=f.filter(v=>pget(v.jp).box>=5).length;
+  view.innerHTML=`<div class="summary fade">
+    <div class="sum-num">${learnGot}/${n}</div>
+    <div class="sum-lbl">in dieser Runde gewusst</div>
+    <div class="sum-sub">${mastered} von ${f.length} Karten gemeistert</div>
+    <button class="sum-go" id="learn-next">Neue Runde</button>
+  </div>`;
+  bindChips();
+  document.getElementById('learn-next').onclick=()=>{ buildQueue(); renderLearn(); };
 }
 function renderLearn(){
-  if(!learnQueue.length || learnIdx>=learnQueue.length) buildQueue();
+  if(!learnQueue.length) buildQueue();
+  if(learnIdx>=learnQueue.length){ renderLearnSummary(); return; }
   const card=learnQueue[learnIdx];
   if(!card){ view.innerHTML='<div class="empty">Keine Karten in dieser Kategorie.</div>'; bindChips(); return; }
   const p=pget(card.jp);
@@ -411,10 +431,10 @@ function renderLearn(){
 }
 async function grade(card,ok){
   const p=pget(card.jp); p.seen++;
-  if(ok){ p.box=Math.min(5,p.box+1); p.correct++; } else { p.box=1; }
-  await saveProgress(); learnIdx++; isFlipped=false;
-  if(learnIdx>=learnQueue.length) buildQueue();
-  renderLearn(); updateStats();
+  if(ok){ p.box=Math.min(5,p.box+1); p.correct++; learnGot++; } else { p.box=1; }
+  await saveProgress(); learnIdx++; isFlipped=false; updateStats();
+  if(learnIdx>=learnQueue.length){ renderLearnSummary(); return; }
+  renderLearn();
 }
 
 /* ---------- QUIZ (mit Verlauf + Vertiefen) ---------- */
@@ -447,6 +467,7 @@ function showQuestion(){
   let after='';
   if(answered){
     const ok=q.chosen===q.correct;
+    const last=qIdx===quizHist.length-1 && quizHist.length>=ROUND;
     const yt='https://www.youtube.com/results?search_query='+encodeURIComponent('Aikido '+card.jp+' Heuscher');
     after=`<div class="qfb">${ok?'✓ Richtig':'✗ '+card.jp+' = '+card.de}</div>
       <button class="deepen-btn" id="deepen">Mehr dazu ▾</button>
@@ -457,18 +478,34 @@ function showQuestion(){
       </div>
       <div class="qnav">
         ${qIdx>0?'<button class="back" id="qback">← zurück</button>':''}
-        <button class="fwd" id="qfwd">Weiter →</button>
+        <button class="fwd" id="qfwd">${last?'Ergebnis →':'Weiter →'}</button>
       </div>`;
   } else {
     after = qIdx>0 ? `<div class="qnav"><button class="back" id="qback">← zurück</button></div>` : '';
   }
   view.innerHTML=`<div class="qcard fade">${head}<div class="opts">${optsHTML}</div>${after}</div>
-    <div class="note">Frage ${qIdx+1} · Serie ${bestStreak}</div>`;
+    <div class="note">Frage ${qIdx+1} / ${ROUND} · Serie ${bestStreak}</div>`;
   bindChips();
   if(!answered){ view.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answerQuiz(q,b.dataset.o)); }
   const db=document.getElementById('deepen'); if(db) db.onclick=()=>{ q.open=!q.open; document.getElementById('deepbox').style.display=q.open?'block':'none'; };
   const bk=document.getElementById('qback'); if(bk) bk.onclick=()=>{ qIdx--; showQuestion(); };
-  const fw=document.getElementById('qfwd'); if(fw) fw.onclick=()=>{ if(qIdx<quizHist.length-1){ qIdx++; showQuestion(); } else makeQuestion(); };
+  const fw=document.getElementById('qfwd'); if(fw) fw.onclick=()=>{
+    if(qIdx<quizHist.length-1){ qIdx++; showQuestion(); }
+    else if(quizHist.length>=ROUND){ showQuizSummary(); }
+    else makeQuestion();
+  };
+}
+function showQuizSummary(){
+  const n=quizHist.length;
+  const right=quizHist.filter(q=>q.chosen===q.correct).length;
+  view.innerHTML=`<div class="summary fade">
+    <div class="sum-num">${right}/${n}</div>
+    <div class="sum-lbl">richtig in dieser Runde</div>
+    <div class="sum-sub">längste Serie: ${bestStreak}</div>
+    <button class="sum-go" id="quiz-next">Neue Runde</button>
+  </div>`;
+  bindChips();
+  document.getElementById('quiz-next').onclick=()=>startQuiz();
 }
 async function answerQuiz(q,chosen){
   if(q.chosen!==null) return;
