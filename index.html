@@ -35,6 +35,8 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .stat .num{font-size:1.3rem;font-weight:600;color:var(--text);line-height:1;}
 .stat .lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:4px;}
 .stat.streak .num{color:var(--accent);}
+.masterbar{flex:none;height:3px;margin:2px 18px 0;background:var(--surface2);border-radius:99px;overflow:hidden;}
+.masterbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .6s cubic-bezier(.2,.7,.2,1);}
 .chips{display:flex;flex-wrap:wrap;gap:6px 16px;}
 .chip{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.84rem;font-weight:500;padding:3px 0;cursor:pointer;border-bottom:2px solid transparent;}
 .chip.active{color:var(--text);border-bottom-color:var(--accent);}
@@ -136,11 +138,12 @@ nav.tabs button.active .ic{opacity:1;}
     <div class="brand">六&nbsp; Vokabel-Dojo</div>
     <button class="menubtn" id="menubtn" aria-label="Menü">⋯</button>
   </div>
+  <div class="masterbar" id="masterbar" aria-label="Gesamtfortschritt"><i id="mbar"></i></div>
   <div class="panel" id="panel">
     <div class="stats">
       <div class="stat"><div class="num" id="st-total">0</div><div class="lbl">Karten</div></div>
       <div class="stat"><div class="num" id="st-master">0</div><div class="lbl">gemeistert</div></div>
-      <div class="stat streak"><div class="num" id="st-streak">0</div><div class="lbl">Serie</div></div>
+      <div class="stat streak"><div class="num" id="st-days">0</div><div class="lbl">Tage</div></div>
     </div>
     <div id="catwrap"></div>
   </div>
@@ -295,8 +298,19 @@ const Store={
   }
 };
 let progress={}, bestStreak=0, curStreak=0;
+let dayStreak=0, dayLast='';   // Tages-Streak: aufeinanderfolgende Übungstage
 function pget(t){ if(!progress[t]) progress[t]={box:1,seen:0,correct:0}; return progress[t]; }
 async function saveProgress(){ await Store.set('aikido_progress',progress); await Store.set('aikido_streak',{best:bestStreak}); }
+function dayKey(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function touchDay(){
+  const t=dayKey(new Date());
+  if(dayLast===t) return;                       // heute schon gezählt
+  const y=new Date(); y.setDate(y.getDate()-1);
+  dayStreak = (dayLast===dayKey(y)) ? dayStreak+1 : 1;   // Folgetag → +1, sonst neu
+  dayLast=t;
+  Store.set('aikido_days',{streak:dayStreak,last:dayLast});
+  updateStats();
+}
 
 /* ---------- Aussprache (japanische Schrift bevorzugt, Stimme wählbar) ---------- */
 let allVoices=[], chosenVoiceURI=null;
@@ -356,7 +370,9 @@ function updateStats(){
   const f=filtered();
   document.getElementById('st-total').textContent=f.length;
   document.getElementById('st-master').textContent=f.filter(v=>pget(v.jp).box>=5).length;
-  document.getElementById('st-streak').textContent=bestStreak;
+  const ds=document.getElementById('st-days'); if(ds) ds.textContent=dayStreak;
+  const mb=document.getElementById('mbar');   // immer sichtbarer Gesamtfortschritt (alle Karten)
+  if(mb){ const m=VOCAB.filter(v=>pget(v.jp).box>=5).length; mb.style.width=Math.round(m/VOCAB.length*100)+'%'; }
 }
 function chipsHTML(){
   let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>';
@@ -430,7 +446,7 @@ function renderLearn(){
   document.getElementById('g-got').onclick=()=>grade(card,true);
 }
 async function grade(card,ok){
-  const p=pget(card.jp); p.seen++;
+  const p=pget(card.jp); p.seen++; touchDay();
   if(ok){ p.box=Math.min(5,p.box+1); p.correct++; learnGot++; } else { p.box=1; }
   await saveProgress(); learnIdx++; isFlipped=false; updateStats();
   if(learnIdx>=learnQueue.length){ renderLearnSummary(); return; }
@@ -510,7 +526,7 @@ function showQuizSummary(){
 async function answerQuiz(q,chosen){
   if(q.chosen!==null) return;
   q.chosen=chosen;
-  const p=pget(q.card.jp); p.seen++;
+  const p=pget(q.card.jp); p.seen++; touchDay();
   if(chosen===q.correct){ p.box=Math.min(5,p.box+1); p.correct++; curStreak++; if(curStreak>bestStreak)bestStreak=curStreak; speakCard(q.card); }
   else { p.box=1; curStreak=0; }
   await saveProgress(); updateStats(); showQuestion();
@@ -549,7 +565,7 @@ function renderBuild(){
 function checkBuild(){
   if(nbDone){ newBuild(); return; }
   if(!nbSel.a||!nbSel.t||!nbSel.d){ document.getElementById('nb-fb').textContent='Wähle aus allen drei Reihen.'; return; }
-  nbDone=true;
+  nbDone=true; touchDay();
   view.querySelectorAll('.nb-pick').forEach(b=>{ const k=b.dataset.k,v=b.dataset.v; if(v===nbTarget[k])b.classList.add('ok'); else if(nbSel[k]===v)b.classList.add('bad'); b.onclick=null; });
   const all=nbSel.a===nbTarget.a&&nbSel.t===nbTarget.t&&nbSel.d===nbTarget.d;
   const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
@@ -589,7 +605,7 @@ function renderBrowse(){
   if(sel) sel.onchange=async()=>{ chosenVoiceURI=sel.value||null; await Store.set('aikido_voice',{uri:chosenVoiceURI}); speak('合気道'); };
   const vt=document.getElementById('vtest'); if(vt) vt.onclick=()=>speak('入身投げ');
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
-  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; await saveProgress(); render(); updateStats(); } };
+  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); render(); updateStats(); } };
 }
 
 /* ---------- Router ---------- */
@@ -609,6 +625,7 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
   await loadChosenVoice();
   const sp=await Store.get('aikido_progress'); if(sp) progress=sp;
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
+  const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
   renderChips(); updateStats(); render();
 })();
 </script>
