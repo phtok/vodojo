@@ -116,12 +116,6 @@ nav.tabs button.active .ic{opacity:1;}
 .row .mdots span{width:6px;height:6px;border-radius:50%;background:var(--surface2);}
 .row .mdots span.on{background:var(--accent);}
 .reset{display:block;margin:22px auto 8px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:11px;padding:9px 20px;font-family:inherit;font-weight:600;font-size:.8rem;cursor:pointer;}
-.voicebox{border:1px solid var(--line);border-radius:14px;padding:13px;margin:4px 0 2px;}
-.voicebox .vlabel{font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-bottom:9px;}
-.voicebox .vrow{display:flex;gap:8px;}
-.voicebox select{flex:1;min-width:0;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-family:inherit;font-size:.84rem;}
-.voicebox .vtest{flex:none;background:none;border:1px solid var(--line);color:var(--accent);border-radius:10px;padding:9px 14px;font-family:inherit;font-weight:600;font-size:.84rem;cursor:pointer;}
-.voicebox .vhint{font-size:.72rem;color:var(--muted);margin-top:9px;line-height:1.4;}
 .empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:.92rem;margin:auto;}
 .summary{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 .sum-num{font-size:3rem;font-weight:600;color:var(--accent);line-height:1;}
@@ -314,7 +308,7 @@ function touchDay(){
 
 /* ---------- Aussprache (japanische Schrift bevorzugt, Stimme wählbar) ---------- */
 let allVoices=[], chosenVoiceURI=null;
-function loadVoices(){ try{ allVoices=speechSynthesis.getVoices()||[]; }catch(e){ allVoices=[]; } try{ if(mode==='browse' && document.getElementById('voicesel')) renderBrowse(); }catch(e){} }
+function loadVoices(){ try{ allVoices=speechSynthesis.getVoices()||[]; }catch(e){ allVoices=[]; } }
 if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
 function jaVoices(){ return allVoices.filter(v=>(v.lang||'').toLowerCase().startsWith('ja')); }
 function pickVoice(){
@@ -603,19 +597,8 @@ function checkBuild(){
 }
 
 /* ---------- LISTE ---------- */
-function voiceBoxHTML(){
-  const js=jaVoices();
-  const opts = js.length
-    ? js.map(v=>`<option value="${(v.voiceURI||v.name).replace(/"/g,'&quot;')}" ${(v.voiceURI||v.name)===chosenVoiceURI?'selected':''}>${v.name}</option>`).join('')
-    : '<option value="">keine japanische Stimme gefunden</option>';
-  return `<div class="voicebox">
-    <div class="vlabel">▶︎ Aussprache</div>
-    <div class="vrow"><select id="voicesel">${opts}</select><button class="vtest" id="vtest">▶︎ Test</button></div>
-    <div class="vhint">Die App nutzt jetzt eingebaute japanische Audio-Aufnahmen – geräteunabhängig und offline. Die Auswahl hier betrifft nur die Computerstimme als Notfall-Rückfall.</div>
-  </div>`;
-}
 function renderBrowse(){
-  let h=voiceBoxHTML();
+  let h='';
   const cats = activeCat==='all'? Object.keys(CATS) : [activeCat];
   for(const k of cats){
     const items=VOCAB.filter(v=>v.c===k); if(!items.length)continue;
@@ -629,9 +612,6 @@ function renderBrowse(){
   }
   h+='<button class="reset" id="reset">Fortschritt zurücksetzen</button>';
   view.innerHTML=h; bindChips();
-  const sel=document.getElementById('voicesel');
-  if(sel) sel.onchange=async()=>{ chosenVoiceURI=sel.value||null; await Store.set('aikido_voice',{uri:chosenVoiceURI}); speak('合気道'); };
-  const vt=document.getElementById('vtest'); if(vt) vt.onclick=()=>speak('入身投げ');
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); render(); updateStats(); } };
 }
