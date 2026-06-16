@@ -463,6 +463,7 @@ function renderLearn(){
   document.getElementById('spk2').onclick=(e)=>{e.stopPropagation();speakCard(card);};
   document.getElementById('g-again').onclick=()=>grade(card,false);
   document.getElementById('g-got').onclick=()=>grade(card,true);
+  speakCard(card);   // neue Karte erscheint → automatisch vorlesen
 }
 async function grade(card,ok){
   const p=pget(card.jp); p.seen++; touchDay();
@@ -484,7 +485,6 @@ function makeQuestion(){
   const opts=[correct,...distract].sort(rnd);
   quizHist.push({card,dir,correct,opts,chosen:null,open:false});
   qIdx=quizHist.length-1; showQuestion();
-  if(dir==='jp2de') speakCard(card);   // japanisch gezeigt → vorlesen; de2jp würde die Lösung verraten
 }
 function startQuiz(){
   if(filtered().length<4){ view.innerHTML='<div class="empty">Mind. 4 Karten nötig – wähle „Alle“ oder eine größere Kategorie.</div>'; bindChips(); return; }
