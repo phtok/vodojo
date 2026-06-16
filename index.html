@@ -41,7 +41,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .chip{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.84rem;font-weight:500;padding:3px 0;cursor:pointer;border-bottom:2px solid transparent;}
 .chip.active{color:var(--text);border-bottom-color:var(--accent);}
 main#view{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 18px 18px;display:flex;flex-direction:column;}
-nav.tabs{flex:none;display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));}
+nav.tabs{flex:none;display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:9px 8px max(9px, env(safe-area-inset-bottom));}
 nav.tabs button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.72rem;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 12px;}
 nav.tabs button .ic{font-size:1.05rem;line-height:1;opacity:.7;}
 nav.tabs button.active{color:var(--text);}
@@ -485,6 +485,7 @@ function makeQuestion(){
   const opts=[correct,...distract].sort(rnd);
   quizHist.push({card,dir,correct,opts,chosen:null,open:false});
   qIdx=quizHist.length-1; showQuestion();
+  if(dir==='jp2de') speakCard(card);   // japanisch gezeigt → vorlesen (de2jp würde die Lösung verraten)
 }
 function startQuiz(){
   if(filtered().length<4){ view.innerHTML='<div class="empty">Mind. 4 Karten nötig – wähle „Alle“ oder eine größere Kategorie.</div>'; bindChips(); return; }
