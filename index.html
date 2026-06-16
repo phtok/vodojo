@@ -487,6 +487,7 @@ function makeQuestion(){
   const opts=[correct,...distract].sort(rnd);
   quizHist.push({card,dir,correct,opts,chosen:null,open:false});
   qIdx=quizHist.length-1; showQuestion();
+  if(dir==='jp2de') speakCard(card);   // japanisch gezeigt → vorlesen; de2jp würde die Lösung verraten
 }
 function startQuiz(){
   if(filtered().length<4){ view.innerHTML='<div class="empty">Mind. 4 Karten nötig – wähle „Alle“ oder eine größere Kategorie.</div>'; bindChips(); return; }
