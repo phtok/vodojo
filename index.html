@@ -680,14 +680,14 @@ function _hd(x,y){ return `<circle cx="${x}" cy="${y}" r="7" fill="${C_TORI}" fi
 function _lb(d){ return `<path d="${d}" stroke="${C_TORI}" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; }
 function _ball(cx,cy){ return `<circle cx="${cx}" cy="${cy}" r="19" fill="${C_TORI}" fill-opacity="0.14" stroke="${C_TORI}" stroke-width="3.2"/>`; }
 const UK_MAE=[
-  {img:_frame(_grnd()+_hd(46,52)+_lb('M50 58 Q 60 78 60 92')+_lb('M52 62 Q 74 82 92 106')+_lb('M60 92 L52 108')+_lb('M60 92 L74 108')), cap:'Eine Hand rund zum Boden setzen, Kopf zur Seite.'},
-  {img:_frame(_grnd()+_ball(64,90)+_hd(50,82)+_af('M52 70 A 22 22 0 0 1 86 80')), cap:'Über die Schulter diagonal abrollen – rund wie ein Ball.'},
-  {img:_frame(_grnd()+_hd(78,54)+_lb('M76 60 L74 92')+_lb('M74 92 L66 108')+_lb('M74 92 L84 108')+_lb('M76 66 L88 80')+_af('M96 100 L96 76')), cap:'Den Schwung mitnehmen und wieder aufstehen.'}
+  {img:_frame(_grnd()+_hd(44,52)+_lb('M49 57 Q 72 70 92 106')+_af('M40 86 Q 64 96 86 102')), cap:'Rund machen, eine Hand zum Boden – Kopf zur Seite.'},
+  {img:_frame(_grnd()+_ball(65,89)+_hd(50,80)+_af('M50 67 A 23 23 0 0 1 88 80')), cap:'Über die Schulter abrollen – rund wie ein Ball.'},
+  {img:_frame(_grnd()+_hd(84,54)+_lb('M79 59 Q 60 74 60 106')+_af('M98 104 L98 72')), cap:'Mit dem Schwung wieder aufstehen.'}
 ];
 const UK_USHIRO=[
-  {img:_frame(_grnd()+_hd(60,66)+_lb('M64 72 Q 56 88 44 96')+_lb('M64 72 L78 92')+_lb('M78 92 L74 108')+_lb('M78 92 L88 104')), cap:'Tief gehen und rund nach hinten setzen.'},
-  {img:_frame(_grnd()+_ball(64,90)+_hd(80,82)+_af('M78 70 A 22 22 0 0 0 44 80')), cap:'Über die Schulter nach hinten rollen, Kinn zur Brust.'},
-  {img:_frame(_grnd()+_hd(54,54)+_lb('M56 60 L58 92')+_lb('M58 92 L50 108')+_lb('M58 92 L68 108')+_lb('M56 66 L44 80')+_af('M36 100 L36 76')), cap:'Mit dem Schwung wieder hochkommen.'}
+  {img:_frame(_grnd()+_hd(64,60)+_lb('M60 66 Q 44 84 40 106')+_af('M86 92 Q 64 100 46 104')), cap:'Tief und rund nach hinten setzen.'},
+  {img:_frame(_grnd()+_ball(65,89)+_hd(80,80)+_af('M80 67 A 23 23 0 0 0 42 80')), cap:'Rückwärts über die Schulter rollen, Kinn zur Brust.'},
+  {img:_frame(_grnd()+_hd(46,54)+_lb('M51 59 Q 70 74 70 106')+_af('M32 104 L32 72')), cap:'Mit dem Schwung wieder hochkommen.'}
 ];
 const GUIDE={
   'Irimi':{metaphor:'Eintreten. Stell dir eine offene Tür direkt neben dem Partner vor – geh einfach hindurch. Du weichst nie zurück, du gehst an ihm vorbei.', phases:[
