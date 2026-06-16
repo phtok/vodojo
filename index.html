@@ -138,8 +138,12 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-steps li{position:relative;padding:8px 0 8px 32px;color:var(--text);font-size:.93rem;line-height:1.45;border-bottom:1px solid var(--line);}
 .dt-steps li:last-child{border-bottom:none;}
 .dt-steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:7px;width:21px;height:21px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);font-size:.72rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
-.dt-sketch{display:flex;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 14px;}
-.dt-sketch svg{width:100%;max-width:300px;height:auto;}
+.dt-phases{display:flex;flex-direction:column;gap:10px;}
+.dt-phase{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;}
+.dt-ph-img{flex:none;width:84px;height:84px;}
+.dt-ph-img svg{width:100%;height:100%;display:block;}
+.dt-ph-cap{font-size:.92rem;color:var(--text);line-height:1.42;}
+.dt-ph-cap b{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.72rem;align-items:center;justify-content:center;margin-right:9px;vertical-align:middle;}
 .dt-legend{display:flex;gap:18px;justify-content:center;margin-top:12px;font-size:.72rem;color:var(--muted);}
 .dt-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px;}
 .dt-rel{display:flex;flex-wrap:wrap;gap:8px;}
@@ -647,24 +651,33 @@ function renderBrowse(){
   document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); render(); updateStats(); } };
 }
 
-/* ---------- VERTIEFUNG: Bewegungs-Skizzen (Person von oben, mit Beschriftung) ---------- */
-const C_TORI='#8fb3e0', C_UKE='#e07a62', C_LBL='#a39e92';
-function _person(cx,cy,ang,col,ghost){  // Körper von oben: Kreis + „Nase“ = Blickrichtung
-  const op=ghost?0.30:1, sw=ghost?2.6:3.4;
-  return `<g transform="translate(${cx} ${cy}) rotate(${ang})" opacity="${op}"><circle cx="0" cy="0" r="13" fill="${col}" fill-opacity="0.16" stroke="${col}" stroke-width="${sw}"/><path d="M-7 -8 L0 -23 L7 -8 Z" fill="${col}"/></g>`;
+/* ---------- VERTIEFUNG: Bewegungs-Skizzen (Phasen-Folge, Person von oben) ---------- */
+const C_TORI='#8fb3e0', C_UKE='#e07a62';
+function _pf(cx,cy,ang,col,ghost){  // Körper von oben: Kreis + „Nase“ = Blickrichtung
+  const op=ghost?0.30:1, sw=ghost?2.2:3;
+  return `<g transform="translate(${cx} ${cy}) rotate(${ang})" opacity="${op}"><circle r="10" fill="${col}" fill-opacity="0.16" stroke="${col}" stroke-width="${sw}"/><path d="M-5 -6 L0 -17 L5 -6 Z" fill="${col}"/></g>`;
 }
-function _dot(x,y){ return `<circle cx="${x}" cy="${y}" r="3.5" fill="#e9e4d7"/>`; }
-function _lbl(x,y,t,col,sz){ return `<text x="${x}" y="${y}" text-anchor="middle" fill="${col||C_LBL}" font-family="'Inclusive Sans',sans-serif" font-size="${sz||12}" font-weight="600">${t}</text>`; }
-function _arrow(d){ return `<path d="${d}" fill="none" stroke="${C_TORI}" stroke-width="3.2" stroke-linecap="round" marker-end="url(#ah)"/>`; }
-function _wrap(inner){ return `<svg viewBox="0 0 220 215" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="${C_TORI}"/></marker></defs>${inner}</svg>`; }
-const SK_IRIMI =_wrap(_lbl(110,24,'Partner',C_UKE)+_person(110,52,180,C_UKE,false)+_lbl(110,207,'Start')+_person(110,176,0,C_TORI,true)+_arrow('M110 158 Q 135 135 152 110')+_person(160,96,0,C_TORI,false)+_lbl(192,100,'Ziel'));
-const SK_TENKAN=_wrap(_lbl(100,24,'Partner',C_UKE)+_person(100,52,180,C_UKE,false)+_lbl(96,207,'Start')+_person(96,170,0,C_TORI,true)+_dot(96,146)+_lbl(152,150,'Drehpunkt','#e9e4d7',11)+_arrow('M112 178 A 40 40 0 1 1 132 104')+_person(140,92,180,C_TORI,false)+_lbl(176,92,'Ziel'));
-const SK_KAITEN=_wrap(_lbl(110,40,'auf der Stelle drehen',C_LBL,12)+_lbl(95,202,'Start')+_person(95,150,0,C_TORI,true)+_arrow('M120 120 A 38 38 0 0 1 150 150')+_person(150,150,90,C_TORI,false)+_lbl(150,202,'Ziel'));
+function _af(d){ return `<path d="${d}" fill="none" stroke="${C_TORI}" stroke-width="2.6" stroke-linecap="round" marker-end="url(#ah)"/>`; }
+function _dotf(x,y){ return `<circle cx="${x}" cy="${y}" r="3" fill="#e9e4d7"/>`; }
+function _frame(inner){ return `<svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" markerWidth="6.5" markerHeight="6.5" refX="4.5" refY="3.25" orient="auto"><path d="M0 0 L6.5 3.25 L0 6.5 z" fill="${C_TORI}"/></marker></defs>${inner}</svg>`; }
+const _P=(x,y)=>_pf(x,y,180,C_UKE,false);   // Partner, blickt nach unten (zu dir)
 const GUIDE={
-  'Irimi':{sk:SK_IRIMI, metaphor:'Eintreten. Stell dir eine offene Tür direkt neben dem Partner vor – geh einfach hindurch. Du weichst nie zurück, du gehst an ihm vorbei.', steps:['Du stehst dem Partner gegenüber.','Mach mit dem hinteren Fuß einen großen Schritt schräg nach vorn – an ihm vorbei.','Jetzt stehst du neben ihm statt vor ihm.']},
-  'Tenkan':{sk:SK_TENKAN, metaphor:'Drehen. Dein vorderer Fuß ist die Türangel. Dreh dich wie eine Tür einmal halb herum – am Ende stehst du neben dem Partner und schaust in dieselbe Richtung wie er.', steps:['Du stehst dem Partner gegenüber, ein Fuß vorn.','Der vordere Fuß bleibt stehen – das ist der Drehpunkt.','Schwing den hinteren Fuß im großen Bogen herum.','Jetzt stehst du neben ihm und schaust in dieselbe Richtung wie er.']},
-  'Kaiten':{sk:SK_KAITEN, metaphor:'Öffnen. Dreh dich auf der Stelle, als würdest du ein Tor aufschwingen – du machst Platz und änderst nur deine Blickrichtung.', steps:['Du stehst dem Partner gegenüber.','Dreh dich auf der Stelle zur Seite – die Füße bleiben fast am selben Ort.','Du „öffnest“ dich und schaust jetzt zur Seite.']},
-  'Tai sabaki':{rel:['Irimi','Tenkan','Kaiten'], metaphor:'Das ist das Oberwort für die Fußarbeit – wie du dich bewegst. Es gibt drei einfache Grundbewegungen.', steps:['Eintreten (Irimi): an ihm vorbeigehen.','Drehen (Tenkan): wie eine Tür herumdrehen.','Öffnen (Kaiten): auf der Stelle zur Seite drehen.','Tippe unten auf die drei Begriffe – jeder hat ein eigenes Bild.']}
+  'Irimi':{metaphor:'Eintreten. Stell dir eine offene Tür direkt neben dem Partner vor – geh einfach hindurch. Du weichst nie zurück, du gehst an ihm vorbei.', phases:[
+    {img:_frame(_P(65,30)+_pf(65,102,0,C_TORI)), cap:'Du stehst dem Partner gegenüber.'},
+    {img:_frame(_P(65,30)+_af('M58 98 L84 60')+_pf(72,74,0,C_TORI,true)), cap:'Großer Schritt schräg nach vorn – an ihm vorbei.'},
+    {img:_frame(_P(65,30)+_pf(98,54,0,C_TORI)), cap:'Jetzt stehst du neben ihm statt vor ihm.'}
+  ]},
+  'Tenkan':{metaphor:'Drehen. Dein vorderer Fuß ist die Türangel. Dreh dich wie eine Tür einmal halb herum – am Ende stehst du neben dem Partner und schaust in dieselbe Richtung wie er.', phases:[
+    {img:_frame(_P(65,28)+_pf(60,102,0,C_TORI)), cap:'Gegenüberstehen, ein Fuß vorn.'},
+    {img:_frame(_P(65,28)+_pf(60,102,0,C_TORI,true)+_dotf(60,84)+_af('M72 100 A 26 26 0 1 1 88 62')), cap:'Vorderer Fuß bleibt stehen (Drehpunkt) – der hintere schwingt im großen Bogen herum.'},
+    {img:_frame(_P(65,28)+_pf(92,56,180,C_TORI)), cap:'Du stehst neben ihm und schaust in dieselbe Richtung.'}
+  ]},
+  'Kaiten':{metaphor:'Öffnen. Dreh dich auf der Stelle, als würdest du ein Tor aufschwingen – du machst Platz und änderst nur deine Blickrichtung.', phases:[
+    {img:_frame(_P(65,28)+_pf(65,98,0,C_TORI)), cap:'Du stehst dem Partner gegenüber.'},
+    {img:_frame(_P(65,28)+_pf(65,98,0,C_TORI,true)+_af('M82 86 A 22 22 0 0 1 92 104')+_pf(65,98,45,C_TORI)), cap:'Auf der Stelle zur Seite drehen – die Füße bleiben fast am Ort.'},
+    {img:_frame(_P(65,28)+_pf(65,98,90,C_TORI)), cap:'Du bist „geöffnet“ und schaust zur Seite.'}
+  ]},
+  'Tai sabaki':{rel:['Irimi','Tenkan','Kaiten'], metaphor:'Das ist das Oberwort für die Fußarbeit – wie du dich bewegst. Es gibt drei einfache Grundbewegungen.', steps:['Eintreten (Irimi): an ihm vorbeigehen.','Drehen (Tenkan): wie eine Tür herumdrehen.','Öffnen (Kaiten): auf der Stelle zur Seite drehen.','Tippe unten auf die drei Begriffe – jeder zeigt seine Phasen.']}
 };
 function relatedTerms(card){
   const out=[], g=GUIDE[card.jp];
@@ -691,9 +704,10 @@ function openDetail(jp){
     <div class="dt-de">${card.de}</div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
-  if(g.sk) h+=`<div class="dt-sec"><h4>So sieht's von oben aus</h4><div class="dt-sketch">${g.sk}</div>
+  if(g.phases) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><div class="dt-phases">${
+    g.phases.map((p,i)=>`<div class="dt-phase"><div class="dt-ph-img">${p.img}</div><div class="dt-ph-cap"><b>${i+1}</b>${p.cap}</div></div>`).join('')}</div>
     <div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div></div>`;
-  if(g.steps) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
+  else if(g.steps) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
   if(rel.length) h+=`<div class="dt-sec"><h4>Verwandte Begriffe</h4><div class="dt-rel">${
     rel.map(v=>`<button data-jp="${v.jp.replace(/"/g,'&quot;')}">${v.jp}<small>${v.de}</small></button>`).join('')}</div></div>`;
   h+=`<div class="dt-sec"><h4>Video ansehen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;
