@@ -342,6 +342,7 @@ function speakCard(card){
   if(url){
     try{
       if(!_audio) _audio=new Audio();
+      _audio.onended=null;
       _audio.src=url;
       const p=_audio.play();
       if(p&&p.catch) p.catch(()=>speak(card.ja||card.jp));
@@ -349,6 +350,33 @@ function speakCard(card){
     }catch(e){}
   }
   speak(card.ja || card.jp);
+}
+function speakSeq(jps){
+  // mehrere eingebettete Aufnahmen nacheinander – gleiche Stimme wie überall sonst
+  if(!_audio) _audio=new Audio();
+  const a=_audio; a.onended=null;
+  let i=0;
+  const step=()=>{
+    if(i>=jps.length){ a.onended=null; return; }
+    const jp=jps[i++];
+    const url=audioURL(jp);
+    if(url){
+      a.onended=step;
+      a.src=url;
+      const p=a.play();
+      if(p&&p.catch) p.catch(()=>{ a.onended=null; const c=VOCAB.find(v=>v.jp===jp); speak(c?(c.ja||c.jp):jp); });
+    } else {
+      a.onended=null;
+      const c=VOCAB.find(v=>v.jp===jp); speak(c?(c.ja||c.jp):jp);
+      step();
+    }
+  };
+  step();
+}
+function speakName(t){
+  // Technik+Richtung als kombinierten Vokabel-Key (z. B. „Ikkyo Omote"), sonst nur die Technik
+  const tech=(t.d && t.d!=='—') ? t.t+' '+t.d : t.t;
+  speakSeq([t.a, tech]);
 }
 function speak(text){
   if(!('speechSynthesis' in window)) return;
@@ -570,7 +598,7 @@ function checkBuild(){
   const all=nbSel.a===nbTarget.a&&nbSel.t===nbTarget.t&&nbSel.d===nbTarget.d;
   const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
   document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full;
-  if(all)speak(full);
+  if(all)speakName(nbTarget);
   const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--ok)':'var(--ai-deep)';
 }
 
