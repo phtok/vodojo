@@ -68,7 +68,6 @@ nav.tabs button.active .ic{opacity:1;}
 .boxdots{display:flex;gap:5px;justify-content:center;margin-top:16px;align-items:center;}
 .boxdots span{width:7px;height:7px;border-radius:50%;background:var(--surface2);}
 .boxdots span.on{background:var(--accent);}
-.boxdots .lab{font-size:.58rem;color:var(--muted);margin-right:6px;letter-spacing:.08em;text-transform:uppercase;}
 .grade{flex:none;display:flex;gap:10px;margin-top:14px;}
 .grade button{flex:1;border-radius:14px;padding:15px 8px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:none;color:var(--muted);}
 .grade .got{background:var(--accent);color:#10141a;border-color:var(--accent);}
@@ -307,17 +306,15 @@ function touchDay(){
 }
 
 /* ---------- Aussprache (japanische Schrift bevorzugt, Stimme wählbar) ---------- */
-let allVoices=[], chosenVoiceURI=null;
+let allVoices=[];
 function loadVoices(){ try{ allVoices=speechSynthesis.getVoices()||[]; }catch(e){ allVoices=[]; } }
 if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
 function jaVoices(){ return allVoices.filter(v=>(v.lang||'').toLowerCase().startsWith('ja')); }
-function pickVoice(){
-  if(chosenVoiceURI){ const c=allVoices.find(v=>v.voiceURI===chosenVoiceURI); if(c) return c; }
+function pickVoice(){   // stiller Notfall-Fallback: beste verfügbare japanische Stimme
   const js=jaVoices(); if(!js.length) return null;
   const better=js.find(v=>/enhanced|erweitert|premium|拡張|neural|siri|高品質/i.test(v.name||''));
   return better||js[0];
 }
-async function loadChosenVoice(){ try{ const s=await Store.get('aikido_voice'); if(s&&s.uri) chosenVoiceURI=s.uri; }catch(e){} }
 let _audio=null, _urls={};
 function audioURL(jp){
   if(_urls[jp]!==undefined) return _urls[jp];
@@ -594,7 +591,7 @@ function checkBuild(){
   const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
   document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full;
   if(all)speakName(nbTarget);
-  const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--ok)':'var(--ai-deep)';
+  const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--good)':'var(--accent)';
 }
 
 /* ---------- LISTE ---------- */
@@ -631,7 +628,6 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
 });
 const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.querySelector('.app').classList.toggle('menuopen');
 (async function init(){
-  await loadChosenVoice();
   const sp=await Store.get('aikido_progress'); if(sp) progress=sp;
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
   const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
