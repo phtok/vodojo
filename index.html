@@ -138,6 +138,9 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-steps li{position:relative;padding:8px 0 8px 32px;color:var(--text);font-size:.93rem;line-height:1.45;border-bottom:1px solid var(--line);}
 .dt-steps li:last-child{border-bottom:none;}
 .dt-steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:7px;width:21px;height:21px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);font-size:.72rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.dt-diagram{display:flex;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;}
+.dt-diagram svg{width:100%;max-width:190px;height:auto;}
+.dt-diagram-cap{text-align:center;margin-top:10px;font-size:.92rem;color:var(--text);line-height:1.42;}
 .dt-phases{display:flex;flex-direction:column;gap:10px;}
 .dt-phase{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;}
 .dt-ph-img{flex:none;width:84px;height:84px;}
@@ -661,6 +664,31 @@ function _af(d){ return `<path d="${d}" fill="none" stroke="${C_TORI}" stroke-wi
 function _dotf(x,y){ return `<circle cx="${x}" cy="${y}" r="3" fill="#e9e4d7"/>`; }
 function _frame(inner){ return `<svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" markerWidth="6.5" markerHeight="6.5" refX="4.5" refY="3.25" orient="auto"><path d="M0 0 L6.5 3.25 L0 6.5 z" fill="${C_TORI}"/></marker></defs>${inner}</svg>`; }
 const _P=(x,y)=>_pf(x,y,180,C_UKE,false);   // Partner, blickt nach unten (zu dir)
+/* Griffe: zwei Figuren von oben, welche Hand fasst welches Handgelenk */
+function _garm(x1,y1,x2,y2,col){ return `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${col}" stroke-width="3" stroke-linecap="round" fill="none"/>`; }
+function _wr(x,y){ return `<circle cx="${x}" cy="${y}" r="6" fill="none" stroke="${C_TORI}" stroke-width="3"/>`; }
+function _uh(x,y){ return `<circle cx="${x}" cy="${y}" r="4.5" fill="${C_UKE}"/>`; }
+function _slbl(x,y,t,col){ return `<text x="${x}" y="${y}" text-anchor="middle" fill="${col||'#a39e92'}" font-family="'Inclusive Sans',sans-serif" font-size="11" font-weight="600">${t}</text>`; }
+function _gwrap(inner,top){ return `<svg viewBox="0 0 150 162" xmlns="http://www.w3.org/2000/svg">${inner}${_slbl(40,156,'Du',C_TORI)}${_slbl(110,156,'Uke',C_UKE)}${_slbl(75,16,top)}</svg>`; }
+const _Pg=_pf(75,34,180,C_UKE), _Tg=_pf(75,120,0,C_TORI);
+const GRIP_AI=_gwrap(_Pg+_Tg+_garm(67,112,55,80,C_TORI)+_garm(86,46,55,80,C_UKE)+_wr(55,80)+_uh(55,80),'über Kreuz');
+const GRIP_GY=_gwrap(_Pg+_Tg+_garm(84,112,92,80,C_TORI)+_garm(92,46,92,80,C_UKE)+_wr(92,80)+_uh(92,80),'gerade');
+const GRIP_RY=_gwrap(_Pg+_Tg+_garm(66,112,56,80,C_TORI)+_garm(84,112,94,80,C_TORI)+_garm(60,46,56,80,C_UKE)+_garm(90,46,94,80,C_UKE)+_wr(56,80)+_uh(56,80)+_wr(94,80)+_uh(94,80),'beide Hände');
+/* Ukemi: Seitenansicht, 3 Phasen */
+function _grnd(){ return `<line x1="14" y1="110" x2="116" y2="110" stroke="#3a3f47" stroke-width="2.5"/>`; }
+function _hd(x,y){ return `<circle cx="${x}" cy="${y}" r="7" fill="${C_TORI}" fill-opacity="0.16" stroke="${C_TORI}" stroke-width="3"/>`; }
+function _lb(d){ return `<path d="${d}" stroke="${C_TORI}" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; }
+function _ball(cx,cy){ return `<circle cx="${cx}" cy="${cy}" r="19" fill="${C_TORI}" fill-opacity="0.14" stroke="${C_TORI}" stroke-width="3.2"/>`; }
+const UK_MAE=[
+  {img:_frame(_grnd()+_hd(44,52)+_lb('M49 57 Q 72 70 92 106')+_af('M40 86 Q 64 96 86 102')), cap:'Rund machen, eine Hand zum Boden – Kopf zur Seite.'},
+  {img:_frame(_grnd()+_ball(65,89)+_hd(50,80)+_af('M50 67 A 23 23 0 0 1 88 80')), cap:'Über die Schulter abrollen – rund wie ein Ball.'},
+  {img:_frame(_grnd()+_hd(84,54)+_lb('M79 59 Q 60 74 60 106')+_af('M98 104 L98 72')), cap:'Mit dem Schwung wieder aufstehen.'}
+];
+const UK_USHIRO=[
+  {img:_frame(_grnd()+_hd(64,60)+_lb('M60 66 Q 44 84 40 106')+_af('M86 92 Q 64 100 46 104')), cap:'Tief und rund nach hinten setzen.'},
+  {img:_frame(_grnd()+_ball(65,89)+_hd(80,80)+_af('M80 67 A 23 23 0 0 0 42 80')), cap:'Rückwärts über die Schulter rollen, Kinn zur Brust.'},
+  {img:_frame(_grnd()+_hd(46,54)+_lb('M51 59 Q 70 74 70 106')+_af('M32 104 L32 72')), cap:'Mit dem Schwung wieder hochkommen.'}
+];
 const GUIDE={
   'Irimi':{metaphor:'Eintreten. Stell dir eine offene Tür direkt neben dem Partner vor – geh einfach hindurch. Du weichst nie zurück, du gehst an ihm vorbei.', phases:[
     {img:_frame(_P(65,30)+_pf(65,102,0,C_TORI)), cap:'Du stehst dem Partner gegenüber.'},
@@ -677,7 +705,12 @@ const GUIDE={
     {img:_frame(_P(65,28)+_pf(65,98,0,C_TORI,true)+_af('M82 86 A 22 22 0 0 1 92 104')+_pf(65,98,45,C_TORI)), cap:'Auf der Stelle zur Seite drehen – die Füße bleiben fast am Ort.'},
     {img:_frame(_P(65,28)+_pf(65,98,90,C_TORI)), cap:'Du bist „geöffnet“ und schaust zur Seite.'}
   ]},
-  'Tai sabaki':{rel:['Irimi','Tenkan','Kaiten'], metaphor:'Das ist das Oberwort für die Fußarbeit – wie du dich bewegst. Es gibt drei einfache Grundbewegungen.', steps:['Eintreten (Irimi): an ihm vorbeigehen.','Drehen (Tenkan): wie eine Tür herumdrehen.','Öffnen (Kaiten): auf der Stelle zur Seite drehen.','Tippe unten auf die drei Begriffe – jeder zeigt seine Phasen.']}
+  'Tai sabaki':{rel:['Irimi','Tenkan','Kaiten'], metaphor:'Das ist das Oberwort für die Fußarbeit – wie du dich bewegst. Es gibt drei einfache Grundbewegungen.', steps:['Eintreten (Irimi): an ihm vorbeigehen.','Drehen (Tenkan): wie eine Tür herumdrehen.','Öffnen (Kaiten): auf der Stelle zur Seite drehen.','Tippe unten auf die drei Begriffe – jeder zeigt seine Phasen.']},
+  'Katatetori Aihanmi':{metaphor:'Gleiche Seite (Ai-hanmi): Uke fasst dein Handgelenk mit der gleichseitigen Hand – über Kreuz. Ihr steht in gleicher Stellung (gleicher Fuß vorn).', diagram:{img:GRIP_AI, cap:'Rechte Hand → rechtes Handgelenk: über Kreuz.'}},
+  'Katatetori Gyakuhanmi':{metaphor:'Gespiegelt (Gyaku-hanmi): Uke fasst dein Handgelenk mit der gegenüberliegenden Hand – gerade. Ihr steht spiegelbildlich.', diagram:{img:GRIP_GY, cap:'Rechte Hand → linkes Handgelenk: gerade gegenüber.'}},
+  'Ryotetori':{metaphor:'Beide: Uke greift mit beiden Händen deine beiden Handgelenke.', diagram:{img:GRIP_RY, cap:'Beide Hände fassen beide Handgelenke.'}},
+  'Mae ukemi':{noPartner:true, metaphor:'Vorwärtsrolle. Mach dich rund wie ein Ball und rolle diagonal über eine Schulter ab – nie flach auf den Rücken, immer rund.', phases:UK_MAE},
+  'Ushiro ukemi':{noPartner:true, metaphor:'Rückwärtsrolle. Setz dich rund nach hinten und rolle über eine Schulter ab (nicht gerade über den Kopf). Kinn an die Brust.', phases:UK_USHIRO}
 };
 function relatedTerms(card){
   const out=[], g=GUIDE[card.jp];
@@ -704,9 +737,10 @@ function openDetail(jp){
     <div class="dt-de">${card.de}</div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
+  const legend = g.noPartner ? '' : `<div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div>`;
   if(g.phases) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><div class="dt-phases">${
-    g.phases.map((p,i)=>`<div class="dt-phase"><div class="dt-ph-img">${p.img}</div><div class="dt-ph-cap"><b>${i+1}</b>${p.cap}</div></div>`).join('')}</div>
-    <div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div></div>`;
+    g.phases.map((p,i)=>`<div class="dt-phase"><div class="dt-ph-img">${p.img}</div><div class="dt-ph-cap"><b>${i+1}</b>${p.cap}</div></div>`).join('')}</div>${legend}</div>`;
+  else if(g.diagram) h+=`<div class="dt-sec"><h4>So fasst Uke an</h4><div class="dt-diagram">${g.diagram.img}</div><div class="dt-diagram-cap">${g.diagram.cap}</div></div>`;
   else if(g.steps) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
   if(rel.length) h+=`<div class="dt-sec"><h4>Verwandte Begriffe</h4><div class="dt-rel">${
     rel.map(v=>`<button data-jp="${v.jp.replace(/"/g,'&quot;')}">${v.jp}<small>${v.de}</small></button>`).join('')}</div></div>`;
