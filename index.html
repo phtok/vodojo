@@ -154,6 +154,36 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-rel button small{color:var(--accent);margin-left:6px;font-weight:400;}
 .dt-video{display:inline-block;color:var(--accent);font-weight:600;text-decoration:none;font-size:.9rem;}
 .dt-open{display:block;margin:14px auto 0;background:none;border:1px solid var(--line);color:var(--accent);font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;border-radius:999px;padding:8px 16px;}
+.t-streak{font-size:.95rem;color:var(--text);margin:2px 2px 12px;}
+.t-streak b{color:var(--accent);font-size:1.15rem;}
+.t-streak .sub{color:var(--muted);}
+.heat{display:grid;grid-template-rows:repeat(7,9px);grid-auto-flow:column;gap:3px;justify-content:start;margin:0 2px 18px;}
+.heat i{width:9px;height:9px;border-radius:2px;background:var(--surface2);}
+.heat i.on{background:var(--accent);}
+.t-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px;}
+.t-card h3{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin:0 0 12px;}
+.drill{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+.drill:last-of-type{border-bottom:none;}
+.drill .dn{flex:1;min-width:0;}
+.drill .dn b{font-weight:600;color:var(--text);font-size:.95rem;}
+.drill .dn small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px;}
+.drill .play{flex:none;background:none;border:1px solid var(--line);color:var(--accent);border-radius:9px;padding:6px 11px;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;}
+.t-btn{display:block;width:100%;background:none;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px 14px;font-family:inherit;font-size:.92rem;font-weight:500;cursor:pointer;text-align:left;margin-top:8px;}
+.t-btn.t-accent{background:var(--accent);color:#10141a;border:none;font-weight:600;text-align:center;}
+.timer{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;}
+.timer .tt{font-size:1.7rem;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;min-width:64px;text-align:center;}
+.timer button{background:none;border:1px solid var(--line);color:var(--accent);border-radius:10px;padding:8px 15px;font-family:inherit;font-weight:600;font-size:.9rem;cursor:pointer;}
+.logrow{display:flex;flex-wrap:wrap;gap:8px;}
+.logchip{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;padding:8px 13px;font-family:inherit;font-size:.85rem;font-weight:500;cursor:pointer;}
+.logchip.on{border-color:var(--accent);color:var(--accent);}
+.belt{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:2px 0 7px;}
+.belt i{display:block;height:100%;background:var(--accent);width:0;transition:width .6s;}
+.belt-lbl{font-size:.82rem;color:var(--muted);}
+.ach{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px;}
+.ach span{font-size:.76rem;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:5px 9px;}
+.ach span.got{color:var(--good);border-color:var(--good);}
+.examq{font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.4;}
+.exa{color:var(--accent);font-weight:600;font-size:1.05rem;}
 .fade{animation:fade .35s ease both;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 </style>
@@ -180,6 +210,7 @@ nav.tabs button.active .ic{opacity:1;}
     <button data-mode="learn" class="active"><span class="ic">🥋</span>Lernen</button>
     <button data-mode="quiz"><span class="ic">✦</span>Quiz</button>
     <button data-mode="build"><span class="ic">⛩</span>Namen</button>
+    <button data-mode="today"><span class="ic">稽</span>Üben</button>
     <button data-mode="browse"><span class="ic">≣</span>Liste</button>
   </nav>
 </div>
@@ -502,7 +533,7 @@ function renderLearn(){
   speakCard(card);   // neue Karte erscheint → automatisch vorlesen
 }
 async function grade(card,ok){
-  const p=pget(card.jp); p.seen++; touchDay();
+  const p=pget(card.jp); p.seen++; touchDay(); markLog('Vokabeln');
   if(ok){ p.box=Math.min(5,p.box+1); p.correct++; learnGot++; } else { p.box=1; }
   await saveProgress(); learnIdx++; isFlipped=false; updateStats();
   if(learnIdx>=learnQueue.length){ renderLearnSummary(); return; }
@@ -585,7 +616,7 @@ function showQuizSummary(){
 async function answerQuiz(q,chosen){
   if(q.chosen!==null) return;
   q.chosen=chosen;
-  const p=pget(q.card.jp); p.seen++; touchDay();
+  const p=pget(q.card.jp); p.seen++; touchDay(); markLog('Vokabeln');
   if(chosen===q.correct){ p.box=Math.min(5,p.box+1); p.correct++; curStreak++; if(curStreak>bestStreak)bestStreak=curStreak; speakCard(q.card); }
   else { p.box=1; curStreak=0; }
   await saveProgress(); updateStats(); showQuestion();
@@ -624,7 +655,7 @@ function renderBuild(){
 function checkBuild(){
   if(nbDone){ newBuild(); return; }
   if(!nbSel.a||!nbSel.t||!nbSel.d){ document.getElementById('nb-fb').textContent='Wähle aus allen drei Reihen.'; return; }
-  nbDone=true; touchDay();
+  nbDone=true; touchDay(); markLog('Technik');
   view.querySelectorAll('.nb-pick').forEach(b=>{ const k=b.dataset.k,v=b.dataset.v; if(v===nbTarget[k])b.classList.add('ok'); else if(nbSel[k]===v)b.classList.add('bad'); b.onclick=null; });
   const all=nbSel.a===nbTarget.a&&nbSel.t===nbTarget.t&&nbSel.d===nbTarget.d;
   const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
@@ -651,7 +682,7 @@ function renderBrowse(){
   view.innerHTML=h; bindChips();
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   view.querySelectorAll('.rmid').forEach(m=>m.onclick=()=>openDetail(m.dataset.jp));
-  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); render(); updateStats(); } };
+  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); render(); updateStats(); } };
 }
 
 /* ---------- VERTIEFUNG: Bewegungs-Skizzen (Phasen-Folge, Person von oben) ---------- */
@@ -793,12 +824,124 @@ function openDetail(jp){
 }
 function closeDetail(){ const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
 
+/* ---------- ÜBEN / HEUTE (Log, Heatmap, Drills, Routinen, Prüfungs-Check, Fortschritt) ---------- */
+const DRILLS=[
+  {t:'Tenkan langsam',d:'2 Min – Drehpunkt spüren',s:120,k:'Tenkan'},
+  {t:'Irimi-Eintritte',d:'10× tief eintreten',s:0,k:'Irimi'},
+  {t:'Kaiten / Öffnen',d:'1 Min auf der Stelle',s:60,k:'Kaiten'},
+  {t:'Mae ukemi',d:'8 Rollen vorwärts',s:0,k:'Mae ukemi'},
+  {t:'Ushiro ukemi',d:'8 Rollen rückwärts',s:0,k:'Ushiro ukemi'},
+  {t:'Hanmi-Wechsel',d:'1 Min links/rechts',s:60,k:'Hanmi'},
+  {t:'Shikko',d:'2 Min Kniegehen',s:120,k:'Shikko'},
+  {t:'Tai sabaki frei',d:'2 Min fließen lassen',s:120,k:'Tai sabaki'},
+  {t:'Handgelenke lockern',d:'1 Min kreisen',s:60,k:null}
+];
+const ROUTINES={
+  warmup:{title:'Aufwärmen',intro:'Ruhig und rund – nichts reißen. 5–8 Minuten.',steps:[
+    'Locker auf der Stelle gehen, tief atmen (1 Min).',
+    'Nacken sanft neigen und drehen – ohne Schwung.',
+    'Schultern groß kreisen, vor und zurück.',
+    'Arme schwingen, Rumpf locker mitdrehen (Funetori-Gefühl).',
+    'Hüfte kreisen, Knie leicht gebeugt.',
+    'Fuß- und Kniegelenke lockern.',
+    'Ein paar sanfte Ukemi: rückwärts wiegen, rund machen.'
+  ]},
+  wrists:{title:'Handgelenke dehnen',intro:'Bereitet Kotegaeshi, Nikyo und Sankyo vor. Sanft, nie reißen.',steps:[
+    'Kote-gaeshi-Dehnung: Handrücken fassen, Hand sanft nach außen drehen.',
+    'Nikyo-Dehnung: Handfläche zum Unterarm beugen, leicht drücken.',
+    'Sankyo-Dehnung: Hand nach oben/innen drehen, Ellbogen sinkt.',
+    'Beide Handgelenke langsam kreisen, in beide Richtungen.',
+    'Finger sanft nach hinten dehnen.'
+  ]}
+};
+const LOGTAGS=['Vokabeln','Technik','Ukemi','Aufwärmen','Dojo-Training'];
+let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null;
+function todayKey(){ return dayKey(new Date()); }
+function todayLog(){ return logData[todayKey()]||[]; }
+function setTodayLog(arr){ if(arr&&arr.length) logData[todayKey()]=arr; else delete logData[todayKey()]; Store.set('aikido_log',logData); }
+function markLog(tag){ const t=todayLog(); if(!t.includes(tag)){ t.push(tag); setTodayLog(t); } }
+function toggleLogTag(tag){ const t=todayLog(); const i=t.indexOf(tag); if(i<0){ t.push(tag); touchDay(); } else t.splice(i,1); setTodayLog(t); }
+function pickDrills(){ drillPick=[...DRILLS].sort(()=>Math.random()-.5).slice(0,3); }
+function fmtTime(s){ const m=Math.floor(s/60), x=s%60; return m+':'+(x<10?'0':'')+x; }
+function stopTimer(){ if(_timerId){ clearInterval(_timerId); _timerId=null; } }
+function heatmapHTML(){ let c=''; const t=new Date(); for(let i=69;i>=0;i--){ const d=new Date(t); d.setDate(d.getDate()-i); const on=(logData[dayKey(d)]||[]).length?'on':''; c+=`<i class="${on}"></i>`; } return `<div class="heat">${c}</div>`; }
+function beltPct(){ return Math.round(VOCAB.filter(v=>pget(v.jp).box>=5).length / VOCAB.length * 100); }
+function practiceDays(){ return Object.keys(logData).filter(k=>(logData[k]||[]).length).length; }
+function achievements(){
+  const m=VOCAB.filter(v=>pget(v.jp).box>=5).length;
+  const zahlen=VOCAB.filter(v=>v.c==='zahlen');
+  return [
+    {t:'7-Tage-Serie',got:dayStreak>=7},
+    {t:'Alle Zahlen',got:zahlen.length>0&&zahlen.every(v=>pget(v.jp).box>=5)},
+    {t:'25 gemeistert',got:m>=25},
+    {t:'10 Übungstage',got:practiceDays()>=10},
+    {t:'Halbe Strecke',got:beltPct()>=50}
+  ];
+}
+function newExamTask(){ examTask={e:EXAM[Math.floor(Math.random()*EXAM.length)],open:false}; }
+function startTimer(sec){
+  stopTimer(); _timerLeft=sec;
+  const tw=document.getElementById('timer'); if(tw) tw.style.display='flex';
+  const tt=document.getElementById('tt'), ss=document.getElementById('t-startstop');
+  if(tt) tt.textContent=fmtTime(_timerLeft);
+  const tick=()=>{ _timerLeft--; if(tt) tt.textContent=fmtTime(Math.max(0,_timerLeft)); if(_timerLeft<=0){ stopTimer(); if(ss) ss.textContent='Fertig ✓'; try{ speak('はい'); }catch(e){} } };
+  _timerId=setInterval(tick,1000);
+  if(ss){ ss.textContent='Pause'; ss.onclick=()=>{ if(_timerId){ stopTimer(); ss.textContent='Weiter'; } else { _timerId=setInterval(tick,1000); ss.textContent='Pause'; } }; }
+  const rs=document.getElementById('t-reset'); if(rs) rs.onclick=()=>{ stopTimer(); _timerLeft=sec; if(tt) tt.textContent=fmtTime(sec); if(ss) ss.textContent='Start'; };
+}
+function openRoutine(key){
+  const r=ROUTINES[key]; if(!r) return;
+  let h=`<button class="dt-back" id="dt-back">← zurück</button><div class="dt-head"><div class="dt-seal">Eigentraining</div><div class="dt-jp">${r.title}</div></div>`;
+  if(r.intro) h+=`<div class="dt-metaphor">${r.intro}</div>`;
+  h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
+  h+=`<button class="dt-open" id="r-done" style="margin-top:18px">✓ Als „Aufwärmen“ eintragen</button>`;
+  const d=document.getElementById('detail'); d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
+  document.getElementById('dt-back').onclick=closeDetail;
+  document.getElementById('r-done').onclick=()=>{ markLog('Aufwärmen'); touchDay(); closeDetail(); if(mode==='today') renderToday(); };
+}
+function renderToday(){
+  stopTimer();
+  if(!drillPick.length) pickDrills();
+  if(!examTask) newExamTask();
+  const log=todayLog(), done=log.length>0;
+  const drillsHTML=drillPick.map(d=>`<div class="drill"><div class="dn"${d.k?` data-jp="${d.k.replace(/"/g,'&quot;')}" style="cursor:pointer"`:''}><b>${d.t}</b><small>${d.d}${d.k?' · antippen für Skizze':''}</small></div>${d.s?`<button class="play" data-s="${d.s}">▶ Timer</button>`:''}</div>`).join('');
+  const logHTML=LOGTAGS.map(t=>`<button class="logchip${log.includes(t)?' on':''}" data-tag="${t}">${log.includes(t)?'✓ ':''}${t}</button>`).join('');
+  const ex=examTask.e, full=ex.a+' '+ex.t+(ex.d!=='—'?' '+ex.d:'');
+  const examHTML = examTask.open
+    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div><button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
+    : `<div class="examq">${ex.de}</div><button class="t-btn t-accent" id="ex-show" style="margin-top:10px">Technik-Namen zeigen</button>`;
+  const ach=achievements().map(a=>`<span class="${a.got?'got':''}">${a.got?'✓ ':''}${a.t}</span>`).join('');
+  view.innerHTML=`<div class="today fade">
+    <div class="t-streak"><b>${dayStreak}</b> Tage in Folge <span class="sub">· heute ${done?'✓ geübt':'noch offen'}</span></div>
+    ${heatmapHTML()}
+    <div class="t-card"><h3>Heute üben</h3><div id="drills">${drillsHTML}</div>
+      <div class="timer" id="timer" style="display:none"><button id="t-reset">↺</button><span class="tt" id="tt">0:00</span><button id="t-startstop">Start</button></div>
+      <button class="t-btn" id="t-newdrills" style="margin-top:10px">Neuer Vorschlag ↻</button></div>
+    <div class="t-card"><h3>Aufwärmen & Dehnen</h3>
+      <button class="t-btn t-routine" data-r="warmup">Aufwärm-Routine ▸</button>
+      <button class="t-btn t-routine" data-r="wrists">Handgelenke dehnen ▸</button></div>
+    <div class="t-card"><h3>Heute gemacht</h3><div class="logrow">${logHTML}</div></div>
+    <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}</div>
+    <div class="t-card"><h3>Weg zum 5. Kyu</h3><div class="belt"><i style="width:${beltPct()}%"></i></div>
+      <div class="belt-lbl">${beltPct()} % gemeistert · ${practiceDays()} Übungstage</div>
+      <div class="ach">${ach}</div></div>
+  </div>`;
+  view.querySelectorAll('.drill .dn[data-jp]').forEach(e=>e.onclick=()=>openDetail(e.dataset.jp));
+  view.querySelectorAll('.drill .play').forEach(b=>b.onclick=()=>startTimer(parseInt(b.dataset.s,10)));
+  document.getElementById('t-newdrills').onclick=()=>{ pickDrills(); renderToday(); };
+  view.querySelectorAll('.t-routine').forEach(b=>b.onclick=()=>openRoutine(b.dataset.r));
+  view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
+  const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); };
+  const exn=document.getElementById('ex-next'); if(exn) exn.onclick=()=>{ newExamTask(); renderToday(); };
+}
+
 /* ---------- Router ---------- */
 function render(){
-  view.scrollTop=0;
+  view.scrollTop=0; stopTimer();
   if(mode==='learn'){ buildQueue(); renderLearn(); }
   else if(mode==='quiz') startQuiz();
   else if(mode==='build') newBuild();
+  else if(mode==='today') renderToday();
   else renderBrowse();
 }
 document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
@@ -810,6 +953,7 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
   const sp=await Store.get('aikido_progress'); if(sp) progress=sp;
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
   const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
+  const sl=await Store.get('aikido_log'); if(sl) logData=sl;
   renderChips(); updateStats(); render();
 })();
 </script>
