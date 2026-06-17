@@ -689,6 +689,10 @@ const UK_USHIRO=[
   {img:_frame(_grnd()+_ball(65,89)+_hd(80,80)+_af('M80 67 A 23 23 0 0 0 42 80')), cap:'Rückwärts über die Schulter rollen, Kinn zur Brust.'},
   {img:_frame(_grnd()+_hd(46,54)+_lb('M51 59 Q 70 74 70 106')+_af('M32 104 L32 72')), cap:'Mit dem Schwung wieder hochkommen.'}
 ];
+function _udown(x,y){ return `<g opacity="0.72"><ellipse cx="${x}" cy="${y}" rx="16" ry="8" fill="${C_UKE}" fill-opacity="0.16" stroke="${C_UKE}" stroke-width="2.6"/><circle cx="${x+18}" cy="${y}" r="5" fill="none" stroke="${C_UKE}" stroke-width="2.6"/></g>`; }
+function _link(x1,y1,x2,y2){ return `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="#cfcabd" stroke-width="2" stroke-dasharray="2 3" fill="none"/>`; }
+function _ft(x,y,a){ return `<g transform="translate(${x} ${y}) rotate(${a})"><ellipse rx="6" ry="11" fill="none" stroke="${C_TORI}" stroke-width="2.6"/><circle cy="-12" r="3.3" fill="none" stroke="${C_TORI}" stroke-width="2.6"/></g>`; }
+function _knee(x,y,fill){ return `<circle cx="${x}" cy="${y}" r="6.5" fill="${fill?C_TORI:'none'}" fill-opacity="${fill?0.18:0}" stroke="${C_TORI}" stroke-width="2.8"/>`; }
 const GUIDE={
   'Irimi':{metaphor:'Eintreten. Stell dir eine offene Tür direkt neben dem Partner vor – geh einfach hindurch. Du weichst nie zurück, du gehst an ihm vorbei.', phases:[
     {img:_frame(_P(65,30)+_pf(65,102,0,C_TORI)), cap:'Du stehst dem Partner gegenüber.'},
@@ -710,7 +714,38 @@ const GUIDE={
   'Katatetori Gyakuhanmi':{metaphor:'Gespiegelt (Gyaku-hanmi): Uke fasst dein Handgelenk mit der gegenüberliegenden Hand – gerade. Ihr steht spiegelbildlich.', diagram:{img:GRIP_GY, cap:'Rechte Hand → linkes Handgelenk: gerade gegenüber.'}},
   'Ryotetori':{metaphor:'Beide: Uke greift mit beiden Händen deine beiden Handgelenke.', diagram:{img:GRIP_RY, cap:'Beide Hände fassen beide Handgelenke.'}},
   'Mae ukemi':{noPartner:true, metaphor:'Vorwärtsrolle. Mach dich rund wie ein Ball und rolle diagonal über eine Schulter ab – nie flach auf den Rücken, immer rund.', phases:UK_MAE},
-  'Ushiro ukemi':{noPartner:true, metaphor:'Rückwärtsrolle. Setz dich rund nach hinten und rolle über eine Schulter ab (nicht gerade über den Kopf). Kinn an die Brust.', phases:UK_USHIRO}
+  'Ushiro ukemi':{noPartner:true, metaphor:'Rückwärtsrolle. Setz dich rund nach hinten und rolle über eine Schulter ab (nicht gerade über den Kopf). Kinn an die Brust.', phases:UK_USHIRO},
+  'Hanmi':{diagram:{img:_frame(_ft(56,50,0)+_ft(74,82,52)), cap:'Ein Fuß vorn, der hintere rund 60° nach außen – Körper halb seitlich.'}, metaphor:'Halbe Stellung: steh nicht frontal, sondern seitlich – wie ein stabiles Dreieck, fest und doch beweglich.'},
+  'Kamae':{diagram:{img:_frame(_ft(56,56,0)+_ft(74,88,52)+_af('M65 48 L65 26')), cap:'Wache Hanmi-Stellung, Zentrum und Hände ruhig nach vorn zum Partner.'}, metaphor:'Bereitschaft: die lebendige Grundhaltung – ruhig, aufrecht und bereit, ohne angespannt zu sein.'},
+  'Shikko':{noPartner:true, metaphor:'Kniegehen: beweg dich aufrecht auf den Knien, als würdest du normal gehen – nur tiefer. Der Oberkörper bleibt ruhig.', phases:[
+    {img:_frame(_knee(54,64,true)+_knee(74,80,false)+_af('M62 100 L86 100')), cap:'Aufrecht knien, Zehen aufgestellt, Oberkörper gerade.'},
+    {img:_frame(_knee(54,80,false)+_knee(74,64,true)+_af('M62 100 L86 100')), cap:'Vom hinteren auf das vordere Knie wechseln – die Hüfte dreht mit.'}
+  ]},
+  'Iriminage':{metaphor:'Eintritts-Wurf: geh hinter ihn, nimm seinen Kopf mit wie eine Welle und tritt nach vorn durch.', phases:[
+    {img:_frame(_P(65,34)+_pf(65,104,0,C_TORI)+_af('M62 92 L86 58')), cap:'Tief hinter/neben Uke eintreten (Irimi).'},
+    {img:_frame(_pf(95,58,0,C_TORI)+_pf(70,52,200,C_UKE)+_link(88,58,76,52)+_af('M70 40 A 20 20 0 0 1 52 60')), cap:'Sein Gleichgewicht nach hinten mitnehmen.'},
+    {img:_frame(_udown(54,92)+_pf(92,70,0,C_TORI)+_af('M92 56 L92 40')), cap:'Nach vorn durchtreten – Uke fällt.'}
+  ]},
+  'Kotegaeshi':{metaphor:'Handgelenk-Umkehr: dreh sein Handgelenk nach außen, bis er sich nach vorn abrollen muss.', phases:[
+    {img:_frame(_P(65,40)+_pf(65,100,0,C_TORI)+_link(65,52,65,90)), cap:'Sein Handgelenk nehmen.'},
+    {img:_frame(_P(60,46)+_pf(82,80,0,C_TORI)+_af('M60 58 A 24 24 0 1 1 44 78')), cap:'Wegdrehen und das Handgelenk nach außen kippen (Kote-gaeshi).'},
+    {img:_frame(_udown(56,92)+_pf(86,72,0,C_TORI)), cap:'Uke rollt nach vorn ab.'}
+  ]},
+  'Ikkyo':{metaphor:'Erste Kontrolle: führe seinen ganzen Arm wie einen Schwertschnitt nach unten und halte ihn am Boden. Omote = vorn eintreten, Ura = hinten herum.', phases:[
+    {img:_frame(_P(65,38)+_pf(65,102,0,C_TORI)+_link(58,50,61,90)+_link(72,48,70,88)), cap:'Handgelenk und Ellbogen fassen.'},
+    {img:_frame(_pf(66,52,180,C_UKE)+_pf(70,86,0,C_TORI)+_af('M66 66 L66 40')), cap:'Den Arm wie ein Schwert nach unten/vorn führen.'},
+    {img:_frame(_udown(60,92)+_pf(60,70,180,C_TORI)), cap:'Uke bäuchlings am Boden festhalten.'}
+  ]},
+  'Shihonage':{metaphor:'Vier-Richtungs-Wurf: geh unter dem eigenen Arm durch wie unter einem Tor und falte seinen Arm zurück.', phases:[
+    {img:_frame(_P(65,40)+_pf(65,100,0,C_TORI)+_link(60,52,60,90)+_link(70,52,70,90)), cap:'Sein Handgelenk mit beiden Händen nehmen.'},
+    {img:_frame(_P(64,44)+_pf(64,74,180,C_TORI)+_af('M82 64 A 22 22 0 1 1 64 50')), cap:'Unter dem Arm durchdrehen – wie unter einem Tor.'},
+    {img:_frame(_udown(58,92)+_pf(82,72,180,C_TORI)), cap:'Arm zurückfalten, nach unten schneiden – Uke fällt.'}
+  ]},
+  'Tenchinage':{metaphor:'Himmel-Erde-Wurf: eine Hand sinkt zur Erde, eine steigt zum Himmel, und du trittst dazwischen ein.', phases:[
+    {img:_frame(_P(65,40)+_pf(65,100,0,C_TORI)+_link(57,52,57,88)+_link(73,52,73,88)), cap:'Uke fasst beide Handgelenke (Ryotetori).'},
+    {img:_frame(_P(60,40)+_pf(78,96,0,C_TORI)+_af('M50 96 L40 112')+_af('M70 84 L78 56')), cap:'Eine Hand zur Erde, eine zum Himmel – eintreten.'},
+    {img:_frame(_udown(54,92)+_pf(90,74,0,C_TORI)), cap:'Mit dem Eintritt nach hinten werfen.'}
+  ]}
 };
 function relatedTerms(card){
   const out=[], g=GUIDE[card.jp];
