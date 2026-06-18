@@ -173,6 +173,12 @@ nav.tabs button.active .ic{opacity:1;}
 .timer{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;}
 .timer .tt{font-size:1.7rem;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;min-width:64px;text-align:center;}
 .timer button{background:none;border:1px solid var(--line);color:var(--accent);border-radius:10px;padding:8px 15px;font-family:inherit;font-weight:600;font-size:.9rem;cursor:pointer;}
+.rep{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+.rep label{flex:1;font-size:.95rem;color:var(--text);}
+.rep input{width:74px;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:8px 10px;font-family:inherit;font-size:1rem;text-align:center;}
+.rep small{width:66px;text-align:right;color:var(--muted);font-size:.78rem;}
+.rep-h{padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--text);}
+.rep-h b{color:var(--accent);margin-right:8px;}
 .logrow{display:flex;flex-wrap:wrap;gap:8px;}
 .logchip{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;padding:8px 13px;font-family:inherit;font-size:.85rem;font-weight:500;cursor:pointer;}
 .logchip.on{border-color:var(--accent);color:var(--accent);}
@@ -682,7 +688,7 @@ function renderBrowse(){
   view.innerHTML=h; bindChips();
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   view.querySelectorAll('.rmid').forEach(m=>m.onclick=()=>openDetail(m.dataset.jp));
-  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); render(); updateStats(); } };
+  document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; repsData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); await Store.set('aikido_reps',{}); render(); updateStats(); } };
 }
 
 /* ---------- VERTIEFUNG: Bewegungs-Skizzen (Phasen-Folge, Person von oben) ---------- */
@@ -855,7 +861,32 @@ const ROUTINES={
   ]}
 };
 const LOGTAGS=['Vokabeln','Technik','Ukemi','Aufwärmen','Dojo-Training'];
-let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null;
+let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null, pushOn=false;
+const VAPID_PUBLIC='BL2PzR68A5PxwCFOkMm6v68SZVOOhjgaZoen1OpnAYE7tJnPWy4El_4A4UDdsOWPCJnhmljJHwFpnqJJhGVGc7A';
+function urlB64(s){ const pad='='.repeat((4-s.length%4)%4); const b=(s+pad).replace(/-/g,'+').replace(/_/g,'/'); const raw=atob(b); const arr=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) arr[i]=raw.charCodeAt(i); return arr; }
+async function enableReminder(){
+  const st=document.getElementById('rem-state');
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)){ if(st) st.textContent='Push wird hier nicht unterstützt – App über „Zum Home-Bildschirm“ installieren.'; return; }
+  try{
+    const perm=await Notification.requestPermission();
+    if(perm!=='granted'){ if(st) st.textContent='Erinnerung nicht erlaubt (ggf. in den iOS-Einstellungen freigeben).'; return; }
+    const reg=await navigator.serviceWorker.ready;
+    let sub=await reg.pushManager.getSubscription();
+    if(!sub) sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64(VAPID_PUBLIC)});
+    const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)});
+    if(r.ok){ pushOn=true; await Store.set('aikido_push',{on:true}); }
+    else { if(st) st.textContent='Server noch nicht bereit (Backend/Store eingerichtet?).'; return; }
+  }catch(e){ if(st) st.textContent='Konnte nicht aktivieren: '+(e.message||e); return; }
+  renderToday();
+}
+async function disableReminder(){
+  try{
+    const reg=await navigator.serviceWorker.ready;
+    const sub=await reg.pushManager.getSubscription();
+    if(sub){ try{ await fetch('/api/subscribe',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}); }catch(_){} try{ await sub.unsubscribe(); }catch(_){} }
+  }catch(_){}
+  pushOn=false; await Store.set('aikido_push',{on:false}); renderToday();
+}
 function todayKey(){ return dayKey(new Date()); }
 function todayLog(){ return logData[todayKey()]||[]; }
 function setTodayLog(arr){ if(arr&&arr.length) logData[todayKey()]=arr; else delete logData[todayKey()]; Store.set('aikido_log',logData); }
@@ -864,9 +895,9 @@ function toggleLogTag(tag){ const t=todayLog(); const i=t.indexOf(tag); if(i<0){
 function pickDrills(){ drillPick=[...DRILLS].sort(()=>Math.random()-.5).slice(0,3); }
 function fmtTime(s){ const m=Math.floor(s/60), x=s%60; return m+':'+(x<10?'0':'')+x; }
 function stopTimer(){ if(_timerId){ clearInterval(_timerId); _timerId=null; } }
-function heatmapHTML(){ let c=''; const t=new Date(); for(let i=69;i>=0;i--){ const d=new Date(t); d.setDate(d.getDate()-i); const on=(logData[dayKey(d)]||[]).length?'on':''; c+=`<i class="${on}"></i>`; } return `<div class="heat">${c}</div>`; }
+function heatmapHTML(){ let c=''; const t=new Date(); for(let i=69;i>=0;i--){ const d=new Date(t); d.setDate(d.getDate()-i); c+=`<i class="${dayPracticed(dayKey(d))?'on':''}"></i>`; } return `<div class="heat">${c}</div>`; }
 function beltPct(){ return Math.round(VOCAB.filter(v=>pget(v.jp).box>=5).length / VOCAB.length * 100); }
-function practiceDays(){ return Object.keys(logData).filter(k=>(logData[k]||[]).length).length; }
+function practiceDays(){ const s=new Set([...Object.keys(logData),...Object.keys(repsData)].filter(dayPracticed)); return s.size; }
 function achievements(){
   const m=VOCAB.filter(v=>pget(v.jp).box>=5).length;
   const zahlen=VOCAB.filter(v=>v.c==='zahlen');
@@ -879,6 +910,22 @@ function achievements(){
   ];
 }
 function newExamTask(){ examTask={e:EXAM[Math.floor(Math.random()*EXAM.length)],open:false}; }
+/* Kraft-Tracker: tägliche Mengen + Verlauf */
+let repsData={};
+const REPS=[{f:'push',t:'Liegestütze',u:''},{f:'squat',t:'Kniebeugen',u:''},{f:'plank',t:'Plank',u:'Sek.'}];
+function todayReps(){ return repsData[todayKey()]||{}; }
+function setReps(f,val){ const k=todayKey(), r=repsData[k]||{}, n=parseInt(val,10); if(n>0) r[f]=n; else delete r[f]; if(Object.keys(r).length) repsData[k]=r; else delete repsData[k]; Store.set('aikido_reps',repsData); touchDay(); }
+function lastReps(f){ const ks=Object.keys(repsData).filter(k=>k!==todayKey()&&repsData[k][f]).sort(); const k=ks[ks.length-1]; return k?repsData[k][f]:null; }
+function fmtDate(k){ const p=k.split('-'); return p[2]+'.'+p[1]+'.'; }
+function dayPracticed(k){ return ((logData[k]||[]).length>0) || (repsData[k]&&Object.keys(repsData[k]).length>0); }
+function openRepsHistory(){
+  const keys=Object.keys(repsData).sort().reverse().slice(0,30);
+  const body = keys.length ? keys.map(k=>{ const r=repsData[k], p=[]; if(r.push)p.push(r.push+' Liegestütze'); if(r.squat)p.push(r.squat+' Kniebeugen'); if(r.plank)p.push(r.plank+'s Plank'); return `<div class="rep-h"><b>${fmtDate(k)}</b> ${p.join(' · ')}</div>`; }).join('') : '<div class="dt-lit">Noch keine Einträge.</div>';
+  const d=document.getElementById('detail');
+  d.innerHTML=`<button class="dt-back" id="dt-back">← zurück</button><div class="dt-head"><div class="dt-seal">Verlauf</div><div class="dt-jp">Kraft & Halten</div></div><div class="dt-sec">${body}</div>`;
+  d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
+  document.getElementById('dt-back').onclick=closeDetail;
+}
 function startTimer(sec){
   stopTimer(); _timerLeft=sec;
   const tw=document.getElementById('timer'); if(tw) tw.style.display='flex';
@@ -920,7 +967,12 @@ function renderToday(){
     <div class="t-card"><h3>Aufwärmen & Dehnen</h3>
       <button class="t-btn t-routine" data-r="warmup">Aufwärm-Routine ▸</button>
       <button class="t-btn t-routine" data-r="wrists">Handgelenke dehnen ▸</button></div>
+    <div class="t-card"><h3>Tägliche Erinnerung</h3>
+      <div class="belt-lbl" id="rem-state">${pushOn?'✓ aktiv – täglich „Zeit fürs Dojo“':'Aus. Erinnert dich einmal täglich ans Üben.'}</div>
+      <button class="t-btn${pushOn?'':' t-accent'}" id="rem-toggle" style="margin-top:10px">${pushOn?'Erinnerung ausschalten':'Erinnerung aktivieren'}</button>
+      <div class="belt-lbl" style="margin-top:8px;opacity:.75">Funktioniert nur in der installierten App („Zum Home-Bildschirm“).</div></div>
     <div class="t-card"><h3>Heute gemacht</h3><div class="logrow">${logHTML}</div></div>
+    <div class="t-card"><h3>Kraft & Halten (täglich)</h3>${REPS.map(x=>{const lr=lastReps(x.f);return `<div class="rep"><label>${x.t}${x.u?' ('+x.u+')':''}</label><input type="number" inputmode="numeric" min="0" data-f="${x.f}" value="${todayReps()[x.f]||''}" placeholder="0"><small>${lr!=null?'zuletzt '+lr:'–'}</small></div>`;}).join('')}<button class="t-btn" id="rep-hist" style="margin-top:8px">Verlauf ansehen ▸</button></div>
     <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}</div>
     <div class="t-card"><h3>Weg zum 5. Kyu</h3><div class="belt"><i style="width:${beltPct()}%"></i></div>
       <div class="belt-lbl">${beltPct()} % gemeistert · ${practiceDays()} Übungstage</div>
@@ -930,6 +982,9 @@ function renderToday(){
   view.querySelectorAll('.drill .play').forEach(b=>b.onclick=()=>startTimer(parseInt(b.dataset.s,10)));
   document.getElementById('t-newdrills').onclick=()=>{ pickDrills(); renderToday(); };
   view.querySelectorAll('.t-routine').forEach(b=>b.onclick=()=>openRoutine(b.dataset.r));
+  const rem=document.getElementById('rem-toggle'); if(rem) rem.onclick=()=>{ pushOn?disableReminder():enableReminder(); };
+  view.querySelectorAll('.rep input').forEach(inp=>inp.onchange=()=>{ setReps(inp.dataset.f, inp.value); renderToday(); });
+  const rh=document.getElementById('rep-hist'); if(rh) rh.onclick=openRepsHistory;
   view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
   const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); };
   const exn=document.getElementById('ex-next'); if(exn) exn.onclick=()=>{ newExamTask(); renderToday(); };
@@ -954,6 +1009,8 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
   const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
   const sl=await Store.get('aikido_log'); if(sl) logData=sl;
+  const spush=await Store.get('aikido_push'); if(spush&&spush.on) pushOn=true;
+  const sr=await Store.get('aikido_reps'); if(sr) repsData=sr;
   renderChips(); updateStats(); render();
 })();
 </script>
