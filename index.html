@@ -872,6 +872,12 @@ async function enableReminder(){
     if(perm!=='granted'){ if(st) st.textContent='Erinnerung nicht erlaubt (ggf. in den iOS-Einstellungen freigeben).'; return; }
     const reg=await navigator.serviceWorker.ready;
     let sub=await reg.pushManager.getSubscription();
+    if(sub){ // bestehende Anmeldung verwerfen, falls sie mit einem anderen VAPID-Key erstellt wurde
+      const cur=urlB64(VAPID_PUBLIC);
+      const ex=sub.options&&sub.options.applicationServerKey?new Uint8Array(sub.options.applicationServerKey):null;
+      const same=ex&&ex.length===cur.length&&ex.every((b,i)=>b===cur[i]);
+      if(!same){ try{ await fetch('/api/subscribe',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}); }catch(_){} try{ await sub.unsubscribe(); }catch(_){} sub=null; }
+    }
     if(!sub) sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64(VAPID_PUBLIC)});
     const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)});
     if(r.ok){ pushOn=true; await Store.set('aikido_push',{on:true}); }

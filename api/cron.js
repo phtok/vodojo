@@ -48,7 +48,9 @@ module.exports = async (req, res) => {
       const detail = err && (err.body || err.message);
       errors.push({ code, detail: typeof detail === 'string' ? detail.slice(0, 200) : detail, host: (() => { try { return new URL(sub.endpoint).host; } catch (_) { return undefined; } })() });
       console.error('push send failed', code, detail);
-      if (code === 404 || code === 410) {
+      const dead = code === 404 || code === 410 || code === 403 ||
+        (code === 400 && typeof detail === 'string' && detail.indexOf('VapidPkHashMismatch') !== -1);
+      if (dead) {
         try { await r.srem('subs', typeof item === 'string' ? item : JSON.stringify(item)); removed++; } catch (_) {}
       }
     }
