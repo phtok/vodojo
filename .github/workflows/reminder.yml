@@ -1,0 +1,32 @@
+name: Push-Erinnerung Trigger
+
+# Ruft regelmäßig /api/cron auf. Der Endpoint entscheidet selbst, welche
+# Geräte gerade fällig sind (anhand der pro Gerät gespeicherten Uhrzeit/Zeitzone).
+# Nötiges Repo-Secret: CRON_SECRET (identisch zur Vercel-Env-Variable).
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # alle 15 Minuten (UTC); GitHub kann etwas verzögern
+  workflow_dispatch:          # manuelles Auslösen über den Actions-Tab
+
+concurrency:
+  group: push-reminder
+  cancel-in-progress: false
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger reminder endpoint
+        run: |
+          if [ -z "${{ secrets.CRON_SECRET }}" ]; then
+            echo "::error::CRON_SECRET ist nicht gesetzt (Repo-Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+          code=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://vodojo.vercel.app/api/cron")
+          echo "HTTP $code"
+          cat /tmp/resp.json || true
+          echo
+          test "$code" = "200"
