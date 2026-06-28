@@ -862,7 +862,7 @@ const ROUTINES={
 };
 const LOGTAGS=['Vokabeln','Technik','Ukemi','Aufwärmen','Dojo-Training'];
 let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null, pushOn=false;
-const VAPID_PUBLIC='BL2PzR68A5PxwCFOkMm6v68SZVOOhjgaZoen1OpnAYE7tJnPWy4El_4A4UDdsOWPCJnhmljJHwFpnqJJhGVGc7A';
+const VAPID_PUBLIC='BL-Dc3vpjNEkrr1k2-5ytmhjThSN1hTZ39sUZnSzzLfyrZw5m63R8oR1xDPbT-nxzXqK1AarGVOnl8cbblO2tKM';
 function urlB64(s){ const pad='='.repeat((4-s.length%4)%4); const b=(s+pad).replace(/-/g,'+').replace(/_/g,'/'); const raw=atob(b); const arr=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) arr[i]=raw.charCodeAt(i); return arr; }
 async function enableReminder(){
   const st=document.getElementById('rem-state');
