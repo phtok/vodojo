@@ -861,7 +861,7 @@ const ROUTINES={
   ]}
 };
 const LOGTAGS=['Vokabeln','Technik','Ukemi','Aufwärmen','Dojo-Training'];
-let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null, pushOn=false;
+let logData={}, _timerId=null, _timerLeft=0, drillPick=[], examTask=null, pushOn=false, remindTime='18:00';
 const VAPID_PUBLIC='BL-Dc3vpjNEkrr1k2-5ytmhjThSN1hTZ39sUZnSzzLfyrZw5m63R8oR1xDPbT-nxzXqK1AarGVOnl8cbblO2tKM';
 function urlB64(s){ const pad='='.repeat((4-s.length%4)%4); const b=(s+pad).replace(/-/g,'+').replace(/_/g,'/'); const raw=atob(b); const arr=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) arr[i]=raw.charCodeAt(i); return arr; }
 async function enableReminder(){
@@ -879,8 +879,10 @@ async function enableReminder(){
       if(!same){ try{ await fetch('/api/subscribe',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}); }catch(_){} try{ await sub.unsubscribe(); }catch(_){} sub=null; }
     }
     if(!sub) sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64(VAPID_PUBLIC)});
-    const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)});
-    if(r.ok){ pushOn=true; await Store.set('aikido_push',{on:true}); }
+    const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||'UTC';
+    const payload=Object.assign(JSON.parse(JSON.stringify(sub)),{time:remindTime,tz});
+    const r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(r.ok){ pushOn=true; await Store.set('aikido_push',{on:true,time:remindTime}); }
     else { if(st) st.textContent='Server noch nicht bereit (Backend/Store eingerichtet?).'; return; }
   }catch(e){ if(st) st.textContent='Konnte nicht aktivieren: '+(e.message||e); return; }
   renderToday();
@@ -891,7 +893,7 @@ async function disableReminder(){
     const sub=await reg.pushManager.getSubscription();
     if(sub){ try{ await fetch('/api/subscribe',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify(sub)}); }catch(_){} try{ await sub.unsubscribe(); }catch(_){} }
   }catch(_){}
-  pushOn=false; await Store.set('aikido_push',{on:false}); renderToday();
+  pushOn=false; await Store.set('aikido_push',{on:false,time:remindTime}); renderToday();
 }
 function todayKey(){ return dayKey(new Date()); }
 function todayLog(){ return logData[todayKey()]||[]; }
@@ -974,9 +976,11 @@ function renderToday(){
       <button class="t-btn t-routine" data-r="warmup">Aufwärm-Routine ▸</button>
       <button class="t-btn t-routine" data-r="wrists">Handgelenke dehnen ▸</button></div>
     <div class="t-card"><h3>Tägliche Erinnerung</h3>
-      <div class="belt-lbl" id="rem-state">${pushOn?'✓ aktiv – täglich „Zeit fürs Dojo“':'Aus. Erinnert dich einmal täglich ans Üben.'}</div>
+      <div class="belt-lbl" id="rem-state">${pushOn?'✓ aktiv – täglich um '+remindTime+' Uhr':'Aus. Erinnert dich einmal täglich ans Üben.'}</div>
+      <label class="belt-lbl" style="display:flex;align-items:center;gap:10px;margin-top:10px">Uhrzeit
+        <input type="time" id="rem-time" value="${remindTime}" style="font-size:16px;padding:6px 8px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#222"></label>
       <button class="t-btn${pushOn?'':' t-accent'}" id="rem-toggle" style="margin-top:10px">${pushOn?'Erinnerung ausschalten':'Erinnerung aktivieren'}</button>
-      <div class="belt-lbl" style="margin-top:8px;opacity:.75">Funktioniert nur in der installierten App („Zum Home-Bildschirm“).</div></div>
+      <div class="belt-lbl" style="margin-top:8px;opacity:.75">Funktioniert nur in der installierten App („Zum Home-Bildschirm“). Zeit ±15 Min genau.</div></div>
     <div class="t-card"><h3>Heute gemacht</h3><div class="logrow">${logHTML}</div></div>
     <div class="t-card"><h3>Kraft & Halten (täglich)</h3>${REPS.map(x=>{const lr=lastReps(x.f);return `<div class="rep"><label>${x.t}${x.u?' ('+x.u+')':''}</label><input type="number" inputmode="numeric" min="0" data-f="${x.f}" value="${todayReps()[x.f]||''}" placeholder="0"><small>${lr!=null?'zuletzt '+lr:'–'}</small></div>`;}).join('')}<button class="t-btn" id="rep-hist" style="margin-top:8px">Verlauf ansehen ▸</button></div>
     <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}</div>
@@ -989,6 +993,7 @@ function renderToday(){
   document.getElementById('t-newdrills').onclick=()=>{ pickDrills(); renderToday(); };
   view.querySelectorAll('.t-routine').forEach(b=>b.onclick=()=>openRoutine(b.dataset.r));
   const rem=document.getElementById('rem-toggle'); if(rem) rem.onclick=()=>{ pushOn?disableReminder():enableReminder(); };
+  const rt=document.getElementById('rem-time'); if(rt) rt.onchange=()=>{ remindTime=rt.value||'18:00'; Store.set('aikido_push',{on:pushOn,time:remindTime}); if(pushOn) enableReminder(); };
   view.querySelectorAll('.rep input').forEach(inp=>inp.onchange=()=>{ setReps(inp.dataset.f, inp.value); renderToday(); });
   const rh=document.getElementById('rep-hist'); if(rh) rh.onclick=openRepsHistory;
   view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
@@ -1015,7 +1020,7 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
   const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
   const sl=await Store.get('aikido_log'); if(sl) logData=sl;
-  const spush=await Store.get('aikido_push'); if(spush&&spush.on) pushOn=true;
+  const spush=await Store.get('aikido_push'); if(spush){ if(spush.on) pushOn=true; if(spush.time) remindTime=spush.time; }
   const sr=await Store.get('aikido_reps'); if(sr) repsData=sr;
   renderChips(); updateStats(); render();
 })();
