@@ -37,16 +37,21 @@ module.exports = async (req, res) => {
   try { raw = await r.smembers('subs'); } catch (e) { res.status(500).json({ error: 'store: ' + String(e && e.message || e) }); return; }
 
   let sent = 0, removed = 0;
+  const errors = [];
   for (const item of raw) {
     const sub = typeof item === 'string' ? JSON.parse(item) : item;
     try {
       await webpush.sendNotification(sub, payload);
       sent++;
     } catch (err) {
-      if (err && (err.statusCode === 404 || err.statusCode === 410)) {
+      const code = err && err.statusCode;
+      const detail = err && (err.body || err.message);
+      errors.push({ code, detail: typeof detail === 'string' ? detail.slice(0, 200) : detail, host: (() => { try { return new URL(sub.endpoint).host; } catch (_) { return undefined; } })() });
+      console.error('push send failed', code, detail);
+      if (code === 404 || code === 410) {
         try { await r.srem('subs', typeof item === 'string' ? item : JSON.stringify(item)); removed++; } catch (_) {}
       }
     }
   }
-  res.status(200).json({ sent, removed, total: raw.length });
+  res.status(200).json({ sent, removed, total: raw.length, errors });
 };
