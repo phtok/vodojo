@@ -11,8 +11,9 @@ Sicht der täglichen Nutzer und schlägt eine einfachere, alltagstaugliche Ordnu
 
 | Datei | Zweck |
 |---|---|
-| [`Konzept-Anwendungshinweise.md`](./Konzept-Anwendungshinweise.md) | Das Konzept: Review der bisherigen Hinweise, Betriebsalltag, die Drei‑Ebenen‑Ordnung (A/B/C), Antworten auf die Leitfragen, sieben konkrete Massnahmen. |
-| [`Spickzettel-Logo-Anwendung.md`](./Spickzettel-Logo-Anwendung.md) | Das tägliche Werkzeug: eine A4‑Seite – welche Aufgabe → welches Zeichen → welches Format, plus Vier‑Sprachen‑Tabelle. |
+| [`G-Logo-A4.html`](./G-Logo-A4.html) · [`G-Logo-A4.pdf`](./G-Logo-A4.pdf) | **Die visuelle Darstellung** (2× A4, druckfertig): Seite 1 = das System auf einen Blick (zum Aushängen), Seite 2 = Herleitung + anschauliche Beispiele. HTML ist die editierbare Quelle (verlinkt Titillium Web; offizielle Schriften/Farben/Marken noch einsetzen), PDF die Druck-/Vorschauversion. |
+| [`Konzept-Anwendungshinweise.md`](./Konzept-Anwendungshinweise.md) | Das ausführliche Konzept: Review der bisherigen Hinweise, Betriebsalltag, die Drei‑Ebenen‑Ordnung (A/B/C), Antworten auf die Leitfragen, sieben konkrete Massnahmen. |
+| [`Spickzettel-Logo-Anwendung.md`](./Spickzettel-Logo-Anwendung.md) | Text-Fassung des Spickzettels – welche Aufgabe → welches Zeichen → welches Format, plus Vier‑Sprachen‑Tabelle. |
 
 ## Kerngedanke
 

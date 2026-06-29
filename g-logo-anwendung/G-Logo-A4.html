@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>G-Logo — Hinweise zur Anwendung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2a28; --soft:#6c685f; --line:#e7e1d6; --paper:#ffffff; --warm:#f7f2ea;
+    --A:#7a4e63; --B:#3e5c6e; --C:#a9763b;           /* provisorisch – mit /farben abgleichen */
+  }
+  *{box-sizing:border-box}
+  @page{ size:A4; margin:0; }
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Titillium Web','Helvetica Neue',Arial,system-ui,sans-serif;
+    color:var(--ink); font-size:9.6pt; line-height:1.36; -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm; min-height:297mm; padding:12mm 12mm 9mm; position:relative;
+    page-break-after:always; overflow:hidden; background:#fff;
+  }
+  .page:last-child{page-break-after:auto}
+
+  /* ---- header ---- */
+  .kicker{font-size:7.6pt;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  h1{font-size:22pt;font-weight:700;margin:1.5mm 0 1mm;letter-spacing:-.01em;line-height:1.04}
+  .sub{font-size:10.5pt;color:var(--soft);font-weight:400;margin:0}
+  .rule{height:1.4pt;background:var(--ink);border:0;margin:3mm 0 0}
+  .hairline{height:.6pt;background:var(--line);border:0;margin:0}
+
+  /* ---- motto ---- */
+  .motto{
+    display:flex;gap:0;margin:4mm 0;border:1px solid var(--line);border-radius:2.5px;overflow:hidden;
+  }
+  .motto div{flex:1;padding:2.6mm 3mm;display:flex;align-items:baseline;gap:2.2mm;border-right:1px solid var(--line)}
+  .motto div:last-child{border-right:0}
+  .motto .lt{font-weight:700;font-size:12.5pt;line-height:1}
+  .motto .A .lt{color:var(--A)} .motto .B .lt{color:var(--B)} .motto .C .lt{color:var(--C)}
+  .motto .tx{font-size:9.5pt} .motto .tx b{font-weight:600}
+  .motto .tx span{display:block;color:var(--soft);font-size:8pt}
+
+  /* ---- three cards ---- */
+  .cards{display:flex;gap:4mm;margin:1mm 0 4mm}
+  .card{flex:1;border:1px solid var(--line);border-top:3pt solid var(--ink);border-radius:2.5px;padding:3mm 3.4mm 3.4mm;background:#fff}
+  .card.A{border-top-color:var(--A)} .card.B{border-top-color:var(--B)} .card.C{border-top-color:var(--C)}
+  .card .badge{font-weight:700;font-size:10.5pt}
+  .card.A .badge{color:var(--A)} .card.B .badge{color:var(--B)} .card.C .badge{color:var(--C)}
+  .card h3{font-size:10pt;margin:.3mm 0 0;font-weight:600}
+  .markbox{height:15mm;display:flex;align-items:center;justify-content:center;margin:2mm 0 1mm;background:var(--warm);border-radius:2px}
+  .cap{font-size:6.8pt;color:var(--soft);font-style:italic;text-align:center;margin:.4mm 0 1.6mm}
+  .row{font-size:8.6pt;margin:.7mm 0;display:flex;gap:1.6mm}
+  .row .k{font-weight:600;color:var(--soft);min-width:13mm;text-transform:uppercase;font-size:7pt;letter-spacing:.04em;padding-top:.5pt}
+  .row .v{flex:1}
+
+  /* ---- table ---- */
+  .h2{font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:600;margin:0 0 1.6mm}
+  table{width:100%;border-collapse:collapse;font-size:8.7pt}
+  th{font-size:7pt;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);text-align:left;font-weight:600;padding:0 2mm 1.3mm;border-bottom:1.2pt solid var(--ink)}
+  td{padding:1.5mm 2mm;border-bottom:.6pt solid var(--line);vertical-align:top}
+  td.task{font-weight:600;width:34%}
+  td.fmt{color:var(--soft);width:30%}
+  tr:last-child td{border-bottom:0}
+  .chip{display:inline-block;min-width:13px;height:13px;border-radius:3px;color:#fff;font-weight:700;font-size:7.4pt;text-align:center;line-height:13px;padding:0 2px;margin-right:1px}
+  .chip.A{background:var(--A)} .chip.B{background:var(--B)} .chip.C{background:var(--C)}
+  .plus{color:var(--soft);font-weight:600;font-size:8pt;margin:0 1px}
+
+  /* ---- bottom boxes ---- */
+  .duo{display:flex;gap:4mm;margin-top:4mm}
+  .box{flex:1;border:1px solid var(--line);border-radius:2.5px;padding:2.8mm 3.2mm;background:var(--warm)}
+  .box h4{margin:0 0 1.4mm;font-size:8.4pt;font-weight:700;display:flex;align-items:center;gap:1.6mm}
+  .box ul{margin:0;padding-left:0;list-style:none;font-size:8.4pt}
+  .box li{margin:.8mm 0;padding-left:5mm;position:relative;line-height:1.3}
+  .box.nogo li::before{content:"\2298";position:absolute;left:0;color:var(--A);font-weight:700}
+  .box.tip li::before{content:"\2192";position:absolute;left:0;color:var(--B);font-weight:700}
+
+  /* ---- footer ---- */
+  .foot{position:absolute;left:12mm;right:12mm;bottom:7mm;font-size:6.9pt;color:var(--soft);display:flex;justify-content:space-between;gap:4mm;border-top:.6pt solid var(--line);padding-top:1.6mm}
+
+  /* ---- illustrative marks (NOT the official assets) ---- */
+  .glyphA{width:13mm;height:13mm}
+  .glyphB{width:13mm;height:13mm}
+  .wordmark{font-weight:700;font-size:9.5pt;letter-spacing:.01em;text-align:center;line-height:1.1}
+  .wordmark small{display:block;font-weight:400;font-size:6.6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-top:.6mm}
+
+  /* ===== page 2 ===== */
+  .p2 h2{font-size:11pt;font-weight:700;margin:4.5mm 0 1.5mm}
+  .p2 h2:first-of-type{margin-top:2mm}
+  .lead{font-size:9.4pt;color:var(--ink)}
+  .quote{color:var(--soft);font-style:italic}
+  .derive{display:flex;align-items:center;gap:5mm;margin:2.5mm 0 1mm;padding:3mm;border:1px solid var(--line);border-radius:2.5px;background:var(--warm)}
+  .glyphs{display:flex;flex-wrap:wrap;gap:1.7mm;width:78mm}
+  .glyphs span{width:4.6mm;height:4.6mm;background:#c8c1b4;border-radius:42% 58% 55% 45%;display:block}
+  .glyphs span:nth-child(3n){border-radius:50%;background:#cfc8bb}
+  .glyphs span:nth-child(4n){border-radius:12%;transform:rotate(13deg)}
+  .glyphs span:nth-child(5n){border-radius:62% 38% 30% 70%;transform:rotate(-16deg);background:#c0b8aa}
+  .glyphs span:nth-child(7n){transform:rotate(26deg);border-radius:22% 78% 40% 60%}
+  .arrow{font-size:15pt;color:var(--soft)}
+  .family{text-align:center}
+  .family .fam-dots{display:flex;gap:1.3mm;justify-content:center;margin-top:1.8mm}
+  .family .fam-dots i{width:2.6mm;height:2.6mm;border-radius:50%;display:block}
+  .twelve{font-size:7.4pt;color:var(--soft);margin-top:1.2mm}
+
+  .three{display:flex;gap:4mm;margin:1mm 0}
+  .three .c{flex:1;font-size:8.7pt}
+  .three .c b{display:block;font-size:9pt;margin-bottom:.6mm}
+  .three .c.A b{color:var(--A)} .three .c.B b{color:var(--B)} .three .c.C b{color:var(--C)}
+
+  .examples{display:flex;gap:4mm;margin:2mm 0 0}
+  .ex{flex:1;border:1px solid var(--line);border-radius:2.5px;padding:3mm;background:#fff}
+  .ex .frame{border:1px solid var(--line);border-radius:2px;padding:2.4mm;height:30mm;background:#fff;position:relative;overflow:hidden}
+  .ex .excap{font-size:7.6pt;margin-top:1.8mm;line-height:1.3}
+  .ex .excap b{font-weight:700}
+  .bar{height:1.7mm;background:#eceae5;border-radius:1mm;margin:1.4mm 0}
+  .bar.s{width:55%} .bar.m{width:80%} .bar.l{width:92%}
+  .ltrhead{display:flex;align-items:center;justify-content:space-between;border-bottom:.7pt solid var(--line);padding-bottom:1.6mm;margin-bottom:1.8mm}
+  .slide{background:#f3efe8;height:100%;border-radius:1.5px;padding:2.4mm;display:flex;flex-direction:column;justify-content:space-between}
+  .slidetitle{font-weight:700;font-size:8.4pt}
+  .iconframe{display:flex;align-items:center;justify-content:center;height:100%}
+  .iconsq{width:20mm;height:20mm;border-radius:4.5mm;background:var(--B);display:flex;align-items:center;justify-content:center}
+
+  .langwrap{margin-top:1mm}
+  table.lang{font-size:7.7pt}
+  table.lang td,table.lang th{padding:1mm 1.6mm}
+  .open{color:var(--A);font-style:italic}
+  .note{font-size:7.6pt;color:var(--soft);margin-top:1.4mm}
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 ============================ -->
+<section class="page">
+  <div class="kicker">Goetheanum&nbsp;·&nbsp;Grafik — Anwendung</div>
+  <h1>G-Logo — Hinweise zur Anwendung</h1>
+  <p class="sub">Welches Zeichen — wann, wo und in welchem Format. Eine Seite zum Aushängen.</p>
+  <hr class="rule">
+
+  <!-- motto -->
+  <div class="motto">
+    <div class="A"><span class="lt">A</span><span class="tx"><b>unterschreibt</b><span>festlich · inspirativ</span></span></div>
+    <div class="B"><span class="lt">B</span><span class="tx"><b>grüsst</b><span>öffentlich · alltäglich</span></span></div>
+    <div class="C"><span class="lt">C</span><span class="tx"><b>sagt, wer spricht</b><span>Zuordnung · 4 Sprachen</span></span></div>
+  </div>
+
+  <!-- three cards -->
+  <div class="cards">
+    <div class="card A">
+      <span class="badge">A</span> <span style="font-weight:600">Steiner-Zeichen</span>
+      <div class="markbox">
+        <!-- illustrativ: eröffnende Geste -->
+        <svg class="glyphA" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M22 86 C 20 40, 44 16, 78 14 C 52 26, 40 48, 46 70 C 49 82, 60 86, 70 80"
+                fill="none" stroke="#7a4e63" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="cap">illustrativ — offizielles Asset einsetzen</div>
+      <div class="row"><span class="k">Was</span><span class="v">Hochschul-, Gesellschafts-, Bau-Zeichen (R. Steiner)</span></div>
+      <div class="row"><span class="k">Wofür</span><span class="v">Briefkopf, Mitglieder­karte, Generalversammlung, Festliches</span></div>
+      <div class="row"><span class="k">Regel</span><span class="v">nur würdig & in geeignetem Format — <b>nie</b> quetschen oder einfärben</span></div>
+    </div>
+
+    <div class="card B">
+      <span class="badge">B</span> <span style="font-weight:600">Bildmarke «G»</span>
+      <div class="markbox">
+        <!-- illustrativ: aufstrebender Dreischritt -->
+        <svg class="glyphB" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M20 80 L34 80 L40 50 Q41 44 47 44 L58 44 Z" fill="#3e5c6e"/>
+          <path d="M44 64 L57 64 L63 34 Q64 28 70 28 L80 28 Z" fill="#3e5c6e" opacity=".82"/>
+          <path d="M66 50 L78 50 L83 22 Q84 17 89 17 L96 17 Z" fill="#3e5c6e" opacity=".64"/>
+        </svg>
+      </div>
+      <div class="cap">illustrativ — offizielles Asset einsetzen</div>
+      <div class="row"><span class="k">Was</span><span class="v">Das «G» aus dem Bau (2020/2023): aufstrebender Rhythmus</span></div>
+      <div class="row"><span class="k">Wofür</span><span class="v">Web, Social, Folien, Plakat — winzig bis gross, frei platzierbar</span></div>
+      <div class="row"><span class="k">Regel</span><span class="v">der robuste Allzweck-Auftritt — <b>im Zweifel B</b></span></div>
+    </div>
+
+    <div class="card C">
+      <span class="badge">C</span> <span style="font-weight:600">Wortmarke + Sektion</span>
+      <div class="markbox">
+        <div class="wordmark">Goetheanum<small>Pädagogische Sektion</small></div>
+      </div>
+      <div class="cap">Beispiel-Schreibweise (Wortmarke + Sektion)</div>
+      <div class="row"><span class="k">Was</span><span class="v">«Goetheanum» + Sektions-/Bereichsname, in 4 Sprachen</span></div>
+      <div class="row"><span class="k">Wofür</span><span class="v">sagt, <b>wer</b> spricht — steht zu A oder zu B dazu</span></div>
+      <div class="row"><span class="k">Regel</span><span class="v">feste Schreibweise; fertiges Logo nehmen, nicht selbst bauen</span></div>
+    </div>
+  </div>
+
+  <!-- table -->
+  <div class="h2">Welche Aufgabe&nbsp; →&nbsp; welches Zeichen&nbsp; →&nbsp; welches Format</div>
+  <table>
+    <thead><tr><th>Ich mache …</th><th>Zeichen</th><th>Format & Tipp</th></tr></thead>
+    <tbody>
+      <tr><td class="task">Offizieller Brief / Briefkopf</td><td><span class="chip A">A</span><span class="plus">+</span><span class="chip C">C</span></td><td class="fmt">Word-Vorlage nehmen</td></tr>
+      <tr><td class="task">Mitgliederkarte · GV · Festliches</td><td><span class="chip A">A</span></td><td class="fmt">PDF / EPS (Druck)</td></tr>
+      <tr><td class="task">Website · Newsletter</td><td><span class="chip B">B</span><span class="plus">+</span><span class="chip C">C</span></td><td class="fmt">SVG, sonst PNG</td></tr>
+      <tr><td class="task">Social-Media-Post / -Icon</td><td><span class="chip B">B</span> <span style="color:var(--soft)">(+ C)</span></td><td class="fmt">PNG transparent</td></tr>
+      <tr><td class="task">PowerPoint / Vortragsfolien</td><td><span class="chip B">B</span><span class="plus">+</span><span class="chip C">C</span></td><td class="fmt">PNG transparent · PPT-Vorlage</td></tr>
+      <tr><td class="task">Plakat · Programmheft · Flyer</td><td><span class="chip B">B</span><span class="plus">+</span><span class="chip C">C</span> <span style="color:var(--soft)">(A festlich)</span></td><td class="fmt">SVG / PDF / EPS</td></tr>
+      <tr><td class="task">E-Mail-Signatur</td><td><span class="chip C">C</span></td><td class="fmt">Signatur-Vorlage</td></tr>
+      <tr><td class="task">Kooperations-/Partnerlogo, sehr klein</td><td><span class="chip B">B</span></td><td class="fmt">SVG / PNG</td></tr>
+      <tr><td class="task">Namensschild · Bescheinigung · Urkunde</td><td><span class="chip C">C</span> <span style="color:var(--soft)">(festlich A)</span></td><td class="fmt">Word-/InDesign-Vorlage</td></tr>
+    </tbody>
+  </table>
+
+  <!-- bottom boxes -->
+  <div class="duo">
+    <div class="box nogo">
+      <h4>Drei No-Gos</h4>
+      <ul>
+        <li>Steiner-Zeichen <b>nie</b> stauchen, verzerren, neu einfärben oder als Mini-Icon → dann <b>B</b>.</li>
+        <li><b>Kein</b> Logo aus altem Dokument / Web herauskopieren → offizielles File laden.</li>
+        <li>Wortmarke + Sektion <b>nicht</b> selbst zusammenbauen → fertiges C nehmen.</li>
+      </ul>
+    </div>
+    <div class="box tip">
+      <h4>Format-Eselsbrücke</h4>
+      <ul>
+        <li><b>PNG</b> (transparent) für Bildschirm, Word & PowerPoint.</li>
+        <li><b>SVG / PDF / EPS</b> für den Druck — scharf in jeder Grösse.</li>
+        <li>Im Zweifel: PNG fürs Büro, PDF für die Druckerei.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Goetheanum · Grafik — grafik.goetheanum.ch · Logo-Generator & Downloads</span>
+    <span>Farben &amp; Marken hier illustrativ/provisorisch — mit /farben &amp; offiziellen Assets abgleichen</span>
+  </div>
+</section>
+
+<!-- ============================ PAGE 2 ============================ -->
+<section class="page p2">
+  <div class="kicker">Goetheanum&nbsp;·&nbsp;Grafik — Anwendung</div>
+  <h1 style="font-size:18pt">Herleitung &amp; Beispiele</h1>
+  <hr class="rule">
+
+  <h2>Aus rund 35 Logos eine Familie</h2>
+  <p class="lead">Das Goetheanum lebt in vielen Initiativen, Bereichen und zwölf Sektionen — historisch gewachsen waren
+  <b>rund 35 Logos</b> im Umlauf. Diese Vielfalt ist eine Qualität, aber: <span class="quote">«das Erzählen von vielen
+  Geschichten lässt die grosse Geschichte leicht untergehen»</span> (Anthroposophie weltweit 9/2020). Antwort des
+  Konzepts ist nicht weniger Vielfalt, sondern <b>Vielfalt als Familie</b>: aus einem Prinzip — eine Wortmarken-Logik,
+  ein verbindendes Zeichen.</p>
+
+  <div class="derive">
+    <div class="glyphs" aria-label="rund 35 verschiedene Logos">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="arrow">→</div>
+    <div class="family">
+      <svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M20 80 L34 80 L40 50 Q41 44 47 44 L58 44 Z" fill="#3e5c6e"/>
+        <path d="M44 64 L57 64 L63 34 Q64 28 70 28 L80 28 Z" fill="#3e5c6e" opacity=".82"/>
+        <path d="M66 50 L78 50 L83 22 Q84 17 89 17 L96 17 Z" fill="#3e5c6e" opacity=".64"/>
+      </svg>
+      <div class="fam-dots">
+        <i style="background:var(--A)"></i><i style="background:var(--B)"></i><i style="background:var(--C)"></i>
+        <i style="background:var(--A)"></i><i style="background:var(--B)"></i><i style="background:var(--C)"></i>
+        <i style="background:var(--A)"></i><i style="background:var(--B)"></i><i style="background:var(--C)"></i>
+        <i style="background:var(--A)"></i><i style="background:var(--B)"></i><i style="background:var(--C)"></i>
+      </div>
+      <div class="twelve">eine Familie · zwölf Stimmen</div>
+    </div>
+  </div>
+
+  <h2>Die drei Ebenen — woher sie kommen</h2>
+  <div class="three">
+    <div class="c A"><b>A · Steiner-Zeichen</b>Steiners «eröffnende» Zeichen (Hochschulzeichen 1924) <span class="quote">«tragen ihr
+      Zentrum ausser sich»</span> — sie schenken dem Folgenden Umraum. Darum: das Festliche, nicht der Allzweck.</div>
+    <div class="c B"><b>B · Bildmarke «G»</b>2020/2023 aus dem zweiten Bau entwickelt: ein aufstrebender Dreischritt,
+      organisch, mit dem Hochschulzeichen verwandt — aber robust für jeden heutigen Einsatz.</div>
+    <div class="c C"><b>C · Wortmarke-System</b>Wortmarke «Goetheanum» + Sektion, in vier Sprachen (DE · EN · FR · ES),
+      lang und kurz. Hält die Familie zusammen und macht jede Sektion erkennbar.</div>
+  </div>
+
+  <h2>Was ist mit den alten Signets?</h2>
+  <p class="lead">Sie bleiben — mit Würde. <b>Niemand muss sein geliebtes Zeichen wegwerfen.</b> Steiners drei Zeichen
+  werden <b>aufgewertet</b>, indem sie nicht mehr für jeden Alltagszweck herhalten (das verzerrte sie). Gewachsene
+  Sektions-Signets bekommen einen klaren Status — als historisch-erzählendes Element ja, als Allzweck-Logo neben B nein.
+  Pro Sektion ein kurzes «Signet-Gespräch» klärt: Erbe · Übergang · Ablösung.</p>
+
+  <h2>Anschauliche Beispiele — richtig angewendet</h2>
+  <div class="examples">
+    <div class="ex">
+      <div class="frame">
+        <div class="ltrhead">
+          <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 86 C 20 40, 44 16, 78 14 C 52 26, 40 48, 46 70 C 49 82, 60 86, 70 80" fill="none" stroke="#7a4e63" stroke-width="7" stroke-linecap="round"/></svg>
+          <div style="text-align:right;font-weight:700;font-size:7.4pt;line-height:1.15">Goetheanum<br><span style="font-weight:400;color:var(--soft);font-size:6pt;letter-spacing:.12em;text-transform:uppercase">Pädagogische Sektion</span></div>
+        </div>
+        <div class="bar l"></div><div class="bar m"></div><div class="bar l"></div><div class="bar s"></div>
+      </div>
+      <div class="excap"><b>Briefkopf</b> — <span style="color:var(--A)">A</span> Steiner-Zeichen + <span style="color:var(--C)">C</span> Wortmarke.</div>
+    </div>
+
+    <div class="ex">
+      <div class="frame">
+        <div class="slide">
+          <div style="display:flex;justify-content:flex-end">
+            <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 80 L34 80 L40 50 Q41 44 47 44 L58 44 Z" fill="#3e5c6e"/><path d="M44 64 L57 64 L63 34 Q64 28 70 28 L80 28 Z" fill="#3e5c6e" opacity=".82"/><path d="M66 50 L78 50 L83 22 Q84 17 89 17 L96 17 Z" fill="#3e5c6e" opacity=".64"/></svg>
+          </div>
+          <div><div class="slidetitle">Vortragstitel</div><div style="font-size:6.8pt;color:var(--soft)">Goetheanum · Pädagogische Sektion</div></div>
+        </div>
+      </div>
+      <div class="excap"><b>Vortragsfolie</b> — <span style="color:var(--B)">B</span> Bildmarke + <span style="color:var(--C)">C</span> auf Titel/Schluss.</div>
+    </div>
+
+    <div class="ex">
+      <div class="frame">
+        <div class="iconframe">
+          <div class="iconsq">
+            <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 80 L34 80 L40 50 Q41 44 47 44 L58 44 Z" fill="#fff"/><path d="M44 64 L57 64 L63 34 Q64 28 70 28 L80 28 Z" fill="#fff" opacity=".82"/><path d="M66 50 L78 50 L83 22 Q84 17 89 17 L96 17 Z" fill="#fff" opacity=".62"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="excap"><b>Social-Icon</b> — <span style="color:var(--B)">B</span> Bildmarke allein, klein & robust.</div>
+    </div>
+  </div>
+
+  <h2>Die stille Tagesfalle: vier Sprachen &amp; Kürzel</h2>
+  <div class="langwrap">
+  <table class="lang">
+    <thead><tr><th>Sektion (DE)</th><th>EN</th><th>FR <span class="open">⟨bestätigen⟩</span></th><th>Kurz</th></tr></thead>
+    <tbody>
+      <tr><td>Pädagogische Sektion</td><td>Pedagogical Section</td><td>Section pédagogique</td><td class="open">⟨offen⟩</td></tr>
+      <tr><td>Medizinische Sektion</td><td>Medical Section</td><td>Section médicale</td><td class="open">⟨offen⟩</td></tr>
+      <tr><td>Sektion für Bildende Künste</td><td>Visual Arts Section</td><td>Section des arts plastiques</td><td>SBK <span class="open">⟨bestätigen⟩</span></td></tr>
+      <tr><td>Mathematisch-Astronomische Sektion</td><td>Math.-Astronomical Section</td><td>Section math. et astronomique</td><td>MAS <span class="open">⟨bestätigen⟩</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">Auszug (4 von 12 Sektionen). Heute auf der Übersetzungsseite teils offen («SBK???»). Diese Tabelle
+  vollständig &amp; verbindlich machen — sie ist die <b>eine Quelle</b> für Logo-Generator, Signaturen, Briefköpfe und Übersetzungen.</div>
+  </div>
+
+  <div class="foot">
+    <span>Quellen: Anthroposophie weltweit 9/2020 «Gemeinsamer Auftritt» · Werkstatt-Studien grafik.goetheanum.ch · Sektionen goetheanum.ch</span>
+    <span>A unterschreibt · B grüsst · C sagt, wer spricht</span>
+  </div>
+</section>
+
+</body>
+</html>
