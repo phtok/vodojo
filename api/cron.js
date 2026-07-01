@@ -55,6 +55,16 @@ module.exports = async (req, res) => {
 
   const force = !!(req.query && (req.query.force === '1' || req.query.force === 'true'));
 
+  // Einmalige Wartung: /api/cron?key=<CRON_SECRET>&cleanup=1 löscht den
+  // Alt-Key 'subs' (Set-Datenmodell vor dem 'reminders'-Hash).
+  if (req.query && req.query.cleanup === '1') {
+    try {
+      const deleted = await store().del('subs');
+      res.status(200).json({ cleanup: true, deletedLegacySubsKey: deleted });
+    } catch (e) { res.status(500).json({ error: 'store: ' + String(e && e.message || e) }); }
+    return;
+  }
+
   const payload = JSON.stringify({
     title: 'Aikido Vokabel-Dojo',
     body: 'Zeit fürs Dojo – kurze Übungsrunde?',
