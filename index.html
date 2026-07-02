@@ -134,6 +134,9 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-sec{margin-top:24px;}
 .dt-sec h4{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600;margin:0 0 10px;}
 .dt-lit{font-size:.96rem;color:var(--text);line-height:1.5;}
+.dt-mnemo{margin:14px 0 0;padding:14px 16px;border-left:3px solid var(--accent-2,#8fb3e0);background:var(--surface);border-radius:0 12px 12px 0;color:var(--text);font-size:.98rem;line-height:1.55;font-style:italic;}
+.dt-context{font-size:.96rem;color:var(--text);line-height:1.6;}
+.dt-context small{display:block;margin-top:6px;color:var(--muted);font-style:normal;}
 .dt-steps{margin:0;padding:0;list-style:none;counter-reset:step;}
 .dt-steps li{position:relative;padding:8px 0 8px 32px;color:var(--text);font-size:.93rem;line-height:1.45;border-bottom:1px solid var(--line);}
 .dt-steps li:last-child{border-bottom:none;}
@@ -228,7 +231,7 @@ window.AUDIO = {"Shomenuchi Kiawase": "data:audio/mpeg;base64,//OExAAAAAAAAAAAAA
 const CATS = {
   angriff:"Angriffsformen", technik:"Techniken", prinzip:"Bewegung & Prinzipien",
   stellung:"Stellung & Richtung", koerper:"Körper · Griff · Schlag", etikette:"Rollen & Etikette",
-  zahlen:"Zählen 1–10", konzept:"Grundbegriffe"
+  zahlen:"Zählen 1–10", konzept:"Grundbegriffe", waffen:"Waffen"
 };
 const VOCAB = [
   {jp:"Shomenuchi Kiawase",ja:"正面打ち 気合わせ",de:"Schlag gegen das Zentrum, im Treffen verbunden",pr:"scho-men-U-tschi ki-a-WA-se",c:"angriff",lit:"shomen = vorne · uchi = Schlag · kiawase = Energie angleichen",ic:"uchi"},
@@ -237,32 +240,32 @@ const VOCAB = [
   {jp:"Ryotetori",ja:"両手取り",de:"beide Handgelenke mit beiden Händen",pr:"rjo-te-TO-ri",c:"angriff",lit:"ryo = beide · te = Hand",ic:"grip"},
   {jp:"Iriminage",ja:"入身投げ",de:"Eintritts-Wurf",pr:"i-ri-mi-NA-ge",c:"technik",lit:"irimi = eintreten · nage = Wurf",ic:"nage"},
   {jp:"Kotegaeshi",ja:"小手返し",de:"Handgelenk-Umkehr (Wurf)",pr:"ko-te-ga-E-schi",c:"technik",lit:"kote = Handgelenk · gaeshi = umkehren",ic:"kote"},
-  {jp:"Ikkyo",ja:"一教",de:"erste Kontrolle / erste Lehre",pr:"IK-kjo",c:"technik",lit:"ichi = eins · kyo = Lehre",ic:"osae"},
+  {jp:"Ikkyo",ja:"一教",de:"erste Kontrolle / erste Lehre",pr:"IK-kjo",c:"technik",lit:"ichi = eins · kyo = Lehre",mnemo:"Stell dir eine große, dicke Ziffer 1 vor, die sich waagrecht auf Ukes Unterarm legt und ihn wie ein Lineal flach zu Boden drückt – die Nummer eins unter den Lehren: roh, gerade, ohne Schnörkel.",ic:"osae"},
   {jp:"Ikkyo Omote",ja:"一教 表",de:"erste Kontrolle – vorne eintretend",pr:"IK-kjo o-MO-te",c:"technik",lit:"omote = vorne / innen",ic:"osae"},
   {jp:"Ikkyo Ura",ja:"一教 裏",de:"erste Kontrolle – hinten herum",pr:"IK-kjo U-ra",c:"technik",lit:"ura = hinten / außen",ic:"osae"},
-  {jp:"Shihonage",ja:"四方投げ",de:"Vier-Richtungs-Wurf",pr:"schi-HO-na-ge",c:"technik",lit:"shiho = vier Richtungen · nage = Wurf",ic:"nage"},
+  {jp:"Shihonage",ja:"四方投げ",de:"Vier-Richtungs-Wurf",pr:"schi-HO-na-ge",c:"technik",lit:"shiho = vier Richtungen · nage = Wurf",mnemo:"Auf Ukes Handrücken liegt eine Windrose mit vier Pfeilen (Nord/Ost/Süd/West). Du drehst sie einmal komplett herum – wohin der letzte Pfeil zeigt, dorthin fällt Uke.",ic:"nage"},
   {jp:"Shihonage Omote",ja:"四方投げ 表",de:"Vier-Richtungs-Wurf – vorne",pr:"schi-HO-na-ge o-MO-te",c:"technik",lit:"omote = vorne eintreten",ic:"nage"},
   {jp:"Shihonage Ura",ja:"四方投げ 裏",de:"Vier-Richtungs-Wurf – herum",pr:"schi-HO-na-ge U-ra",c:"technik",lit:"ura = herumdrehen",ic:"nage"},
   {jp:"Tenchinage",ja:"天地投げ",de:"Himmel-Erde-Wurf",pr:"TEN-tschi-na-ge",c:"technik",lit:"ten = Himmel · chi = Erde · nage = Wurf",ic:"nage"},
   {jp:"Genkeikokyunage",ja:"げんけい 呼吸投げ",de:"Atem-/Timing-Wurf",pr:"gen-KEI-ko-kju-na-ge",c:"technik",lit:"kokyu = Atemkraft · nage = Wurf (Genkei: lineagespezifisch)",ic:"nage"},
-  {jp:"Irimi",ja:"入身",de:"eintreten",pr:"I-ri-mi",c:"prinzip",lit:"Schritt zur Mitte / hinter den Partner",ic:"irimi"},
-  {jp:"Tenkan",ja:"転換",de:"drehen-wechseln (um den hinteren Fuß)",pr:"TEN-kan",c:"prinzip",lit:"180°-Drehung an Ukes Seite",ic:"tenkan"},
+  {jp:"Irimi",ja:"入身",de:"eintreten",pr:"I-ri-mi",c:"prinzip",lit:"iru = hineingehen, eintreten · mi = Körper → „mit dem Körper hineingehen“",mnemo:"Eine Tür steht halb offen, genau neben Uke. Irimi heißt: nicht klopfen, nicht warten – einfach hindurchgehen, als wäre sie extra für dich aufgelassen worden.",ic:"irimi"},
+  {jp:"Tenkan",ja:"転換",de:"drehen-wechseln (um den hinteren Fuß)",pr:"TEN-kan",c:"prinzip",lit:"ten = drehen, wenden · kan = wechseln → „sich drehend wechseln“",mnemo:"Dein vorderer Fuß ist eine Türangel aus Eisen. Du selbst bist die Tür – schwing einmal halb herum, bis du neben Uke stehst und in dieselbe Richtung schaust.",ic:"tenkan"},
   {jp:"Kaiten",ja:"回転",de:"am Ort drehen",pr:"KAI-ten",c:"prinzip",lit:"Drehung um die eigene Achse",ic:"kaiten"},
-  {jp:"Tai sabaki",ja:"体捌き",de:"Körperbewegung / Fußarbeit",pr:"tai sa-BA-ki",c:"prinzip",lit:"das Ausweichen mit dem ganzen Körper",ic:"foot"},
-  {jp:"Kuzushi",ja:"崩し",de:"Gleichgewicht brechen",pr:"ku-ZU-schi",c:"prinzip",lit:"das vorhandene Ungleichgewicht nutzen",ic:"spark"},
-  {jp:"Kokyu",ja:"呼吸",de:"Atemkraft",pr:"KO-kju",c:"prinzip",lit:"Kraft, die nicht Muskelkraft ist",ic:"breath"},
-  {jp:"Zanshin",ja:"残心",de:"wache Restspannung",pr:"ZAN-schin",c:"prinzip",lit:"präsent bleiben, auch nach der Technik",ic:"eye"},
-  {jp:"Ma-ai",ja:"間合い",de:"richtige Distanz",pr:"ma-AI",c:"prinzip",lit:"der sichere Abstand zum Partner",ic:"dist"},
+  {jp:"Tai sabaki",ja:"体捌き",de:"Körperbewegung / Fußarbeit",pr:"tai sa-BA-ki",c:"prinzip",lit:"tai = Körper · sabaki = Handhabung, Bewältigung → „den Körper führen“",mnemo:"Ein Stierkämpfer, der den Stier nie blockt, sondern sich im letzten Moment zur Seite dreht – der ganze Körper weicht, nicht nur der Arm.",ic:"foot"},
+  {jp:"Kuzushi",ja:"崩し",de:"Gleichgewicht brechen",pr:"ku-ZU-schi",c:"prinzip",lit:"kuzureru = einstürzen, zerfallen",mnemo:"Ein Turm aus Bauklötzen, dem du nur den untersten, schon leicht schiefen Klotz wegziehst – er stürzt von selbst ein, du musst nicht schieben.",ic:"spark"},
+  {jp:"Kokyu",ja:"呼吸",de:"Atemkraft",pr:"KO-kju",c:"prinzip",lit:"ko = ausatmen · kyu = einatmen → „Atem“",mnemo:"Denk an eine Welle, die dich trägt, statt an einen Muskel, der drückt: Kraft, die kommt und geht wie dein Atem, nicht wie ein Stoß.",ic:"breath"},
+  {jp:"Zanshin",ja:"残心",de:"wache Restspannung",pr:"ZAN-schin",c:"prinzip",lit:"zan = bleibend, übrig · shin = Herz/Geist → „der bleibende Geist“",mnemo:"Ein Bogenschütze lässt den Pfeil los – sein Blick und seine Haltung bleiben noch lange auf das Ziel gerichtet, als wäre der Pfeil noch unterwegs.",ic:"eye"},
+  {jp:"Ma-ai",ja:"間合い",de:"richtige Distanz",pr:"ma-AI",c:"prinzip",lit:"ma = Zwischenraum, Abstand · ai = passend, treffend → „der passende Abstand“",mnemo:"Eine unsichtbare Seifenblase zwischen dir und Uke: groß genug, dass keiner sie zerdrückt – klein genug, dass ihr euch berühren könntet, wenn ihr wollt.",ic:"dist"},
   {jp:"Seichusen",ja:"正中線",de:"Zentrallinie",pr:"sei-TSCHU-sen",c:"prinzip",lit:"die Mittellinie deines Körpers",ic:"center"},
-  {jp:"Hanmi",ja:"半身",de:"halbe Stellung",pr:"HAN-mi",c:"stellung",lit:"han = halb · mi = Körper",ic:"stance"},
-  {jp:"Kamae",ja:"構え",de:"Bereitschaftsstellung",pr:"ka-MA-e",c:"stellung",lit:"wache Grundhaltung",ic:"stance"},
+  {jp:"Hanmi",ja:"半身",de:"halbe Stellung",pr:"HAN-mi",c:"stellung",lit:"han = halb · mi = Körper",mnemo:"Stell dich wie ein Dreieck auf ein Blatt Papier: eine breite, feste Basis – aber du kippst nach keiner Seite um.",ic:"stance"},
+  {jp:"Kamae",ja:"構え",de:"Bereitschaftsstellung",pr:"ka-MA-e",c:"stellung",lit:"kamaeru = sich in Stellung bringen, sich bereit machen",mnemo:"Ein Torwächter-Löwe vor einem Schrein: aufrecht, wach, entspannt – bereit loszuspringen, aber gerade völlig ruhig.",ic:"stance"},
   {jp:"Mae ashi",ja:"前足",de:"vorderer Fuß",pr:"MA-e A-schi",c:"stellung",lit:"mae = vorne · ashi = Fuß",ic:"foot"},
   {jp:"Ushiro ashi",ja:"後ろ足",de:"hinterer Fuß",pr:"u-SCHI-ro A-schi",c:"stellung",lit:"ushiro = hinten",ic:"foot"},
   {jp:"Omote",ja:"表",de:"vorne / innen",pr:"o-MO-te",c:"stellung",lit:"vor dem Partner eintreten",ic:"dir"},
   {jp:"Ura",ja:"裏",de:"hinten / außen",pr:"U-ra",c:"stellung",lit:"hinter den Partner gehen",ic:"dir"},
   {jp:"Migi",ja:"右",de:"rechts",pr:"MI-gi",c:"stellung",ic:"dir"},
   {jp:"Hidari",ja:"左",de:"links",pr:"hi-DA-ri",c:"stellung",ic:"dir"},
-  {jp:"Seiza",ja:"正座",de:"kniender Sitz",pr:"SEI-za",c:"stellung",ic:"seiza"},
+  {jp:"Seiza",ja:"正座",de:"kniender Sitz",pr:"SEI-za",c:"stellung",lit:"sei = richtig, gerade · za = Sitz → „der korrekte Sitz“",mnemo:"Ein Lineal verläuft exakt gerade von deinem Kopf bis zu den Knien – kein Wackeln, kein Schiefsitzen: der „korrekte“ Sitz.",ic:"seiza"},
   {jp:"Anza",ja:"安座",de:"Schneidersitz",pr:"AN-za",c:"stellung",ic:"seiza"},
   {jp:"Te",ja:"手",de:"Hand",pr:"te",c:"koerper",ic:"hand"},
   {jp:"Katate",ja:"片手",de:"eine Hand",pr:"ka-TA-te",c:"koerper",lit:"kata = eine · te = Hand",ic:"hand"},
@@ -304,7 +307,14 @@ const VOCAB = [
   {jp:"Gaeshi",ja:"返し",de:"umkehren",pr:"ga-E-schi",c:"konzept",lit:"steckt in Kotegaeshi",ic:"kote"},
   {jp:"Kyo",ja:"教",de:"Lehre / Prinzip",pr:"kjo",c:"konzept",lit:"Ikkyo = erste Lehre",ic:"osae"},
   {jp:"Kyu",ja:"級",de:"Schülergrad / Stufe",pr:"kju",c:"konzept",lit:"6. Kyu bis 1. Kyu, dann Dan",ic:"num"},
-  {jp:"Waza",ja:"技",de:"Technik",pr:"WA-za",c:"konzept",ic:"osae"}
+  {jp:"Waza",ja:"技",de:"Technik",pr:"WA-za",c:"konzept",ic:"osae"},
+  {jp:"Aiki",ja:"合気",de:"Vereinigung der Energie",pr:"AI-ki",c:"konzept",lit:"ai = vereinen, zusammenpassen · ki = Energie, Geist",mnemo:"Zwei Zahnräder, die exakt ineinandergreifen – keins drückt gegen das andere, sie drehen sich einfach gemeinsam weiter.",ic:"spark"},
+  {jp:"Budo",ja:"武道",de:"der Weg des Kampfes",pr:"BU-do",c:"konzept",lit:"bu = Kampf, Krieger · do = der Weg",mnemo:"Ein Weg, der nie am Gegner endet, sondern immer bei dir selbst.",ic:"torii"},
+  {jp:"Mushin",ja:"無心",de:"Geist ohne Ich-Gedanken",pr:"MU-schin",c:"konzept",lit:"mu = nichts, ohne · shin = Herz, Geist",mnemo:"Ein See ohne Wellen: fällt ein Stein hinein, spiegelt die Oberfläche ihn sofort und klar – ohne eigene Unruhe dazwischen.",ic:"eye"},
+  {jp:"Shoshin",ja:"初心",de:"Anfänger-Geist",pr:"SCHO-schin",c:"konzept",lit:"sho = Anfang · shin = Herz, Geist",mnemo:"Hinschauen wie am allerersten Trainingstag – auch wenn du es schon hundertmal gesehen hast.",ic:"spark"},
+  {jp:"Jo",ja:"杖",de:"Stock (ca. 1,28 m)",pr:"djo",c:"waffen",lit:"杖 = Stock, Stab",mnemo:"Kein Schwert, kein Speer – ein einfacher Stock, der erst durch die Bewegung gefährlich wird, nicht durch eine Klinge.",ic:"foot"},
+  {jp:"Bokken",ja:"木刀",de:"Holzschwert",pr:"BOK-ken",c:"waffen",lit:"boku = Holz · to/ken = Schwert",mnemo:"Ein Schwert aus Holz – ungefährlich fürs Fleisch, gnadenlos ehrlich für die Form.",ic:"kote"},
+  {jp:"Tanto",ja:"短刀",de:"Kurzmesser (Trainingswaffe)",pr:"TAN-to",c:"waffen",lit:"tan = kurz · to = Klinge",mnemo:"Die kürzeste, nächste Gefahr – näher als jeder andere Angriff, deshalb übst du damit besonders genaue Distanz.",ic:"dist"}
 ];
 
 /* ---------- SVG-Skizzen (helle Striche) ---------- */
@@ -787,7 +797,16 @@ const GUIDE={
     {img:_frame(_P(65,40)+_pf(65,100,0,C_TORI)+_link(57,52,57,88)+_link(73,52,73,88)), cap:'Uke fasst beide Handgelenke (Ryotetori).'},
     {img:_frame(_P(58,46)+_pf(82,82,0,C_TORI)+_af('M58 58 A 26 26 0 0 1 80 70')), cap:'Seine Energie weiterführen statt blocken – mit dem Atem öffnen.'},
     {img:_frame(_udown(56,92)+_pf(88,72,0,C_TORI)), cap:'Im richtigen Moment werfen – Uke fällt durch den Schwung.'}
-  ]}
+  ]},
+  'Ki':{context:'Ki (気) heißt wörtlich „Energie" oder „Geist" – dasselbe Zeichen wie in „genki" (guter Zustand, Elan) oder „byoki" (Krankheit, wörtlich „schlechte Energie"). Im Aikido ist damit keine mystische Kraft gemeint, sondern gerichtete Aufmerksamkeit, Atem und Bewegungsenergie, die durch den ganzen Körper fließt, statt sich in einzelnen Muskeln zu verspannen.'},
+  'Aiki':{context:'Aiki (合気) ist der Kern des Wortes Aikido: die Energie (Ki) zweier Menschen so zu vereinen (Ai), dass keine Kraft gegen Kraft steht. Statt Ukes Angriff zu blockieren, nimmst du seine Bewegungsrichtung auf und führst sie weiter – Vereinigung statt Konfrontation.'},
+  'Budo':{context:'O-Sensei Morihei Ueshiba beschrieb Budo (武道, „der Weg des Kampfes") in einem 1957 dokumentierten Interview sinngemäß so: „Wahres Budo bedeutet, über sich selbst zu siegen und den kämpferischen Geist im Gegner aufzulösen … ein Weg zur vollkommenen Selbstvervollkommnung." Nicht der Gegner ist das eigentliche Ziel, sondern die eigene Entwicklung.<small>Quelle: Interview mit Morihei und Kisshomaru Ueshiba, dokumentiert auf aikidojournal.com</small>'},
+  'Mushin':{context:'Mushin (無心, „Geist ohne Ich-Gedanken") beschreibt einen Zustand ohne Zögern, Angst oder Berechnung während der Bewegung – der Geist reagiert direkt, ohne sich in Gedanken über richtig oder falsch zu verlieren. Kein Abwesenheitszustand, sondern maximale, unangestrengte Präsenz.'},
+  'Shoshin':{context:'Shoshin (初心, „Anfänger-Geist") bedeutet, jede Übung – auch die tausendste Ikkyo – mit derselben Offenheit anzugehen wie am ersten Trainingstag: ohne die Vorannahme „ich kann das schon", die neues Lernen blockiert.'},
+  'Zanshin':{context:'Zanshin (残心) beschreibt die wache Aufmerksamkeit, die nach Abschluss einer Technik bestehen bleibt – man lässt Uke nicht einfach „fallen und fertig", sondern bleibt in Kontakt und Bereitschaft, falls ein weiterer Angriff folgt.'},
+  'Ma-ai':{context:'Ma-ai (間合い) ist kein fester Abstand in Zentimetern, sondern die Distanz, die im jeweiligen Moment zu Größe, Waffe und Bewegungstempo beider Partner passt – sie verändert sich mit jedem Schritt.'},
+  'Kuzushi':{context:'Kuzushi (崩し) ist das Prinzip, den Gegner vor der eigentlichen Technik erst aus dem Gleichgewicht zu bringen – körperlich oder im Timing –, statt Kraft gegen seine stabile Haltung zu setzen.'},
+  'Kokyu':{context:'Kokyu (呼吸) heißt wörtlich „Atem" (ko = ausatmen, kyu = einatmen). Kokyu-Kraft meint eine Kraft, die aus Zentrum, Timing und ganzkörperlicher Koordination kommt – nicht aus isolierter Arm- oder Handkraft.'}
 };
 function relatedTerms(card){
   const out=[], g=GUIDE[card.jp];
@@ -814,6 +833,8 @@ function openDetail(jp){
     <div class="dt-de">${card.de}</div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
+  if(card.mnemo) h+=`<div class="dt-sec"><h4>Eselsbrücke</h4><div class="dt-mnemo">${card.mnemo}</div></div>`;
+  if(g.context) h+=`<div class="dt-sec"><h4>Hintergrund</h4><div class="dt-context">${g.context}</div></div>`;
   const legend = g.noPartner ? '' : `<div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div>`;
   if(g.phases) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><div class="dt-phases">${
     g.phases.map((p,i)=>`<div class="dt-phase"><div class="dt-ph-img">${p.img}</div><div class="dt-ph-cap"><b>${i+1}</b>${p.cap}</div></div>`).join('')}</div>${legend}</div>`;
