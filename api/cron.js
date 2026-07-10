@@ -2,6 +2,19 @@
 // daily by Vercel Cron as a fallback. For each stored subscription it sends a
 // push only when the device's chosen local time is due today.
 // Manual test (send to all now): /api/cron?key=<CRON_SECRET>&force=1
+// web-push 3.6.7 (aktuellste Version) nutzt intern das veraltete url.parse();
+// Node meldet das als DEP0169 auf stderr, was bei jedem Kaltstart als Fehler im
+// Vercel-Log landet. Gezielt nur diese eine Warnung unterdrücken — alle anderen
+// (auch andere Deprecations) bleiben sichtbar. Entfernen, sobald web-push auf
+// die WHATWG-URL-API gewechselt hat.
+const emitWarning = process.emitWarning;
+process.emitWarning = function (warning, ...args) {
+  const code = (args[0] && typeof args[0] === 'object') ? args[0].code
+    : (typeof args[1] === 'string' ? args[1] : (warning && warning.code));
+  if (code === 'DEP0169') return;
+  return emitWarning.call(process, warning, ...args);
+};
+
 const webpush = require('web-push');
 const { Redis } = require('@upstash/redis');
 
