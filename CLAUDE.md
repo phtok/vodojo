@@ -19,5 +19,23 @@ pausieren, entziehen — Entzug wirkt sofort. Gilt repo-übergreifend, auch hier
    Tokens in den Chat zu kleben.
 4. **Protokoll:** Jedes Lesen wird automatisch in `schluesselbund_log`
    festgehalten und ist auf der Seite einsehbar.
+5. **Immer den direkten Link mitgeben:** Soll der Repo-Inhaber einen Key
+   holen, erneuern oder eintragen, steht in der Anweisung die anklickbare
+   URL der Seite, auf der der Knopf sitzt — nie „im Dashboard unter
+   Einstellungen". Das gilt für die Quelle wie fürs Ziel. Für dieses Repo
+   am häufigsten gebraucht:
+   - Schlüsselbund verwalten: <https://schluessel.saetzerei.com>
+   - Vercel-Token: <https://vercel.com/account/settings/tokens>
+   - Repo-Secrets: <https://github.com/phtok/vodojo/settings/secrets/actions>
+
+   Die vollständige Link-Tabelle aller Dienste steht im Repo `designs` in
+   `UEBERGABE.md` § Wo ein Schlüssel herkommt.
+
+## Geheimnisse dieses Repos
+
+Die Vercel-Funktionen lesen `CRON_SECRET` und `VAPID_PRIVATE_KEY`
+(`api/cron.js`) sowie `KV_REST_API_TOKEN` (`api/subscribe.js`) aus den
+Laufzeit-Env-Variablen des Vercel-Projekts — nie aus dem Repo. Beim
+Ändern gilt Punkt 2: Werte bleiben flüchtig.
 
 (Ausführliche Fassung dieses Abschnitts: `CLAUDE.md` im Repo `designs`.)
