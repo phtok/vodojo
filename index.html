@@ -156,6 +156,28 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-rel button{background:none;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:8px 12px;font-family:inherit;font-size:.84rem;font-weight:500;cursor:pointer;}
 .dt-rel button small{color:var(--accent);margin-left:6px;font-weight:400;}
 .dt-video{display:inline-block;color:var(--accent);font-weight:600;text-decoration:none;font-size:.9rem;}
+.dt-foto{display:flex;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;}
+.dt-foto img{display:block;width:100%;height:auto;border-radius:8px;}
+.dt-foto.hoch img{max-width:200px;}
+.dt-quelle{text-align:center;margin-top:8px;font-size:.72rem;color:var(--muted);}
+.dt-vids{display:flex;flex-direction:column;gap:8px;}
+.dt-vid{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);text-decoration:none;font-size:.9rem;line-height:1.35;}
+.dt-vid b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.dt-vid span{flex:1;min-width:0;}
+.dt-vid small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px;}
+.dt-vid i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
+.dt-vid.leer{opacity:.6;}
+.prog{display:flex;flex-direction:column;gap:8px;}
+.prog-row{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:9px 12px 9px 10px;font-family:inherit;color:var(--text);cursor:pointer;}
+.prog-row b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.prog-row img{flex:none;width:56px;height:auto;border-radius:6px;}
+.prog-row span{flex:1;min-width:0;}
+.prog-row em{display:block;font-style:normal;font-weight:600;font-size:.92rem;line-height:1.25;}
+.prog-row small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px;line-height:1.3;}
+.prog-row i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
+.prog-note{font-size:.78rem;color:var(--muted);margin:10px 2px 0;line-height:1.45;}
+.prog-navrow{display:flex;gap:10px;margin-top:26px;}
+.prog-nav{flex:1;background:none;border:1px solid var(--line);color:var(--accent);border-radius:12px;padding:11px 8px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;}
 .dt-open{display:block;margin:14px auto 0;background:none;border:1px solid var(--line);color:var(--accent);font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;border-radius:999px;padding:8px 16px;}
 .t-streak{font-size:.95rem;color:var(--text);margin:2px 2px 12px;}
 .t-streak b{color:var(--accent);font-size:1.15rem;}
@@ -317,6 +339,24 @@ const VOCAB = [
   {jp:"Tanto",ja:"短刀",de:"Kurzmesser (Trainingswaffe)",pr:"TAN-to",c:"waffen",lit:"tan = kurz · to = Klinge",mnemo:"Die kürzeste, nächste Gefahr – näher als jeder andere Angriff, deshalb übst du damit besonders genaue Distanz.",ic:"dist"}
 ];
 
+/* ---------- Offizielle Dojo-Blätter (Quelle: Eric Graf · Dojo de Bienne) ---------- */
+const DOJOBILD={
+  'Shomenuchi Kiawase':{f:'angriff-shomenuchi-kiawase.png',hoch:true},
+  'Katatetori Aihanmi':{f:'angriff-katatetori-aihanmi.png',hoch:true},
+  'Katatetori Gyakuhanmi':{f:'angriff-katatetori-gyakuhanmi.png',hoch:true},
+  'Ryotetori':{f:'angriff-ryotetori.png',hoch:true},
+  'Iriminage':{f:'technik-iriminage.png'},
+  'Kotegaeshi':{f:'technik-kotegaeshi.png'},
+  'Ikkyo':{f:'technik-ikkyo.png'},
+  'Ikkyo Omote':{f:'technik-ikkyo.png'},
+  'Ikkyo Ura':{f:'technik-ikkyo.png'},
+  'Shihonage':{f:'technik-shihonage.png'},
+  'Shihonage Omote':{f:'technik-shihonage.png'},
+  'Shihonage Ura':{f:'technik-shihonage.png'},
+  'Tenchinage':{f:'technik-tenchinage.png'},
+  'Genkeikokyunage':{f:'technik-genkeikokyunage.png'}
+};
+
 /* ---------- SVG-Skizzen (helle Striche) ---------- */
 const S='stroke="#d7d1c2" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"';
 const SR='stroke="#e07a62" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"';
@@ -465,7 +505,11 @@ function speak(text){
 /* ---------- State ---------- */
 let mode='learn', activeCat='all';
 const view=document.getElementById('view');
-function filtered(){ return activeCat==='all'? VOCAB : VOCAB.filter(v=>v.c===activeCat); }
+function filtered(){
+  if(activeCat==='all') return VOCAB;
+  if(activeCat==='pruefung') return VOCAB.filter(v=>PRUEF_JP.includes(v.jp));
+  return VOCAB.filter(v=>v.c===activeCat);
+}
 function updateStats(){
   const f=filtered();
   document.getElementById('st-total').textContent=f.length;
@@ -475,7 +519,8 @@ function updateStats(){
   if(mb){ const m=VOCAB.filter(v=>pget(v.jp).box>=5).length; mb.style.width=Math.round(m/VOCAB.length*100)+'%'; }
 }
 function chipsHTML(){
-  let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>';
+  let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>'
+        +'<button class="chip '+(activeCat==='pruefung'?'active':'')+'" data-cat="pruefung">6. Kyu Prüfung</button>';
   for(const k in CATS){ h+='<button class="chip '+(activeCat===k?'active':'')+'" data-cat="'+k+'">'+CATS[k]+'</button>'; }
   return h+'</div>';
 }
@@ -594,7 +639,7 @@ function showQuestion(){
       <div class="deepen" id="deepbox" style="display:${q.open?'block':'none'}">
         <div>${card.ja} · <i>${card.pr}</i></div>
         ${card.lit?`<div style="margin-top:4px">${card.lit}</div>`:''}
-        <a href="${yt}" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a>
+        ${(examFor(card.jp).filter(e=>e.vid)[0]) ? `<a href="${examVideoURL(examFor(card.jp).filter(e=>e.vid)[0])}" target="_blank" rel="noopener">Prüfungs-Video: ${examName(examFor(card.jp).filter(e=>e.vid)[0])} ↗</a>` : `<a href="${yt}" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a>`}
         <button class="dt-open" id="dt-quiz" data-jp="${card.jp.replace(/"/g,'&quot;')}">vertiefen ↗</button>
       </div>
       <div class="qnav">
@@ -640,15 +685,24 @@ async function answerQuiz(q,chosen){
 
 /* ---------- NAMEN BAUEN ---------- */
 const EXAM=[
-  {a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte"},
-  {a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte"},
-  {a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff"},
-  {a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff"},
-  {a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
-  {a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
-  {a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff"},
-  {a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff"}
+  {n:1,a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte",vid:"66-JGVPiui4"},
+  {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0"},
+  {n:3,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE"},
+  {n:4,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc"},
+  {n:5,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
+  {n:6,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
+  {n:7,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU"},
+  {n:8,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU"}
 ];
+/* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt (Nr. 5/6 fehlen noch). */
+function examName(e){ return e.a+' '+e.t+(e.d!=='—'?' '+e.d:''); }
+function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid : null; }
+/* Alle Prüfungs-Kombinationen, in denen dieser Begriff vorkommt (Angriff, Technik oder Technik+Richtung). */
+function examFor(jp){
+  return EXAM.filter(e=> e.a===jp || e.t===jp || (e.t+' '+e.d)===jp );
+}
+/* Die 10 Vokabeln, die im 6.-Kyu-Programm wirklich vorkommen: 4 Angriffe + 6 Techniken. */
+const PRUEF_JP=[...new Set(EXAM.flatMap(e=>[e.a,e.t]))];
 const A_OPTS=["Shomenuchi Kiawase","Katatetori Aihanmi","Katatetori Gyakuhanmi","Ryotetori"];
 const T_OPTS=["Iriminage","Kotegaeshi","Ikkyo","Shihonage","Tenchinage","Genkeikokyunage"];
 const D_OPTS=["—","Omote","Ura"];
@@ -674,8 +728,10 @@ function checkBuild(){
   nbDone=true; touchDay(); markLog('Technik');
   view.querySelectorAll('.nb-pick').forEach(b=>{ const k=b.dataset.k,v=b.dataset.v; if(v===nbTarget[k])b.classList.add('ok'); else if(nbSel[k]===v)b.classList.add('bad'); b.onclick=null; });
   const all=nbSel.a===nbTarget.a&&nbSel.t===nbTarget.t&&nbSel.d===nbTarget.d;
-  const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
-  document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full;
+  const full=examName(nbTarget);
+  const vu=examVideoURL(nbTarget);
+  document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full
+    +(vu?`<br><a class="dt-video" href="${vu}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${nbTarget.n} als Video ansehen ↗</a>`:'');
   if(all)speakName(nbTarget);
   const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--good)':'var(--accent)';
 }
@@ -683,9 +739,23 @@ function checkBuild(){
 /* ---------- LISTE ---------- */
 function renderBrowse(){
   let h='';
-  const cats = activeCat==='all'? Object.keys(CATS) : [activeCat];
+  if(activeCat==='pruefung'){
+    h+='<div class="grouphead">Prüfungsprogramm 6. Kyu</div>';
+    h+='<div class="prog">'+EXAM.map(e=>{
+      const b=DOJOBILD[e.t];
+      return `<button class="prog-row" data-n="${e.n}">
+        <b>${e.n}</b>
+        ${b?`<img src="bilder/${b.f}" alt="" loading="lazy">`:''}
+        <span><em>${examName(e)}</em><small>${e.de}</small></span>
+        <i>${e.vid?'▶':'›'}</i></button>`;
+    }).join('')+'</div>';
+    h+='<div class="prog-note">Angriff + Technik + Richtung – die acht Kombinationen der Prüfung. Antippen für Bild und Video.</div>';
+    h+='<div class="grouphead">Vokabeln dazu</div>';
+  }
+  const cats = activeCat==='all'? Object.keys(CATS) : (activeCat==='pruefung'? Object.keys(CATS) : [activeCat]);
+  const pool = filtered();
   for(const k of cats){
-    const items=VOCAB.filter(v=>v.c===k); if(!items.length)continue;
+    const items=pool.filter(v=>v.c===k); if(!items.length)continue;
     h+='<div class="grouphead">'+CATS[k]+'</div>';
     for(const v of items){
       const p=pget(v.jp);
@@ -698,6 +768,7 @@ function renderBrowse(){
   view.innerHTML=h; bindChips();
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   view.querySelectorAll('.rmid').forEach(m=>m.onclick=()=>openDetail(m.dataset.jp));
+  view.querySelectorAll('.prog-row').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
   document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; repsData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); await Store.set('aikido_reps',{}); render(); updateStats(); } };
 }
 
@@ -831,6 +902,8 @@ function openDetail(jp){
       <button class="speak" id="dt-spk">▶︎ hören</button>
     </div>
     <div class="dt-de">${card.de}</div>`;
+  const bild=DOJOBILD[card.jp];
+  if(bild) h+=`<div class="dt-sec"><h4>Bild aus dem Dojo-Blatt</h4><div class="dt-foto${bild.hoch?' hoch':''}"><img src="bilder/${bild.f}" alt="${card.jp}" loading="lazy"></div><div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div></div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
   if(card.mnemo) h+=`<div class="dt-sec"><h4>Eselsbrücke</h4><div class="dt-mnemo">${card.mnemo}</div></div>`;
@@ -842,12 +915,56 @@ function openDetail(jp){
   else if(g.steps) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
   if(rel.length) h+=`<div class="dt-sec"><h4>Verwandte Begriffe</h4><div class="dt-rel">${
     rel.map(v=>`<button data-jp="${v.jp.replace(/"/g,'&quot;')}">${v.jp}<small>${v.de}</small></button>`).join('')}</div></div>`;
-  h+=`<div class="dt-sec"><h4>Video ansehen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;
+  const ex=examFor(card.jp);
+  if(ex.length){
+    const rows=ex.map(e=>{
+      const u=examVideoURL(e);
+      return u
+        ? `<a class="dt-vid" href="${u}" target="_blank" rel="noopener"><b>${e.n}</b><span>${examName(e)}<small>${e.de}</small></span><i>▶</i></a>`
+        : `<div class="dt-vid leer"><b>${e.n}</b><span>${examName(e)}<small>Video noch nicht von der Meisterin geschickt</small></span></div>`;
+    }).join('');
+    h+=`<div class="dt-sec"><h4>Prüfungs-Videos</h4><div class="dt-vids">${rows}</div><div class="dt-quelle">Aikido Dojo Trnava · Auswahl der Meisterin</div></div>`;
+  }
+  h+=`<div class="dt-sec"><h4>Selber suchen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;
   const d=document.getElementById('detail');
   d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
   document.getElementById('dt-back').onclick=closeDetail;
   document.getElementById('dt-spk').onclick=()=>speakCard(card);
   d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
+}
+/* Eine Prüfungs-Kombination als eigene Seite: Angriffsbild + Technikbild + Video. */
+function openProgram(n){
+  const e=EXAM.find(x=>x.n===n); if(!e) return;
+  const bildA=DOJOBILD[e.a], bildT=DOJOBILD[e.t];
+  const vu=examVideoURL(e);
+  const foto=(b,titel)=> b? `<div class="dt-sec"><h4>${titel}</h4><div class="dt-foto${b.hoch?' hoch':''}"><img src="bilder/${b.f}" alt="" loading="lazy"></div></div>`:'';
+  let h=`<button class="dt-back" id="dt-back">← zurück</button>
+    <div class="dt-head">
+      <div class="dt-seal">Prüfung 6. Kyu · Nr. ${e.n} von ${EXAM.length}</div>
+      <div class="dt-jp">${examName(e)}</div>
+      <button class="speak" id="dt-spk">▶︎ hören</button>
+    </div>
+    <div class="dt-de">${e.de}</div>`;
+  h+=foto(bildA,'Der Angriff');
+  h+=foto(bildT,'Die Technik');
+  if(bildA||bildT) h+='<div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div>';
+  h+=`<div class="dt-sec"><h4>Video</h4>${
+    vu? `<a class="dt-vid" href="${vu}" target="_blank" rel="noopener"><b>${e.n}</b><span>${examName(e)}<small>Aikido Dojo Trnava</small></span><i>▶</i></a>`
+      : `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`}</div>`;
+  const teile=[{jp:e.a,rolle:'Angriff'},{jp:(e.d!=='—'?e.t+' '+e.d:e.t),rolle:'Technik'}]
+    .filter(t=>VOCAB.some(v=>v.jp===t.jp));
+  if(teile.length) h+=`<div class="dt-sec"><h4>Die Vokabeln dazu</h4><div class="dt-rel">${
+    teile.map(t=>{ const v=VOCAB.find(x=>x.jp===t.jp); return `<button data-jp="${t.jp.replace(/"/g,'&quot;')}">${t.jp}<small>${v.de}</small></button>`; }).join('')}</div></div>`;
+  const nav=[];
+  if(n>1) nav.push(`<button class="prog-nav" data-n="${n-1}">← Nr. ${n-1}</button>`);
+  if(n<EXAM.length) nav.push(`<button class="prog-nav" data-n="${n+1}">Nr. ${n+1} →</button>`);
+  if(nav.length) h+=`<div class="prog-navrow">${nav.join('')}</div>`;
+  const d=document.getElementById('detail');
+  d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
+  document.getElementById('dt-back').onclick=closeDetail;
+  document.getElementById('dt-spk').onclick=()=>speakName(e);
+  d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
+  d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
 }
 function closeDetail(){ const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
 
@@ -982,9 +1099,9 @@ function renderToday(){
   const log=todayLog(), done=log.length>0;
   const drillsHTML=drillPick.map(d=>`<div class="drill"><div class="dn"${d.k?` data-jp="${d.k.replace(/"/g,'&quot;')}" style="cursor:pointer"`:''}><b>${d.t}</b><small>${d.d}${d.k?' · antippen für Skizze':''}</small></div>${d.s?`<button class="play" data-s="${d.s}">▶ Timer</button>`:''}</div>`).join('');
   const logHTML=LOGTAGS.map(t=>`<button class="logchip${log.includes(t)?' on':''}" data-tag="${t}">${log.includes(t)?'✓ ':''}${t}</button>`).join('');
-  const ex=examTask.e, full=ex.a+' '+ex.t+(ex.d!=='—'?' '+ex.d:'');
+  const ex=examTask.e, full=examName(ex), exVid=examVideoURL(ex);
   const examHTML = examTask.open
-    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div><button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
+    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div>${exVid?`<a class="dt-video" href="${exVid}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${ex.n} als Video ansehen ↗</a>`:''}<button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
     : `<div class="examq">${ex.de}</div><button class="t-btn t-accent" id="ex-show" style="margin-top:10px">Technik-Namen zeigen</button>`;
   const ach=achievements().map(a=>`<span class="${a.got?'got':''}">${a.got?'✓ ':''}${a.t}</span>`).join('');
   view.innerHTML=`<div class="today fade">
@@ -1004,7 +1121,7 @@ function renderToday(){
       <div class="belt-lbl" style="margin-top:8px;opacity:.75">Funktioniert nur in der installierten App („Zum Home-Bildschirm“). Zeit ±15 Min genau.</div></div>
     <div class="t-card"><h3>Heute gemacht</h3><div class="logrow">${logHTML}</div></div>
     <div class="t-card"><h3>Kraft & Halten (täglich)</h3>${REPS.map(x=>{const lr=lastReps(x.f);return `<div class="rep"><label>${x.t}${x.u?' ('+x.u+')':''}</label><input type="number" inputmode="numeric" min="0" data-f="${x.f}" value="${todayReps()[x.f]||''}" placeholder="0"><small>${lr!=null?'zuletzt '+lr:'–'}</small></div>`;}).join('')}<button class="t-btn" id="rep-hist" style="margin-top:8px">Verlauf ansehen ▸</button></div>
-    <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}</div>
+    <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}<button class="t-btn" id="ex-all" style="margin-top:10px">Ganzes Programm ansehen ▸</button></div>
     <div class="t-card"><h3>Weg zum 5. Kyu</h3><div class="belt"><i style="width:${beltPct()}%"></i></div>
       <div class="belt-lbl">${beltPct()} % gemeistert · ${practiceDays()} Übungstage</div>
       <div class="ach">${ach}</div></div>
@@ -1020,6 +1137,7 @@ function renderToday(){
   view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
   const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); };
   const exn=document.getElementById('ex-next'); if(exn) exn.onclick=()=>{ newExamTask(); renderToday(); };
+  const exa=document.getElementById('ex-all'); if(exa) exa.onclick=()=>{ activeCat='pruefung'; renderChips(); mode='browse'; document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.mode==='browse')); render(); updateStats(); };
 }
 
 /* ---------- Router ---------- */
