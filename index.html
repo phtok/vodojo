@@ -156,6 +156,17 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-rel button{background:none;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:8px 12px;font-family:inherit;font-size:.84rem;font-weight:500;cursor:pointer;}
 .dt-rel button small{color:var(--accent);margin-left:6px;font-weight:400;}
 .dt-video{display:inline-block;color:var(--accent);font-weight:600;text-decoration:none;font-size:.9rem;}
+.dt-foto{display:flex;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;}
+.dt-foto img{display:block;width:100%;height:auto;border-radius:8px;}
+.dt-foto.hoch img{max-width:200px;}
+.dt-quelle{text-align:center;margin-top:8px;font-size:.72rem;color:var(--muted);}
+.dt-vids{display:flex;flex-direction:column;gap:8px;}
+.dt-vid{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);text-decoration:none;font-size:.9rem;line-height:1.35;}
+.dt-vid b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.dt-vid span{flex:1;min-width:0;}
+.dt-vid small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px;}
+.dt-vid i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
+.dt-vid.leer{opacity:.6;}
 .dt-open{display:block;margin:14px auto 0;background:none;border:1px solid var(--line);color:var(--accent);font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;border-radius:999px;padding:8px 16px;}
 .t-streak{font-size:.95rem;color:var(--text);margin:2px 2px 12px;}
 .t-streak b{color:var(--accent);font-size:1.15rem;}
@@ -316,6 +327,24 @@ const VOCAB = [
   {jp:"Bokken",ja:"木刀",de:"Holzschwert",pr:"BOK-ken",c:"waffen",lit:"boku = Holz · to/ken = Schwert",mnemo:"Ein Schwert aus Holz – ungefährlich fürs Fleisch, gnadenlos ehrlich für die Form.",ic:"kote"},
   {jp:"Tanto",ja:"短刀",de:"Kurzmesser (Trainingswaffe)",pr:"TAN-to",c:"waffen",lit:"tan = kurz · to = Klinge",mnemo:"Die kürzeste, nächste Gefahr – näher als jeder andere Angriff, deshalb übst du damit besonders genaue Distanz.",ic:"dist"}
 ];
+
+/* ---------- Offizielle Dojo-Blätter (Quelle: Eric Graf · Dojo de Bienne) ---------- */
+const DOJOBILD={
+  'Shomenuchi Kiawase':{f:'angriff-shomenuchi-kiawase.png',hoch:true},
+  'Katatetori Aihanmi':{f:'angriff-katatetori-aihanmi.png',hoch:true},
+  'Katatetori Gyakuhanmi':{f:'angriff-katatetori-gyakuhanmi.png',hoch:true},
+  'Ryotetori':{f:'angriff-ryotetori.png',hoch:true},
+  'Iriminage':{f:'technik-iriminage.png'},
+  'Kotegaeshi':{f:'technik-kotegaeshi.png'},
+  'Ikkyo':{f:'technik-ikkyo.png'},
+  'Ikkyo Omote':{f:'technik-ikkyo.png'},
+  'Ikkyo Ura':{f:'technik-ikkyo.png'},
+  'Shihonage':{f:'technik-shihonage.png'},
+  'Shihonage Omote':{f:'technik-shihonage.png'},
+  'Shihonage Ura':{f:'technik-shihonage.png'},
+  'Tenchinage':{f:'technik-tenchinage.png'},
+  'Genkeikokyunage':{f:'technik-genkeikokyunage.png'}
+};
 
 /* ---------- SVG-Skizzen (helle Striche) ---------- */
 const S='stroke="#d7d1c2" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"';
@@ -594,7 +623,7 @@ function showQuestion(){
       <div class="deepen" id="deepbox" style="display:${q.open?'block':'none'}">
         <div>${card.ja} · <i>${card.pr}</i></div>
         ${card.lit?`<div style="margin-top:4px">${card.lit}</div>`:''}
-        <a href="${yt}" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a>
+        ${(examFor(card.jp).filter(e=>e.vid)[0]) ? `<a href="${examVideoURL(examFor(card.jp).filter(e=>e.vid)[0])}" target="_blank" rel="noopener">Prüfungs-Video: ${examName(examFor(card.jp).filter(e=>e.vid)[0])} ↗</a>` : `<a href="${yt}" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a>`}
         <button class="dt-open" id="dt-quiz" data-jp="${card.jp.replace(/"/g,'&quot;')}">vertiefen ↗</button>
       </div>
       <div class="qnav">
@@ -640,15 +669,22 @@ async function answerQuiz(q,chosen){
 
 /* ---------- NAMEN BAUEN ---------- */
 const EXAM=[
-  {a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte"},
-  {a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte"},
-  {a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff"},
-  {a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff"},
-  {a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
-  {a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
-  {a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff"},
-  {a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff"}
+  {n:1,a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte",vid:"66-JGVPiui4"},
+  {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0"},
+  {n:3,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE"},
+  {n:4,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc"},
+  {n:5,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
+  {n:6,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
+  {n:7,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU"},
+  {n:8,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU"}
 ];
+/* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt (Nr. 5/6 fehlen noch). */
+function examName(e){ return e.a+' '+e.t+(e.d!=='—'?' '+e.d:''); }
+function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid : null; }
+/* Alle Prüfungs-Kombinationen, in denen dieser Begriff vorkommt (Angriff, Technik oder Technik+Richtung). */
+function examFor(jp){
+  return EXAM.filter(e=> e.a===jp || e.t===jp || (e.t+' '+e.d)===jp );
+}
 const A_OPTS=["Shomenuchi Kiawase","Katatetori Aihanmi","Katatetori Gyakuhanmi","Ryotetori"];
 const T_OPTS=["Iriminage","Kotegaeshi","Ikkyo","Shihonage","Tenchinage","Genkeikokyunage"];
 const D_OPTS=["—","Omote","Ura"];
@@ -674,8 +710,10 @@ function checkBuild(){
   nbDone=true; touchDay(); markLog('Technik');
   view.querySelectorAll('.nb-pick').forEach(b=>{ const k=b.dataset.k,v=b.dataset.v; if(v===nbTarget[k])b.classList.add('ok'); else if(nbSel[k]===v)b.classList.add('bad'); b.onclick=null; });
   const all=nbSel.a===nbTarget.a&&nbSel.t===nbTarget.t&&nbSel.d===nbTarget.d;
-  const full=nbTarget.a+' '+nbTarget.t+(nbTarget.d!=='—'?' '+nbTarget.d:'');
-  document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full;
+  const full=examName(nbTarget);
+  const vu=examVideoURL(nbTarget);
+  document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full
+    +(vu?`<br><a class="dt-video" href="${vu}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${nbTarget.n} als Video ansehen ↗</a>`:'');
   if(all)speakName(nbTarget);
   const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--good)':'var(--accent)';
 }
@@ -831,6 +869,8 @@ function openDetail(jp){
       <button class="speak" id="dt-spk">▶︎ hören</button>
     </div>
     <div class="dt-de">${card.de}</div>`;
+  const bild=DOJOBILD[card.jp];
+  if(bild) h+=`<div class="dt-sec"><h4>Bild aus dem Dojo-Blatt</h4><div class="dt-foto${bild.hoch?' hoch':''}"><img src="bilder/${bild.f}" alt="${card.jp}" loading="lazy"></div><div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div></div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
   if(card.mnemo) h+=`<div class="dt-sec"><h4>Eselsbrücke</h4><div class="dt-mnemo">${card.mnemo}</div></div>`;
@@ -842,7 +882,17 @@ function openDetail(jp){
   else if(g.steps) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><ol class="dt-steps">${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
   if(rel.length) h+=`<div class="dt-sec"><h4>Verwandte Begriffe</h4><div class="dt-rel">${
     rel.map(v=>`<button data-jp="${v.jp.replace(/"/g,'&quot;')}">${v.jp}<small>${v.de}</small></button>`).join('')}</div></div>`;
-  h+=`<div class="dt-sec"><h4>Video ansehen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;
+  const ex=examFor(card.jp);
+  if(ex.length){
+    const rows=ex.map(e=>{
+      const u=examVideoURL(e);
+      return u
+        ? `<a class="dt-vid" href="${u}" target="_blank" rel="noopener"><b>${e.n}</b><span>${examName(e)}<small>${e.de}</small></span><i>▶</i></a>`
+        : `<div class="dt-vid leer"><b>${e.n}</b><span>${examName(e)}<small>Video noch nicht von der Meisterin geschickt</small></span></div>`;
+    }).join('');
+    h+=`<div class="dt-sec"><h4>Prüfungs-Videos</h4><div class="dt-vids">${rows}</div><div class="dt-quelle">Aikido Dojo Trnava · Auswahl der Meisterin</div></div>`;
+  }
+  h+=`<div class="dt-sec"><h4>Selber suchen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;
   const d=document.getElementById('detail');
   d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
   document.getElementById('dt-back').onclick=closeDetail;
@@ -982,9 +1032,9 @@ function renderToday(){
   const log=todayLog(), done=log.length>0;
   const drillsHTML=drillPick.map(d=>`<div class="drill"><div class="dn"${d.k?` data-jp="${d.k.replace(/"/g,'&quot;')}" style="cursor:pointer"`:''}><b>${d.t}</b><small>${d.d}${d.k?' · antippen für Skizze':''}</small></div>${d.s?`<button class="play" data-s="${d.s}">▶ Timer</button>`:''}</div>`).join('');
   const logHTML=LOGTAGS.map(t=>`<button class="logchip${log.includes(t)?' on':''}" data-tag="${t}">${log.includes(t)?'✓ ':''}${t}</button>`).join('');
-  const ex=examTask.e, full=ex.a+' '+ex.t+(ex.d!=='—'?' '+ex.d:'');
+  const ex=examTask.e, full=examName(ex), exVid=examVideoURL(ex);
   const examHTML = examTask.open
-    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div><button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
+    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div>${exVid?`<a class="dt-video" href="${exVid}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${ex.n} als Video ansehen ↗</a>`:''}<button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
     : `<div class="examq">${ex.de}</div><button class="t-btn t-accent" id="ex-show" style="margin-top:10px">Technik-Namen zeigen</button>`;
   const ach=achievements().map(a=>`<span class="${a.got?'got':''}">${a.got?'✓ ':''}${a.t}</span>`).join('');
   view.innerHTML=`<div class="today fade">

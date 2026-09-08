@@ -1,5 +1,9 @@
-const C='dojo-v32';
-const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png'];
+const C='dojo-v33';
+const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png',
+  'bilder/angriff-shomenuchi-kiawase.png','bilder/angriff-katatetori-aihanmi.png',
+  'bilder/angriff-katatetori-gyakuhanmi.png','bilder/angriff-ryotetori.png',
+  'bilder/technik-iriminage.png','bilder/technik-kotegaeshi.png','bilder/technik-ikkyo.png',
+  'bilder/technik-shihonage.png','bilder/technik-tenchinage.png','bilder/technik-genkeikokyunage.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{
