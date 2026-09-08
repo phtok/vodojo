@@ -167,6 +167,17 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-vid small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px;}
 .dt-vid i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
 .dt-vid.leer{opacity:.6;}
+.prog{display:flex;flex-direction:column;gap:8px;}
+.prog-row{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:9px 12px 9px 10px;font-family:inherit;color:var(--text);cursor:pointer;}
+.prog-row b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.prog-row img{flex:none;width:56px;height:auto;border-radius:6px;}
+.prog-row span{flex:1;min-width:0;}
+.prog-row em{display:block;font-style:normal;font-weight:600;font-size:.92rem;line-height:1.25;}
+.prog-row small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px;line-height:1.3;}
+.prog-row i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
+.prog-note{font-size:.78rem;color:var(--muted);margin:10px 2px 0;line-height:1.45;}
+.prog-navrow{display:flex;gap:10px;margin-top:26px;}
+.prog-nav{flex:1;background:none;border:1px solid var(--line);color:var(--accent);border-radius:12px;padding:11px 8px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;}
 .dt-open{display:block;margin:14px auto 0;background:none;border:1px solid var(--line);color:var(--accent);font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;border-radius:999px;padding:8px 16px;}
 .t-streak{font-size:.95rem;color:var(--text);margin:2px 2px 12px;}
 .t-streak b{color:var(--accent);font-size:1.15rem;}
@@ -494,7 +505,11 @@ function speak(text){
 /* ---------- State ---------- */
 let mode='learn', activeCat='all';
 const view=document.getElementById('view');
-function filtered(){ return activeCat==='all'? VOCAB : VOCAB.filter(v=>v.c===activeCat); }
+function filtered(){
+  if(activeCat==='all') return VOCAB;
+  if(activeCat==='pruefung') return VOCAB.filter(v=>PRUEF_JP.includes(v.jp));
+  return VOCAB.filter(v=>v.c===activeCat);
+}
 function updateStats(){
   const f=filtered();
   document.getElementById('st-total').textContent=f.length;
@@ -504,7 +519,8 @@ function updateStats(){
   if(mb){ const m=VOCAB.filter(v=>pget(v.jp).box>=5).length; mb.style.width=Math.round(m/VOCAB.length*100)+'%'; }
 }
 function chipsHTML(){
-  let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>';
+  let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>'
+        +'<button class="chip '+(activeCat==='pruefung'?'active':'')+'" data-cat="pruefung">6. Kyu Prüfung</button>';
   for(const k in CATS){ h+='<button class="chip '+(activeCat===k?'active':'')+'" data-cat="'+k+'">'+CATS[k]+'</button>'; }
   return h+'</div>';
 }
@@ -685,6 +701,8 @@ function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid
 function examFor(jp){
   return EXAM.filter(e=> e.a===jp || e.t===jp || (e.t+' '+e.d)===jp );
 }
+/* Die 10 Vokabeln, die im 6.-Kyu-Programm wirklich vorkommen: 4 Angriffe + 6 Techniken. */
+const PRUEF_JP=[...new Set(EXAM.flatMap(e=>[e.a,e.t]))];
 const A_OPTS=["Shomenuchi Kiawase","Katatetori Aihanmi","Katatetori Gyakuhanmi","Ryotetori"];
 const T_OPTS=["Iriminage","Kotegaeshi","Ikkyo","Shihonage","Tenchinage","Genkeikokyunage"];
 const D_OPTS=["—","Omote","Ura"];
@@ -721,9 +739,23 @@ function checkBuild(){
 /* ---------- LISTE ---------- */
 function renderBrowse(){
   let h='';
-  const cats = activeCat==='all'? Object.keys(CATS) : [activeCat];
+  if(activeCat==='pruefung'){
+    h+='<div class="grouphead">Prüfungsprogramm 6. Kyu</div>';
+    h+='<div class="prog">'+EXAM.map(e=>{
+      const b=DOJOBILD[e.t];
+      return `<button class="prog-row" data-n="${e.n}">
+        <b>${e.n}</b>
+        ${b?`<img src="bilder/${b.f}" alt="" loading="lazy">`:''}
+        <span><em>${examName(e)}</em><small>${e.de}</small></span>
+        <i>${e.vid?'▶':'›'}</i></button>`;
+    }).join('')+'</div>';
+    h+='<div class="prog-note">Angriff + Technik + Richtung – die acht Kombinationen der Prüfung. Antippen für Bild und Video.</div>';
+    h+='<div class="grouphead">Vokabeln dazu</div>';
+  }
+  const cats = activeCat==='all'? Object.keys(CATS) : (activeCat==='pruefung'? Object.keys(CATS) : [activeCat]);
+  const pool = filtered();
   for(const k of cats){
-    const items=VOCAB.filter(v=>v.c===k); if(!items.length)continue;
+    const items=pool.filter(v=>v.c===k); if(!items.length)continue;
     h+='<div class="grouphead">'+CATS[k]+'</div>';
     for(const v of items){
       const p=pget(v.jp);
@@ -736,6 +768,7 @@ function renderBrowse(){
   view.innerHTML=h; bindChips();
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   view.querySelectorAll('.rmid').forEach(m=>m.onclick=()=>openDetail(m.dataset.jp));
+  view.querySelectorAll('.prog-row').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
   document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; repsData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); await Store.set('aikido_reps',{}); render(); updateStats(); } };
 }
 
@@ -899,6 +932,40 @@ function openDetail(jp){
   document.getElementById('dt-spk').onclick=()=>speakCard(card);
   d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
 }
+/* Eine Prüfungs-Kombination als eigene Seite: Angriffsbild + Technikbild + Video. */
+function openProgram(n){
+  const e=EXAM.find(x=>x.n===n); if(!e) return;
+  const bildA=DOJOBILD[e.a], bildT=DOJOBILD[e.t];
+  const vu=examVideoURL(e);
+  const foto=(b,titel)=> b? `<div class="dt-sec"><h4>${titel}</h4><div class="dt-foto${b.hoch?' hoch':''}"><img src="bilder/${b.f}" alt="" loading="lazy"></div></div>`:'';
+  let h=`<button class="dt-back" id="dt-back">← zurück</button>
+    <div class="dt-head">
+      <div class="dt-seal">Prüfung 6. Kyu · Nr. ${e.n} von ${EXAM.length}</div>
+      <div class="dt-jp">${examName(e)}</div>
+      <button class="speak" id="dt-spk">▶︎ hören</button>
+    </div>
+    <div class="dt-de">${e.de}</div>`;
+  h+=foto(bildA,'Der Angriff');
+  h+=foto(bildT,'Die Technik');
+  if(bildA||bildT) h+='<div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div>';
+  h+=`<div class="dt-sec"><h4>Video</h4>${
+    vu? `<a class="dt-vid" href="${vu}" target="_blank" rel="noopener"><b>${e.n}</b><span>${examName(e)}<small>Aikido Dojo Trnava</small></span><i>▶</i></a>`
+      : `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`}</div>`;
+  const teile=[{jp:e.a,rolle:'Angriff'},{jp:(e.d!=='—'?e.t+' '+e.d:e.t),rolle:'Technik'}]
+    .filter(t=>VOCAB.some(v=>v.jp===t.jp));
+  if(teile.length) h+=`<div class="dt-sec"><h4>Die Vokabeln dazu</h4><div class="dt-rel">${
+    teile.map(t=>{ const v=VOCAB.find(x=>x.jp===t.jp); return `<button data-jp="${t.jp.replace(/"/g,'&quot;')}">${t.jp}<small>${v.de}</small></button>`; }).join('')}</div></div>`;
+  const nav=[];
+  if(n>1) nav.push(`<button class="prog-nav" data-n="${n-1}">← Nr. ${n-1}</button>`);
+  if(n<EXAM.length) nav.push(`<button class="prog-nav" data-n="${n+1}">Nr. ${n+1} →</button>`);
+  if(nav.length) h+=`<div class="prog-navrow">${nav.join('')}</div>`;
+  const d=document.getElementById('detail');
+  d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
+  document.getElementById('dt-back').onclick=closeDetail;
+  document.getElementById('dt-spk').onclick=()=>speakName(e);
+  d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
+  d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
+}
 function closeDetail(){ const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
 
 /* ---------- ÜBEN / HEUTE (Log, Heatmap, Drills, Routinen, Prüfungs-Check, Fortschritt) ---------- */
@@ -1054,7 +1121,7 @@ function renderToday(){
       <div class="belt-lbl" style="margin-top:8px;opacity:.75">Funktioniert nur in der installierten App („Zum Home-Bildschirm“). Zeit ±15 Min genau.</div></div>
     <div class="t-card"><h3>Heute gemacht</h3><div class="logrow">${logHTML}</div></div>
     <div class="t-card"><h3>Kraft & Halten (täglich)</h3>${REPS.map(x=>{const lr=lastReps(x.f);return `<div class="rep"><label>${x.t}${x.u?' ('+x.u+')':''}</label><input type="number" inputmode="numeric" min="0" data-f="${x.f}" value="${todayReps()[x.f]||''}" placeholder="0"><small>${lr!=null?'zuletzt '+lr:'–'}</small></div>`;}).join('')}<button class="t-btn" id="rep-hist" style="margin-top:8px">Verlauf ansehen ▸</button></div>
-    <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}</div>
+    <div class="t-card"><h3>Prüfungs-Check</h3>${examHTML}<button class="t-btn" id="ex-all" style="margin-top:10px">Ganzes Programm ansehen ▸</button></div>
     <div class="t-card"><h3>Weg zum 5. Kyu</h3><div class="belt"><i style="width:${beltPct()}%"></i></div>
       <div class="belt-lbl">${beltPct()} % gemeistert · ${practiceDays()} Übungstage</div>
       <div class="ach">${ach}</div></div>
@@ -1070,6 +1137,7 @@ function renderToday(){
   view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
   const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); };
   const exn=document.getElementById('ex-next'); if(exn) exn.onclick=()=>{ newExamTask(); renderToday(); };
+  const exa=document.getElementById('ex-all'); if(exa) exa.onclick=()=>{ activeCat='pruefung'; renderChips(); mode='browse'; document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.mode==='browse')); render(); updateStats(); };
 }
 
 /* ---------- Router ---------- */
