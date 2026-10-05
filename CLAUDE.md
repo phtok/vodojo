@@ -39,3 +39,22 @@ Laufzeit-Env-Variablen des Vercel-Projekts — nie aus dem Repo. Beim
 Ändern gilt Punkt 2: Werte bleiben flüchtig.
 
 (Ausführliche Fassung dieses Abschnitts: `CLAUDE.md` im Repo `designs`.)
+
+## Supabase: keine Löschaufträge an den Repo-Inhaber
+
+In Cloud-Sessions kann der Supabase-Connector **nichts ausführen, was
+`drop` enthält**. Er wartet auf eine Bestätigung, die nie ankommt, und
+bricht nach 60 s ab. Wiederholen bringt nichts. Deshalb:
+
+1. **Keine Hilfsobjekte in fremden Projekten anlegen.** Die Datenbank ist
+   kein Transportweg für Dateien (Audio, Bilder, Base64). Was ein Skript
+   im Container erzeugen kann, wird dort erzeugt.
+2. **Wenn doch nötig:** nur in `public` und nur mit Präfix `tmp_`.
+   Aufräumen in derselben Session mit
+   `select public.claude_tmp_aufraeumen();`. Die Funktion löscht
+   ausschliesslich `public.tmp_*` (ohne `cascade`) und meldet, was weg ist.
+   Sie liegt im Projekt saetzerei-rechnungen (`wwgzqawlyhtrdofczzka`).
+   In anderen Projekten gibt es sie nicht, dort gilt Punkt 1 ohne
+   Ausnahme.
+3. **Nie** den Repo-Inhaber bitten, `drop`-Befehle im SQL-Editor
+   auszuführen.
