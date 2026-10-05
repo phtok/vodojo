@@ -215,6 +215,45 @@ nav.tabs button.active .ic{opacity:1;}
 .ach span.got{color:var(--good);border-color:var(--good);}
 .examq{font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.4;}
 .exa{color:var(--accent);font-weight:600;font-size:1.05rem;}
+/* Dekodieren (Birkenbihl): Baustein oben, Bedeutung darunter */
+.deko{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;align-items:stretch;}
+.deko .pp{display:flex;align-items:center;gap:8px;}   /* „+“ und Baustein bleiben beim Umbruch zusammen */
+.deko .p{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:58px;padding:6px 9px;border:1px solid var(--line);border-radius:10px;font-family:inherit;background:none;}
+.deko .p b{font-size:.95rem;font-weight:600;color:var(--text);}
+.deko .p small{font-size:.7rem;color:var(--muted);margin-top:2px;line-height:1.25;text-align:center;}
+.deko .p.link{cursor:pointer;border-color:#34404d;}
+.deko .p.link b{color:var(--accent);}
+.deko .plus{align-self:center;color:var(--muted);font-size:.9rem;}
+.deko.sm .p{min-width:46px;padding:4px 7px;}
+.deko.sm .p b{font-size:.82rem;}
+.deko.sm .p small{font-size:.62rem;}
+.deko-gap{height:8px;}
+.hintbtn{margin-top:14px;background:none;border:none;color:var(--muted);font-family:inherit;font-size:.8rem;cursor:pointer;text-decoration:underline dotted;}
+.hintbox{margin-top:12px;max-width:320px;}
+.own-mn{margin-top:10px;font-size:.88rem;color:var(--text);font-style:italic;max-width:300px;line-height:1.4;}
+.exam-badge{margin-top:10px;font-size:.72rem;color:var(--muted);}
+.exam-badge b{color:var(--accent);font-weight:600;}
+.subtabs{display:flex;gap:6px;margin:2px 0 12px;}
+.subtabs button{flex:1;background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:8px 6px;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;}
+.subtabs button.active{border-color:var(--accent);color:var(--accent);}
+.ans-head{border:1px solid var(--line);border-radius:16px;padding:20px 18px 18px;text-align:center;}
+.ans-head .lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);}
+.ans-head .big{font-size:2.4rem;margin:8px 0 0;line-height:1;}
+.ans-reveal{margin-top:16px;text-align:center;}
+.ans-reveal .name{font-size:1.25rem;font-weight:600;color:var(--accent);margin:6px 0 12px;}
+.loop-ctl{display:flex;gap:10px;margin:0 0 14px;}
+.loop-ctl button{flex:1;border-radius:12px;padding:12px 8px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:none;color:var(--text);}
+.loop-ctl button.on{background:var(--accent);color:#10141a;border-color:var(--accent);}
+.loop-item{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;opacity:.55;cursor:pointer;}
+.loop-item.cur{opacity:1;border-color:var(--accent);background:var(--surface);}
+.loop-item>b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--surface2);color:var(--muted);font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.loop-item.cur>b{background:var(--accent);color:#10141a;}
+.loop-item>span{flex:1;min-width:0;}
+.loop-item em{display:block;font-style:normal;font-weight:600;font-size:.92rem;}
+.loop-item>span>small{display:block;color:var(--muted);font-size:.74rem;margin-top:2px;}
+.loop-item .deko{justify-content:flex-start;margin-top:8px;}
+.mn-own{width:100%;min-height:76px;background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 12px;font-family:inherit;font-size:.95rem;line-height:1.45;resize:vertical;}
+.mn-hint{font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.4;}
 .fade{animation:fade .35s ease both;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 </style>
@@ -463,20 +502,20 @@ function speakCard(card){
   }
   speak(card.ja || card.jp);
 }
-function speakSeq(jps){
-  // mehrere eingebettete Aufnahmen nacheinander – gleiche Stimme wie überall sonst
+function speakSeq(jps,done){
+  // mehrere eingebettete Aufnahmen nacheinander – gleiche Stimme wie überall sonst; done = am Ende
   if(!_audio) _audio=new Audio();
   const a=_audio; a.onended=null;
   let i=0;
   const step=()=>{
-    if(i>=jps.length){ a.onended=null; return; }
+    if(i>=jps.length){ a.onended=null; if(done) done(); return; }
     const jp=jps[i++];
     const url=audioURL(jp);
     if(url){
       a.onended=step;
       a.src=url;
       const p=a.play();
-      if(p&&p.catch) p.catch(()=>{ a.onended=null; const c=VOCAB.find(v=>v.jp===jp); speak(c?(c.ja||c.jp):jp); });
+      if(p&&p.catch) p.catch(()=>{ a.onended=null; const c=VOCAB.find(v=>v.jp===jp); speak(c?(c.ja||c.jp):jp); step(); });
     } else {
       a.onended=null;
       const c=VOCAB.find(v=>v.jp===jp); speak(c?(c.ja||c.jp):jp);
@@ -485,10 +524,22 @@ function speakSeq(jps){
   };
   step();
 }
-function speakName(t){
+function speakName(t,done){
   // Technik+Richtung als kombinierten Vokabel-Key (z. B. „Ikkyo Omote"), sonst nur die Technik
   const tech=(t.d && t.d!=='—') ? t.t+' '+t.d : t.t;
-  speakSeq([t.a, tech]);
+  speakSeq([t.a, tech],done);
+}
+function speakDe(text,done){
+  // deutsche Bedeutung vorlesen (für die Hör-Schleife) – ruft done genau einmal, auch ohne TTS
+  let fired=false; const fin=()=>{ if(fired)return; fired=true; if(done)done(); };
+  if(!('speechSynthesis' in window)){ setTimeout(fin,1200); return; }
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text); u.lang='de-DE'; u.rate=0.95;
+    const v=allVoices.find(x=>(x.lang||'').toLowerCase().startsWith('de')); if(v) u.voice=v;
+    u.onend=fin; u.onerror=fin; speechSynthesis.speak(u);
+    setTimeout(fin, 1500+text.length*90);   // Sicherheitsnetz, falls onend nie kommt
+  }catch(e){ fin(); }
 }
 function speak(text){
   if(!('speechSynthesis' in window)) return;
@@ -564,6 +615,7 @@ function renderLearn(){
           <div class="jp">${card.jp}</div>
           <div class="pron">${card.pr}</div>
           <button class="speak" id="spk1">▶︎ hören</button>
+          ${(dekoParts(card.jp)||card.lit)?`<button class="hintbtn" id="hint1">Erst raten – Tipp? ▾</button><div class="hintbox" id="hintbox" style="display:none">${dekoHTML(card.jp,true)||`<div class="lit">${card.lit}</div>`}</div>`:''}
           <div class="tap-hint">tippen zum Umdrehen</div>
         </div>
         <div class="face back">
@@ -572,6 +624,8 @@ function renderLearn(){
           <div class="de">${card.de}</div>
           <div class="kanji-sm">${card.ja}</div>
           ${card.lit?`<div class="lit">${card.lit}</div>`:''}
+          ${ownMnemo(card.jp)?`<div class="own-mn">„${esc(ownMnemo(card.jp))}“</div>`:''}
+          ${examFor(card.jp).length?`<div class="exam-badge">Prüfung Nr. <b>${examFor(card.jp).map(e=>e.n).join(' · ')}</b></div>`:''}
           <button class="speak" id="spk2">▶︎ hören</button>
           <div class="boxdots">${dots}</div>
           <button class="dt-open" id="dt-learn" data-jp="${card.jp.replace(/"/g,'&quot;')}">vertiefen ↗</button>
@@ -585,7 +639,9 @@ function renderLearn(){
     <div class="note">${learnIdx+1} / ${learnQueue.length} · die Punkte = deine Leitner-Stufe (5 = gemeistert)</div>`;
   bindChips();
   const flip=document.getElementById('flip');
-  flip.onclick=(e)=>{ if(e.target.closest('.speak,.dt-open'))return; isFlipped=!isFlipped; flip.classList.toggle('flipped'); };
+  flip.onclick=(e)=>{ if(e.target.closest('.speak,.dt-open,.hintbtn,.hintbox'))return; isFlipped=!isFlipped; flip.classList.toggle('flipped'); };
+  const hb=document.getElementById('hint1'); if(hb) hb.onclick=(e)=>{ e.stopPropagation(); hb.style.display='none'; document.getElementById('hintbox').style.display='block'; };
+  bindDeko(view);
   document.getElementById('spk1').onclick=(e)=>{e.stopPropagation();speakCard(card);};
   document.getElementById('spk2').onclick=(e)=>{e.stopPropagation();speakCard(card);};
   document.getElementById('dt-learn').onclick=(e)=>{e.stopPropagation();openDetail(card.jp);};
@@ -706,12 +762,74 @@ const PRUEF_JP=[...new Set(EXAM.flatMap(e=>[e.a,e.t]))];
 const A_OPTS=["Shomenuchi Kiawase","Katatetori Aihanmi","Katatetori Gyakuhanmi","Ryotetori"];
 const T_OPTS=["Iriminage","Kotegaeshi","Ikkyo","Shihonage","Tenchinage","Genkeikokyunage"];
 const D_OPTS=["—","Omote","Ura"];
+
+/* ---------- DEKODIEREN (Birkenbihl): Wort für Wort – Baustein oben, Bedeutung darunter ---------- */
+const DEKO={
+  'Shomenuchi Kiawase':[['Shomen','Vorderseite · gerade'],['uchi','Schlag'],['Ki','Energie'],['awase','zusammenfügen']],
+  'Katatetori Aihanmi':[['Katate','eine Hand'],['tori','fassen'],['Ai','gleich'],['hanmi','halbe Stellung']],
+  'Katatetori Gyakuhanmi':[['Katate','eine Hand'],['tori','fassen'],['Gyaku','gespiegelt'],['hanmi','halbe Stellung']],
+  'Ryotetori':[['Ryote','beide Hände'],['tori','fassen']],
+  'Iriminage':[['Irimi','eintreten'],['nage','Wurf']],
+  'Kotegaeshi':[['Kote','Handgelenk'],['gaeshi','umkehren']],
+  'Ikkyo':[['Ik (ichi)','eins'],['kyo','Lehre']],
+  'Ikkyo Omote':[['Ik (ichi)','eins'],['kyo','Lehre'],['Omote','vorn']],
+  'Ikkyo Ura':[['Ik (ichi)','eins'],['kyo','Lehre'],['Ura','hinten herum']],
+  'Shihonage':[['Shiho','vier Richtungen'],['nage','Wurf']],
+  'Shihonage Omote':[['Shiho','vier Richtungen'],['nage','Wurf'],['Omote','vorn']],
+  'Shihonage Ura':[['Shiho','vier Richtungen'],['nage','Wurf'],['Ura','hinten herum']],
+  'Tenchinage':[['Ten','Himmel'],['chi','Erde'],['nage','Wurf']],
+  'Genkeikokyunage':[['Genkei','(Stil-Name)'],['kokyu','Atem'],['nage','Wurf']],
+  'Omote':[['Omote','vorn · innen']],
+  'Ura':[['Ura','hinten · außen']],
+  'Tai sabaki':[['Tai','Körper'],['sabaki','führen']],
+  'Mae ukemi':[['Mae','vorwärts'],['ukemi','Fallen']],
+  'Ushiro ukemi':[['Ushiro','rückwärts'],['ukemi','Fallen']],
+  'Aikido':[['Ai','Harmonie'],['ki','Energie'],['do','Weg']],
+  'Onegai shimasu':[['Onegai','Bitte · Wunsch'],['shimasu','ich tue']]
+};
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+function dekoParts(jp){ return DEKO[jp]||null; }
+function dekoLink(tok){   // Baustein → eigene Vokabelkarte, falls es eine gibt (Nage, Kote, Omote …)
+  const t=tok.replace(/\s*\(.*\)/,'').toLowerCase();
+  const v=VOCAB.find(x=>x.jp.toLowerCase()===t);
+  return v?v.jp:null;
+}
+function dekoHTML(jp,small){
+  const parts=dekoParts(jp); if(!parts) return '';
+  return `<div class="deko${small?' sm':''}">${parts.map(([tok,de],i)=>{
+    const link=dekoLink(tok);
+    return `<span class="pp">${i?'<span class="plus">+</span>':''}<span class="p${link?' link':''}"${link?` data-jp="${esc(link)}"`:''}><b>${tok}</b><small>${de}</small></span></span>`;
+  }).join('')}</div>`;
+}
+/* Ganze Prüfungs-Kombination: Angriff, dann Technik (+ Richtung) */
+function examDekoHTML(e,small){
+  const tech=e.d!=='—'? e.t+' '+e.d : e.t;
+  return dekoHTML(e.a,small)+'<div class="deko-gap"></div>'+dekoHTML(tech,small);
+}
+function bindDeko(root){ root.querySelectorAll('.deko .p.link').forEach(p=>p.onclick=(ev)=>{ ev.stopPropagation(); openDetail(p.dataset.jp); }); }
+
+/* ---------- Eigene Eselsbrücken (selbst Erfundenes bleibt am besten hängen) ---------- */
+let mnemoOwn={}, _mnTimer=null;
+function ownMnemo(jp){ return (mnemoOwn[jp]||'').trim(); }
+function setOwnMnemo(jp,txt){
+  if(txt.trim()) mnemoOwn[jp]=txt; else delete mnemoOwn[jp];
+  clearTimeout(_mnTimer); _mnTimer=setTimeout(()=>Store.set('aikido_mnemo',mnemoOwn),400);
+}
 let nbTarget=null, nbSel={a:null,t:null,d:null}, nbDone=false;
+/* Drei Übungen im Namen-Tab: Bauen (Beschreibung → Name), Ansage (Hören → Erkennen), Hören (Schleife) */
+let nbSub='build';
+function subtabsHTML(){ return `<div class="subtabs">${[['build','Bauen'],['ansage','Ansage'],['loop','Hören']].map(([k,l])=>`<button data-s="${k}" class="${nbSub===k?'active':''}">${l}</button>`).join('')}</div>`; }
+function bindSubtabs(){ view.querySelectorAll('.subtabs button').forEach(b=>b.onclick=()=>{ if(nbSub===b.dataset.s) return; stopLoop(); nbSub=b.dataset.s; renderNames(); }); }
+function renderNames(){
+  if(nbSub==='ansage'){ if(anTarget) renderAnsage(); else newAnsage(); }
+  else if(nbSub==='loop') renderLoop();
+  else newBuild();
+}
 function newBuild(){ nbTarget=EXAM[Math.floor(Math.random()*EXAM.length)]; nbSel={a:null,t:null,d:null}; nbDone=false; renderBuild(); }
 function renderBuild(){
   const rowHTML=(title,opts,key)=>`<div class="nb-row"><h4>${title}</h4><div class="nb-opts">${
     opts.map(o=>`<button class="nb-pick${nbSel[key]===o?' sel':''}" data-k="${key}" data-v="${o}">${o}</button>`).join('')}</div></div>`;
-  view.innerHTML=`
+  view.innerHTML=`${subtabsHTML()}
     <div class="nb-target fade"><div class="lbl">Bau den Namen</div><div class="desc">${nbTarget.de}</div></div>
     ${rowHTML('1 · Angriffsform',A_OPTS,'a')}
     ${rowHTML('2 · Technik',T_OPTS,'t')}
@@ -721,6 +839,7 @@ function renderBuild(){
     <div class="note">Angriff + Technik + Richtung – das Namens-System.</div>`;
   view.querySelectorAll('.nb-pick').forEach(b=>b.onclick=()=>{ if(nbDone)return; nbSel[b.dataset.k]=b.dataset.v; renderBuild(); });
   document.getElementById('nb-check').onclick=checkBuild;
+  bindSubtabs();
 }
 function checkBuild(){
   if(nbDone){ newBuild(); return; }
@@ -731,9 +850,73 @@ function checkBuild(){
   const full=examName(nbTarget);
   const vu=examVideoURL(nbTarget);
   document.getElementById('nb-fb').innerHTML=(all?'✓ Perfekt!':'Fast – richtig ist:')+'<br>'+full
+    +'<div style="margin-top:12px">'+examDekoHTML(nbTarget,true)+'</div>'
     +(vu?`<br><a class="dt-video" href="${vu}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${nbTarget.n} als Video ansehen ↗</a>`:'');
-  if(all)speakName(nbTarget);
+  bindDeko(view);
+  speakName(nbTarget);   // richtig oder falsch: den korrekten Namen immer hören (Ohr lernt mit)
   const btn=document.getElementById('nb-check'); btn.textContent='Nächster →'; btn.style.background=all?'var(--good)':'var(--accent)';
+}
+
+/* ---------- ANSAGE (aktives Hören): Name hören → erkennen, wie wenn Sensei ansagt ---------- */
+let anTarget=null, anOpts=[], anChosen=null, anGot=0, anN=0;
+function newAnsage(){
+  anTarget=EXAM[Math.floor(Math.random()*EXAM.length)];
+  anOpts=[anTarget,...EXAM.filter(e=>e!==anTarget).sort(rnd).slice(0,3)].sort(rnd);
+  anChosen=null; renderAnsage(); speakName(anTarget);
+}
+function renderAnsage(){
+  const answered=anChosen!==null, ok=answered&&anChosen===anTarget;
+  const opts=anOpts.map(e=>{ let cls='opt'; if(answered){ if(e===anTarget)cls+=' correct'; else if(e===anChosen)cls+=' wrong'; else cls+=' dim'; } return `<button class="${cls}" data-n="${e.n}">${e.de}</button>`; }).join('');
+  let reveal='';
+  if(answered){
+    const b=DOJOBILD[anTarget.t];
+    reveal=`<div class="ans-reveal fade"><div class="qfb">${ok?'✓ Richtig':'✗ Das war:'}</div><div class="name">${examName(anTarget)}</div>${examDekoHTML(anTarget,true)}
+      ${b?`<div class="dt-foto" style="margin-top:14px"><img src="bilder/${b.f}" alt="" loading="lazy"></div>`:''}
+      <div class="qnav"><button class="back" id="an-detail">Nr. ${anTarget.n} ansehen</button><button class="fwd" id="an-next">Nächste Ansage →</button></div></div>`;
+  }
+  view.innerHTML=`${subtabsHTML()}<div class="ans-head fade"><div class="lbl">Ansage – wie in der Prüfung</div><div class="big">🔊</div><button class="speak" id="an-play">▶︎ nochmal hören</button></div>
+    <div class="opts">${opts}</div>${reveal}
+    <div class="note">${anGot} / ${anN} erkannt · Erst hören, dann entscheiden – nicht lesen.</div>`;
+  bindSubtabs(); bindDeko(view);
+  document.getElementById('an-play').onclick=()=>speakName(anTarget);
+  if(!answered) view.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ anChosen=EXAM.find(e=>e.n===+b.dataset.n); anN++; if(anChosen===anTarget) anGot++; touchDay(); markLog('Technik'); renderAnsage(); });
+  const nx=document.getElementById('an-next'); if(nx) nx.onclick=newAnsage;
+  const dt=document.getElementById('an-detail'); if(dt) dt.onclick=()=>openProgram(anTarget.n);
+}
+
+/* ---------- HÖREN (passives Hören): alle 8 Namen in der Schleife, wahlweise mit Bedeutung ---------- */
+let loopOn=false, loopIdx=0, loopTimer=null, loopDe=true;
+function stopLoop(){
+  loopOn=false;
+  if(loopTimer){ clearTimeout(loopTimer); loopTimer=null; }
+  if(_audio){ try{ _audio.onended=null; _audio.pause(); }catch(e){} }
+  try{ if('speechSynthesis' in window) speechSynthesis.cancel(); }catch(e){}
+}
+function loopStep(){
+  if(!loopOn) return;
+  const e=EXAM[loopIdx];
+  renderLoopList();
+  const next=()=>{ if(!loopOn) return; loopTimer=setTimeout(()=>{ loopIdx=(loopIdx+1)%EXAM.length; loopStep(); },1600); };
+  speakName(e, ()=>{ if(!loopOn) return; if(loopDe) loopTimer=setTimeout(()=>speakDe(e.de,next),500); else next(); });
+}
+function renderLoop(){
+  view.innerHTML=`${subtabsHTML()}
+    <div class="loop-ctl"><button id="lp-toggle" class="${loopOn?'on':''}">${loopOn?'■ Stopp':'▶ Schleife starten'}</button><button id="lp-de" class="${loopDe?'on':''}">Bedeutung ${loopDe?'an':'aus'}</button></div>
+    <div id="lp-list"></div>
+    <div class="note">Passives Hören: laufen lassen – beim Kochen, Pendeln, Einschlafen. Antippen springt zur Nummer.</div>`;
+  bindSubtabs(); renderLoopList();
+  document.getElementById('lp-toggle').onclick=()=>{ if(loopOn){ stopLoop(); renderLoop(); } else { loopOn=true; touchDay(); markLog('Vokabeln'); renderLoop(); loopStep(); } };
+  document.getElementById('lp-de').onclick=()=>{ loopDe=!loopDe; renderLoop(); };
+}
+function renderLoopList(){
+  const w=document.getElementById('lp-list'); if(!w) return;
+  w.innerHTML=EXAM.map((e,i)=>{ const cur=loopOn&&i===loopIdx; return `<div class="loop-item${cur?' cur':''}" data-n="${e.n}"><b>${e.n}</b><span><em>${examName(e)}</em><small>${e.de}</small>${cur?examDekoHTML(e,true):''}</span></div>`; }).join('');
+  w.querySelectorAll('.loop-item').forEach(el=>el.onclick=()=>{
+    const n=+el.dataset.n;
+    if(loopOn){ if(loopTimer){ clearTimeout(loopTimer); loopTimer=null; } loopIdx=n-1; loopStep(); }
+    else openProgram(n);
+  });
+  bindDeko(w);
 }
 
 /* ---------- LISTE ---------- */
@@ -905,8 +1088,9 @@ function openDetail(jp){
   const bild=DOJOBILD[card.jp];
   if(bild) h+=`<div class="dt-sec"><h4>Bild aus dem Dojo-Blatt</h4><div class="dt-foto${bild.hoch?' hoch':''}"><img src="bilder/${bild.f}" alt="${card.jp}" loading="lazy"></div><div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div></div>`;
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
-  if(card.lit) h+=`<div class="dt-sec"><h4>Wortzerlegung</h4><div class="dt-lit">${card.lit}</div></div>`;
+  if(dekoParts(card.jp)||card.lit) h+=`<div class="dt-sec"><h4>Wort für Wort</h4>${dekoHTML(card.jp)}${card.lit?`<div class="dt-lit"${dekoParts(card.jp)?' style="margin-top:10px"':''}>${card.lit}</div>`:''}</div>`;
   if(card.mnemo) h+=`<div class="dt-sec"><h4>Eselsbrücke</h4><div class="dt-mnemo">${card.mnemo}</div></div>`;
+  h+=`<div class="dt-sec"><h4>Deine Eselsbrücke</h4><textarea class="mn-own" id="mn-own" placeholder="Eigenes Bild, eigener Satz – was dir selbst einfällt, bleibt am besten hängen.">${esc(ownMnemo(card.jp))}</textarea><div class="mn-hint">Erscheint auf der Rückseite der Karte. Speichert sich von selbst.</div></div>`;
   if(g.context) h+=`<div class="dt-sec"><h4>Hintergrund</h4><div class="dt-context">${g.context}</div></div>`;
   const legend = g.noPartner ? '' : `<div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div>`;
   if(g.phases) h+=`<div class="dt-sec"><h4>Schritt für Schritt</h4><div class="dt-phases">${
@@ -931,6 +1115,8 @@ function openDetail(jp){
   document.getElementById('dt-back').onclick=closeDetail;
   document.getElementById('dt-spk').onclick=()=>speakCard(card);
   d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
+  const mn=document.getElementById('mn-own'); if(mn) mn.oninput=()=>setOwnMnemo(card.jp,mn.value);
+  bindDeko(d);
 }
 /* Eine Prüfungs-Kombination als eigene Seite: Angriffsbild + Technikbild + Video. */
 function openProgram(n){
@@ -945,9 +1131,15 @@ function openProgram(n){
       <button class="speak" id="dt-spk">▶︎ hören</button>
     </div>
     <div class="dt-de">${e.de}</div>`;
+  h+=`<div class="dt-sec"><h4>Wort für Wort</h4>${examDekoHTML(e)}</div>`;
   h+=foto(bildA,'Der Angriff');
   h+=foto(bildT,'Die Technik');
   if(bildA||bildT) h+='<div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div>';
+  /* Mehr Auflösung: Griff-Skizze des Angriffs, Phasen der Technik, Bedeutung der Richtung – alles aus GUIDE/VOCAB */
+  const gA=GUIDE[e.a]||{}, gT=GUIDE[e.t]||{};
+  if(gA.metaphor||gA.diagram) h+=`<div class="dt-sec"><h4>Als Uke: so greifst du an</h4>${gA.metaphor?`<div class="dt-metaphor" style="margin-top:0">${gA.metaphor}</div>`:''}${gA.diagram?`<div class="dt-diagram" style="margin-top:12px">${gA.diagram.img}</div><div class="dt-diagram-cap">${gA.diagram.cap}</div>`:''}</div>`;
+  if(gT.metaphor||gT.phases) h+=`<div class="dt-sec"><h4>Als Tori: die Technik Schritt für Schritt</h4>${gT.metaphor?`<div class="dt-metaphor" style="margin-top:0;margin-bottom:12px">${gT.metaphor}</div>`:''}${gT.phases?`<div class="dt-phases">${gT.phases.map((p,i)=>`<div class="dt-phase"><div class="dt-ph-img">${p.img}</div><div class="dt-ph-cap"><b>${i+1}</b>${p.cap}</div></div>`).join('')}</div><div class="dt-legend"><span><i style="background:${C_TORI}"></i>du</span><span><i style="background:${C_UKE}"></i>Partner</span></div>`:''}</div>`;
+  if(e.d!=='—'){ const dv=VOCAB.find(v=>v.jp===e.d); if(dv) h+=`<div class="dt-sec"><h4>Die Richtung</h4><div class="dt-lit"><b>${dv.jp}</b> = ${dv.de}${dv.lit?' – '+dv.lit:''}</div></div>`; }
   h+=`<div class="dt-sec"><h4>Video</h4>${
     vu? `<a class="dt-vid" href="${vu}" target="_blank" rel="noopener"><b>${e.n}</b><span>${examName(e)}<small>Aikido Dojo Trnava</small></span><i>▶</i></a>`
       : `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`}</div>`;
@@ -965,6 +1157,7 @@ function openProgram(n){
   document.getElementById('dt-spk').onclick=()=>speakName(e);
   d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
   d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
+  bindDeko(d);
 }
 function closeDetail(){ const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
 
@@ -1101,7 +1294,7 @@ function renderToday(){
   const logHTML=LOGTAGS.map(t=>`<button class="logchip${log.includes(t)?' on':''}" data-tag="${t}">${log.includes(t)?'✓ ':''}${t}</button>`).join('');
   const ex=examTask.e, full=examName(ex), exVid=examVideoURL(ex);
   const examHTML = examTask.open
-    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div>${exVid?`<a class="dt-video" href="${exVid}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${ex.n} als Video ansehen ↗</a>`:''}<button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
+    ? `<div class="examq">${ex.de}</div><div class="exa" style="margin-top:8px">${full}</div><div style="margin-top:10px">${examDekoHTML(ex,true)}</div>${exVid?`<a class="dt-video" href="${exVid}" target="_blank" rel="noopener" style="margin-top:8px">Nr. ${ex.n} als Video ansehen ↗</a>`:''}<button class="t-btn" id="ex-next" style="margin-top:10px">Nächste Aufgabe →</button>`
     : `<div class="examq">${ex.de}</div><button class="t-btn t-accent" id="ex-show" style="margin-top:10px">Technik-Namen zeigen</button>`;
   const ach=achievements().map(a=>`<span class="${a.got?'got':''}">${a.got?'✓ ':''}${a.t}</span>`).join('');
   view.innerHTML=`<div class="today fade">
@@ -1135,17 +1328,18 @@ function renderToday(){
   view.querySelectorAll('.rep input').forEach(inp=>inp.onchange=()=>{ setReps(inp.dataset.f, inp.value); renderToday(); });
   const rh=document.getElementById('rep-hist'); if(rh) rh.onclick=openRepsHistory;
   view.querySelectorAll('.logchip').forEach(b=>b.onclick=()=>{ toggleLogTag(b.dataset.tag); updateStats(); renderToday(); });
-  const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); };
+  bindDeko(view);
+  const exs=document.getElementById('ex-show'); if(exs) exs.onclick=()=>{ examTask.open=true; renderToday(); speakName(examTask.e); };
   const exn=document.getElementById('ex-next'); if(exn) exn.onclick=()=>{ newExamTask(); renderToday(); };
   const exa=document.getElementById('ex-all'); if(exa) exa.onclick=()=>{ activeCat='pruefung'; renderChips(); mode='browse'; document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.mode==='browse')); render(); updateStats(); };
 }
 
 /* ---------- Router ---------- */
 function render(){
-  view.scrollTop=0; stopTimer();
+  view.scrollTop=0; stopTimer(); stopLoop();
   if(mode==='learn'){ buildQueue(); renderLearn(); }
   else if(mode==='quiz') startQuiz();
-  else if(mode==='build') newBuild();
+  else if(mode==='build') renderNames();
   else if(mode==='today') renderToday();
   else renderBrowse();
 }
@@ -1161,6 +1355,7 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
   const sl=await Store.get('aikido_log'); if(sl) logData=sl;
   const spush=await Store.get('aikido_push'); if(spush){ if(spush.on) pushOn=true; if(spush.time) remindTime=spush.time; }
   const sr=await Store.get('aikido_reps'); if(sr) repsData=sr;
+  const sm=await Store.get('aikido_mnemo'); if(sm) mnemoOwn=sm;
   renderChips(); updateStats(); render();
 })();
 </script>
