@@ -238,7 +238,7 @@ nav.tabs button.active .ic{opacity:1;}
 .subtabs button.active{border-color:var(--accent);color:var(--accent);}
 .ans-head{border:1px solid var(--line);border-radius:16px;padding:20px 18px 18px;text-align:center;}
 .ans-head .lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);}
-.ans-head .big{font-size:2.4rem;margin:8px 0 0;line-height:1;}
+.ans-head .big{font-size:2.4rem;margin:8px 0 0;line-height:1;color:var(--accent);}
 .ans-reveal{margin-top:16px;text-align:center;}
 .ans-reveal .name{font-size:1.25rem;font-weight:600;color:var(--accent);margin:6px 0 12px;}
 .loop-ctl{display:flex;gap:10px;margin:0 0 14px;}
@@ -907,7 +907,7 @@ function renderAnsage(){
       ${b?`<div class="dt-foto" style="margin-top:14px"><img src="bilder/${b.f}" alt="" loading="lazy"></div>`:''}
       <div class="qnav"><button class="back" id="an-detail">Nr. ${anTarget.n} ansehen</button><button class="fwd" id="an-next">${anQueue.length?'Nächste Ansage →':'Ergebnis →'}</button></div></div>`;
   }
-  view.innerHTML=`${subtabsHTML()}<div class="ans-head fade"><div class="lbl">Ansage – wie in der Prüfung</div><div class="big">🔊</div><button class="speak" id="an-play">▶︎ nochmal hören</button></div>
+  view.innerHTML=`${subtabsHTML()}<div class="ans-head fade"><div class="lbl">Ansage – wie in der Prüfung</div><div class="big">聴</div><button class="speak" id="an-play">▶︎ nochmal hören</button></div>
     <div class="opts">${opts}</div>${reveal}
     <div class="note">Ansage ${anN+(answered?0:1)} / ${EXAM.length} · ${anGot} erkannt · Erst hören, dann entscheiden.</div>`;
   bindSubtabs(); bindDeko(view);
