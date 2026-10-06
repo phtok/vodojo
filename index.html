@@ -783,12 +783,14 @@ const EXAM=[
   {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0",mp4:1},
   {n:3,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE",mp4:1},
   {n:4,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc",mp4:1},
-  {n:5,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
-  {n:6,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
+  {n:5,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff",vid:"W4vZQZ977cM",quelle:"Paul Muller Aikido",ersatz:1},
+  {n:6,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff",vid:"Q9QMM9xJtAw",quelle:"Paul Muller Aikido",ersatz:1},
   {n:7,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU",mp4:1},
   {n:8,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU",mp4:1}
 ];
-/* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt (Nr. 5/6 fehlen noch). */
+/* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt. Nr. 5/6 (Shihonage) fehlen dort –
+   Ersatz von Paul Muller Aikido (gleiche Prüfungsreihe, Omote/Ura getrennt), als solcher gekennzeichnet. */
+function examQuelle(e){ return e.ersatz ? `Ersatz: ${e.quelle} · nicht aus der Auswahl der Meisterin` : 'Aikido Dojo Trnava · Auswahl der Meisterin'; }
 function examName(e){ return e.a+' '+e.t+(e.d!=='—'?' '+e.d:''); }
 function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid : null; }
 /* Video direkt in der App: erst Vorschaubild (lädt nichts von YouTube außer dem Bild), Antippen startet den Player hier.
@@ -1295,10 +1297,10 @@ function openDetail(jp){
     const rows=ex.map(e=>{
       const u=examVideoURL(e);
       return u
-        ? `<div class="dt-vidblock"><div class="dt-vid"><b>${e.n}</b><span>${examName(e)}<small>${e.de}</small></span></div>${ytHTML(e)}</div>`
+        ? `<div class="dt-vidblock"><div class="dt-vid"><b>${e.n}</b><span>${examName(e)}<small>${e.de}${e.ersatz?' · Ersatz: '+e.quelle:''}</small></span></div>${ytHTML(e)}</div>`
         : `<div class="dt-vid leer"><b>${e.n}</b><span>${examName(e)}<small>Video noch nicht von der Meisterin geschickt</small></span></div>`;
     }).join('');
-    h+=`<div class="dt-sec"><h4>Prüfungs-Videos</h4><div class="dt-vids">${rows}</div><div class="dt-quelle">Aikido Dojo Trnava · Auswahl der Meisterin</div></div>`;
+    h+=`<div class="dt-sec"><h4>Prüfungs-Videos</h4><div class="dt-vids">${rows}</div><div class="dt-quelle">${ex.every(e=>e.ersatz)?examQuelle(ex[0]):'Aikido Dojo Trnava · Auswahl der Meisterin'}</div></div>`;
   }
   if(!ex.some(e=>e.vid)) h+=`<div class="dt-sec"><h4>Selber suchen</h4><a class="dt-video" href="${yt}" target="_blank" rel="noopener">Bei YouTube suchen ↗</a></div>`;   // nur ohne eingebettetes Video – jeder Wechsel nach YouTube lenkt ab
   const d=document.getElementById('detail');
@@ -1324,7 +1326,7 @@ function openProgram(n){
     <div class="dt-de">${e.de}</div>`;
   h+=`<div class="dt-sec"><h4>Wort für Wort</h4>${examDekoHTML(e)}</div>`;
   h+=`<div class="dt-sec"><h4>Video</h4>${
-    vu? `${ytHTML(e)}<div class="dt-quelle">Aikido Dojo Trnava · Auswahl der Meisterin</div>`
+    vu? `${ytHTML(e)}<div class="dt-quelle">${examQuelle(e)}</div>`
       : `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`}</div>`;
   h+=foto(bildA,'Der Angriff');
   h+=foto(bildT,'Die Technik');
