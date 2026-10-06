@@ -260,8 +260,9 @@ nav.tabs button.active .ic{opacity:1;}
 .yt .yt-lbl{position:absolute;left:10px;bottom:8px;right:10px;color:#fff;font-size:.78rem;font-weight:600;text-shadow:0 1px 3px #000;}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .yt video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;}
-.yt.yt-full{position:fixed;left:0;top:0;width:100vw;height:calc(100dvh - var(--ctlh,110px));margin:0;border:0;border-radius:0;aspect-ratio:auto;z-index:1000;box-shadow:0 0 0 200vmax #000;}
-.yt-ctl.yt-ctl-full{position:fixed;left:0;right:0;bottom:0;z-index:1001;margin:0;background:#000;justify-content:center;padding:10px 12px calc(12px + env(safe-area-inset-bottom));}
+.yt.yt-full{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100dvh;margin:0;border:0;border-radius:0;aspect-ratio:auto;z-index:1000;box-shadow:0 0 0 200vmax #000;}
+.yt-fx{position:absolute;top:calc(10px + env(safe-area-inset-top));right:calc(10px + env(safe-area-inset-right));z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:1.2rem;line-height:40px;text-align:center;padding:0;cursor:pointer;opacity:.7;}
+.yt.yt-full.paused::after{content:"\25B6";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;font-size:1.5rem;line-height:64px;text-align:center;padding-left:4px;box-sizing:border-box;pointer-events:none;}
 .yt-full-on nav.tabs{visibility:hidden;}
 .yt-full-on #detail{overflow:hidden;}
 .yt-src{display:block;margin-top:6px;font-size:.78rem;color:var(--accent);text-decoration:none;font-weight:600;}
@@ -862,19 +863,24 @@ function ytControls(el, st, api){
       else if(b.dataset.k==='x'){ st.a=null; st.b=null; api.loop&&api.loop(); }
       else if(b.dataset.k==='full'){ ytFull(el, ctl, !el.classList.contains('yt-full')); }
       draw();
-      if(el.classList.contains('yt-full')) el.style.setProperty('--ctlh', ctl.offsetHeight+'px');
     });
   };
-  draw(); return ctl;
+  el._draw=draw; draw(); return ctl;
 }
-/* App-eigenes Vollbild: Video füllt den Bildschirm, Steuerleiste bleibt unten (iPhone kennt echtes Vollbild nur im
-   iOS-Player – dort fehlten Tempo/Abschnitt). Nur Klassen umschalten, nichts verschieben: ein YouTube-iframe würde sonst neu laden. */
+/* App-eigenes Vollbild: nur das Video, randlos, ohne Steuerleiste – Tempo und Schleife laufen weiter wie gewählt.
+   Antippen = Pause/Weiter, × oben rechts = zurück. (iPhone kennt echtes Vollbild nur im iOS-Player, der Tempo/Abschnitt verliert.)
+   Nur Klassen umschalten, nichts verschieben: ein YouTube-iframe würde sonst neu laden. */
 function ytFull(el, ctl, on){
-  el.classList.toggle('yt-full', on); ctl.classList.toggle('yt-ctl-full', on);
+  el.classList.toggle('yt-full', on);
   document.documentElement.classList.toggle('yt-full-on', on);
-  const fit=()=>el.style.setProperty('--ctlh', ctl.offsetHeight+'px');
-  if(on){ fit(); el._fit=fit; addEventListener('resize',fit); _ytActive=el; if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){} }
-  else if(el._fit){ removeEventListener('resize',el._fit); el._fit=null; }
+  const old=el.querySelector('.yt-fx'); if(old) old.remove();
+  if(on){
+    const x=document.createElement('button'); x.className='yt-fx'; x.type='button'; x.setAttribute('aria-label','Vollbild beenden'); x.textContent='×';
+    x.onclick=(ev)=>{ ev.stopPropagation(); ytFull(el, ctl, false); };
+    el.appendChild(x);
+    _ytActive=el; if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){}
+  }
+  if(el._draw) el._draw();
 }
 function ytStart(el){
   el.dataset.on='1'; el.style.cursor='default';
@@ -922,6 +928,7 @@ function ytStartLocal(el, st){
   v.addEventListener('loadedmetadata',setRate); v.addEventListener('playing',setRate);
   v.addEventListener('ended',()=>{ if(st.loop){ v.currentTime=st.a||0; v.play().catch(()=>{}); } });
   v.addEventListener('click',()=>{ v.paused ? v.play().catch(()=>{}) : v.pause(); });
+  v.addEventListener('pause',()=>el.classList.add('paused')); v.addEventListener('play',()=>el.classList.remove('paused'));
   ytControls(el, st, {
     rate:()=>setRate(), mute:m=>{ v.muted=m; }, loop:()=>setLoop(),
     time:()=>v.currentTime, seek:t=>{ v.currentTime=t; v.play().catch(()=>{}); }
