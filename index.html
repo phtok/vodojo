@@ -818,13 +818,19 @@ function fmtT(t){ t=Math.max(0,Math.floor(t)); return Math.floor(t/60)+':'+Strin
 let _ytSeq=0, _ytActive=null;
 /* Startet automatisch, sobald der Player zur Hälfte sichtbar ist (stumm ist Autoplay auch auf iOS erlaubt); pausiert beim Wegscrollen. */
 const _ytObs=('IntersectionObserver' in window) ? new IntersectionObserver(ents=>ents.forEach(en=>{
-  const el=en.target;
+  const el=en.target; el._vis=en.isIntersecting;
   if(en.isIntersecting){
     _ytActive=el;
     document.querySelectorAll('.yt[data-on]').forEach(o=>{ if(o!==el&&o._yt&&o._yt.pauseVideo) try{ o._yt.pauseVideo(); }catch(_){} });   // immer nur ein Video in Bewegung
     if(!el.dataset.on) ytStart(el); else if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){}
   }
-  else if(el._yt&&el._yt.pauseVideo) try{ el._yt.pauseVideo(); }catch(_){}
+  else {
+    if(el._yt&&el._yt.pauseVideo) try{ el._yt.pauseVideo(); }catch(_){}
+    if(_ytActive===el){   // aktives Video weggescrollt: ein anderes, noch sichtbares übernimmt
+      const nxt=[...document.querySelectorAll('.yt[data-on]')].find(o=>o!==el&&o._vis);
+      _ytActive=nxt||null; if(nxt&&nxt._yt&&nxt._yt.playVideo) try{ nxt._yt.playVideo(); }catch(_){}
+    }
+  }
 }),{threshold:0.5}) : null;
 function bindYT(root){
   root.querySelectorAll('.yt[data-vid],.yt[data-mp4]').forEach(el=>{
