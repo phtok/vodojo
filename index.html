@@ -260,6 +260,10 @@ nav.tabs button.active .ic{opacity:1;}
 .yt .yt-lbl{position:absolute;left:10px;bottom:8px;right:10px;color:#fff;font-size:.78rem;font-weight:600;text-shadow:0 1px 3px #000;}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .yt video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;}
+.yt.yt-full{position:fixed;left:0;top:0;width:100vw;height:calc(100dvh - var(--ctlh,110px));margin:0;border:0;border-radius:0;aspect-ratio:auto;z-index:1000;box-shadow:0 0 0 200vmax #000;}
+.yt-ctl.yt-ctl-full{position:fixed;left:0;right:0;bottom:0;z-index:1001;margin:0;background:#000;justify-content:center;padding:10px 12px calc(12px + env(safe-area-inset-bottom));}
+.yt-full-on nav.tabs{visibility:hidden;}
+.yt-full-on #detail{overflow:hidden;}
 .yt-src{display:block;margin-top:6px;font-size:.78rem;color:var(--accent);text-decoration:none;font-weight:600;}
 .dt-vidblock{margin-bottom:10px;}
 .yt-ctl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center;}
@@ -846,7 +850,7 @@ function ytControls(el, st, api){
              : st.b==null ? `<button data-k="b" class="on">Ende hier (ab ${fmtT(st.a)})</button><button data-k="x">×</button>`
              : `<button data-k="x" class="on">Abschnitt ${fmtT(st.a)}–${fmtT(st.b)} ×</button>`;
     ctl.innerHTML = YT_RATES.map(r=>`<button data-r="${r}" class="${st.rate===r?'on':''}">${r===1?'1×':String(r).replace('0.','.')+'×'}</button>`).join('')
-      + `<button data-k="loop" class="${st.loop?'on':''}">⟲ Schleife</button><button data-k="ton" class="${st.muted?'':'on'}">${st.muted?'Ton aus':'Ton an'}</button><span class="sep"></span>${ab}`;
+      + `<button data-k="loop" class="${st.loop?'on':''}">⟲ Schleife</button><button data-k="ton" class="${st.muted?'':'on'}">${st.muted?'Ton aus':'Ton an'}</button><button data-k="full" class="${el.classList.contains('yt-full')?'on':''}">${el.classList.contains('yt-full')?'× Vollbild':'⛶ Vollbild'}</button><span class="sep"></span>${ab}`;
     ctl.querySelectorAll('button').forEach(b=>b.onclick=()=>{
       if(b.dataset.r){ st.rate=+b.dataset.r; api.rate(st.rate); }
       else if(b.dataset.k==='loop'){ st.loop=!st.loop; api.loop&&api.loop(); }
@@ -854,10 +858,21 @@ function ytControls(el, st, api){
       else if(b.dataset.k==='a'){ const t=api.time(); if(t!=null) st.a=t; }
       else if(b.dataset.k==='b'){ const t=api.time(); if(t!=null && t>st.a+0.3){ st.b=t; st.loop=true; api.seek(st.a); api.loop&&api.loop(); } }
       else if(b.dataset.k==='x'){ st.a=null; st.b=null; api.loop&&api.loop(); }
+      else if(b.dataset.k==='full'){ ytFull(el, ctl, !el.classList.contains('yt-full')); }
       draw();
+      if(el.classList.contains('yt-full')) el.style.setProperty('--ctlh', ctl.offsetHeight+'px');
     });
   };
   draw(); return ctl;
+}
+/* App-eigenes Vollbild: Video füllt den Bildschirm, Steuerleiste bleibt unten (iPhone kennt echtes Vollbild nur im
+   iOS-Player – dort fehlten Tempo/Abschnitt). Nur Klassen umschalten, nichts verschieben: ein YouTube-iframe würde sonst neu laden. */
+function ytFull(el, ctl, on){
+  el.classList.toggle('yt-full', on); ctl.classList.toggle('yt-ctl-full', on);
+  document.documentElement.classList.toggle('yt-full-on', on);
+  const fit=()=>el.style.setProperty('--ctlh', ctl.offsetHeight+'px');
+  if(on){ fit(); el._fit=fit; addEventListener('resize',fit); _ytActive=el; if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){} }
+  else if(el._fit){ removeEventListener('resize',el._fit); el._fit=null; }
 }
 function ytStart(el){
   el.dataset.on='1'; el.style.cursor='default';
@@ -1335,7 +1350,7 @@ function openProgram(n){
   d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
   bindDeko(d); bindYT(d);
 }
-function closeDetail(){ const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
+function closeDetail(){ document.documentElement.classList.remove('yt-full-on'); const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
 
 /* ---------- ÜBEN / HEUTE (Log, Heatmap, Drills, Routinen, Prüfungs-Check, Fortschritt) ---------- */
 const DRILLS=[
@@ -1513,7 +1528,7 @@ function renderToday(){
 
 /* ---------- Router ---------- */
 function render(){
-  view.scrollTop=0; stopTimer(); stopLoop();
+  view.scrollTop=0; stopTimer(); stopLoop(); document.documentElement.classList.remove('yt-full-on');
   if(mode==='learn'){ buildQueue(); renderLearn(); }
   else if(mode==='quiz') startQuiz();
   else if(mode==='build') renderNames();
