@@ -1,4 +1,4 @@
-const C='dojo-v41';
+const C='dojo-v45';
 const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png',
   'bilder/angriff-shomenuchi-kiawase.png','bilder/angriff-katatetori-aihanmi.png',
   'bilder/angriff-katatetori-gyakuhanmi.png','bilder/angriff-ryotetori.png',
