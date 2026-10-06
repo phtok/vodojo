@@ -1,4 +1,4 @@
-const C='dojo-v40';
+const C='dojo-v41';
 const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png',
   'bilder/angriff-shomenuchi-kiawase.png','bilder/angriff-katatetori-aihanmi.png',
   'bilder/angriff-katatetori-gyakuhanmi.png','bilder/angriff-ryotetori.png',
@@ -8,7 +8,7 @@ self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{
   const u=new URL(e.request.url);
-  if(e.request.method!=='GET'||u.origin!==location.origin||u.pathname.startsWith('/api/'))return;
+  if(e.request.method!=='GET'||u.origin!==location.origin||u.pathname.startsWith('/api/')||u.pathname.startsWith('/videos/'))return;   // Videos direkt vom Server (Range-Requests, iOS)
   // Die App-Seite selbst: zuerst frisch aus dem Netz (neue Versionen sofort sichtbar), offline aus dem Cache
   if(e.request.mode==='navigate'||u.pathname==='/'||u.pathname.endsWith('/index.html')){
     e.respondWith(fetch(e.request).then(r=>{ const c=r.clone(); caches.open(C).then(ca=>ca.put('./',c)).catch(()=>{}); return r; })

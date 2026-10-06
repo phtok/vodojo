@@ -259,6 +259,8 @@ nav.tabs button.active .ic{opacity:1;}
 .yt .yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:var(--accent);color:#10141a;display:flex;align-items:center;justify-content:center;font-size:1.3rem;padding-left:4px;box-sizing:border-box;}
 .yt .yt-lbl{position:absolute;left:10px;bottom:8px;right:10px;color:#fff;font-size:.78rem;font-weight:600;text-shadow:0 1px 3px #000;}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.yt video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;}
+.yt-src{display:block;margin-top:6px;font-size:.78rem;color:var(--accent);text-decoration:none;font-weight:600;}
 .dt-vidblock{margin-bottom:10px;}
 .yt-ctl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center;}
 .yt-ctl button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:6px 11px;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;}
@@ -773,14 +775,14 @@ async function answerQuiz(q,chosen){
 
 /* ---------- NAMEN BAUEN ---------- */
 const EXAM=[
-  {n:1,a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte",vid:"66-JGVPiui4"},
-  {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0"},
-  {n:3,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE"},
-  {n:4,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc"},
+  {n:1,a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte",vid:"66-JGVPiui4",mp4:1},
+  {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0",mp4:1},
+  {n:3,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE",mp4:1},
+  {n:4,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc",mp4:1},
   {n:5,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff"},
   {n:6,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff"},
-  {n:7,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU"},
-  {n:8,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU"}
+  {n:7,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU",mp4:1},
+  {n:8,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU",mp4:1}
 ];
 /* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt (Nr. 5/6 fehlen noch). */
 function examName(e){ return e.a+' '+e.t+(e.d!=='—'?' '+e.d:''); }
@@ -788,8 +790,13 @@ function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid
 /* Video direkt in der App: erst Vorschaubild (lädt nichts von YouTube außer dem Bild), Antippen startet den Player hier.
    youtube-nocookie + playsinline: kein App-Wechsel, kein Vollbild-Zwang auf iOS; rel=0: am Ende nur Videos desselben Kanals. */
 function ytHTML(e,lbl){
-  if(!e||!e.vid) return '';
-  return `<div class="yt" data-vid="${e.vid}"><img src="https://i.ytimg.com/vi/${e.vid}/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span>${lbl?`<span class="yt-lbl">${lbl}</span>`:''}</div>`;
+  if(!e||!(e.vid||e.mp4)) return '';
+  const lab=lbl?`<span class="yt-lbl">${lbl}</span>`:'';
+  if(e.mp4){   // eigene Kopie: startet stumm von selbst, kein YouTube-Umfeld; Quelle bleibt sichtbar verlinkt
+    const src=e.vid?`<a class="yt-src" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener">Quelle: Aikido Dojo Trnava auf YouTube ↗</a>`:'';
+    return `<div class="yt" data-mp4="videos/nr-${e.n}.mp4"><img src="videos/nr-${e.n}.jpg" alt=""><span class="yt-play">▶</span>${lab}</div>${src}`;
+  }
+  return `<div class="yt" data-vid="${e.vid}"><img src="https://i.ytimg.com/vi/${e.vid}/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span>${lab}</div>`;
 }
 /* Steuerung über die offizielle IFrame-API: Tempo, Schleife, Abschnitt (A–B). Wird erst beim ersten Antippen geladen. */
 let _ytApi=null;
@@ -811,27 +818,28 @@ function fmtT(t){ t=Math.max(0,Math.floor(t)); return Math.floor(t/60)+':'+Strin
 let _ytSeq=0, _ytActive=null;
 /* Startet automatisch, sobald der Player zur Hälfte sichtbar ist (stumm ist Autoplay auch auf iOS erlaubt); pausiert beim Wegscrollen. */
 const _ytObs=('IntersectionObserver' in window) ? new IntersectionObserver(ents=>ents.forEach(en=>{
-  const el=en.target;
+  const el=en.target; el._vis=en.isIntersecting;
   if(en.isIntersecting){
     _ytActive=el;
     document.querySelectorAll('.yt[data-on]').forEach(o=>{ if(o!==el&&o._yt&&o._yt.pauseVideo) try{ o._yt.pauseVideo(); }catch(_){} });   // immer nur ein Video in Bewegung
     if(!el.dataset.on) ytStart(el); else if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){}
   }
-  else if(el._yt&&el._yt.pauseVideo) try{ el._yt.pauseVideo(); }catch(_){}
+  else {
+    if(el._yt&&el._yt.pauseVideo) try{ el._yt.pauseVideo(); }catch(_){}
+    if(_ytActive===el){   // aktives Video weggescrollt: ein anderes, noch sichtbares übernimmt
+      const nxt=[...document.querySelectorAll('.yt[data-on]')].find(o=>o!==el&&o._vis);
+      _ytActive=nxt||null; if(nxt&&nxt._yt&&nxt._yt.playVideo) try{ nxt._yt.playVideo(); }catch(_){}
+    }
+  }
 }),{threshold:0.5}) : null;
 function bindYT(root){
-  root.querySelectorAll('.yt[data-vid]').forEach(el=>{
+  root.querySelectorAll('.yt[data-vid],.yt[data-mp4]').forEach(el=>{
     el.onclick=(ev)=>{ ev.stopPropagation(); _ytActive=el; if(!el.dataset.on) ytStart(el); };
     if(_ytObs) _ytObs.observe(el);
   });
 }
-function ytStart(el){
-  el.dataset.on='1'; el.style.cursor='default';
-  if(typeof stopLoop==='function') stopLoop();
-  try{ if(_audio) _audio.pause(); }catch(_){}
-  const vid=el.dataset.vid, hostId='ytp'+(++_ytSeq);
-  el.innerHTML=`<div id="${hostId}"></div>`;
-  const st={rate:YT_DEFAULT.rate, loop:YT_DEFAULT.loop, muted:true, a:null, b:null}; let player=null;
+/* Steuerleiste (Tempo, Schleife, Ton, Abschnitt) – gleich für YouTube und eigene Dateien; api kapselt den Player */
+function ytControls(el, st, api){
   const ctl=document.createElement('div'); ctl.className='yt-ctl'; el.after(ctl);
   const draw=()=>{
     const ab = st.a==null ? `<button data-k="a">Abschnitt: Start hier</button>`
@@ -840,16 +848,31 @@ function ytStart(el){
     ctl.innerHTML = YT_RATES.map(r=>`<button data-r="${r}" class="${st.rate===r?'on':''}">${r===1?'1×':String(r).replace('0.','.')+'×'}</button>`).join('')
       + `<button data-k="loop" class="${st.loop?'on':''}">⟲ Schleife</button><button data-k="ton" class="${st.muted?'':'on'}">${st.muted?'Ton aus':'Ton an'}</button><span class="sep"></span>${ab}`;
     ctl.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-      if(b.dataset.r){ st.rate=+b.dataset.r; if(player&&player.setPlaybackRate) player.setPlaybackRate(st.rate); }
-      else if(b.dataset.k==='loop'){ st.loop=!st.loop; }
-      else if(b.dataset.k==='ton'){ st.muted=!st.muted; if(player) try{ st.muted?player.mute():player.unMute(); }catch(_){} }
-      else if(b.dataset.k==='a'){ if(player&&player.getCurrentTime) st.a=player.getCurrentTime(); }
-      else if(b.dataset.k==='b'){ if(player&&player.getCurrentTime){ const t=player.getCurrentTime(); if(t>st.a+0.5){ st.b=t; st.loop=true; player.seekTo(st.a,true); } } }
-      else if(b.dataset.k==='x'){ st.a=null; st.b=null; }
+      if(b.dataset.r){ st.rate=+b.dataset.r; api.rate(st.rate); }
+      else if(b.dataset.k==='loop'){ st.loop=!st.loop; api.loop&&api.loop(); }
+      else if(b.dataset.k==='ton'){ st.muted=!st.muted; api.mute(st.muted); }
+      else if(b.dataset.k==='a'){ const t=api.time(); if(t!=null) st.a=t; }
+      else if(b.dataset.k==='b'){ const t=api.time(); if(t!=null && t>st.a+0.3){ st.b=t; st.loop=true; api.seek(st.a); api.loop&&api.loop(); } }
+      else if(b.dataset.k==='x'){ st.a=null; st.b=null; api.loop&&api.loop(); }
       draw();
     });
   };
-  draw();
+  draw(); return ctl;
+}
+function ytStart(el){
+  el.dataset.on='1'; el.style.cursor='default';
+  if(typeof stopLoop==='function') stopLoop();
+  try{ if(_audio) _audio.pause(); }catch(_){}
+  const st={rate:YT_DEFAULT.rate, loop:YT_DEFAULT.loop, muted:true, a:null, b:null};
+  if(el.dataset.mp4){ ytStartLocal(el, st); return; }
+  const vid=el.dataset.vid, hostId='ytp'+(++_ytSeq); let player=null;
+  el.innerHTML=`<div id="${hostId}"></div>`;
+  const ctl=ytControls(el, st, {
+    rate:r=>{ if(player&&player.setPlaybackRate) player.setPlaybackRate(r); },
+    mute:m=>{ if(player) try{ m?player.mute():player.unMute(); }catch(_){} },
+    time:()=>{ try{ return player&&player.getCurrentTime ? player.getCurrentTime() : null; }catch(_){ return null; } },
+    seek:t=>{ try{ player.seekTo(t,true); }catch(_){} }
+  });
   loadYTApi().then(()=>{
     player=new YT.Player(hostId,{ videoId:vid, host:'https://www.youtube-nocookie.com',
       playerVars:{autoplay:1,mute:1,playsinline:1,rel:0,modestbranding:1},
@@ -870,6 +893,28 @@ function ytStart(el){
     el.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&loop=1&playlist=${vid}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe>`;
     ctl.innerHTML='<small>Tempo im Video über das Zahnrad einstellen.</small>';
   });
+}
+/* Eigene Datei: <video> stumm + playsinline darf auf iOS von selbst starten; Tempo/Schleife/Abschnitt direkt am Element */
+function ytStartLocal(el, st){
+  const poster=el.querySelector('img')?el.querySelector('img').getAttribute('src'):'';
+  el.innerHTML=`<video src="${el.dataset.mp4}" poster="${poster}" muted playsinline webkit-playsinline preload="auto"></video>`;
+  const v=el.querySelector('video'); v.muted=true;
+  const setRate=()=>{ try{ v.defaultPlaybackRate=st.rate; v.playbackRate=st.rate; }catch(_){} };
+  const setLoop=()=>{ v.loop = st.loop && st.b==null; };   // A–B-Schleife macht der Takt unten selbst
+  setRate(); setLoop();
+  v.addEventListener('loadedmetadata',setRate); v.addEventListener('playing',setRate);
+  v.addEventListener('ended',()=>{ if(st.loop){ v.currentTime=st.a||0; v.play().catch(()=>{}); } });
+  v.addEventListener('click',()=>{ v.paused ? v.play().catch(()=>{}) : v.pause(); });
+  ytControls(el, st, {
+    rate:()=>setRate(), mute:m=>{ v.muted=m; }, loop:()=>setLoop(),
+    time:()=>v.currentTime, seek:t=>{ v.currentTime=t; v.play().catch(()=>{}); }
+  });
+  el._yt={ playVideo:()=>{ setRate(); v.play().catch(()=>{}); }, pauseVideo:()=>v.pause() };
+  if(_ytActive===el) el._yt.playVideo();
+  const tick=setInterval(()=>{
+    if(!document.body.contains(el)){ clearInterval(tick); if(_ytObs) _ytObs.unobserve(el); v.pause(); v.removeAttribute('src'); v.load(); return; }
+    if(st.loop && st.b!=null && (v.currentTime >= st.b || v.currentTime < st.a-0.2)){ v.currentTime=st.a; }
+  },80);
 }
 /* Alle Prüfungs-Kombinationen, in denen dieser Begriff vorkommt (Angriff, Technik oder Technik+Richtung). */
 function examFor(jp){
