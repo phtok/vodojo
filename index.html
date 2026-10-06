@@ -874,7 +874,17 @@ function ytFull(el, ctl, on){
   el.classList.toggle('yt-full', on);
   document.documentElement.classList.toggle('yt-full-on', on);
   const old=el.querySelector('.yt-fx'); if(old) old.remove();
+  // Sichtbare Fläche statt 100dvh: Safari zählt im Querformat Teile unter den Leisten mit → unten abgeschnitten
+  const fit=()=>{ const vv=window.visualViewport; if(!vv) return;
+    el.style.top=vv.offsetTop+'px'; el.style.left=vv.offsetLeft+'px'; el.style.width=vv.width+'px'; el.style.height=vv.height+'px'; };
+  if(el._fit){ removeEventListener('resize',el._fit); if(window.visualViewport){ visualViewport.removeEventListener('resize',el._fit); visualViewport.removeEventListener('scroll',el._fit); } el._fit=null; }
+  if(!on){ ['top','left','width','height'].forEach(k=>el.style[k]=''); try{ if(document.fullscreenElement===el) document.exitFullscreen(); }catch(_){} }
   if(on){
+    fit(); el._fit=fit; addEventListener('resize',fit);
+    if(window.visualViewport){ visualViewport.addEventListener('resize',fit); visualViewport.addEventListener('scroll',fit); }
+    setTimeout(fit,350);   // nach Drehung meldet iOS die Maße verspätet
+    // Echtes Vollbild, wo der Browser es für Elemente kann (iPad, Android, Desktop); iPhone bleibt beim App-Vollbild
+    try{ if(el.requestFullscreen && document.fullscreenEnabled){ el.requestFullscreen().catch(()=>{}); el.onfullscreenchange=()=>{ if(!document.fullscreenElement && el.classList.contains('yt-full')) ytFull(el, ctl, false); }; } }catch(_){}
     const x=document.createElement('button'); x.className='yt-fx'; x.type='button'; x.setAttribute('aria-label','Vollbild beenden'); x.textContent='×';
     x.onclick=(ev)=>{ ev.stopPropagation(); ytFull(el, ctl, false); };
     el.appendChild(x);
