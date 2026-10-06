@@ -861,7 +861,7 @@ function ytControls(el, st, api){
       else if(b.dataset.k==='a'){ const t=api.time(); if(t!=null) st.a=t; }
       else if(b.dataset.k==='b'){ const t=api.time(); if(t!=null && t>st.a+0.3){ st.b=t; st.loop=true; api.seek(st.a); api.loop&&api.loop(); } }
       else if(b.dataset.k==='x'){ st.a=null; st.b=null; api.loop&&api.loop(); }
-      else if(b.dataset.k==='full'){ ytFull(el, ctl, !el.classList.contains('yt-full')); }
+      else if(b.dataset.k==='full'){ if(el.classList.contains('yt-full') || !ytNativeFull(el, st)) ytFull(el, ctl, !el.classList.contains('yt-full')); }
       draw();
     });
   };
@@ -891,6 +891,20 @@ function ytFull(el, ctl, on){
     _ytActive=el; if(el._yt&&el._yt.playVideo) try{ el._yt.playVideo(); }catch(_){}
   }
   if(el._draw) el._draw();
+}
+/* iPhone: Elemente dürfen nicht ins echte Vollbild, nur das <video> selbst (iOS-Player). Tempo und Schleife werden
+   beim Wechsel neu gesetzt, weil iOS das Tempo dabei gern zurückstellt. false = nicht möglich → App-Vollbild. */
+function ytNativeFull(el, st){
+  const v=el._video;
+  if(!v || !v.webkitEnterFullscreen || (el.requestFullscreen && document.fullscreenEnabled)) return false;
+  try{
+    _ytActive=el; v.loop = st.loop && st.b==null;
+    v.webkitEnterFullscreen();
+    const keep=()=>{ try{ v.defaultPlaybackRate=st.rate; v.playbackRate=st.rate; }catch(_){} };
+    keep(); v.play().catch(()=>{});
+    [100,400,1000,2000].forEach(ms=>setTimeout(keep,ms));   // nur kurz nachziehen, danach darf das iOS-Menü das Tempo ändern
+    return true;
+  }catch(_){ return false; }
 }
 function ytStart(el){
   el.dataset.on='1'; el.style.cursor='default';
@@ -943,6 +957,8 @@ function ytStartLocal(el, st){
     rate:()=>setRate(), mute:m=>{ v.muted=m; }, loop:()=>setLoop(),
     time:()=>v.currentTime, seek:t=>{ v.currentTime=t; v.play().catch(()=>{}); }
   });
+  v.addEventListener('webkitendfullscreen',()=>{ setRate(); setLoop(); v.play().catch(()=>{}); });
+  el._video=v;
   el._yt={ playVideo:()=>{ setRate(); v.play().catch(()=>{}); }, pauseVideo:()=>v.pause() };
   if(_ytActive===el) el._yt.playVideo();
   const tick=setInterval(()=>{
