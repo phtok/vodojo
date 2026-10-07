@@ -58,3 +58,13 @@ bricht nach 60 s ab. Wiederholen bringt nichts. Deshalb:
    Ausnahme.
 3. **Nie** den Repo-Inhaber bitten, `drop`-Befehle im SQL-Editor
    auszuführen.
+
+## Quelle für Prüfungsinhalte
+
+Alles, was die App über Prüfungen sagt (Techniken, Nummern, Reihenfolge,
+nächster Grad), richtet sich nach
+[`quellen/acsa-pruefungsprogramm-ikeda.md`](quellen/acsa-pruefungsprogramm-ikeda.md):
+das ACSA-Prüfungsprogramm von M. Ikeda (23.10.1999), 6. Kyu bis 4. Dan,
+mit Fundort-Link. Fragen wie „Was kommt im 5. Kyu?“ dort nachschlagen,
+nicht aus dem Gedächtnis oder aus Programmen anderer Verbände
+beantworten.
