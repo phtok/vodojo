@@ -175,6 +175,7 @@ nav.tabs button.active .ic{opacity:1;}
 .prog-row em{display:block;font-style:normal;font-weight:600;font-size:.92rem;line-height:1.25;}
 .prog-row small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px;line-height:1.3;}
 .prog-row i{flex:none;color:var(--accent);font-style:normal;font-weight:600;}
+.kyu-sw{display:flex;gap:8px;margin:2px 0 4px;}
 .prog-note{font-size:.78rem;color:var(--muted);margin:10px 2px 0;line-height:1.45;}
 .prog-navrow{display:flex;gap:10px;margin-top:26px;}
 .prog-nav{flex:1;background:none;border:1px solid var(--line);color:var(--accent);border-radius:12px;padding:11px 8px;font-family:inherit;font-size:.86rem;font-weight:600;cursor:pointer;}
@@ -609,7 +610,7 @@ function updateStats(){
 }
 function chipsHTML(){
   let h='<div class="chips"><button class="chip '+(activeCat==='all'?'active':'')+'" data-cat="all">Alle</button>'
-        +'<button class="chip '+(activeCat==='pruefung'?'active':'')+'" data-cat="pruefung">6. Kyu Prüfung</button>';
+        +'<button class="chip '+(activeCat==='pruefung'?'active':'')+'" data-cat="pruefung">Prüfung</button>';
   for(const k in CATS){ h+='<button class="chip '+(activeCat===k?'active':'')+'" data-cat="'+k+'">'+CATS[k]+'</button>'; }
   return h+'</div>';
 }
@@ -791,7 +792,74 @@ const EXAM=[
 ];
 /* Videos: Aikido Dojo Trnava, von der Meisterin zusammengestellt. Nr. 5/6 (Shihonage) fehlen dort –
    Ersatz von Paul Muller Aikido (gleiche Prüfungsreihe, Omote/Ura getrennt), als solcher gekennzeichnet. */
-function examQuelle(e){ return e.ersatz ? `Ersatz: ${e.quelle} · nicht aus der Auswahl der Meisterin` : 'Aikido Dojo Trnava · Auswahl der Meisterin'; }
+/* 5. und 4. Kyu: Wortlaut aus quellen/acsa-pruefungsprogramm-ikeda.md (ACSA, M. Ikeda 1999).
+   w = Suwariwaza (sonst Tachiwaza) · h = Hinweis aus dem Programm · vn = Hinweis zum Video.
+   Videos: Aikido Dojo Trnava, nach Titel zugeordnet (zug) – nicht von der Meisterin ausgewählt.
+   f = gleiche eigene Videokopie wie Nr. f im 6. Kyu. Ohne vid: Trnava hat dazu kein Video. */
+const PM={ersatz:1,quelle:"Paul Muller Aikido"};
+const EXAM5=[
+  {n:1,a:"Shomenuchi Kiawase",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus Schlag gegen die Mitte",vid:"66-JGVPiui4",mp4:1,f:1},
+  {n:2,a:"Shomenuchi Kiawase",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus Schlag gegen die Mitte",vid:"Nz3Tq2R2_D0",mp4:1,f:2},
+  {n:3,a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus Schlag gegen die Mitte"},
+  {n:4,a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus Schlag gegen die Mitte"},
+  {n:5,a:"Shomenuchi Kiawase",t:"Sumiotoshi",d:"—",de:"Ecken-Fall aus Schlag gegen die Mitte",vid:"sd5za5MbJlo",zug:1},
+  {n:6,a:"Shomenuchi Kiawase",t:"Uchikaitennage",d:"—",de:"Dreh-Wurf, innen durch – aus Schlag gegen die Mitte"},
+  {n:7,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"u3ijGWIM0XE",mp4:1,f:3},
+  {n:8,a:"Katatetori Aihanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"1-9PdfEqvSc",mp4:1,f:4},
+  {n:9,a:"Katatetori Aihanmi",t:"Nikyo",d:"Omote",de:"Zweite Kontrolle, vorne – aus gleichseitigem Handgelenkgriff",vid:"WG4HVEY-KtM",zug:1,vn:"Das Video zeigt Omote und Ura nacheinander."},
+  {n:10,a:"Katatetori Aihanmi",t:"Nikyo",d:"Ura",de:"Zweite Kontrolle, herum – aus gleichseitigem Handgelenkgriff",vid:"WG4HVEY-KtM",zug:1,vn:"Das Video zeigt Omote und Ura nacheinander."},
+  {n:11,a:"Katatetori Aihanmi",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus gleichseitigem Handgelenkgriff",vid:"vYbD5NG-zQY",zug:1},
+  {n:12,a:"Katatetori Aihanmi",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus gleichseitigem Handgelenkgriff",vid:"o-QuIM4nY7g",zug:1},
+  {n:13,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gespiegeltem Griff",vid:"W4vZQZ977cM",...PM},
+  {n:14,a:"Katatetori Gyakuhanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gespiegeltem Griff",vid:"Q9QMM9xJtAw",...PM},
+  {n:15,a:"Katatetori Gyakuhanmi",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus gespiegeltem Griff",vid:"b5IuVcT2dtA",zug:1,vn:"Trnava zeigt die Form mit Tenkan Tenshin."},
+  {n:16,a:"Katatetori Gyakuhanmi",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus gespiegeltem Griff",vid:"p865_S6SlOE",zug:1,vn:"Trnava zeigt die Form mit Tenkan Tenshin."},
+  {n:17,a:"Katatetori Gyakuhanmi",t:"Uchikaitennage",d:"—",de:"Dreh-Wurf, innen durch – aus gespiegeltem Griff"},
+  {n:18,a:"Katatetori Gyakuhanmi",t:"Sotokaitennage",d:"—",de:"Dreh-Wurf, außen herum – aus gespiegeltem Griff"},
+  {n:19,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU",mp4:1,f:7},
+  {n:20,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU",mp4:1,f:8},
+  {n:21,a:"Ryotetori",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus beidseitigem Griff",vid:"rCyHQL2rJJA",zug:1},
+  {n:22,a:"Ryotetori",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus beidseitigem Griff",vid:"cXNbAF4qNxc",zug:1},
+  {n:23,a:"Chudantsuki",t:"Ikkyo",d:"—",h:"(Gokyo) · Uchisabaki",de:"Erste Kontrolle aus Fauststoß zur Mitte, innen ausweichen",vid:"TQV93u5wBLQ",zug:1,vn:"Ein Video für Nr. 23 und 24: erst Ikkyo, dann Kotegaeshi."},
+  {n:24,a:"Chudantsuki",t:"Kotegaeshi",d:"—",h:"Sotosabaki",de:"Handgelenk-Umkehr aus Fauststoß zur Mitte, außen ausweichen",vid:"TQV93u5wBLQ",zug:1,vn:"Ein Video für Nr. 23 und 24: erst Ikkyo, dann Kotegaeshi."}
+];
+const EXAM4=[
+  {n:1,w:"Suwariwaza",a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – beide kniend"},
+  {n:2,w:"Suwariwaza",a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – beide kniend"},
+  {n:3,a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus Schlag gegen die Mitte"},
+  {n:4,a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus Schlag gegen die Mitte"},
+  {n:5,a:"Shomenuchi Kiawase",t:"Nikyo",d:"Omote",de:"Zweite Kontrolle, vorne – aus Schlag gegen die Mitte"},
+  {n:6,a:"Shomenuchi Kiawase",t:"Nikyo",d:"Ura",de:"Zweite Kontrolle, herum – aus Schlag gegen die Mitte"},
+  {n:7,a:"Shomenuchi Kiawase",t:"Ikkyo",d:"Ura",h:"Kakarigeiko (2 Uke)",de:"Erste Kontrolle, herum – zwei Angreifer nacheinander"},
+  {n:8,a:"Katatetori Aihanmi",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus gleichseitigem Handgelenkgriff"},
+  {n:9,a:"Katatetori Aihanmi",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus gleichseitigem Handgelenkgriff"},
+  {n:10,a:"Katatetori Aihanmi",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus gleichseitigem Handgelenkgriff",vid:"vYbD5NG-zQY",zug:1},
+  {n:11,a:"Katatetori Aihanmi",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus gleichseitigem Handgelenkgriff",vid:"o-QuIM4nY7g",zug:1},
+  {n:12,a:"Katatetori Aihanmi",t:"Udekimenage",d:"—",de:"Arm-Hebel-Wurf aus gleichseitigem Handgelenkgriff"},
+  {n:13,a:"Katatetori Aihanmi",t:"Uchikaitennage",d:"—",de:"Dreh-Wurf, innen durch – aus gleichseitigem Handgelenkgriff"},
+  {n:14,a:"Katatetori Gyakuhanmi",t:"Ikkyo",d:"Omote",de:"Erste Kontrolle, vorne – aus gespiegeltem Griff",vid:"7rDY3SxifGg",zug:1},
+  {n:15,a:"Katatetori Gyakuhanmi",t:"Ikkyo",d:"Ura",de:"Erste Kontrolle, herum – aus gespiegeltem Griff",vid:"edpdvRdlafk",zug:1},
+  {n:16,a:"Katatetori Gyakuhanmi",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus gespiegeltem Griff",vid:"hYOZc8uyxrw",zug:1,vn:"Das Video zeigt erst Shihonage, dann Kotegaeshi."},
+  {n:17,a:"Katatetori Gyakuhanmi",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus gespiegeltem Griff"},
+  {n:18,a:"Ryotetori",t:"Shihonage",d:"Omote",de:"Vier-Richtungs-Wurf, vorne – aus beidseitigem Griff",vid:"rCyHQL2rJJA",zug:1},
+  {n:19,a:"Ryotetori",t:"Shihonage",d:"Ura",de:"Vier-Richtungs-Wurf, herum – aus beidseitigem Griff",vid:"cXNbAF4qNxc",zug:1},
+  {n:20,a:"Ryotetori",t:"Tenchinage",d:"—",de:"Himmel-Erde-Wurf aus beidseitigem Griff",vid:"wl3ou7iX6WU",mp4:1,f:7},
+  {n:21,a:"Ryotetori",t:"Genkeikokyunage",d:"—",de:"Atem-Wurf aus beidseitigem Griff",vid:"LCRB5Mt-NfU",mp4:1,f:8},
+  {n:22,a:"Ryotetori",t:"Udekimenage",d:"—",de:"Arm-Hebel-Wurf aus beidseitigem Griff",vid:"3nFdUZPPh_8",zug:1},
+  {n:23,a:"Ryotetori",t:"Kiriotoshi",d:"—",h:"Chinshin",de:"Schneidender Fall aus beidseitigem Griff, tief gesunken",vid:"o2zCilEofkw",zug:1},
+  {n:24,a:"Katate Ryotetori",t:"Udekimenage",d:"—",de:"Arm-Hebel-Wurf – ein Arm mit beiden Händen gefasst"},
+  {n:25,a:"Katate Ryotetori",t:"Kotegaeshi",d:"—",h:"Kigata",de:"Handgelenk-Umkehr – ein Arm mit beiden Händen gefasst",vid:"EB7UfmZjL5o",zug:1},
+  {n:26,a:"Ushiro Ryotetori",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr – beide Handgelenke von hinten gefasst",vid:"AAMC6Ht3GPo",zug:1},
+  {n:27,a:"Ushiro Ryotetori",t:"Shihonage",d:"—",de:"Vier-Richtungs-Wurf – beide Handgelenke von hinten gefasst",vid:"Nwl-KOgmApE",zug:1},
+  {n:28,a:"Katatori Menuchi",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr – Schulter gefasst, dann Schlag zum Kopf",vid:"0KyW5WhFy98",zug:1,vn:"Trnava zeigt die Form „Uchi no Te“."},
+  {n:29,a:"Katatori Menuchi",t:"Shihonage",d:"—",de:"Vier-Richtungs-Wurf – Schulter gefasst, dann Schlag zum Kopf",vid:"M22DMmz66ZE",zug:1,vn:"Trnava zeigt die Form „Uchi no Te“."},
+  {n:30,a:"Yokomenuchi",t:"Shihonage",d:"—",de:"Vier-Richtungs-Wurf aus seitlichem Schlag zum Kopf",vid:"I_ZqbdAx0X0",zug:1,vn:"Das Video zeigt Omote und Ura."},
+  {n:31,a:"Yokomenuchi",t:"Iriminage",d:"—",de:"Eintritts-Wurf aus seitlichem Schlag zum Kopf",vid:"WJEbC641G6A",zug:1},
+  {n:32,a:"Yokomenuchi",t:"Kotegaeshi",d:"—",de:"Handgelenk-Umkehr aus seitlichem Schlag zum Kopf",vid:"yH9xAhXq4qw",zug:1}
+];
+const PROGS={6:EXAM,5:EXAM5,4:EXAM4};
+let progKyu=6;   // welcher Grad in der Prüfungs-Liste gezeigt wird; Übungen (Ansage, Bauen, Hören, Check) bleiben beim 6. Kyu
+function examQuelle(e){ return e.ersatz ? `Ersatz: ${e.quelle} · nicht aus der Auswahl der Meisterin` : e.zug ? 'Aikido Dojo Trnava · nach Titel zugeordnet, nicht von der Meisterin ausgewählt' : 'Aikido Dojo Trnava · Auswahl der Meisterin'; }
 function examName(e){ return e.a+' '+e.t+(e.d!=='—'?' '+e.d:''); }
 function examVideoURL(e){ return e.vid? 'https://www.youtube.com/watch?v='+e.vid : null; }
 /* Video direkt in der App: erst Vorschaubild (lädt nichts von YouTube außer dem Bild), Antippen startet den Player hier.
@@ -801,7 +869,8 @@ function ytHTML(e,lbl){
   const lab=lbl?`<span class="yt-lbl">${lbl}</span>`:'';
   if(e.mp4){   // eigene Kopie: startet stumm von selbst, kein YouTube-Umfeld; Quelle bleibt sichtbar verlinkt
     const src=e.vid?`<a class="yt-src" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener">Quelle: Aikido Dojo Trnava auf YouTube ↗</a>`:'';
-    return `<div class="yt" data-mp4="videos/nr-${e.n}.mp4"><img src="videos/nr-${e.n}.jpg" alt=""><span class="yt-play">▶</span>${lab}</div>${src}`;
+    const f=e.f||e.n;   // f: gleiche Kopie wie Nr. f im 6. Kyu
+    return `<div class="yt" data-mp4="videos/nr-${f}.mp4"><img src="videos/nr-${f}.jpg" alt=""><span class="yt-play">▶</span>${lab}</div>${src}`;
   }
   return `<div class="yt" data-vid="${e.vid}"><img src="https://i.ytimg.com/vi/${e.vid}/hqdefault.jpg" alt="" loading="lazy"><span class="yt-play">▶</span>${lab}</div>`;
 }
@@ -992,6 +1061,19 @@ const DEKO={
   'Shihonage Ura':[['Shiho','vier Richtungen'],['nage','Wurf'],['Ura','hinten herum']],
   'Tenchinage':[['Ten','Himmel'],['chi','Erde'],['nage','Wurf']],
   'Genkeikokyunage':[['Genkei','(Stil-Name)'],['kokyu','Atem'],['nage','Wurf']],
+  'Nikyo':[['Ni','zwei'],['kyo','Lehre']],
+  'Nikyo Omote':[['Ni','zwei'],['kyo','Lehre'],['Omote','vorn']],
+  'Nikyo Ura':[['Ni','zwei'],['kyo','Lehre'],['Ura','hinten herum']],
+  'Sumiotoshi':[['Sumi','Ecke'],['otoshi','fallen lassen']],
+  'Uchikaitennage':[['Uchi','innen'],['kaiten','drehen'],['nage','Wurf']],
+  'Sotokaitennage':[['Soto','außen'],['kaiten','drehen'],['nage','Wurf']],
+  'Udekimenage':[['Ude','Arm'],['kime','festlegen'],['nage','Wurf']],
+  'Kiriotoshi':[['Kiri','schneiden'],['otoshi','fallen lassen']],
+  'Chudantsuki':[['Chudan','mittlere Höhe'],['tsuki','Stoß']],
+  'Yokomenuchi':[['Yoko','seitlich'],['men','Kopf'],['uchi','Schlag']],
+  'Katatori Menuchi':[['Kata','Schulter'],['tori','fassen'],['Men','Kopf'],['uchi','Schlag']],
+  'Katate Ryotetori':[['Katate','eine Hand'],['Ryote','beide Hände'],['tori','fassen']],
+  'Ushiro Ryotetori':[['Ushiro','hinten'],['Ryote','beide Hände'],['tori','fassen']],
   'Omote':[['Omote','vorn · innen']],
   'Ura':[['Ura','hinten · außen']],
   'Tai sabaki':[['Tai','Körper'],['sabaki','führen']],
@@ -1149,17 +1231,20 @@ function renderLoopList(){
 function renderBrowse(){
   let h='';
   if(activeCat==='pruefung'){
-    h+='<div class="grouphead">Prüfungsprogramm 6. Kyu</div>';
-    h+='<div class="prog">'+EXAM.map(e=>{
+    const list=PROGS[progKyu];
+    h+='<div class="kyu-sw">'+[6,5,4].map(k=>`<button class="chip ${progKyu===k?'active':''}" data-kyu="${k}">${k}. Kyu</button>`).join('')+'</div>';
+    h+=`<div class="grouphead">Prüfungsprogramm ${progKyu}. Kyu</div>`;
+    h+='<div class="prog">'+list.map(e=>{
       const b=DOJOBILD[e.t];
       return `<button class="prog-row" data-n="${e.n}">
         <b>${e.n}</b>
         ${b?`<img src="bilder/${b.f}" alt="" loading="lazy">`:''}
-        <span><em>${examName(e)}</em><small>${e.de}</small></span>
+        <span><em>${progName(e)}</em><small>${e.de}</small></span>
         <i>${e.vid?'▶':'›'}</i></button>`;
     }).join('')+'</div>';
-    h+='<div class="prog-note">Angriff + Technik + Richtung – die acht Kombinationen der Prüfung. Antippen für Bild und Video.</div>';
-    h+='<div class="grouphead">Vokabeln dazu</div>';
+    h+= progKyu===6 ? '<div class="prog-note">Angriff + Technik + Richtung – die acht Kombinationen der Prüfung. Antippen für Bild und Video.</div>'
+      : `<div class="prog-note">${list.length} Kombinationen laut ACSA-Programm (M. Ikeda). ▶ = Video von Aikido Dojo Trnava, nach Titel zugeordnet; › = dort kein Video. Die Übungen bleiben beim 6. Kyu.</div>`;
+    h+='<div class="grouphead">Vokabeln zum 6. Kyu</div>';
   }
   const cats = activeCat==='all'? Object.keys(CATS) : (activeCat==='pruefung'? Object.keys(CATS) : [activeCat]);
   const pool = filtered();
@@ -1177,7 +1262,8 @@ function renderBrowse(){
   view.innerHTML=h; bindChips();
   view.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>{ const c=VOCAB.find(v=>v.jp===b.dataset.jp); if(c)speakCard(c); });
   view.querySelectorAll('.rmid').forEach(m=>m.onclick=()=>openDetail(m.dataset.jp));
-  view.querySelectorAll('.prog-row').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
+  view.querySelectorAll('.prog-row').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n, progKyu));
+  view.querySelectorAll('.kyu-sw .chip').forEach(b=>b.onclick=()=>{ progKyu=+b.dataset.kyu; renderBrowse(); });
   document.getElementById('reset').onclick=async()=>{ if(confirm('Allen Lernfortschritt zurücksetzen?')){ progress={}; bestStreak=0; curStreak=0; dayStreak=0; dayLast=''; logData={}; repsData={}; await saveProgress(); await Store.set('aikido_days',{streak:0,last:''}); await Store.set('aikido_log',{}); await Store.set('aikido_reps',{}); render(); updateStats(); } };
 }
 
@@ -1345,22 +1431,25 @@ function openDetail(jp){
   bindDeko(d); bindYT(d);
 }
 /* Eine Prüfungs-Kombination als eigene Seite: Angriffsbild + Technikbild + Video. */
-function openProgram(n){
-  const e=EXAM.find(x=>x.n===n); if(!e) return;
+function progName(e){ return (e.w?e.w+' · ':'')+examName(e)+(e.h?' · '+e.h:''); }
+function openProgram(n, kyu){
+  kyu=kyu||6; const list=PROGS[kyu]||EXAM;   // ohne Grad: 6. Kyu (Übungen, Vokabelseiten)
+  const e=list.find(x=>x.n===n); if(!e) return;
   const bildA=DOJOBILD[e.a], bildT=DOJOBILD[e.t];
   const vu=examVideoURL(e);
   const foto=(b,titel)=> b? `<div class="dt-sec"><h4>${titel}</h4><div class="dt-foto${b.hoch?' hoch':''}"><img src="bilder/${b.f}" alt="" loading="lazy"></div></div>`:'';
   let h=`<button class="dt-back" id="dt-back">← zurück</button>
     <div class="dt-head">
-      <div class="dt-seal">Prüfung 6. Kyu · Nr. ${e.n} von ${EXAM.length}</div>
+      <div class="dt-seal">Prüfung ${kyu}. Kyu · Nr. ${e.n} von ${list.length}${e.w?' · '+e.w:''}</div>
       <div class="dt-jp">${examName(e)}</div>
       <button class="speak" id="dt-spk">▶︎ hören</button>
     </div>
-    <div class="dt-de">${e.de}</div>`;
+    <div class="dt-de">${e.de}${e.h?`<br><small>Im Programm: ${e.h}</small>`:''}</div>`;
   h+=`<div class="dt-sec"><h4>Wort für Wort</h4>${examDekoHTML(e)}</div>`;
   h+=`<div class="dt-sec"><h4>Video</h4>${
-    vu? `${ytHTML(e)}<div class="dt-quelle">${examQuelle(e)}</div>`
-      : `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`}</div>`;
+    vu? `${ytHTML(e)}${e.vn?`<div class="dt-quelle">${e.vn}</div>`:''}<div class="dt-quelle">${examQuelle(e)}</div>`
+      : kyu===6 ? `<div class="dt-vid leer"><b>${e.n}</b><span>Video noch nicht von der Meisterin geschickt<small>Für Nr. 5 und 6 fehlen die Links.</small></span></div>`
+      : `<div class="dt-vid leer"><b>${e.n}</b><span>Bei Aikido Dojo Trnava gibt es dazu kein Video<small>Am besten im Training zeigen lassen.</small></span></div>`}</div>`;
   h+=foto(bildA,'Der Angriff');
   h+=foto(bildT,'Die Technik');
   if(bildA||bildT) h+='<div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div>';
@@ -1375,14 +1464,14 @@ function openProgram(n){
     teile.map(t=>{ const v=VOCAB.find(x=>x.jp===t.jp); return `<button data-jp="${t.jp.replace(/"/g,'&quot;')}">${t.jp}<small>${v.de}</small></button>`; }).join('')}</div></div>`;
   const nav=[];
   if(n>1) nav.push(`<button class="prog-nav" data-n="${n-1}">← Nr. ${n-1}</button>`);
-  if(n<EXAM.length) nav.push(`<button class="prog-nav" data-n="${n+1}">Nr. ${n+1} →</button>`);
+  if(n<list.length) nav.push(`<button class="prog-nav" data-n="${n+1}">Nr. ${n+1} →</button>`);
   if(nav.length) h+=`<div class="prog-navrow">${nav.join('')}</div>`;
   const d=document.getElementById('detail');
   d.innerHTML=h; d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0;
   document.getElementById('dt-back').onclick=closeDetail;
   document.getElementById('dt-spk').onclick=()=>speakName(e);
   d.querySelectorAll('.dt-rel button').forEach(b=>b.onclick=()=>openDetail(b.dataset.jp));
-  d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n));
+  d.querySelectorAll('.prog-nav').forEach(b=>b.onclick=()=>openProgram(+b.dataset.n, kyu));
   bindDeko(d); bindYT(d);
 }
 function closeDetail(){ document.documentElement.classList.remove('yt-full-on'); const d=document.getElementById('detail'); d.classList.remove('open'); d.setAttribute('aria-hidden','true'); d.innerHTML=''; }
