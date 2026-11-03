@@ -123,6 +123,14 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
   (`{"ansage": 1}`), Vorgriff Ikkyo mit Zeichnung und Video Nr. 3.
 - Vollbild der Zeichnungen: richtet sich bei jeder Drehung neu aus und
   blendet die Browserleisten aus, wo der Browser es erlaubt (iPad, Android).
-- Nächster Schritt: Rückschau des Inhabers zu Lektion 1 und 2, dann Tage 3
+- 3. 11. 2026: Lektion 2 vom Inhaber abgenommen («passt»). Lektion 3
+  (Ikkyo Omote und Ura) gebaut: `lektionen/tag-3.json`, `audio/tag-3.mp3`
+  (29:38). Aufwärmen Schultern, Arme, Knien und Aufstehen, Ablegen auf den
+  Bauch; Wiederholung Kotegaeshi; Kern mit Füssen und Video getrennt für
+  Omote und Ura; Vorgriff Shihonage nur mit Zeichnungen (Nr. 5/6 haben
+  kein eigenes Video, nur YouTube-Ersatz); zwei Ansagen (Nr. 3 und 4).
+- 3. 11. 2026: Tage 1 bis 3 deployt (PR 50). Der Inhaber übt drei Tage
+  und gibt dann Rückmeldung.
+- Nächster Schritt: Rückmeldung des Inhabers einarbeiten, dann Tage 4
   bis 7.
 - Offen: die Wunschtechnik.
