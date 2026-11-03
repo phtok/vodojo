@@ -86,4 +86,51 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
 - 3. 11. 2026: Konzept geschrieben. Lektion 1 (Iriminage) ist noch nicht
   gebaut; sie entsteht in einer eigenen Session als Probe, danach Rückschau
   mit dem Inhaber, dann Tage 2 bis 7.
+- 3. 11. 2026: Lektion 1 (Iriminage) als Probe gebaut: Skript
+  `lektionen/tag-1.json` (fünf Teile mit Zeitmarken, der Kern in sechs
+  Schichten; die Überschrift oben sagt «sechs Teile», aufgezählt sind
+  fünf), Reiter «Woche», Lektionsseite mit Uhr, Ton, Bild, Video-Abschnitt,
+  «weiter», Pause und Fortsetzen (Stand in `Store` unter `aikido_woche`).
+  Tag 1 hat keinen Vortag: an der Stelle der Wiederholung steht der
+  Angriff Shomenuchi Kiawase.
+- **Ton (3. 11. 2026, mit Zustimmung des Inhabers):** ElevenLabs, zwei
+  Stimmen mit festen Rollen. **Laura** (Laura Vox) erklärt: Begrüssung,
+  Bild, Prinzip, Fehler, Abschied. **Leon** leitet die Bewegung:
+  Anweisungen, Zählen, Prüfung. Die Rolle steht je Eintrag als `stimme` in
+  `tag-N.json`. Die Texte werden an den `<break>`-Marken in Stücke geteilt
+  und einzeln gesprochen (`audio/tag-N/<id>-<k>.mp3`): Viele Pausenmarken in
+  einer Anfrage liessen ElevenLabs bei rund 24 s abbrechen.
+- **Eine Datei je Lektion:** `audio/tag-1.mp3` (26:45), mit den
+  Übungspausen als Stille und der Prüfungsansage aus den Aufnahmen der App.
+  Sie läuft bei gesperrtem Telefon weiter. Die Station folgt der
+  Abspielzeit (`ab` je Station im Skript). Pause und Weiter liegen auf dem
+  Sperrbildschirm (Media Session), das Display bleibt wach, solange der Ton
+  läuft (Wake Lock). Ohne `tonSek` im Skript fällt die App auf die
+  Browser-Stimme zurück.
+- Neu erzeugen nach Textänderung:
+  `ELEVENLABS_API_KEY=… node lektionen/ton-erzeugen.js 1` (spricht nur
+  geänderte Einträge neu und setzt die Datei neu zusammen), danach die
+  Cache-Version in `sw.js` hochzählen.
+- Recherche: stenudd.com war für automatische Abrufe gesperrt; der Ablauf
+  stützt sich auf Ikeda-Zeichnung, Graf-Kärtchen, Trnava-Video Nr. 1 und
+  die Texte der App.
+- 3. 11. 2026: Lektion 2 (Kotegaeshi) gebaut, auf Wunsch des Inhabers
+  parallel zur Rückschau von Lektion 1: `lektionen/tag-2.json`,
+  `audio/tag-2.mp3` (26:49), Tag 2 in der Woche freigeschaltet. Abweichung
+  vom Konzept: Das Aufwärmen übt nicht die Vorwärtsrolle, sondern das
+  seitliche Absetzen und Rückwärtsrollen, denn auf der Ikeda-Zeichnung
+  liegt Uke am Ende auf dem Rücken. Wiederholung Iriminage mit Ansage
+  (`{"ansage": 1}`), Vorgriff Ikkyo mit Zeichnung und Video Nr. 3.
+- Vollbild der Zeichnungen: richtet sich bei jeder Drehung neu aus und
+  blendet die Browserleisten aus, wo der Browser es erlaubt (iPad, Android).
+- 3. 11. 2026: Lektion 2 vom Inhaber abgenommen («passt»). Lektion 3
+  (Ikkyo Omote und Ura) gebaut: `lektionen/tag-3.json`, `audio/tag-3.mp3`
+  (29:38). Aufwärmen Schultern, Arme, Knien und Aufstehen, Ablegen auf den
+  Bauch; Wiederholung Kotegaeshi; Kern mit Füssen und Video getrennt für
+  Omote und Ura; Vorgriff Shihonage nur mit Zeichnungen (Nr. 5/6 haben
+  kein eigenes Video, nur YouTube-Ersatz); zwei Ansagen (Nr. 3 und 4).
+- 3. 11. 2026: Tage 1 bis 3 deployt (PR 50). Der Inhaber übt drei Tage
+  und gibt dann Rückmeldung.
+- Nächster Schritt: Rückmeldung des Inhabers einarbeiten, dann Tage 4
+  bis 7.
 - Offen: die Wunschtechnik.

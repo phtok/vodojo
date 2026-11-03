@@ -1,0 +1,653 @@
+{
+  "tag": 3,
+  "titel": "Ikkyo Omote und Ura",
+  "angriff": "Katatetori Aihanmi",
+  "nr": 3,
+  "minuten": 30,
+  "satz": "Den gefassten Arm heben wie ein Schwert und schneiden: vorn hinein (Omote) oder hinten herum (Ura), bis Uke am Boden liegt.",
+  "wiederholung": "Kotegaeshi",
+  "vorgriff": "Shihonage",
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 3 und 4: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Angriffszeichnung Katatetori Aihanmi und Ablaufzeichnungen Ikkyo Omote (drei Bilder: heben, Irimi mit Schnitt, Haltegriff) und Ikkyo Ura (zwei Bilder: Tenkan, Uke im Kreis nach unten): Aikido Ikeda Dojo Zürich, Gedankenstütze 6. Kyu (quellen/ikeda-dojo/)",
+    "Kärtchen Ikkyo: Eric Graf, Dojo de Bienne (bilder/technik-ikkyo.png)",
+    "Video Nr. 3 Ikkyo Omote (21,5 s, zwei Wiederholungen: 0–10 und 11–21,5 s) und Nr. 4 Ikkyo Ura (16,9 s, zwei Wiederholungen: 0–9 und 9–16,9 s): Aikido Dojo Trnava, Auswahl der Meisterin",
+    "Vorgriff: Ablaufzeichnung Shihonage Omote (Ikeda), Angriffszeichnung Katatetori Gyakuhanmi"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, Bild, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Ikkjo, Katate-Tori Ai-Hanmi). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}. {\"ansage\": N} spielt die Prüfungsansage von Nr. N."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "5:00",
+      "stationen": [
+        {
+          "titel": "Ankommen",
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Neuer Angriff heute: Uke fasst dein Handgelenk."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Katatetori Aihanmi"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag drei. Heute kommt ein neuer Angriff und eine Technik in zwei Formen: Ikkjo Omote und Ikkjo Ura. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum. Atme dreimal tief aus.",
+              "h": "9b29445bad",
+              "sek": 19.76
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 0
+        },
+        {
+          "titel": "Schultern und Arme",
+          "karten": [
+            "Schultern kreisen, vor und zurück.",
+            "Arme über den Kopf strecken, lang werden.",
+            "Arm vor der Brust zur anderen Seite ziehen.",
+            "Warum: Bei Ikkyo wird der ganze Arm gestreckt und geführt."
+          ],
+          "ton": [
+            {
+              "id": "1b",
+              "stimme": "laura",
+              "text": "Bei Ikkjo führt Tori den ganzen Arm von Uke, vom Handgelenk bis zur Schulter. Darum wärmen wir heute Schultern und Arme gut auf.",
+              "h": "df0fec19e5",
+              "sek": 10.76
+            },
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Kreise die Schultern, zehnmal nach hinten. <break time=\"10s\" /> Und zehnmal nach vorn. <break time=\"10s\" /> Jetzt beide Arme über den Kopf, so lang wie möglich, als würdest du ein Schwert hoch über dich heben. <break time=\"5s\" /> Und lösen.",
+              "h": "da19196f20",
+              "sek": 47.78
+            },
+            {
+              "pause": 5
+            },
+            {
+              "id": "1d",
+              "stimme": "leon",
+              "text": "Den rechten Arm gestreckt vor die Brust, mit der linken Hand am Ellbogen sanft zur linken Seite ziehen. Halten. <break time=\"10s\" /> Andere Seite. <break time=\"10s\" /> Gut.",
+              "h": "34879b19bb",
+              "sek": 38.89
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 36.77
+        },
+        {
+          "titel": "Knien und Aufstehen",
+          "karten": [
+            "Tori hält Uke am Ende kniend am Boden.",
+            "Ins Knie gehen ohne Hände, Rücken gerade.",
+            "Wieder aufstehen, ohne Schwung.",
+            "Achtmal, das Bein wechselt."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "ton": [
+            {
+              "id": "1e",
+              "stimme": "laura",
+              "text": "Am Ende von Ikkjo kniest du neben Uke und hältst seinen Arm am Boden. Dafür brauchst du ein ruhiges Knien und Aufstehen, ohne dich mit den Händen abzustützen.",
+              "h": "9ccfb452cf",
+              "sek": 12.12
+            },
+            {
+              "id": "1f",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Senk das rechte Knie langsam zum Boden, der Rücken bleibt gerade. Und wieder hoch, ohne Schwung. <break time=\"1.0s\" /> Ich zähle, bei jeder Zahl einmal knien und aufstehen. <break time=\"1.0s\" /> Eins. <break time=\"4s\" /> Zwei. <break time=\"4s\" /> Drei. <break time=\"4s\" /> Vier. <break time=\"2s\" /> Bein wechseln. <break time=\"2s\" /> Fünf. <break time=\"4s\" /> Sechs. <break time=\"4s\" /> Sieben. <break time=\"4s\" /> Acht.",
+              "h": "3c700f288b",
+              "sek": 66.64
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 147.23
+        },
+        {
+          "titel": "Fallen auf den Bauch",
+          "karten": [
+            "Uke landet bei Ikkyo auf dem Bauch.",
+            "Aus dem Knien: Arm nach vorn gleiten lassen, flach ablegen.",
+            "Kopf zur Seite, nicht aufs Gesicht.",
+            "Sechsmal, je drei pro Seite."
+          ],
+          "ton": [
+            {
+              "id": "1g",
+              "stimme": "laura",
+              "text": "Als Uke landest du bei Ikkjo auf dem Bauch. Das ist kein Sturz, sondern ein Ablegen.",
+              "h": "d6295fc072",
+              "sek": 6.69
+            },
+            {
+              "id": "1h",
+              "stimme": "leon",
+              "text": "Knie dich hin. Streck den rechten Arm nach vorn und lass ihn über den Boden gleiten, der Körper folgt, bis du flach auf dem Bauch liegst. Den Kopf zur Seite drehen. <break time=\"1.5s\" /> Wieder hoch auf die Knie. Dreimal rechts, dann dreimal links.",
+              "h": "edb562facf",
+              "sek": 26.6
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 233.19
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Wiederholung: Kotegaeshi",
+      "von": "5:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Aus dem Gedächtnis",
+          "karten": [
+            "Hör die Ansage.",
+            "Erst im Kopf: die fünf Schritte.",
+            "Dann bewegen, drei je Seite.",
+            "Danach die Zeichnung als Kontrolle."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Wiederholung von gestern, nur aus dem Gedächtnis. Schau noch nicht auf den Bildschirm. Gleich hörst du die Ansage.",
+              "h": "9f37606a25",
+              "sek": 8.25
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "id": "2b",
+              "stimme": "leon",
+              "text": "Erst im Kopf. Sag dir die fünf Schritte leise vor. <break time=\"8s\" /> Jetzt bewegen. Drei Durchgänge links, drei rechts, langsam.",
+              "h": "6bfbe0ec75",
+              "sek": 23.07
+            },
+            {
+              "pause": 60
+            },
+            {
+              "id": "2c",
+              "stimme": "laura",
+              "text": "Jetzt schau auf die Zeichnung. Hast du dich zweimal gedreht? Und blieb Ukes Hand vor deinem Bauch?",
+              "h": "72dfddc116",
+              "sek": 7.42
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "2d",
+              "stimme": "leon",
+              "text": "Noch zwei Durchgänge je Seite, mit dem, was dir die Zeichnung gezeigt hat.",
+              "h": "792882120e",
+              "sek": 6.64
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 309.06
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Ikkyo in Schichten",
+      "von": "8:00",
+      "bis": "23:00",
+      "stationen": [
+        {
+          "titel": "Schicht 1 · Das Bild",
+          "karten": [
+            "Katatetori Aihanmi: Uke fasst über Kreuz, rechte Hand an dein rechtes Handgelenk.",
+            "Ikkyo = erste Lehre.",
+            "Omote: vorn hinein, durch Uke hindurch.",
+            "Ura: hinten herum, Uke dreht sich um dich."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "bild2": {
+            "art": "ikeda",
+            "key": "Ikkyo Ura"
+          },
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "laura",
+              "text": "Schicht eins: das Bild. <break time=\"1.0s\" /> Der Angriff heisst Katate-Tori Ai-Hanmi. Ihr steht mit dem gleichen Fuss vorn, und Uke fasst dein Handgelenk über Kreuz: seine rechte Hand an dein rechtes Handgelenk. <break time=\"1.0s\" /> Ikkjo heisst erste Lehre. Du hebst den gefassten Arm wie ein Schwert, nimmst Ukes Ellbogen dazu und schneidest seinen Arm nach unten, bis er am Boden liegt. <break time=\"1.5s\" /> Es gibt zwei Wege. Omote heisst vorn: Du trittst nach vorn durch Uke hindurch, die Zeichnung zeigt das Wort Irimi am Boden. <break time=\"1.0s\" /> Ura heisst hinten: Du trittst neben Uke und drehst dich mit Tenkan, Uke wird im Kreis um dich herum nach unten geführt. <break time=\"1.5s\" /> Am Ende liegt Uke auf dem Bauch, und du hältst seinen Arm kniend am Boden. Schau dir beide Zeichnungen an.",
+              "h": "cf67bbdabf",
+              "sek": 70.62
+            },
+            {
+              "pause": 25
+            }
+          ],
+          "ab": 483.39
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse: Omote",
+          "karten": [
+            "1 · Heben: Gewicht nach vorn, die Hand steigt.",
+            "2 · Eintreten: vorderer Fuss vor, tief zu Uke hin.",
+            "3 · Nachziehen: hinterer Fuss folgt, du schneidest.",
+            "4 · Noch ein Schritt: Uke geht zu Boden.",
+            "5 · Knien: neben Uke, beide Knie."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "ton": [
+            {
+              "id": "3b",
+              "stimme": "laura",
+              "text": "Schicht zwei: die Füsse, zuerst Omote. Die Hände hängen locker. Rechter Fuss vorn, dein Partner fasst dich mit rechts.",
+              "h": "ec6c7af56d",
+              "sek": 11.89
+            },
+            {
+              "id": "3c",
+              "stimme": "leon",
+              "text": "Eins: Heben. Dein Gewicht geht nach vorn, die gefasste Hand steigt vor deiner Mitte. <break time=\"3s\" /> Zwei: Eintreten. Der vordere Fuss geht nach vorn, tief zu Uke hin. <break time=\"3s\" /> Drei: Nachziehen. Der hintere Fuss folgt, du schneidest nach unten. <break time=\"3s\" /> Vier: Noch ein Schritt nach vorn. Uke geht zu Boden. <break time=\"3s\" /> Fünf: Knien. Beide Knie neben Uke. <break time=\"3s\" /> Aufstehen, zurück zum Anfang.",
+              "h": "e98de97275",
+              "sek": 67.82
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "stimme": "leon",
+              "text": "Jetzt nur die Zahlen, drei Durchgänge rechts. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"4s\" /> Allein weiter, dann Seite wechseln: linker Fuss vorn.",
+              "h": "af360092e2",
+              "sek": 55.72
+            },
+            {
+              "pause": 50
+            }
+          ],
+          "ab": 580.89
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse: Ura",
+          "karten": [
+            "1 · Heben, wie bei Omote.",
+            "2 · Eintreten: vorderer Fuss neben Uke, an ihm vorbei.",
+            "3 · Drehen: Tenkan, du stehst neben Uke.",
+            "4 · Weiterdrehen: Uke kreist um dich nach unten.",
+            "5 · Knien: neben Uke, beide Knie."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Ura"
+          },
+          "ton": [
+            {
+              "id": "3e",
+              "stimme": "laura",
+              "text": "Jetzt Ura. Der Anfang ist gleich, dann gehst du nicht durch Uke hindurch, sondern an ihm vorbei und drehst dich.",
+              "h": "fb72f23bb5",
+              "sek": 8.59
+            },
+            {
+              "id": "3f",
+              "stimme": "leon",
+              "text": "Rechter Fuss vorn. <break time=\"1.0s\" /> Eins: Heben. <break time=\"3s\" /> Zwei: Eintreten. Der vordere Fuss geht neben Uke, an ihm vorbei. <break time=\"3s\" /> Drei: Drehen. Tenkan auf diesem Fuss, du stehst neben Uke. <break time=\"3s\" /> Vier: Weiterdrehen. Der hintere Fuss zieht im Bogen zurück, Uke kreist um dich nach unten. <break time=\"3s\" /> Fünf: Knien. <break time=\"3s\" /> Aufstehen, zurück zum Anfang.",
+              "h": "e0349c4495",
+              "sek": 62.15
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3g",
+              "stimme": "leon",
+              "text": "Allein weiter: drei Durchgänge rechts, dann drei links. Sag die Zahlen leise mit.",
+              "h": "8a56a6b532",
+              "sek": 9.22
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 774.86
+        },
+        {
+          "titel": "Schicht 3 · Die Hände",
+          "karten": [
+            "Gefasste Hand: Handkante steigt vor deiner Mitte, Finger offen.",
+            "Andere Hand fasst Ukes Ellbogen von unten.",
+            "Schneiden: Arm im Bogen nach unten, Ellbogen über Handgelenk.",
+            "Am Boden: Ukes Arm etwas mehr als rechtwinklig zum Körper, eine Hand am Handgelenk, eine über dem Ellbogen."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ikkyo"
+          },
+          "ton": [
+            {
+              "id": "3h",
+              "stimme": "laura",
+              "text": "Schicht drei: die Hände. <break time=\"1.0s\" /> Deine gefasste Hand wird zur Handkante, die Finger offen, und steigt vor deiner Mitte, als würdest du ein Schwert heben. Nicht ziehen, nicht reissen, du hebst mit dem ganzen Körper. <break time=\"1.5s\" /> Deine andere Hand fasst Ukes Ellbogen von unten. <break time=\"1.5s\" /> Jetzt schneidest du: Ukes Arm geht im Bogen nach unten, der Ellbogen etwas vor dem Handgelenk. <break time=\"1.5s\" /> Am Boden liegt sein Arm etwas mehr als rechtwinklig zum Körper. Eine Hand hält sein Handgelenk, die andere liegt knapp über dem Ellbogen.",
+              "h": "c3d2477a17",
+              "sek": 49.54
+            },
+            {
+              "id": "3i",
+              "stimme": "leon",
+              "text": "Üb das jetzt im Stand, ohne Schritte. Fünfmal: heben, Ellbogen fassen, schneiden.",
+              "h": "4cb62e15de",
+              "sek": 11.1
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "3j",
+              "stimme": "leon",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Zwei Mal Omote, zwei Mal Ura, je Seite.",
+              "h": "46bd1a85ad",
+              "sek": 11.13
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 923.78
+        },
+        {
+          "titel": "Schicht 4 · Omote langsam",
+          "karten": [
+            "Video: Trnava Nr. 3, erste Wiederholung (0–9 s), halbe Geschwindigkeit.",
+            "Achte auf Toris Schritte nach vorn: Er geht durch Uke hindurch.",
+            "Dann selber mitgehen."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 3,
+            "a": 0,
+            "b": 9,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "3k",
+              "stimme": "laura",
+              "text": "Schicht vier: der ganze Ablauf, langsam. Zuerst Omote. <break time=\"1.0s\" /> Das Video läuft in halber Geschwindigkeit. Achte auf Toris Schritte: Er geht nach vorn, durch Uke hindurch, bis Uke liegt.",
+              "h": "301ef88ae5",
+              "sek": 16.99
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "3l",
+              "stimme": "leon",
+              "text": "Jetzt geh selber mit, so langsam wie im Video. Drei Durchgänge je Seite.",
+              "h": "61995f5c20",
+              "sek": 7.78
+            },
+            {
+              "pause": 50
+            }
+          ],
+          "ab": 1098.57
+        },
+        {
+          "titel": "Schicht 4 · Ura langsam",
+          "karten": [
+            "Video: Trnava Nr. 4, erste Wiederholung (0–9 s), halbe Geschwindigkeit.",
+            "Achte auf die Drehung: Tori bleibt in der Mitte, Uke kreist.",
+            "Dann selber mitgehen."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 4,
+            "a": 0,
+            "b": 9,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "3m",
+              "stimme": "laura",
+              "text": "Jetzt Ura. Achte auf die Drehung: Tori bleibt in der Mitte, und Uke kreist um ihn herum nach unten.",
+              "h": "d82a369c04",
+              "sek": 8.36
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "3n",
+              "stimme": "leon",
+              "text": "Geh selber mit, so langsam wie im Video. Drei Durchgänge je Seite.",
+              "h": "9645ebca8d",
+              "sek": 8.44
+            },
+            {
+              "pause": 50
+            }
+          ],
+          "ab": 1200.96
+        },
+        {
+          "titel": "Schicht 5 · Als Uke",
+          "karten": [
+            "Fass fest, aber ohne Krampf.",
+            "Wenn Tori hebt: Arm lang lassen, mitgehen.",
+            "Wenn Tori schneidet: nach vorn auf die Knie, dann flach auf den Bauch.",
+            "Am Boden: Arm lang, Kopf zur Seite, abklopfen, wenn es zu viel wird."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Katatetori Aihanmi"
+          },
+          "ton": [
+            {
+              "id": "3o",
+              "stimme": "laura",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Du fasst Toris Handgelenk fest, aber ohne Krampf, so dass du spürst, wohin er geht. <break time=\"1.0s\" /> Wenn er hebt, lass deinen Arm lang und geh mit. Wenn er schneidet, gehst du nach vorn auf die Knie und legst dich flach auf den Bauch, wie im Aufwärmen. <break time=\"1.0s\" /> Am Boden bleibt dein Arm lang und der Kopf zur Seite gedreht. Wird es zu viel, klopf mit der freien Hand ab.",
+              "h": "fbcd78697b",
+              "sek": 36.23
+            },
+            {
+              "id": "3p",
+              "stimme": "leon",
+              "text": "Üb das allein: fassen, mitgehen, auf die Knie, ablegen. Dreimal je Seite.",
+              "h": "7b912b0b00",
+              "sek": 12.54
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 1295.38
+        },
+        {
+          "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
+          "karten": [
+            "Fehler 1: die gefasste Hand mit dem Arm hochstemmen. → Mit dem Körper heben, Gewicht nach vorn.",
+            "Fehler 2: Ukes Ellbogen vergessen. → Ohne Ellbogen keine Kontrolle.",
+            "Fehler 3: bei Ura auf der Stelle drehen. → Erst neben Uke eintreten, dann drehen."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "ton": [
+            {
+              "id": "3q",
+              "stimme": "laura",
+              "text": "Schicht sechs: drei Fehler, die fast alle am Anfang machen. <break time=\"1.0s\" /> Erstens: die gefasste Hand mit dem Arm hochstemmen. Gegen Ukes Griff gewinnst du so nicht. Korrektur: mit dem Körper heben, dein Gewicht geht nach vorn. <break time=\"1.5s\" /> Zweitens: Ukes Ellbogen vergessen. Dann dreht er sich heraus. Korrektur: deine zweite Hand ist am Ellbogen, bevor du schneidest. <break time=\"1.5s\" /> Drittens: bei Ura auf der Stelle drehen. Dann steht Uke vor dir statt neben dir. Korrektur: erst neben Uke eintreten, dann drehen.",
+              "h": "c63e921ea7",
+              "sek": 50.13
+            },
+            {
+              "id": "3r",
+              "stimme": "leon",
+              "text": "Mach zum Schluss je einmal Omote und Ura pro Seite und prüf bei jedem einen Fehler.",
+              "h": "6abb9ea47d",
+              "sek": 8.49
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1391.63
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Vorgriff: Shihonage",
+      "von": "23:00",
+      "bis": "26:00",
+      "stationen": [
+        {
+          "titel": "Morgen: Shihonage",
+          "karten": [
+            "Neuer Angriff: Katatetori Gyakuhanmi, Uke fasst gerade gegenüber.",
+            "Shihonage = Wurf in vier Richtungen.",
+            "Du gehst unter dem eigenen Arm durch wie unter einem Tor.",
+            "Nur ansehen, nicht üben."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "bild2": {
+            "art": "ikeda",
+            "key": "Katatetori Gyakuhanmi"
+          },
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Morgen fasst Uke gerade gegenüber: Katate-Tori Gjaku-Hanmi, seine linke Hand an dein rechtes Handgelenk. <break time=\"1.0s\" /> Die Technik heisst Schiho-Nage, der Wurf in vier Richtungen. Du hebst Ukes Arm, gehst darunter durch wie unter einem Tor, und wenn du dich umdrehst, faltet sich sein Arm hinter seine Schulter. Uke fällt nach hinten. <break time=\"1.5s\" /> Heute nur ansehen. Schau dir die Zeichnungen an.",
+              "h": "2643ecd931",
+              "sek": 36.8
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 1482.75
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "26:00",
+      "bis": "30:00",
+      "stationen": [
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Schultern: Arm vor der Brust zur Seite ziehen.",
+            "Brust öffnen: Hände hinter dem Rücken verschränken.",
+            "Knie: im Fersensitz ruhig atmen."
+          ],
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Abschluss. Wir dehnen, was heute gearbeitet hat. <break time=\"1.0s\" /> Den rechten Arm vor die Brust und sanft zur Seite ziehen. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Hände hinter dem Rücken verschränken und die Brust öffnen. <break time=\"8s\" /> Und lösen.",
+              "h": "e75fddd5d2",
+              "sek": 49.06
+            },
+            {
+              "pause": 5
+            },
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Setz dich in den Fersensitz, Seiza. Atme ruhig, zehn Atemzüge lang. Wenn die Knie es nicht mögen, setz dich im Schneidersitz.",
+              "h": "739dc5f170",
+              "sek": 12.72
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1581.51
+        },
+        {
+          "titel": "Ansage und Notiz",
+          "karten": [
+            "Zwei Ansagen wie in der Prüfung: Omote, dann Ura.",
+            "Zeig jede Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
+          "ansage": 3,
+          "notiz": "Meine Frage zu Ikkyo",
+          "ton": [
+            {
+              "id": "5c",
+              "stimme": "leon",
+              "text": "Jetzt wie in der Prüfung. Du hörst zwei Ansagen. Zeig jede Technik einmal ganz, ohne Hilfe.",
+              "h": "b71001a418",
+              "sek": 11.96
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "pause": 25
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "5d",
+              "stimme": "laura",
+              "text": "Gut. <break time=\"1.0s\" /> Schreib zum Schluss eine Frage auf, die du im Training stellen willst. <break time=\"1.5s\" /> Morgen wiederholen wir Ikkjo kurz aus dem Gedächtnis. Danke fürs Mitüben.",
+              "h": "46560ed064",
+              "sek": 14.15
+            }
+          ],
+          "ab": 1690.76
+        }
+      ]
+    }
+  ],
+  "tonSek": 1777.87
+}
