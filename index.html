@@ -1987,16 +1987,22 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
 function bildVoll(src, cap){
   const alt=document.querySelector('.bild-voll'); if(alt) alt.remove();
   const ov=document.createElement('div'); ov.className='bild-voll'; ov.setAttribute('role','dialog');
-  ov.innerHTML=`<button class="bv-x" aria-label="Schliessen">×</button>${cap?`<div class="bv-cap">${cap}</div>`:''}`;
-  const schliessen=()=>{ ov.remove(); document.documentElement.classList.remove('bild-voll-on'); document.removeEventListener('keydown',esc); };
+  ov.innerHTML=`<button class="bv-x" aria-label="Schliessen">×</button>${cap?`<div class="bv-cap">${cap.split(' · ').map((t,k,l)=>`<span style="white-space:nowrap">${t}${k<l.length-1?' ·':''}</span>`).join(' ')}</div>`:''}`;
+  let lage='', zeit=0;
+  const schliessen=()=>{ ov.remove(); document.documentElement.classList.remove('bild-voll-on'); document.removeEventListener('keydown',esc); removeEventListener('resize',neuAusrichten); };
   const esc=e=>{ if(e.key==='Escape') schliessen(); };
   ov.querySelector('.bv-x').onclick=schliessen;
   ov.onclick=e=>{ if(e.target===ov) schliessen(); };
   document.addEventListener('keydown',esc);
   const im=new Image(); im.alt=cap||'';
-  im.onload=()=>{
+  /* Bei jeder Drehung neu ausrichten: hochkant wird ein Streifen gedreht (links→rechts wird oben→unten, zum Scrollen),
+     quer liegt er ganz auf dem Bildschirm, wie gezeichnet. */
+  const ausrichten=()=>{
     const hoch=innerHeight>innerWidth, streifen=im.naturalWidth>1.8*im.naturalHeight;
-    if(hoch&&streifen){   // Streifen gedreht: links→rechts wird oben→unten, Figuren dreimal so gross wie im Fliesstext
+    const neu=(hoch&&streifen)?'gedreht':'ganz'; if(neu===lage) return; lage=neu;
+    ov.querySelectorAll('img,canvas').forEach(el=>el.remove());
+    ov.classList.remove('quer','gross'); im.style.width=''; ov.scrollTop=0; ov.scrollLeft=0;
+    if(neu==='gedreht'){
       const c=document.createElement('canvas'); c.width=im.naturalHeight; c.height=im.naturalWidth;
       const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height);
       x.translate(c.width,0); x.rotate(Math.PI/2); x.drawImage(im,0,0);
@@ -2008,6 +2014,8 @@ function bildVoll(src, cap){
       ov.appendChild(im);
     }
   };
+  const neuAusrichten=()=>{ clearTimeout(zeit); zeit=setTimeout(ausrichten,120); };
+  im.onload=()=>{ ausrichten(); addEventListener('resize',neuAusrichten); };
   im.src=src;
   document.body.appendChild(ov); document.documentElement.classList.add('bild-voll-on');
 }
