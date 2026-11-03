@@ -169,7 +169,21 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-foto.ablauf{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;text-align:center;}
 .dt-foto.ablauf img{display:inline-block;width:auto;max-width:none;height:150px;}
 .dt-hint{text-align:center;margin-top:6px;font-size:.72rem;color:var(--muted);}
-@media (min-width:600px){.dt-hint{display:none;}}
+.dt-hint .breit{display:none;}
+@media (min-width:600px){.dt-hint .schmal{display:none;}.dt-hint .breit{display:inline;}}
+.dt-foto img{cursor:zoom-in;}
+/* Vollbild für Bilder: dunkle Fläche, Bild angepasst; Antippen wechselt auf doppelte Grösse (scrollbar).
+   Ein breiter Ablauf-Streifen wird im Hochformat um 90° gedreht als Leinwand gezeigt – man liest ihn von oben nach unten. */
+.bild-voll{position:fixed;inset:0;z-index:1100;background:#000;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:center;justify-content:center;}
+.bild-voll img,.bild-voll canvas{display:block;max-width:100%;max-height:100%;object-fit:contain;background:#fff;cursor:zoom-out;}
+.bild-voll.gross{display:block;}
+.bild-voll.gross img{max-width:none;max-height:none;height:auto;cursor:zoom-out;}
+.bild-voll.quer{display:block;}
+.bild-voll.quer canvas{max-height:none;width:100%;height:auto;cursor:default;}
+.bild-voll .bv-x{position:fixed;top:calc(10px + env(safe-area-inset-top));right:calc(10px + env(safe-area-inset-right));z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1.2rem;line-height:40px;text-align:center;padding:0;cursor:pointer;}
+.bild-voll .bv-cap{position:fixed;left:0;right:0;bottom:0;padding:28px 16px calc(10px + env(safe-area-inset-bottom));text-align:center;color:#ddd;font-size:.78rem;text-wrap:balance;background:linear-gradient(transparent,rgba(0,0,0,.85));pointer-events:none;}
+.bild-voll.quer canvas{margin-bottom:80px;}
+.bild-voll-on nav.tabs{visibility:hidden;}
 .dt-vids{display:flex;flex-direction:column;gap:8px;}
 .dt-vid{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);text-decoration:none;font-size:.9rem;line-height:1.35;}
 .dt-vid b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
@@ -449,7 +463,9 @@ function ikedaHTML(key,titel){
   const keys = IKEDABILD[key] ? [key] : [key+' Omote',key+' Ura'].filter(k=>IKEDABILD[k]);
   if(!keys.length) return '';
   const bilder=keys.map(k=>{ const b=IKEDABILD[k]; return `<div class="dt-foto strich${b.hoch?' hoch':' ablauf'}"><img src="bilder/${b.f}" alt="${k}" loading="lazy">${keys.length>1?`<small>${k.split(' ').pop()}</small>`:''}</div>`; }).join('');
-  const hinweis = IKEDABILD[key]&&!IKEDABILD[key].hoch ? '<div class="dt-hint">Schmaler Bildschirm: seitlich wischen.</div>' : '';
+  const hinweis = IKEDABILD[key]&&!IKEDABILD[key].hoch
+    ? '<div class="dt-hint"><span class="schmal">Seitlich wischen oder antippen für Vollbild.</span><span class="breit">Antippen für Vollbild.</span></div>'
+    : '<div class="dt-hint">Antippen für Vollbild.</div>';
   return `<div class="dt-sec"><h4>${titel}</h4>${bilder}${hinweis}<div class="dt-quelle">${IKEDA_QUELLE}</div></div>`;
 }
 
@@ -1703,6 +1719,40 @@ function render(){
 document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
   b.classList.add('active'); mode=b.dataset.mode; render();
+});
+/* ---------- Vollbild für Zeichnungen und Dojo-Bilder ---------- */
+function bildVoll(src, cap){
+  const alt=document.querySelector('.bild-voll'); if(alt) alt.remove();
+  const ov=document.createElement('div'); ov.className='bild-voll'; ov.setAttribute('role','dialog');
+  ov.innerHTML=`<button class="bv-x" aria-label="Schliessen">×</button>${cap?`<div class="bv-cap">${cap}</div>`:''}`;
+  const schliessen=()=>{ ov.remove(); document.documentElement.classList.remove('bild-voll-on'); document.removeEventListener('keydown',esc); };
+  const esc=e=>{ if(e.key==='Escape') schliessen(); };
+  ov.querySelector('.bv-x').onclick=schliessen;
+  ov.onclick=e=>{ if(e.target===ov) schliessen(); };
+  document.addEventListener('keydown',esc);
+  const im=new Image(); im.alt=cap||'';
+  im.onload=()=>{
+    const hoch=innerHeight>innerWidth, streifen=im.naturalWidth>1.8*im.naturalHeight;
+    if(hoch&&streifen){   // Streifen gedreht: links→rechts wird oben→unten, Figuren dreimal so gross wie im Fliesstext
+      const c=document.createElement('canvas'); c.width=im.naturalHeight; c.height=im.naturalWidth;
+      const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height);
+      x.translate(c.width,0); x.rotate(Math.PI/2); x.drawImage(im,0,0);
+      ov.classList.add('quer'); ov.appendChild(c);
+    } else {
+      im.onclick=e=>{ e.stopPropagation();
+        if(ov.classList.toggle('gross')){ im.style.width=Math.min(innerWidth*2, Math.max(innerWidth, im.naturalWidth*2))+'px'; ov.scrollLeft=(ov.scrollWidth-ov.clientWidth)/2; ov.scrollTop=(ov.scrollHeight-ov.clientHeight)/2; }
+        else im.style.width=''; };
+      ov.appendChild(im);
+    }
+  };
+  im.src=src;
+  document.body.appendChild(ov); document.documentElement.classList.add('bild-voll-on');
+}
+document.getElementById('detail').addEventListener('click',e=>{
+  const img=e.target.closest('.dt-foto img'); if(!img) return;
+  const sec=img.closest('.dt-sec'); const h=sec&&sec.querySelector('h4'); const q=sec&&sec.querySelector('.dt-quelle');
+  const sub=img.parentElement.querySelector('small');
+  bildVoll(img.src, [h&&h.textContent, sub&&sub.textContent, q&&q.textContent.replace(/^Quelle: /,'')].filter(Boolean).join(' · '));
 });
 const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.querySelector('.app').classList.toggle('menuopen');
 (async function init(){
