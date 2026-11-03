@@ -299,6 +299,55 @@ nav.tabs button.active .ic{opacity:1;}
 .yt-ctl small{color:var(--muted);font-size:.74rem;}
 .fade{animation:fade .35s ease both;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+/* ---------- Woche und Lektion ---------- */
+body{text-wrap:pretty;}
+.wo-head{margin:6px 2px 14px;}
+.wo-head h2{font-size:1.25rem;font-weight:600;margin:0;text-wrap:balance;}
+.wo-head p{font-size:.86rem;color:var(--muted);margin:4px 0 0;}
+.wo-tag{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:9px;color:var(--text);font-family:inherit;cursor:pointer;}
+.wo-tag:disabled{cursor:default;background:none;opacity:.55;}
+.wo-tag .wo-n{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.9rem;color:var(--muted);}
+.wo-tag.aktiv .wo-n{border-color:var(--accent);color:var(--accent);}
+.wo-tag.fertig .wo-n{background:var(--good);border-color:var(--good);color:#10141a;}
+.wo-tag .wo-mid{flex:1;min-width:0;}
+.wo-tag b{display:block;font-size:.98rem;font-weight:600;text-wrap:balance;}
+.wo-tag small{display:block;font-size:.76rem;color:var(--muted);margin-top:2px;text-wrap:balance;}
+.wo-tag .wo-st{flex:none;font-size:.74rem;color:var(--accent);font-weight:600;}
+.le-uhr{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:6px 0 4px;font-variant-numeric:tabular-nums;}
+.le-uhr b{font-size:2.6rem;font-weight:600;line-height:1;color:var(--text);}
+.le-uhr span{font-size:.95rem;color:var(--muted);}
+.le-bahn{position:relative;display:flex;gap:3px;height:6px;margin:8px 0 2px;}
+.le-bahn i{display:block;height:100%;border-radius:99px;background:var(--surface2);position:relative;overflow:hidden;}
+.le-bahn i u{position:absolute;left:0;top:0;bottom:0;background:var(--accent);text-decoration:none;}
+.le-teil{text-align:center;margin-top:16px;}
+.le-teil .dt-seal{margin-bottom:4px;}
+.le-teil h2{font-size:1.45rem;font-weight:600;line-height:1.2;margin:0;text-wrap:balance;}
+.le-teil h3{font-size:1rem;font-weight:500;color:var(--accent);margin:6px 0 0;text-wrap:balance;}
+.le-status{text-align:center;font-size:.86rem;color:var(--muted);min-height:1.4em;margin-top:10px;font-variant-numeric:tabular-nums;text-wrap:balance;}
+.le-status.ueben{color:var(--good);font-weight:600;}
+.le-ctl{display:flex;gap:10px;margin:14px 0 4px;}
+.le-ctl button{border-radius:14px;padding:14px 10px;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:none;color:var(--text);}
+.le-ctl .le-play{flex:1;background:var(--accent);border-color:var(--accent);color:#10141a;}
+.le-ctl .le-klein{flex:none;color:var(--muted);}
+.le-karten{list-style:none;margin:18px 0 0;padding:0;}
+.le-karten li{text-wrap:balance;padding:10px 14px;margin-bottom:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:.95rem;line-height:1.45;}
+.le-guide{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;}
+.le-guide figure{margin:0;flex:1 1 90px;max-width:130px;text-align:center;}
+.le-guide svg{width:100%;height:auto;display:block;}
+.le-guide figcaption{font-size:.72rem;color:var(--muted);line-height:1.3;margin-top:4px;text-wrap:balance;}
+.le-video video{display:block;width:100%;border-radius:12px;background:#000;}
+.le-video .dt-hint{text-wrap:balance;}
+.le-notiz textarea{width:100%;min-height:84px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--text);font-family:inherit;font-size:.95rem;padding:10px 12px;resize:vertical;}
+.le-ansage{width:100%;margin-top:10px;background:none;border:1px solid var(--accent);color:var(--accent);border-radius:14px;padding:12px;font-family:inherit;font-size:.92rem;font-weight:600;cursor:pointer;}
+.le-plan{list-style:none;margin:0;padding:0;}
+.le-plan li{display:flex;gap:12px;align-items:baseline;padding:8px 2px;border-bottom:1px solid var(--line);font-size:.88rem;cursor:pointer;}
+.le-plan li:last-child{border-bottom:none;}
+.le-plan li span{flex:none;width:3.2em;color:var(--muted);font-variant-numeric:tabular-nums;}
+.le-plan li em{font-style:normal;flex:1;text-wrap:balance;}
+.le-plan li.jetzt{color:var(--accent);font-weight:600;}
+.le-plan li.vorbei{color:var(--muted);}
+.le-ende{text-align:center;margin:24px 0 8px;}
+.le-ende b{display:block;font-size:1.3rem;text-wrap:balance;}
 </style>
 </head>
 <body>
@@ -325,6 +374,7 @@ nav.tabs button.active .ic{opacity:1;}
     <button data-mode="build"><span class="ic">⛩</span>Namen</button>
     <button data-mode="today"><span class="ic">稽</span>Üben</button>
     <button data-mode="browse"><span class="ic">≣</span>Liste</button>
+    <button data-mode="woche"><span class="ic">週</span>Woche</button>
   </nav>
 </div>
 <div id="detail" class="detail" aria-hidden="true"></div>
@@ -1707,6 +1757,176 @@ function renderToday(){
   const exa=document.getElementById('ex-all'); if(exa) exa.onclick=()=>{ activeCat='pruefung'; renderChips(); mode='browse'; document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.mode==='browse')); render(); updateStats(); };
 }
 
+/* ---------- Woche: sieben Tage, je eine Lektion (lektionen/KONZEPT.md) ---------- */
+const WOCHE=[
+  {tag:1,a:'Shomenuchi Kiawase',t:'Iriminage',nr:'1',aktiv:true},
+  {tag:2,a:'Shomenuchi Kiawase',t:'Kotegaeshi',nr:'2'},
+  {tag:3,a:'Katatetori Aihanmi',t:'Ikkyo Omote und Ura',nr:'3, 4'},
+  {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6'},
+  {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7'},
+  {tag:6,a:'Ryotetori',t:'Genkeikokyunage',nr:'8'},
+  {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8'}
+];
+let woStand={};             // {tag:{st:Stationsindex, sek:Uhr, fertig:bool, notiz:''}}
+const nbsp=s=>String(s).replace(/(\d)\s(?=\S)/g,'$1 ').replace(/\b(je|Nr\.|Tag|Teil|Schicht) (?=\d)/g,'$1 ');
+const mmss=s=>{ s=Math.max(0,Math.round(s)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); };
+const zuSek=t=>{ const [m,s]=t.split(':'); return (+m)*60+(+s); };
+async function woLaden(){ woStand=(await Store.get('aikido_woche'))||{}; }
+function woSpeichern(){ Store.set('aikido_woche',woStand); }
+
+function renderWoche(){
+  const fertig=WOCHE.filter(w=>woStand[w.tag]&&woStand[w.tag].fertig).length;
+  view.innerHTML=`<div class="wo-head fade"><h2>Eine Woche durch den 6.&nbsp;Kyu</h2>
+    <p>Jeden Tag eine Lektion, bis 30&nbsp;Minuten.<br>Ton an, Bildschirm weg, mitbewegen.${fertig?`<br>${fertig}&nbsp;von&nbsp;7 erledigt.`:''}</p></div>
+    ${WOCHE.map(w=>{ const s=woStand[w.tag]||{};
+      const st= s.fertig?'✓': s.sek?mmss(s.sek):'';
+      return `<button class="wo-tag${w.aktiv?' aktiv':''}${s.fertig?' fertig':''}" data-tag="${w.tag}" ${w.aktiv?'':'disabled'}>
+        <span class="wo-n">${w.tag}</span>
+        <span class="wo-mid"><b>${w.t}</b><small>${w.aktiv?`${w.a} · Prüfung Nr.&nbsp;${w.nr}`:'folgt nach der Rückschau von Tag&nbsp;1'}</small></span>
+        ${st?`<span class="wo-st">${st}</span>`:''}</button>`; }).join('')}
+    <div class="prog-note">Inhalte nach dem ACSA-Prüfungsprogramm von M.&nbsp;Ikeda.<br>Zeichnungen: Ikeda-Dojo Zürich. Kärtchen: Eric&nbsp;Graf.<br>Video: Aikido Dojo&nbsp;Trnava.</div>`;
+  view.querySelectorAll('.wo-tag:not([disabled])').forEach(b=>b.onclick=()=>openLektion(+b.dataset.tag));
+}
+
+/* ---- Lektion ---- */
+let LE=null;   // {skript, tag, stationen:[{teil,st,von}], i, sek, laeuft, schritt, token, timer, uhr, audio}
+async function openLektion(tag){
+  let skript;
+  try{ skript=await (await fetch(`lektionen/tag-${tag}.json`)).json(); }catch(e){ alert('Lektion konnte nicht geladen werden.'); return; }
+  const stationen=[];
+  skript.teile.forEach(teil=>{ const n=teil.stationen.length, a=zuSek(teil.von), b=zuSek(teil.bis);
+    teil.stationen.forEach((st,k)=>stationen.push({teil,st,von:a+Math.round((b-a)*k/n)})); });
+  const s=woStand[tag]||{};
+  LE={skript,tag,stationen,i:Math.min(s.st||0,stationen.length-1),sek:s.sek||0,laeuft:false,schritt:0,token:0,timer:null,uhr:null,audio:null,ende:!!s.fertig};
+  zeichneLektion();
+}
+function leSichern(){ if(!LE) return; const s=woStand[LE.tag]=woStand[LE.tag]||{}; s.st=LE.i; s.sek=Math.round(LE.sek); woSpeichern(); }
+function leStop(){
+  if(!LE) return; LE.token++; LE.laeuft=false;
+  clearTimeout(LE.timer); clearInterval(LE.uhr); LE.timer=null; LE.uhr=null;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  if(LE.audio){ LE.audio.pause(); }
+  if(_audio){ _audio.onended=null; try{_audio.pause();}catch(e){} }
+}
+function leSchliessen(){ leStop(); leSichern(); LE=null; closeDetail(); if(mode==='woche') renderWoche(); }
+
+function bildHTML(b){
+  if(!b) return '';
+  if(b.art==='ikeda') return ikedaHTML(b.key, b.key==='Shomenuchi Kiawase'?'Der Angriff (Ikeda)':'Der Ablauf (Ikeda)');
+  if(b.art==='graf'){ const d=DOJOBILD[b.key]; return d?`<div class="dt-sec"><h4>Kärtchen</h4><div class="dt-foto${d.hoch?' hoch':''}"><img src="bilder/${d.f}" alt="${b.key}" loading="lazy"></div><div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div></div>`:''; }
+  if(b.art==='guide'){ const g=GUIDE[b.key]; if(!g) return '';
+    const bl= g.phases ? g.phases.map((p,k)=>`<figure>${p.img}<figcaption>${k+1}. ${p.cap}</figcaption></figure>`).join('')
+            : g.diagram ? `<figure style="max-width:190px">${g.diagram.img}<figcaption>${g.diagram.cap}</figcaption></figure>` : '';
+    return `<div class="dt-sec"><h4>Skizze · ${b.key}</h4><div class="le-guide">${bl}</div><div class="dt-legend"><span><i style="background:${C_TORI}"></i>du (Tori)</span><span><i style="background:${C_UKE}"></i>Partner (Uke)</span></div></div>`; }
+  if(b.art==='video'){ const e=EXAM.find(x=>x.n===b.nr); if(!e) return '';
+    return `<div class="dt-sec le-video"><h4>Video Nr.&nbsp;${e.n} · ${e.t} · ${String(b.rate).replace('.',',')}×</h4>
+      <video src="videos/nr-${e.n}.mp4" poster="videos/nr-${e.n}.jpg" muted playsinline webkit-playsinline preload="metadata" data-a="${b.a}" data-b="${b.b}" data-rate="${b.rate}"></video>
+      <div class="dt-hint">Abschnitt ${mmss(b.a)}–${mmss(b.b)}, in Schleife. Antippen: Pause.</div><div class="dt-quelle">Quelle: Aikido Dojo Trnava · Auswahl der Meisterin</div></div>`; }
+  return '';
+}
+function leVideos(root){
+  root.querySelectorAll('.le-video video').forEach(v=>{
+    const a=+v.dataset.a, b=+v.dataset.b, r=+v.dataset.rate;
+    const rate=()=>{ try{ v.defaultPlaybackRate=r; v.playbackRate=r; }catch(e){} };
+    v.addEventListener('loadedmetadata',()=>{ v.currentTime=a; rate(); });
+    v.addEventListener('playing',rate);
+    v.addEventListener('timeupdate',()=>{ if(v.currentTime>=b-0.05) { v.currentTime=a; } });
+    v.addEventListener('ended',()=>{ v.currentTime=a; v.play().catch(()=>{}); });
+    v.onclick=()=>{ v.paused? v.play().catch(()=>{}) : v.pause(); };
+    rate(); v.play().catch(()=>{});
+  });
+}
+function zeichneLektion(){
+  const d=document.getElementById('detail'); const {skript,stationen,i}=LE; const x=stationen[i];
+  const total=skript.minuten*60, ende=LE.ende;
+  const bahn=skript.teile.map(t=>{ const a=zuSek(t.von), b=zuSek(t.bis); const p=Math.max(0,Math.min(1,(LE.sek-a)/(b-a)));
+    return `<i style="flex:${b-a}"><u style="width:${p*100}%"></u></i>`; }).join('');
+  const stInTeil=x.teil.stationen.indexOf(x.st);
+  let h=`<button class="dt-back" id="le-back">← Woche</button>
+    <div class="dt-seal" style="text-align:center">Tag&nbsp;${skript.tag} · ${skript.angriff} · ${skript.titel}</div>
+    <div class="le-uhr"><b id="le-uhr">${mmss(LE.sek)}</b><span>von ${mmss(total)}</span></div>
+    <div class="le-bahn">${bahn}</div>`;
+  if(ende){
+    h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">Morgen wiederholt Tag&nbsp;2 Iriminage kurz aus dem Gedächtnis.</p></div>
+      <div class="le-ctl"><button class="le-play" id="le-zu">Zur Woche</button><button class="le-klein" id="le-neu">Neu beginnen</button></div>`;
+  } else {
+    h+=`<div class="le-teil"><div class="dt-seal">Teil&nbsp;${x.teil.nr} von ${skript.teile.length} · ${x.teil.von}–${x.teil.bis}</div>
+        <h2>${nbsp(x.teil.titel)}</h2>${x.teil.stationen.length>1||x.st.titel!==x.teil.titel?`<h3>${nbsp(x.st.titel)}</h3>`:''}</div>
+      <div class="le-status" id="le-status">${LE.laeuft?'':'Ton starten und mitbewegen.'}</div>
+      <div class="le-ctl">
+        <button class="le-klein" id="le-zur" aria-label="Station von vorn">↺</button>
+        <button class="le-play" id="le-play">${LE.laeuft?'❚❚ Pause':(LE.sek>0?'▶︎ Fortsetzen':'▶︎ Starten')}</button>
+        <button class="le-klein" id="le-weiter">weiter →</button>
+      </div>
+      <ul class="le-karten">${x.st.karten.map(k=>`<li>${nbsp(k)}</li>`).join('')}</ul>
+      ${x.st.ansage?`<button class="le-ansage" id="le-ansage">▶︎ Ansage hören: Nr.&nbsp;${skript.nr}</button>`:''}
+      ${x.st.notiz?`<div class="dt-sec le-notiz"><h4>${x.st.notiz}</h4><textarea id="le-notiz" placeholder="Eine Frage fürs Training …">${(woStand[LE.tag]||{}).notiz||''}</textarea></div>`:''}
+      ${bildHTML(x.st.bild)}${bildHTML(x.st.bild2)}
+      ${x.teil.hinweis?`<div class="prog-note">${x.teil.hinweis}</div>`:''}`;
+  }
+  h+=`<div class="dt-sec"><h4>Ablauf</h4><ul class="le-plan">${stationen.map((s,k)=>`<li data-k="${k}" class="${!ende&&k===i?'jetzt':k<i||ende?'vorbei':''}"><span>${mmss(s.von)}</span><em>${nbsp(s.st.titel)}</em></li>`).join('')}</ul></div>`;
+  d.innerHTML=h; if(!d.classList.contains('open')){ d.classList.add('open'); d.setAttribute('aria-hidden','false'); d.scrollTop=0; }
+  d.querySelector('#le-back').onclick=leSchliessen;
+  const q=id=>d.querySelector('#'+id);
+  if(q('le-zu')) q('le-zu').onclick=leSchliessen;
+  if(q('le-neu')) q('le-neu').onclick=()=>{ LE.ende=false; LE.i=0; LE.sek=0; const s=woStand[LE.tag]||{}; s.fertig=false; woStand[LE.tag]=s; leSichern(); zeichneLektion(); };
+  if(q('le-play')) q('le-play').onclick=()=>{ LE.laeuft? lePause() : leStart(); };
+  if(q('le-weiter')) q('le-weiter').onclick=()=>leGehe(LE.i+1, LE.laeuft);
+  if(q('le-zur')) q('le-zur').onclick=()=>leGehe(LE.i, LE.laeuft);
+  if(q('le-ansage')) q('le-ansage').onclick=()=>speakName(EXAM.find(e=>e.n===skript.nr));
+  if(q('le-notiz')) q('le-notiz').oninput=e=>{ (woStand[LE.tag]=woStand[LE.tag]||{}).notiz=e.target.value; woSpeichern(); };
+  d.querySelectorAll('.le-plan li').forEach(li=>li.onclick=()=>{ LE.ende=false; leGehe(+li.dataset.k, LE.laeuft); d.scrollTop=0; });
+  leVideos(d);
+}
+function leStatus(t,ueben){ const el=document.getElementById('le-status'); if(el){ el.textContent=t; el.classList.toggle('ueben',!!ueben); } }
+function leUhrZeichnen(){ const el=document.getElementById('le-uhr'); if(el) el.textContent=mmss(LE.sek);
+  const b=document.querySelectorAll('.le-bahn u'); LE.skript.teile.forEach((t,k)=>{ const a=zuSek(t.von), z=zuSek(t.bis); if(b[k]) b[k].style.width=Math.max(0,Math.min(1,(LE.sek-a)/(z-a)))*100+'%'; }); }
+function leStart(){
+  if(!LE||LE.laeuft) return; LE.laeuft=true; touchDay();
+  LE.uhr=setInterval(()=>{ LE.sek+=1; leUhrZeichnen(); if(Math.round(LE.sek)%10===0) leSichern(); },1000);
+  const b=document.getElementById('le-play'); if(b) b.textContent='❚❚ Pause';
+  leSpiele(LE.schritt);
+}
+function lePause(){ const s=LE.schritt; leStop(); LE.schritt=s; leSichern(); const b=document.getElementById('le-play'); if(b) b.textContent='▶︎ Fortsetzen'; leStatus('Pausiert. Fortsetzen beginnt beim letzten Satz.'); }
+function leGehe(k, weiterSpielen){
+  leStop(); LE.schritt=0;
+  if(k>=LE.stationen.length){ LE.ende=true; const s=woStand[LE.tag]=woStand[LE.tag]||{}; s.fertig=true; LE.i=LE.stationen.length-1; leSichern(); zeichneLektion(); return; }
+  LE.i=Math.max(0,k);
+  leSichern(); zeichneLektion(); if(weiterSpielen) leStart();
+}
+/* Ein Schritt des Tons: Datei (audio/tag-N-ID.mp3, wenn mit ton-erzeugen.js erzeugt), sonst Browser-Stimme; Pause = stille Übungszeit */
+function leSpiele(n){
+  const tok=LE.token, ton=LE.stationen[LE.i].st.ton;
+  LE.schritt=n;
+  const weiter=()=>{ if(tok!==LE.token) return; leSpiele(n+1); };
+  if(n>=ton.length){ leStatus(''); LE.timer=setTimeout(()=>{ if(tok===LE.token) leGehe(LE.i+1,true); },2000); return; }
+  const t=ton[n];
+  if(t.pause){ let rest=t.pause; leStatus('Üben · '+mmss(rest),true);
+    const tick=()=>{ if(tok!==LE.token) return; rest--; if(rest<=0) return weiter(); leStatus('Üben · '+mmss(rest),true); LE.timer=setTimeout(tick,1000); };
+    LE.timer=setTimeout(tick,1000); return; }
+  if(t.ansage){ leStatus('Ansage …'); speakName(EXAM.find(e=>e.n===LE.skript.nr), weiter); return; }
+  leStatus('Spricht …');
+  if(t.sek){ if(!LE.audio) LE.audio=new Audio();
+    const a=LE.audio; a.onended=weiter; a.onerror=()=>sprichText(t.text,tok,weiter); a.src=`audio/tag-${LE.tag}-${t.id}.mp3`;
+    a.play().catch(()=>sprichText(t.text,tok,weiter)); return; }
+  sprichText(t.text,tok,weiter);
+}
+function deStimme(){ const de=allVoices.filter(v=>(v.lang||'').toLowerCase().startsWith('de'));
+  return de.find(v=>/enhanced|premium|erweitert|neural|natural/i.test(v.name||''))||de.find(v=>/anna|petra|helena|katja/i.test(v.name||''))||de[0]||null; }
+/* Browser-Stimme: Text in Stücke an den <break>-Marken, die Marken werden zu echten Pausen */
+function sprichText(text,tok,done){
+  const teile=[]; text.split(/(<break time="[\d.]+s" \/>)/).forEach(s=>{ const m=s.match(/<break time="([\d.]+)s"/); if(m) teile.push({p:+m[1]}); else if(s.trim()) teile.push({s:s.trim()}); });
+  if(!('speechSynthesis' in window)){ const p=teile.reduce((a,x)=>a+(x.p||x.s.split(' ').length/2.2),0); LE.timer=setTimeout(()=>{ if(tok===LE.token) done(); },p*1000); return; }
+  let k=0;
+  const naechst=()=>{ if(tok!==LE.token) return; if(k>=teile.length) return done(); const x=teile[k++];
+    if(x.p){ LE.timer=setTimeout(naechst,x.p*1000); return; }
+    const u=new SpeechSynthesisUtterance(x.s); u.lang='de-DE'; u.rate=0.92; const v=deStimme(); if(v) u.voice=v;
+    let fertig=false; const f=()=>{ if(fertig) return; fertig=true; naechst(); };
+    u.onend=f; u.onerror=f; speechSynthesis.speak(u); };
+  try{ speechSynthesis.cancel(); }catch(e){}
+  naechst();
+}
+
 /* ---------- Router ---------- */
 function render(){
   view.scrollTop=0; stopTimer(); stopLoop(); document.documentElement.classList.remove('yt-full-on');
@@ -1714,6 +1934,7 @@ function render(){
   else if(mode==='quiz') startQuiz();
   else if(mode==='build') renderNames();
   else if(mode==='today') renderToday();
+  else if(mode==='woche') renderWoche();
   else renderBrowse();
 }
 document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
@@ -1758,6 +1979,7 @@ const _mb=document.getElementById('menubtn'); if(_mb) _mb.onclick=()=>document.q
 (async function init(){
   const sp=await Store.get('aikido_progress'); if(sp) progress=sp;
   const ss=await Store.get('aikido_streak'); if(ss&&ss.best) bestStreak=ss.best;
+  await woLaden();
   const sd=await Store.get('aikido_days'); if(sd){ dayStreak=sd.streak||0; dayLast=sd.last||''; }
   const sl=await Store.get('aikido_log'); if(sl) logData=sl;
   const spush=await Store.get('aikido_push'); if(spush){ if(spush.on) pushOn=true; if(spush.time) remindTime=spush.time; }

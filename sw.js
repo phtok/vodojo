@@ -1,4 +1,4 @@
-const C='dojo-v47';
+const C='dojo-v48';
 const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png',
   'bilder/angriff-shomenuchi-kiawase.png','bilder/angriff-katatetori-aihanmi.png',
   'bilder/angriff-katatetori-gyakuhanmi.png','bilder/angriff-ryotetori.png',
@@ -7,7 +7,8 @@ const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.
   'bilder/angriff-strich-shomenuchi-kiawase.png','bilder/angriff-strich-katatetori-aihanmi.png',
   'bilder/angriff-strich-katatetori-gyakuhanmi.png','bilder/angriff-strich-ryotetori.png',
   'bilder/ablauf-iriminage.png','bilder/ablauf-kotegaeshi.png','bilder/ablauf-ikkyo-omote.png','bilder/ablauf-ikkyo-ura.png',
-  'bilder/ablauf-shihonage-omote.png','bilder/ablauf-shihonage-ura.png','bilder/ablauf-tenchinage.png','bilder/ablauf-genkeikokyunage.png'];
+  'bilder/ablauf-shihonage-omote.png','bilder/ablauf-shihonage-ura.png','bilder/ablauf-tenchinage.png','bilder/ablauf-genkeikokyunage.png',
+  'lektionen/tag-1.json'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{

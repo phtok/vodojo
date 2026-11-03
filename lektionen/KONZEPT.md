@@ -86,4 +86,23 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
 - 3. 11. 2026: Konzept geschrieben. Lektion 1 (Iriminage) ist noch nicht
   gebaut; sie entsteht in einer eigenen Session als Probe, danach Rückschau
   mit dem Inhaber, dann Tage 2 bis 7.
+- 3. 11. 2026: Lektion 1 (Iriminage) als Probe gebaut: Skript
+  `lektionen/tag-1.json` (fünf Teile mit Zeitmarken, der Kern in sechs
+  Schichten; die Überschrift oben sagt «sechs Teile», aufgezählt sind
+  fünf), Reiter «Woche», Lektionsseite mit Uhr, Ton, Bild, Video-Abschnitt,
+  «weiter», Pause und Fortsetzen (Stand in `Store` unter `aikido_woche`).
+  Tag 1 hat keinen Vortag: an der Stelle der Wiederholung steht der
+  Angriff Shomenuchi Kiawase.
+- **Ton:** läuft vorerst über die Browser-Stimme (`speechSynthesis`, deutsch,
+  die `<break>`-Marken werden zu Pausen). Die ElevenLabs-Dateien sind noch
+  nicht erzeugt: Der Key liegt im Schlüsselbund (`elevenlabs`), aber die
+  Sicherheitsprüfung der Cloud-Session hat den Abruf mit Key abgelehnt.
+  Erzeugen: `ELEVENLABS_API_KEY=… node lektionen/ton-erzeugen.js 1`; das
+  Skript schreibt `audio/tag-1-*.mp3` und trägt die Länge (`sek`) ins
+  Skript ein, die App nimmt dann die Datei statt der Browser-Stimme. Die
+  Stimme (`STIMME` im Skript) vorher anhören und festlegen.
+- Recherche: stenudd.com war für automatische Abrufe gesperrt; der Ablauf
+  stützt sich auf Ikeda-Zeichnung, Graf-Kärtchen, Trnava-Video Nr. 1 und
+  die Texte der App.
+- Nächster Schritt: Rückschau des Inhabers zu Lektion 1, dann Tage 2 bis 7.
 - Offen: die Wunschtechnik.
