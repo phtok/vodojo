@@ -1,0 +1,603 @@
+{
+  "tag": 2,
+  "titel": "Kotegaeshi",
+  "angriff": "Shomenuchi Kiawase",
+  "nr": 2,
+  "minuten": 30,
+  "satz": "Ausweichen, herumführen, das Handgelenk nach aussen kehren: Uke folgt der eigenen Hand zu Boden.",
+  "wiederholung": "Iriminage",
+  "vorgriff": "Ikkyo",
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 2: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Ablaufzeichnung Kotegaeshi: Aikido Ikeda Dojo Zürich, Gedankenstütze 6. Kyu (quellen/ikeda-dojo/); drei Bilder: Uke im Bogen herumführen, zweite Drehung (Kreis am Fuss), Uke liegt, Tori hält das Handgelenk",
+    "Kärtchen Kote Gaeshi: Eric Graf, Dojo de Bienne (bilder/technik-kotegaeshi.png)",
+    "Video Nr. 2: Aikido Dojo Trnava, Auswahl der Meisterin (videos/nr-2.mp4, 5,6 s, zwei Wiederholungen: 0–2,9 und 2,9–5,6 s)",
+    "Vorgriff: Ablaufzeichnung Ikkyo Omote (Ikeda) und Video Nr. 3 (Trnava)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, Bild, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Kote-Gaeschi, Irimi-Nage). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}. {\"ansage\": N} spielt die Prüfungsansage von Nr. N."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "5:00",
+      "stationen": [
+        {
+          "titel": "Ankommen",
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Hände ausschütteln."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag zwei. Heute geht es um Kote-Gaeschi, die Handgelenk-Umkehr. Der Angriff ist derselbe wie gestern. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum. <break time=\"1.0s\" /> Atme dreimal tief aus.",
+              "h": "339a4771d4",
+              "sek": 19.89
+            },
+            {
+              "pause": 15
+            },
+            {
+              "id": "1b",
+              "stimme": "leon",
+              "text": "Schüttle die Hände aus, locker aus dem Handgelenk, zehn Sekunden lang.",
+              "h": "7a97c79e95",
+              "sek": 6.71
+            },
+            {
+              "pause": 10
+            }
+          ],
+          "ab": 0
+        },
+        {
+          "titel": "Handgelenke",
+          "karten": [
+            "Kreisen, beide Richtungen.",
+            "Kotegaeshi am eigenen Handgelenk: Daumen auf den Handrücken, Hand nach aussen drehen.",
+            "Nur bis zum Ziehen, nie bis zum Schmerz.",
+            "Warum: Heute wird das Handgelenk gedreht, als Tori und als Uke."
+          ],
+          "ton": [
+            {
+              "id": "1c",
+              "stimme": "laura",
+              "text": "Heute arbeitet das Handgelenk. Als Tori drehst du es, als Uke wird deines gedreht. Darum bereiten wir es gut vor.",
+              "h": "fc52f92922",
+              "sek": 9.43
+            },
+            {
+              "id": "1d",
+              "stimme": "leon",
+              "text": "Falte die Hände und kreise die Handgelenke, zehnmal in jede Richtung.",
+              "h": "97faf3acf2",
+              "sek": 6.69
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "1e",
+              "stimme": "leon",
+              "text": "Jetzt die Umkehr am eigenen Handgelenk. Die linke Hand zeigt mit dem Handrücken zu dir. <break time=\"1.0s\" /> Leg den rechten Daumen auf den linken Handrücken, zwischen die Knöchel von Mittel- und Ringfinger. Die rechten Finger umfassen den Daumenballen. <break time=\"1.5s\" /> Dreh die linke Hand langsam nach aussen, bis es zieht. Halten. <break time=\"2.0s\" /> Nur bis zum Ziehen, nie bis zum Schmerz.",
+              "h": "51d570ee58",
+              "sek": 37.91
+            },
+            {
+              "pause": 15
+            },
+            {
+              "id": "1f",
+              "stimme": "leon",
+              "text": "Andere Seite. Linker Daumen auf den rechten Handrücken, und langsam nach aussen drehen. Halten.",
+              "h": "a9599664e6",
+              "sek": 10.58
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 54.18
+        },
+        {
+          "titel": "Tenkan",
+          "karten": [
+            "Vorderer Fuss bleibt: die Türangel.",
+            "Der hintere schwingt im Bogen herum.",
+            "Heute zweimal hintereinander: das braucht Kotegaeshi."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenkan"
+          },
+          "ton": [
+            {
+              "id": "1g",
+              "stimme": "laura",
+              "text": "Tenkan, die Drehung, kennst du von gestern. Bei Kote-Gaeschi drehst du dich zweimal: einmal, um Uke herumzuführen, und noch einmal, um das Handgelenk zu kehren.",
+              "h": "34099b10e7",
+              "sek": 14.81
+            },
+            {
+              "id": "1h",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Ich zähle, bei jeder Zahl eine Drehung. <break time=\"1.0s\" /> Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"2s\" /> Wechsel: rechter Fuss vorn. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Sechs. <break time=\"3s\" /> Sieben. <break time=\"3s\" /> Acht.",
+              "h": "ab823dab48",
+              "sek": 49.35
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 172.39
+        },
+        {
+          "titel": "Fallen",
+          "karten": [
+            "Uke fällt bei Kotegaeshi über die eigene Hand auf den Rücken.",
+            "Aus der Hocke: seitlich absetzen, rund nach hinten rollen.",
+            "Die gedrehte Hand bleibt locker, der Körper folgt ihr.",
+            "Sechsmal, je drei pro Seite."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "1i",
+              "stimme": "laura",
+              "text": "Bei Kote-Gaeschi fällt Uke über die eigene Hand auf den Rücken. Wer der Hand folgt, fällt weich. Wer sich wehrt, tut sich am Handgelenk weh.",
+              "h": "bb7bc57473",
+              "sek": 12.38
+            },
+            {
+              "id": "1j",
+              "stimme": "leon",
+              "text": "Geh in die Hocke. Streck den linken Arm nach vorn, als würde jemand deine Hand nach aussen drehen. <break time=\"1.0s\" /> Folge der Hand: Setz dich links neben der Ferse ab und rolle rund nach hinten, Kinn an die Brust. <break time=\"1.0s\" /> Ohne Matte: nur absetzen und rund zurückschaukeln. <break time=\"1.0s\" /> Dreimal links, dann dreimal rechts.",
+              "h": "b27b82d094",
+              "sek": 34.71
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 243.86
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Wiederholung: Iriminage",
+      "von": "5:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Aus dem Gedächtnis",
+          "karten": [
+            "Hör die Ansage.",
+            "Erst im Kopf: die fünf Schritte.",
+            "Dann bewegen, drei je Seite.",
+            "Danach die Zeichnung als Kontrolle."
+          ],
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Wiederholung von gestern, nur aus dem Gedächtnis. Schau noch nicht auf den Bildschirm. Gleich hörst du die Ansage.",
+              "h": "9f37606a25",
+              "sek": 8.31
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "id": "2b",
+              "stimme": "leon",
+              "text": "Erst im Kopf. Sag dir die fünf Schritte leise vor. <break time=\"8s\" /> Jetzt bewegen. Drei Durchgänge links, drei rechts, langsam.",
+              "h": "6bfbe0ec75",
+              "sek": 25.35
+            },
+            {
+              "pause": 60
+            },
+            {
+              "id": "2c",
+              "stimme": "laura",
+              "text": "Jetzt schau auf die Zeichnung. Waren es fünf Schritte: treffen, eintreten, drehen, führen, durchtreten? Und ging dein vorderer Fuss tief hinter Uke?",
+              "h": "538c97bb00",
+              "sek": 12.62
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "2d",
+              "stimme": "leon",
+              "text": "Noch zwei Durchgänge je Seite, mit dem, was dir die Zeichnung gezeigt hat.",
+              "h": "792882120e",
+              "sek": 6.82
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Iriminage"
+          },
+          "ab": 338.49
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Kotegaeshi in Schichten",
+      "von": "8:00",
+      "bis": "23:00",
+      "stationen": [
+        {
+          "titel": "Schicht 1 · Das Bild",
+          "karten": [
+            "Kote = Handgelenk, gaeshi = umkehren.",
+            "Drei Bilder bei Ikeda: Uke im Bogen herumführen, zweite Drehung, Uke liegt.",
+            "Gestern bist du eingetreten. Heute weichst du aus und führst."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "bild2": {
+            "art": "graf",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "laura",
+              "text": "Schicht eins: das Bild. <break time=\"1.0s\" /> Kote heisst Handgelenk, Gaeschi heisst umkehren. <break time=\"1.0s\" /> Gestern bist du eingetreten und hinter Uke gegangen. Heute weichst du dem Schlag aus und nimmst ihn mit, wie eine Tür, die aufschwingt. <break time=\"1.5s\" /> Die Zeichnung aus dem Ikeda-Dojo zeigt drei Bilder. <break time=\"0.8s\" /> Erstens: Tori hält Ukes Hand vor dem eigenen Bauch und führt ihn im grossen Bogen herum, der Pfeil am Boden zeigt die Richtung. <break time=\"1.0s\" /> Zweitens: Tori dreht sich ein zweites Mal, der Kreis am Fuss. Ukes Hand wird dabei nach aussen gekehrt. <break time=\"1.0s\" /> Drittens: Uke liegt auf dem Rücken, Tori hält noch das Handgelenk. <break time=\"2.0s\" /> Schau dir die drei Bilder in Ruhe an.",
+              "h": "f32d8180b2",
+              "sek": 61.18
+            },
+            {
+              "pause": 25
+            }
+          ],
+          "ab": 520.39
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse allein",
+          "karten": [
+            "1 · Treffen: kleiner Schritt vor.",
+            "2 · Ausweichen: vorderer Fuss schräg nach aussen, aus der Schlaglinie.",
+            "3 · Drehen: Tenkan, Uke geht im Bogen an dir vorbei.",
+            "4 · Zurück: hinterer Fuss zieht im Kreis nach hinten.",
+            "5 · Stehen: tief und ruhig, Uke fällt vor dir."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "3b",
+              "stimme": "laura",
+              "text": "Schicht zwei: die Füsse allein. Die Hände hängen locker. Linker Fuss vorn, dein Partner steht vor dir.",
+              "h": "f711922a0e",
+              "sek": 10.45
+            },
+            {
+              "id": "3c",
+              "stimme": "leon",
+              "text": "Eins: Treffen. Ein kleiner Schritt nach vorn, Handkante hoch. <break time=\"3s\" /> Zwei: Ausweichen. Dein vorderer Fuss geht schräg nach aussen, aus der Linie des Schlags. <break time=\"3s\" /> Drei: Drehen. Tenkan auf diesem Fuss. Uke geht im Bogen an dir vorbei. <break time=\"3s\" /> Vier: Zurück. Dein hinterer Fuss zieht im Kreis nach hinten, du drehst dich ein zweites Mal. <break time=\"3s\" /> Fünf: Stehen. Tief und ruhig, Uke fällt vor dir. <break time=\"2s\" /> Zurück zum Anfang.",
+              "h": "89a6443ee9",
+              "sek": 68.67
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "stimme": "leon",
+              "text": "Jetzt nur die Zahlen, fünf Durchgänge links. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Allein weiter, drei Durchgänge in deinem Tempo.",
+              "h": "fb8c4dcd3e",
+              "sek": 49.47
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "3e",
+              "stimme": "leon",
+              "text": "Seite wechseln: rechter Fuss vorn. Fünf Durchgänge in deinem Tempo. Sag die Zahlen leise mit.",
+              "h": "f741dfe946",
+              "sek": 13.51
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 608.4
+        },
+        {
+          "titel": "Schicht 3 · Die Hände",
+          "karten": [
+            "Treffhand gleitet an Ukes Arm hinunter bis zum Handgelenk.",
+            "Griff: Daumen auf Ukes Handrücken, Finger um den Daumenballen.",
+            "Ukes Hand bleibt vor deinem Bauch, nie draussen.",
+            "Zweite Hand von oben dazu, dann nach aussen kehren, zu Ukes Schulter hin."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "3f",
+              "stimme": "laura",
+              "text": "Schicht drei: die Hände. <break time=\"1.0s\" /> Die Hand, die den Schlag getroffen hat, gleitet an Ukes Arm hinunter bis zum Handgelenk. <break time=\"1.0s\" /> Der Griff ist derselbe wie vorhin am eigenen Handgelenk: dein Daumen auf seinem Handrücken, die Finger um seinen Daumenballen. <break time=\"1.5s\" /> Während du dich drehst, bleibt seine Hand vor deinem Bauch. Nicht draussen, nicht hoch. Du führst sie mit dem ganzen Körper. <break time=\"1.5s\" /> Bei der zweiten Drehung kommt deine andere Hand von oben dazu, und gemeinsam kehren sie seine Hand nach aussen, zu seiner eigenen Schulter hin.",
+              "h": "8a6a063410",
+              "sek": 48.42
+            },
+            {
+              "id": "3f2",
+              "stimme": "leon",
+              "text": "Üb das jetzt am eigenen Handgelenk, im Stand. Fünfmal: gleiten, greifen, vor den Bauch, zweite Hand, kehren.",
+              "h": "62fa40d2b3",
+              "sek": 16.74
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "3g",
+              "stimme": "leon",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Stell dir Ukes Hand vor deinem Bauch vor. Drei Durchgänge je Seite.",
+              "h": "29857c28db",
+              "sek": 15.73
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 849.62
+        },
+        {
+          "titel": "Schicht 4 · Der ganze Ablauf, langsam",
+          "karten": [
+            "Video: Trnava, Wiederholung 1 (0–3 s), halbe Geschwindigkeit.",
+            "Achte darauf, wo Ukes Hand ist: immer vor Toris Bauch.",
+            "Dann selber mitgehen, gleich langsam."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 2,
+            "a": 0,
+            "b": 2.9,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "3h",
+              "stimme": "laura",
+              "text": "Schicht vier: der ganze Ablauf, langsam. <break time=\"1.0s\" /> Das Video läuft in halber Geschwindigkeit und wiederholt den ersten Durchgang. Er ist sehr kurz, schau ihn mehrmals. <break time=\"1.0s\" /> Achte nur auf eines: wo Ukes Hand ist. Sie bleibt vor Toris Bauch, bis Uke fällt.",
+              "h": "7fadcd2ca3",
+              "sek": 22.69
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "3i",
+              "stimme": "leon",
+              "text": "Jetzt geh selber mit, so langsam wie im Video. Treffen, ausweichen, drehen, zurück, stehen. Fünf Durchgänge je Seite.",
+              "h": "88b0387be2",
+              "sek": 16.61
+            },
+            {
+              "pause": 90
+            }
+          ],
+          "ab": 1018.57
+        },
+        {
+          "titel": "Schicht 5 · Als Uke",
+          "karten": [
+            "Schlag ehrlich zur Stirnmitte.",
+            "Wenn Tori dich herumführt: mitgehen, nicht anhalten.",
+            "Wenn die Hand gekehrt wird: der Hand folgen, seitlich absetzen, rückwärts abrollen.",
+            "Abklopfen, wenn es zu viel wird. Tori lässt sofort nach."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "3j",
+              "stimme": "laura",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, zur Mitte der Stirn. Wenn Tori ausweicht und dich herumführt, geh mit, halte nicht an. <break time=\"1.0s\" /> Wenn deine Hand gekehrt wird, folge ihr. Dein Körper geht dorthin, wo die Hand hinwill, und du fällst seitlich auf den Rücken. <break time=\"1.0s\" /> Wird es zu viel, klopf mit der freien Hand ab. Tori lässt sofort nach. Das gilt immer.",
+              "h": "34adc17515",
+              "sek": 32.99
+            },
+            {
+              "id": "3j2",
+              "stimme": "leon",
+              "text": "Üb das allein: Schlag, zwei Schritte im Bogen vorwärts, die Hand nach aussen kehren lassen, seitlich absetzen und rückwärts abrollen. Dreimal je Seite.",
+              "h": "f0f52941ea",
+              "sek": 16.3
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 1170.43
+        },
+        {
+          "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
+          "karten": [
+            "Fehler 1: am Handgelenk reissen. → Der Körper dreht, die Hände halten nur.",
+            "Fehler 2: Ukes Hand weit weg vom Körper. → Vor dem Bauch halten.",
+            "Fehler 3: zu schnell kehren. → Langsam, damit Uke folgen kann."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "3k",
+              "stimme": "laura",
+              "text": "Schicht sechs: drei Fehler, die fast alle am Anfang machen. <break time=\"1.0s\" /> Erstens: am Handgelenk reissen. Das tut weh und wirft nicht. Korrektur: dein Körper dreht, die Hände halten nur. <break time=\"1.5s\" /> Zweitens: Ukes Hand weit weg vom eigenen Körper. Dann hast du keine Kraft und keine Kontrolle. Korrektur: seine Hand bleibt vor deinem Bauch. <break time=\"1.5s\" /> Drittens: zu schnell kehren. Uke kann nicht folgen, und das Handgelenk leidet. Korrektur: langsam, so dass Uke fallen kann.",
+              "h": "c05abf1feb",
+              "sek": 46.16
+            },
+            {
+              "id": "3k2",
+              "stimme": "leon",
+              "text": "Mach zum Schluss zwei Durchgänge je Seite und prüf bei jedem einen Fehler.",
+              "h": "87ffc51f6f",
+              "sek": 6.95
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1267.2
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Vorgriff: Ikkyo",
+      "von": "23:00",
+      "bis": "26:00",
+      "stationen": [
+        {
+          "titel": "Morgen: Ikkyo",
+          "karten": [
+            "Neuer Angriff: Katatetori Aihanmi, Uke fasst dein Handgelenk über Kreuz.",
+            "Ikkyo = erste Lehre. Omote vorn, Ura hinten herum.",
+            "Nur ansehen, nicht üben."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "bild2": {
+            "art": "video",
+            "nr": 3,
+            "a": 0,
+            "b": 6,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Morgen kommt ein neuer Angriff: Katate-Tori Ai-Hanmi. Uke fasst dein Handgelenk über Kreuz, mit der gleichen Seite. <break time=\"1.0s\" /> Die Technik heisst Ikkjo, die erste Lehre. Du führst Ukes Arm wie ein Schwert nach unten und bringst ihn zu Boden. Omote geht vorn hinein, Ura hinten herum. <break time=\"1.5s\" /> Heute nur ansehen. Schau dir die Zeichnung an und das Video in halber Geschwindigkeit.",
+              "h": "2934bad032",
+              "sek": 40.33
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 1352.86
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "26:00",
+      "bis": "30:00",
+      "stationen": [
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Handgelenke: Finger nach hinten ziehen, je 20 Sekunden.",
+            "Unterarme ausschütteln.",
+            "Schultern rollen, dann tief ausatmen."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Abschluss. Wir dehnen, was heute gearbeitet hat. <break time=\"1.0s\" /> Streck den rechten Arm nach vorn, die Handfläche nach vorn. Zieh mit der linken Hand die Finger sanft zu dir. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Handfläche nach unten, und die Finger sanft zu dir. <break time=\"8s\" /> Andere Seite.",
+              "h": "66b57cbc71",
+              "sek": 53.6
+            },
+            {
+              "pause": 10
+            },
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Schüttle die Unterarme aus. Dann roll die Schultern fünfmal nach hinten und atme tief aus.",
+              "h": "7100efe75e",
+              "sek": 8.8
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 1455.15
+        },
+        {
+          "titel": "Ansage und Notiz",
+          "karten": [
+            "Hör die Ansage wie in der Prüfung.",
+            "Zeig die Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
+          "ansage": 2,
+          "notiz": "Meine Frage zu Kotegaeshi",
+          "ton": [
+            {
+              "id": "5c",
+              "stimme": "leon",
+              "text": "Jetzt wie in der Prüfung. Gleich hörst du die Ansage. Zeig die Technik einmal ganz, ohne Hilfe, auf deiner besseren Seite.",
+              "h": "86f1ef94de",
+              "sek": 11.73
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "5d",
+              "stimme": "laura",
+              "text": "Gut. <break time=\"1.0s\" /> Schreib zum Schluss eine Frage auf, die du im Training stellen willst. <break time=\"1.5s\" /> Morgen wiederholen wir Kote-Gaeschi kurz aus dem Gedächtnis. Danke fürs Mitüben.",
+              "h": "3b1cfed2b8",
+              "sek": 14.64
+            }
+          ],
+          "ab": 1550.05
+        }
+      ]
+    }
+  ],
+  "tonSek": 1609.43
+}

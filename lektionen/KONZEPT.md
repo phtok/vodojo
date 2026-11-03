@@ -114,5 +114,15 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
 - Recherche: stenudd.com war für automatische Abrufe gesperrt; der Ablauf
   stützt sich auf Ikeda-Zeichnung, Graf-Kärtchen, Trnava-Video Nr. 1 und
   die Texte der App.
-- Nächster Schritt: Rückschau des Inhabers zu Lektion 1, dann Tage 2 bis 7.
+- 3. 11. 2026: Lektion 2 (Kotegaeshi) gebaut, auf Wunsch des Inhabers
+  parallel zur Rückschau von Lektion 1: `lektionen/tag-2.json`,
+  `audio/tag-2.mp3` (26:49), Tag 2 in der Woche freigeschaltet. Abweichung
+  vom Konzept: Das Aufwärmen übt nicht die Vorwärtsrolle, sondern das
+  seitliche Absetzen und Rückwärtsrollen, denn auf der Ikeda-Zeichnung
+  liegt Uke am Ende auf dem Rücken. Wiederholung Iriminage mit Ansage
+  (`{"ansage": 1}`), Vorgriff Ikkyo mit Zeichnung und Video Nr. 3.
+- Vollbild der Zeichnungen: richtet sich bei jeder Drehung neu aus und
+  blendet die Browserleisten aus, wo der Browser es erlaubt (iPad, Android).
+- Nächster Schritt: Rückschau des Inhabers zu Lektion 1 und 2, dann Tage 3
+  bis 7.
 - Offen: die Wunschtechnik.

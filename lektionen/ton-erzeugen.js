@@ -121,7 +121,7 @@ for (const teil of skript.teile) for (const st of teil.stationen) {
       }
       dazu(stille(LUECKE), LUECKE);
     } else if (t.pause) dazu(stille(t.pause), t.pause);
-    else if (t.ansage) { for (const w of ansage(skript.nr)) dazu(w, dauer(w)); dazu(stille(LUECKE), LUECKE); }
+    else if (t.ansage) { for (const w of ansage(t.ansage === true ? skript.nr : t.ansage)) dazu(w, dauer(w)); dazu(stille(LUECKE), LUECKE); }
   }
   dazu(stille(1.5), 1.5);
 }

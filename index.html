@@ -1760,7 +1760,7 @@ function renderToday(){
 /* ---------- Woche: sieben Tage, je eine Lektion (lektionen/KONZEPT.md) ---------- */
 const WOCHE=[
   {tag:1,a:'Shomenuchi Kiawase',t:'Iriminage',nr:'1',aktiv:true},
-  {tag:2,a:'Shomenuchi Kiawase',t:'Kotegaeshi',nr:'2'},
+  {tag:2,a:'Shomenuchi Kiawase',t:'Kotegaeshi',nr:'2',aktiv:true},
   {tag:3,a:'Katatetori Aihanmi',t:'Ikkyo Omote und Ura',nr:'3, 4'},
   {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6'},
   {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7'},
@@ -1768,7 +1768,7 @@ const WOCHE=[
   {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8'}
 ];
 let woStand={};             // {tag:{st:Stationsindex, sek:Uhr, fertig:bool, notiz:''}}
-const nbsp=s=>String(s).replace(/(\d)\s(?=\S)/g,'$1 ').replace(/\b(je|Nr\.|Tag|Teil|Schicht) (?=\d)/g,'$1 ');
+const nbsp=s=>String(s).replace(/(\d)\s(?=\S)/g,'$1 ').replace(/\b(je|Nr\.|Tag|Teil|Schicht) (?=\d)/g,'$1 ').replace(/(\d)–(\d)/g,'$1\u2060–\u2060$2');
 const mmss=s=>{ s=Math.max(0,Math.round(s)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); };
 const zuSek=t=>{ const [m,s]=t.split(':'); return (+m)*60+(+s); };
 async function woLaden(){ woStand=(await Store.get('aikido_woche'))||{}; }
@@ -1782,7 +1782,7 @@ function renderWoche(){
       const st= s.fertig?'✓': s.sek?mmss(s.sek):'';
       return `<button class="wo-tag${w.aktiv?' aktiv':''}${s.fertig?' fertig':''}" data-tag="${w.tag}" ${w.aktiv?'':'disabled'}>
         <span class="wo-n">${w.tag}</span>
-        <span class="wo-mid"><b>${w.t}</b><small>${w.aktiv?`${w.a} · Prüfung Nr.&nbsp;${w.nr}`:'folgt nach der Rückschau von Tag&nbsp;1'}</small></span>
+        <span class="wo-mid"><b>${w.t}</b><small>${w.aktiv?`${w.a} · Prüfung Nr.&nbsp;${w.nr}`:'folgt nach der Rückschau'}</small></span>
         ${st?`<span class="wo-st">${st}</span>`:''}</button>`; }).join('')}
     <div class="prog-note">Inhalte nach dem ACSA-Prüfungsprogramm von M.&nbsp;Ikeda.<br>Zeichnungen: Ikeda-Dojo Zürich. Kärtchen: Eric&nbsp;Graf.<br>Video: Aikido Dojo&nbsp;Trnava.</div>`;
   view.querySelectorAll('.wo-tag:not([disabled])').forEach(b=>b.onclick=()=>openLektion(+b.dataset.tag));
@@ -1851,7 +1851,7 @@ function zeichneLektion(){
     <div class="le-uhr"><b id="le-uhr">${mmss(LE.sek)}</b><span>von ${mmss(total)}</span></div>
     <div class="le-bahn">${bahn}</div>`;
   if(ende){
-    h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">Morgen wiederholt Tag&nbsp;2 Iriminage kurz aus dem Gedächtnis.</p></div>
+    h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">Morgen wiederholt Tag&nbsp;${skript.tag+1} ${skript.titel} kurz aus dem Gedächtnis.</p></div>
       <div class="le-ctl"><button class="le-play" id="le-zu">Zur Woche</button><button class="le-klein" id="le-neu">Neu beginnen</button></div>`;
   } else {
     h+=`<div class="le-teil"><div class="dt-seal">Teil&nbsp;${x.teil.nr} von ${skript.teile.length} · ${mmss(x.teil._von)}–${mmss(x.teil._bis)}</div>
@@ -1863,7 +1863,7 @@ function zeichneLektion(){
         <button class="le-klein" id="le-weiter">weiter →</button>
       </div>
       <ul class="le-karten">${x.st.karten.map(k=>`<li>${nbsp(k)}</li>`).join('')}</ul>
-      ${x.st.ansage?`<button class="le-ansage" id="le-ansage">▶︎ Ansage hören: Nr.&nbsp;${skript.nr}</button>`:''}
+      ${x.st.ansage?`<button class="le-ansage" id="le-ansage">▶︎ Ansage hören: Nr.&nbsp;${x.st.ansage===true?skript.nr:x.st.ansage}</button>`:''}
       ${x.st.notiz?`<div class="dt-sec le-notiz"><h4>${x.st.notiz}</h4><textarea id="le-notiz" placeholder="Eine Frage fürs Training …">${(woStand[LE.tag]||{}).notiz||''}</textarea></div>`:''}
       ${bildHTML(x.st.bild)}${bildHTML(x.st.bild2)}
       ${x.teil.hinweis?`<div class="prog-note">${x.teil.hinweis}</div>`:''}`;
@@ -1877,7 +1877,7 @@ function zeichneLektion(){
   if(q('le-play')) q('le-play').onclick=()=>{ LE.laeuft? lePause() : leStart(); };
   if(q('le-weiter')) q('le-weiter').onclick=()=>leGehe(LE.i+1, LE.laeuft);
   if(q('le-zur')) q('le-zur').onclick=()=>leGehe(LE.i, LE.laeuft);
-  if(q('le-ansage')) q('le-ansage').onclick=()=>speakName(EXAM.find(e=>e.n===skript.nr));
+  if(q('le-ansage')) q('le-ansage').onclick=()=>speakName(EXAM.find(e=>e.n===(x.st.ansage===true?skript.nr:x.st.ansage)));
   if(q('le-notiz')) q('le-notiz').oninput=e=>{ (woStand[LE.tag]=woStand[LE.tag]||{}).notiz=e.target.value; woSpeichern(); };
   d.querySelectorAll('.le-plan li').forEach(li=>li.onclick=()=>{ LE.ende=false; leGehe(+li.dataset.k, LE.laeuft); d.scrollTop=0; });
   leVideos(d);
@@ -1946,7 +1946,7 @@ function leSpiele(n){
   if(t.pause){ let rest=t.pause; leStatus('Üben · '+mmss(rest),true);
     const tick=()=>{ if(tok!==LE.token) return; rest--; if(rest<=0) return weiter(); leStatus('Üben · '+mmss(rest),true); LE.timer=setTimeout(tick,1000); };
     LE.timer=setTimeout(tick,1000); return; }
-  if(t.ansage){ leStatus('Ansage …'); speakName(EXAM.find(e=>e.n===LE.skript.nr), weiter); return; }
+  if(t.ansage){ leStatus('Ansage …'); speakName(EXAM.find(e=>e.n===(t.ansage===true?LE.skript.nr:t.ansage)), weiter); return; }
   leStatus('Spricht …');
   if(t.sek){ if(!LE.audio) LE.audio=new Audio();
     const a=LE.audio; a.onended=weiter; a.onerror=()=>sprichText(t.text,tok,weiter); a.src=`audio/tag-${LE.tag}-${t.id}.mp3`;
