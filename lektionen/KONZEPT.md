@@ -134,3 +134,17 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
 - Nächster Schritt: Rückmeldung des Inhabers einarbeiten, dann Tage 4
   bis 7.
 - Offen: die Wunschtechnik.
+
+## Rückmeldungen des Inhabers (gesammelt, noch nicht eingearbeitet)
+
+Gesammelt ab 3. 11. 2026, während er die Tage 1 bis 3 übt. Erst
+sammeln, dann gemeinsam einarbeiten; danach die Tage 4 bis 7.
+
+1. **«Bild» heisst inneres Bild.** Mit *Schicht 1 · Das Bild* meinte der
+   Inhaber innere Bilder, die die Bewegung führen und orientieren, also
+   Vorstellungen, mit denen man sich bewegt. Gemeint sind nicht die Zeichnungen.
+   Bisher beschreibt Schicht 1 vor allem die Ikeda-Zeichnung. Folge für
+   die Lektionen: Schicht 1 auf ein oder zwei tragende innere Bilder je
+   Technik bauen und diese Bilder in den späteren Schichten (Füsse,
+   Hände, Ablauf) wieder aufrufen; die Zeichnung bleibt Kontrolle.
+
