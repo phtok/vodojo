@@ -160,6 +160,16 @@ nav.tabs button.active .ic{opacity:1;}
 .dt-foto img{display:block;width:100%;height:auto;border-radius:8px;}
 .dt-foto.hoch img{max-width:200px;}
 .dt-quelle{text-align:center;margin-top:8px;font-size:.72rem;color:var(--muted);}
+/* Strichzeichnungen: immer auf Weiss, auch im Dunkeln – die Figuren sind schwarz auf Papier. */
+.dt-foto.strich{background:#fff;}
+.dt-foto.strich+.dt-foto.strich{margin-top:10px;}
+.dt-foto.strich small{display:block;text-align:center;font-size:.72rem;color:#6b6760;margin-top:4px;}
+.dt-foto.strich.hoch img{max-width:180px;}
+/* Ablauf in 2–5 Bildern: feste Höhe, Breite läuft – schmal wischt man seitlich, breit passt alles. */
+.dt-foto.ablauf{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;text-align:center;}
+.dt-foto.ablauf img{display:inline-block;width:auto;max-width:none;height:150px;}
+.dt-hint{text-align:center;margin-top:6px;font-size:.72rem;color:var(--muted);}
+@media (min-width:600px){.dt-hint{display:none;}}
 .dt-vids{display:flex;flex-direction:column;gap:8px;}
 .dt-vid{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);text-decoration:none;font-size:.9rem;line-height:1.35;}
 .dt-vid b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#10141a;font-size:.7rem;font-weight:600;display:flex;align-items:center;justify-content:center;}
@@ -416,6 +426,32 @@ const DOJOBILD={
   'Tenchinage':{f:'technik-tenchinage.png'},
   'Genkeikokyunage':{f:'technik-genkeikokyunage.png'}
 };
+
+/* ---------- Strichzeichnungen der Ikeda-Blätter (Quelle: Aikido Ikeda Dojo Zürich, «Gedankenstütze 6. Kyu» und «Angriffsformen», 2001; Zeichner dort nicht genannt) ----------
+   Angriffe: ein Bild. Techniken: der Ablauf in 2–5 Bildern, Omote und Ura getrennt. */
+const IKEDABILD={
+  'Shomenuchi Kiawase':{f:'angriff-strich-shomenuchi-kiawase.png',hoch:true},
+  'Katatetori Aihanmi':{f:'angriff-strich-katatetori-aihanmi.png',hoch:true},
+  'Katatetori Gyakuhanmi':{f:'angriff-strich-katatetori-gyakuhanmi.png',hoch:true},
+  'Ryotetori':{f:'angriff-strich-ryotetori.png',hoch:true},
+  'Iriminage':{f:'ablauf-iriminage.png'},
+  'Kotegaeshi':{f:'ablauf-kotegaeshi.png'},
+  'Ikkyo Omote':{f:'ablauf-ikkyo-omote.png'},
+  'Ikkyo Ura':{f:'ablauf-ikkyo-ura.png'},
+  'Shihonage Omote':{f:'ablauf-shihonage-omote.png'},
+  'Shihonage Ura':{f:'ablauf-shihonage-ura.png'},
+  'Tenchinage':{f:'ablauf-tenchinage.png'},
+  'Genkeikokyunage':{f:'ablauf-genkeikokyunage.png'}
+};
+const IKEDA_QUELLE='Quelle: Aikido Ikeda Dojo Zürich · Gedankenstütze 6.\u00a0Kyu';
+/* Ikeda-Bild als Abschnitt. Technik ohne Richtung (z. B. «Ikkyo» auf der Vokabelseite): beide Abläufe, Omote und Ura. */
+function ikedaHTML(key,titel){
+  const keys = IKEDABILD[key] ? [key] : [key+' Omote',key+' Ura'].filter(k=>IKEDABILD[k]);
+  if(!keys.length) return '';
+  const bilder=keys.map(k=>{ const b=IKEDABILD[k]; return `<div class="dt-foto strich${b.hoch?' hoch':' ablauf'}"><img src="bilder/${b.f}" alt="${k}" loading="lazy">${keys.length>1?`<small>${k.split(' ').pop()}</small>`:''}</div>`; }).join('');
+  const hinweis = IKEDABILD[key]&&!IKEDABILD[key].hoch ? '<div class="dt-hint">Schmaler Bildschirm: seitlich wischen.</div>' : '';
+  return `<div class="dt-sec"><h4>${titel}</h4>${bilder}${hinweis}<div class="dt-quelle">${IKEDA_QUELLE}</div></div>`;
+}
 
 /* ---------- SVG-Skizzen (helle Striche) ---------- */
 const S='stroke="#d7d1c2" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"';
@@ -1399,6 +1435,7 @@ function openDetail(jp){
     <div class="dt-de">${card.de}</div>`;
   const bild=DOJOBILD[card.jp];
   if(bild) h+=`<div class="dt-sec"><h4>Bild aus dem Dojo-Blatt</h4><div class="dt-foto${bild.hoch?' hoch':''}"><img src="bilder/${bild.f}" alt="${card.jp}" loading="lazy"></div><div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div></div>`;
+  h+=ikedaHTML(card.jp, card.c==='angriff' ? 'Der Angriff, gezeichnet' : 'Der Ablauf, gezeichnet');
   if(g.metaphor) h+=`<div class="dt-metaphor">${g.metaphor}</div>`;
   if(dekoParts(card.jp)||card.lit) h+=`<div class="dt-sec"><h4>Wort für Wort</h4>${dekoHTML(card.jp)}${card.lit?`<div class="dt-lit"${dekoParts(card.jp)?' style="margin-top:10px"':''}>${card.lit}</div>`:''}</div>`;
   if(card.mnemo) h+=`<div class="dt-sec"><h4>Eselsbrücke</h4><div class="dt-mnemo">${card.mnemo}</div></div>`;
@@ -1453,6 +1490,10 @@ function openProgram(n, kyu){
   h+=foto(bildA,'Der Angriff');
   h+=foto(bildT,'Die Technik');
   if(bildA||bildT) h+='<div class="dt-quelle">Quelle: Eric Graf · Dojo de Bienne</div>';
+  if(kyu===6){   // die Blätter zeigen genau die acht Kombinationen des 6. Kyu – bei 5./4. Kyu wäre der gezeichnete Angriff ein anderer
+    h+=ikedaHTML(e.a,'Der Angriff, gezeichnet');
+    h+=ikedaHTML(e.d!=='—'?e.t+' '+e.d:e.t,'Der Ablauf, gezeichnet');
+  }
   /* Mehr Auflösung: Griff-Skizze des Angriffs, Phasen der Technik, Bedeutung der Richtung – alles aus GUIDE/VOCAB */
   const gA=GUIDE[e.a]||{}, gT=GUIDE[e.t]||{};
   if(gA.metaphor||gA.diagram) h+=`<div class="dt-sec"><h4>Als Uke: so greifst du an</h4>${gA.metaphor?`<div class="dt-metaphor" style="margin-top:0">${gA.metaphor}</div>`:''}${gA.diagram?`<div class="dt-diagram" style="margin-top:12px">${gA.diagram.img}</div><div class="dt-diagram-cap">${gA.diagram.cap}</div>`:''}</div>`;

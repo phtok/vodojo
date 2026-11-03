@@ -10,7 +10,21 @@ der App (`EXAM` in `index.html`, Nr. 1–8) stimmt Nummer für Nummer damit übe
   <https://aikido-appenzell.ch/downloads/> → Gesamt-PDF
   <https://aikido-appenzell.ch/wp-content/uploads/2024/12/6kyu-4dan.pdf>
   (dort auch je Grad einzeln als PDF/DOCX). Die eigentliche Ikeda-Seite
-  <https://aikido-ikeda.ch/downloads/> war am 7.10.2026 offline (Serverfehler).
+  <https://aikido-ikeda.ch/downloads/> war am 7.10.2026 offline (Serverfehler),
+  am 3.11.2026 wieder erreichbar; sie listet dieselben Programme je Grad.
+- **Originale im Repo** (`quellen/ikeda-dojo/`, von aikido-ikeda.ch, aus der
+  Prüfungsrecherche des Inhabers vom Mai 2026):
+  - `04_Pruefungsprogramm_6_5_Kyu.pdf` – das Programm 6. und 5. Kyu (2005).
+  - `01_Gedankenstuetze_6_Kyu.pdf`, `03_Techniken_6_Kyu.pdf` – Strichzeichnungen
+    des Ablaufs aller acht Techniken, Omote und Ura getrennt (2001/2002,
+    zwei Fassungen desselben Blatts).
+  - `02_Angriffsformen_6_Kyu.pdf` – die vier Angriffsformen, je eine Zeichnung.
+  Die Zeichnungen stehen in der App als `bilder/ablauf-*.png` und
+  `bilder/angriff-strich-*.png` (aus den PDFs verlustfrei gezogen, Shihonage
+  Ura im Original kopfstehend). Ein Zeichner ist weder im PDF noch auf der
+  Website genannt; Quellenangabe in der App: «Aikido Ikeda Dojo Zürich ·
+  Gedankenstütze 6. Kyu». Nicht zu verwechseln mit den farbigen Kärtchen
+  von Eric Graf (Dojo de Bienne, `bilder/angriff-*.png`, `bilder/technik-*.png`).
 - **Abgeschrieben am:** 7.10.2026, Wortlaut aus dem PDF (Textebene), nur die
   Spalten neu ausgerichtet. Nichts ergänzt oder weggelassen.
 - **Nicht verwechseln:** Das „Kyu Prüfungsprogramm Aiki-Kai Zürich“ (TK Aiki-Kai
