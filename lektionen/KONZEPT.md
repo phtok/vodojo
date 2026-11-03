@@ -93,14 +93,24 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
   «weiter», Pause und Fortsetzen (Stand in `Store` unter `aikido_woche`).
   Tag 1 hat keinen Vortag: an der Stelle der Wiederholung steht der
   Angriff Shomenuchi Kiawase.
-- **Ton:** läuft vorerst über die Browser-Stimme (`speechSynthesis`, deutsch,
-  die `<break>`-Marken werden zu Pausen). Die ElevenLabs-Dateien sind noch
-  nicht erzeugt: Der Key liegt im Schlüsselbund (`elevenlabs`), aber die
-  Sicherheitsprüfung der Cloud-Session hat den Abruf mit Key abgelehnt.
-  Erzeugen: `ELEVENLABS_API_KEY=… node lektionen/ton-erzeugen.js 1`; das
-  Skript schreibt `audio/tag-1-*.mp3` und trägt die Länge (`sek`) ins
-  Skript ein, die App nimmt dann die Datei statt der Browser-Stimme. Die
-  Stimme (`STIMME` im Skript) vorher anhören und festlegen.
+- **Ton (3. 11. 2026, mit Zustimmung des Inhabers):** ElevenLabs, zwei
+  Stimmen mit festen Rollen. **Laura** (Laura Vox) erklärt: Begrüssung,
+  Bild, Prinzip, Fehler, Abschied. **Leon** leitet die Bewegung:
+  Anweisungen, Zählen, Prüfung. Die Rolle steht je Eintrag als `stimme` in
+  `tag-N.json`. Die Texte werden an den `<break>`-Marken in Stücke geteilt
+  und einzeln gesprochen (`audio/tag-N/<id>-<k>.mp3`): Viele Pausenmarken in
+  einer Anfrage liessen ElevenLabs bei rund 24 s abbrechen.
+- **Eine Datei je Lektion:** `audio/tag-1.mp3` (26:45), mit den
+  Übungspausen als Stille und der Prüfungsansage aus den Aufnahmen der App.
+  Sie läuft bei gesperrtem Telefon weiter. Die Station folgt der
+  Abspielzeit (`ab` je Station im Skript). Pause und Weiter liegen auf dem
+  Sperrbildschirm (Media Session), das Display bleibt wach, solange der Ton
+  läuft (Wake Lock). Ohne `tonSek` im Skript fällt die App auf die
+  Browser-Stimme zurück.
+- Neu erzeugen nach Textänderung:
+  `ELEVENLABS_API_KEY=… node lektionen/ton-erzeugen.js 1` (spricht nur
+  geänderte Einträge neu und setzt die Datei neu zusammen), danach die
+  Cache-Version in `sw.js` hochzählen.
 - Recherche: stenudd.com war für automatische Abrufe gesperrt; der Ablauf
   stützt sich auf Ikeda-Zeichnung, Graf-Kärtchen, Trnava-Video Nr. 1 und
   die Texte der App.

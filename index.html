@@ -1794,10 +1794,14 @@ async function openLektion(tag){
   let skript;
   try{ skript=await (await fetch(`lektionen/tag-${tag}.json`)).json(); }catch(e){ alert('Lektion konnte nicht geladen werden.'); return; }
   const stationen=[];
+  const datei = skript.tonSek ? `audio/tag-${tag}.mp3` : null;   // eine durchgehende Datei (ton-erzeugen.js), sonst Browser-Stimme
   skript.teile.forEach(teil=>{ const n=teil.stationen.length, a=zuSek(teil.von), b=zuSek(teil.bis);
-    teil.stationen.forEach((st,k)=>stationen.push({teil,st,von:a+Math.round((b-a)*k/n)})); });
+    teil.stationen.forEach((st,k)=>stationen.push({teil,st,von: datei? st.ab : a+Math.round((b-a)*k/n)})); });
+  const total = datei ? skript.tonSek : skript.minuten*60;
+  skript.teile.forEach((t,k)=>{ t._von = datei ? t.stationen[0].ab : zuSek(t.von); });
+  skript.teile.forEach((t,k)=>{ t._bis = k+1<skript.teile.length ? skript.teile[k+1]._von : total; });
   const s=woStand[tag]||{};
-  LE={skript,tag,stationen,i:Math.min(s.st||0,stationen.length-1),sek:s.sek||0,laeuft:false,schritt:0,token:0,timer:null,uhr:null,audio:null,ende:!!s.fertig};
+  LE={skript,tag,stationen,datei,total,i:Math.min(s.st||0,stationen.length-1),sek:s.sek||0,laeuft:false,schritt:0,token:0,timer:null,uhr:null,audio:null,wach:null,ende:!!s.fertig};
   zeichneLektion();
 }
 function leSichern(){ if(!LE) return; const s=woStand[LE.tag]=woStand[LE.tag]||{}; s.st=LE.i; s.sek=Math.round(LE.sek); woSpeichern(); }
@@ -1806,9 +1810,10 @@ function leStop(){
   clearTimeout(LE.timer); clearInterval(LE.uhr); LE.timer=null; LE.uhr=null;
   try{ speechSynthesis.cancel(); }catch(e){}
   if(LE.audio){ LE.audio.pause(); }
+  if(LE.wach){ LE.wach.release().catch(()=>{}); LE.wach=null; }
   if(_audio){ _audio.onended=null; try{_audio.pause();}catch(e){} }
 }
-function leSchliessen(){ leStop(); leSichern(); LE=null; closeDetail(); if(mode==='woche') renderWoche(); }
+function leSchliessen(){ leStop(); leSichern(); if(LE.audio){ LE.audio.removeAttribute('src'); LE.audio.load(); } LE=null; closeDetail(); if(mode==='woche') renderWoche(); }
 
 function bildHTML(b){
   if(!b) return '';
@@ -1838,10 +1843,9 @@ function leVideos(root){
 }
 function zeichneLektion(){
   const d=document.getElementById('detail'); const {skript,stationen,i}=LE; const x=stationen[i];
-  const total=skript.minuten*60, ende=LE.ende;
-  const bahn=skript.teile.map(t=>{ const a=zuSek(t.von), b=zuSek(t.bis); const p=Math.max(0,Math.min(1,(LE.sek-a)/(b-a)));
+  const total=LE.total, ende=LE.ende;
+  const bahn=skript.teile.map(t=>{ const a=t._von, b=t._bis; const p=Math.max(0,Math.min(1,(LE.sek-a)/(b-a)));
     return `<i style="flex:${b-a}"><u style="width:${p*100}%"></u></i>`; }).join('');
-  const stInTeil=x.teil.stationen.indexOf(x.st);
   let h=`<button class="dt-back" id="le-back">← Woche</button>
     <div class="dt-seal" style="text-align:center">Tag&nbsp;${skript.tag} · ${skript.angriff} · ${skript.titel}</div>
     <div class="le-uhr"><b id="le-uhr">${mmss(LE.sek)}</b><span>von ${mmss(total)}</span></div>
@@ -1850,9 +1854,9 @@ function zeichneLektion(){
     h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">Morgen wiederholt Tag&nbsp;2 Iriminage kurz aus dem Gedächtnis.</p></div>
       <div class="le-ctl"><button class="le-play" id="le-zu">Zur Woche</button><button class="le-klein" id="le-neu">Neu beginnen</button></div>`;
   } else {
-    h+=`<div class="le-teil"><div class="dt-seal">Teil&nbsp;${x.teil.nr} von ${skript.teile.length} · ${x.teil.von}–${x.teil.bis}</div>
+    h+=`<div class="le-teil"><div class="dt-seal">Teil&nbsp;${x.teil.nr} von ${skript.teile.length} · ${mmss(x.teil._von)}–${mmss(x.teil._bis)}</div>
         <h2>${nbsp(x.teil.titel)}</h2>${x.teil.stationen.length>1||x.st.titel!==x.teil.titel?`<h3>${nbsp(x.st.titel)}</h3>`:''}</div>
-      <div class="le-status" id="le-status">${LE.laeuft?'':'Ton starten und mitbewegen.'}</div>
+      <div class="le-status" id="le-status">${LE.laeuft?leLaeuftText():(LE.datei?'Ton starten, Telefon weglegen, mitbewegen.':'Ton starten und mitbewegen.')}</div>
       <div class="le-ctl">
         <button class="le-klein" id="le-zur" aria-label="Station von vorn">↺</button>
         <button class="le-play" id="le-play">${LE.laeuft?'❚❚ Pause':(LE.sek>0?'▶︎ Fortsetzen':'▶︎ Starten')}</button>
@@ -1869,7 +1873,7 @@ function zeichneLektion(){
   d.querySelector('#le-back').onclick=leSchliessen;
   const q=id=>d.querySelector('#'+id);
   if(q('le-zu')) q('le-zu').onclick=leSchliessen;
-  if(q('le-neu')) q('le-neu').onclick=()=>{ LE.ende=false; LE.i=0; LE.sek=0; const s=woStand[LE.tag]||{}; s.fertig=false; woStand[LE.tag]=s; leSichern(); zeichneLektion(); };
+  if(q('le-neu')) q('le-neu').onclick=()=>{ LE.ende=false; LE.i=0; LE.sek=0; if(LE.audio) LE.audio.currentTime=0; const s=woStand[LE.tag]||{}; s.fertig=false; woStand[LE.tag]=s; leSichern(); zeichneLektion(); };
   if(q('le-play')) q('le-play').onclick=()=>{ LE.laeuft? lePause() : leStart(); };
   if(q('le-weiter')) q('le-weiter').onclick=()=>leGehe(LE.i+1, LE.laeuft);
   if(q('le-zur')) q('le-zur').onclick=()=>leGehe(LE.i, LE.laeuft);
@@ -1880,20 +1884,58 @@ function zeichneLektion(){
 }
 function leStatus(t,ueben){ const el=document.getElementById('le-status'); if(el){ el.textContent=t; el.classList.toggle('ueben',!!ueben); } }
 function leUhrZeichnen(){ const el=document.getElementById('le-uhr'); if(el) el.textContent=mmss(LE.sek);
-  const b=document.querySelectorAll('.le-bahn u'); LE.skript.teile.forEach((t,k)=>{ const a=zuSek(t.von), z=zuSek(t.bis); if(b[k]) b[k].style.width=Math.max(0,Math.min(1,(LE.sek-a)/(z-a)))*100+'%'; }); }
+  const b=document.querySelectorAll('.le-bahn u'); LE.skript.teile.forEach((t,k)=>{ const a=t._von, z=t._bis; if(b[k]) b[k].style.width=Math.max(0,Math.min(1,(LE.sek-a)/(z-a)))*100+'%'; }); }
 function leStart(){
   if(!LE||LE.laeuft) return; LE.laeuft=true; touchDay();
+  if(LE.datei) return leDateiStart();
   LE.uhr=setInterval(()=>{ LE.sek+=1; leUhrZeichnen(); if(Math.round(LE.sek)%10===0) leSichern(); },1000);
   const b=document.getElementById('le-play'); if(b) b.textContent='❚❚ Pause';
   leSpiele(LE.schritt);
 }
-function lePause(){ const s=LE.schritt; leStop(); LE.schritt=s; leSichern(); const b=document.getElementById('le-play'); if(b) b.textContent='▶︎ Fortsetzen'; leStatus('Pausiert. Fortsetzen beginnt beim letzten Satz.'); }
+function lePause(){ if(LE.datei){ leStop(); leSichern(); const b=document.getElementById('le-play'); if(b) b.textContent='▶︎ Fortsetzen'; leStatus('Pausiert. Fortsetzen geht genau hier weiter.'); return; }
+  const s=LE.schritt; leStop(); LE.schritt=s; leSichern(); const b=document.getElementById('le-play'); if(b) b.textContent='▶︎ Fortsetzen'; leStatus('Pausiert. Fortsetzen beginnt beim letzten Satz.'); }
 function leGehe(k, weiterSpielen){
   leStop(); LE.schritt=0;
   if(k>=LE.stationen.length){ LE.ende=true; const s=woStand[LE.tag]=woStand[LE.tag]||{}; s.fertig=true; LE.i=LE.stationen.length-1; leSichern(); zeichneLektion(); return; }
   LE.i=Math.max(0,k);
+  if(LE.datei){ LE.sek=LE.stationen[LE.i].von; if(LE.audio) LE.audio.currentTime=LE.sek; }
   leSichern(); zeichneLektion(); if(weiterSpielen) leStart();
 }
+/* Durchgehende Tondatei: läuft auch bei gesperrtem Telefon weiter. Die Station folgt der Abspielzeit;
+   Pause/Weiter auch auf dem Sperrbildschirm (Media Session), Display bleibt wach (Wake Lock), solange der Ton läuft. */
+function leLaeuftText(){ return LE.datei ? 'Ton läuft. Du kannst das Telefon weglegen.' : 'Spricht …'; }
+function leDateiStart(){
+  if(!LE.audio){
+    const a=LE.audio=new Audio(LE.datei); a.preload='auto';
+    a.addEventListener('timeupdate',()=>{ if(!LE||LE.audio!==a) return;
+      LE.sek=a.currentTime;
+      let k=0; LE.stationen.forEach((s,j)=>{ if(s.von<=LE.sek+0.05) k=j; });
+      if(k!==LE.i && !a.seeking){ LE.i=k; leSichern(); zeichneLektion(); leMedien(); } else leUhrZeichnen();
+      if(Math.floor(LE.sek)%10===0) leSichern(); });
+    a.addEventListener('ended',()=>{ if(LE&&LE.audio===a){ leGehe(LE.stationen.length); } });
+    a.addEventListener('pause',()=>{ if(LE&&LE.audio===a&&LE.laeuft&&a.paused&&!a.ended){ LE.laeuft=false; leSichern(); zeichneLektion(); } });
+    a.addEventListener('play',()=>{ if(LE&&LE.audio===a&&!LE.laeuft){ LE.laeuft=true; zeichneLektion(); } });
+  }
+  const a=LE.audio;
+  if(Math.abs(a.currentTime-LE.sek)>1){ const go=()=>{ a.currentTime=LE.sek; }; if(a.readyState>=1) go(); else a.addEventListener('loadedmetadata',go,{once:true}); }
+  a.play().then(()=>{ leStatus(leLaeuftText()); }).catch(()=>{ LE.laeuft=false; leStatus('Ton liess sich nicht starten. Nochmals antippen.'); });
+  const b=document.getElementById('le-play'); if(b) b.textContent='❚❚ Pause';
+  leStatus(leLaeuftText()); leMedien(); leWach();
+}
+function leMedien(){
+  if(!('mediaSession' in navigator)||!LE) return;
+  const x=LE.stationen[LE.i];
+  try{
+    navigator.mediaSession.metadata=new MediaMetadata({title:x.st.titel, artist:`Tag ${LE.skript.tag} · ${LE.skript.titel}`, album:'Vokabel-Dojo · Woche',
+      artwork:[{src:'icon-512.png',sizes:'512x512',type:'image/png'}]});
+    const h={play:()=>leStart(), pause:()=>lePause(), nexttrack:()=>leGehe(LE.i+1,LE.laeuft), previoustrack:()=>leGehe(LE.i,LE.laeuft),
+      seekbackward:()=>{ if(LE.audio) LE.audio.currentTime=Math.max(0,LE.audio.currentTime-10); },
+      seekforward:()=>{ if(LE.audio) LE.audio.currentTime=Math.min(LE.total,LE.audio.currentTime+10); }};
+    Object.entries(h).forEach(([k,f])=>{ try{ navigator.mediaSession.setActionHandler(k,()=>{ if(LE) f(); }); }catch(e){} });
+  }catch(e){}
+}
+async function leWach(){ try{ if(LE&&LE.laeuft&&'wakeLock' in navigator&&!LE.wach){ LE.wach=await navigator.wakeLock.request('screen'); LE.wach.addEventListener('release',()=>{ if(LE) LE.wach=null; }); } }catch(e){} }
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') leWach(); });
 /* Ein Schritt des Tons: Datei (audio/tag-N-ID.mp3, wenn mit ton-erzeugen.js erzeugt), sonst Browser-Stimme; Pause = stille Übungszeit */
 function leSpiele(n){
   const tok=LE.token, ton=LE.stationen[LE.i].st.ton;

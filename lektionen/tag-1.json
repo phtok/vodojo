@@ -16,6 +16,10 @@
   "stimme": {
     "dienst": "ElevenLabs",
     "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, Bild, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
     "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Schomen-Utschi, Irimi-Nage). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}."
   },
   "teile": [
@@ -27,43 +31,135 @@
       "stationen": [
         {
           "titel": "Ankommen",
-          "karten": ["Stehen, Füsse hüftbreit.", "Dreimal tief ausatmen.", "Schultern fallen lassen."],
-          "bild": {"art": "guide", "key": "Hanmi"},
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Schultern fallen lassen."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
           "ton": [
-            {"id": "1a", "text": "Willkommen zu Tag eins. Heute geht es um Irimi-Nage, den Eintritts-Wurf. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit. Mach Platz um dich herum, zwei Schritte in jede Richtung. <break time=\"1.5s\" /> Atme dreimal tief aus. Lass mit jedem Ausatmen die Schultern ein Stück tiefer fallen."},
-            {"pause": 20},
-            {"id": "1b", "text": "Jetzt stell dich in Hanmi: ein Fuss vorn, der hintere zeigt schräg nach aussen. Dein Gewicht ist in der Mitte, die Knie sind weich."},
-            {"pause": 8}
-          ]
+            {
+              "id": "1a",
+              "text": "Willkommen zu Tag eins. Heute geht es um Irimi-Nage, den Eintritts-Wurf. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit. Mach Platz um dich herum, zwei Schritte in jede Richtung. <break time=\"1.5s\" /> Atme dreimal tief aus. Lass mit jedem Ausatmen die Schultern ein Stück tiefer fallen.",
+              "stimme": "laura",
+              "h": "c49e33b2d5",
+              "sek": 25.84
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "1b",
+              "text": "Jetzt stell dich in Hanmi: ein Fuss vorn, der hintere zeigt schräg nach aussen. Dein Gewicht ist in der Mitte, die Knie sind weich.",
+              "stimme": "leon",
+              "h": "9cc902528e",
+              "sek": 12.25
+            },
+            {
+              "pause": 8
+            }
+          ],
+          "ab": 0
         },
         {
           "titel": "Nacken und Hüfte",
-          "karten": ["Kopf langsam zur Seite, dann rund nach vorn.", "Hüfte kreisen, gross und langsam.", "Warum: Bei Irimi-Nage führt Tori den Kopf von Uke. Uke braucht einen weichen Nacken."],
+          "karten": [
+            "Kopf langsam zur Seite, dann rund nach vorn.",
+            "Hüfte kreisen, gross und langsam.",
+            "Warum: Bei Irimi-Nage führt Tori den Kopf von Uke. Uke braucht einen weichen Nacken."
+          ],
           "ton": [
-            {"id": "1c", "text": "Der Nacken. <break time=\"0.8s\" /> Neige den Kopf langsam zur rechten Schulter. <break time=\"2.5s\" /> Rund nach vorn, Kinn zur Brust. <break time=\"2.5s\" /> Zur linken Schulter. <break time=\"2.5s\" /> Und zurück zur Mitte. <break time=\"1.0s\" /> Noch einmal, ganz langsam, in die andere Richtung."},
-            {"pause": 15},
-            {"id": "1d", "text": "Warum der Nacken? Bei Irimi-Nage führt Tori den Kopf von Uke an die eigene Schulter. Wer als Uke einen steifen Nacken hat, fällt hart. <break time=\"1.0s\" /> Jetzt die Hüfte. Hände an die Hüfte, kreise gross und langsam, fünfmal nach rechts, fünfmal nach links."},
-            {"pause": 25}
-          ]
+            {
+              "id": "1c",
+              "text": "Der Nacken. <break time=\"0.8s\" /> Neige den Kopf langsam zur rechten Schulter. <break time=\"2.5s\" /> Rund nach vorn, Kinn zur Brust. <break time=\"2.5s\" /> Zur linken Schulter. <break time=\"2.5s\" /> Und zurück zur Mitte. <break time=\"1.0s\" /> Noch einmal, ganz langsam, in die andere Richtung.",
+              "stimme": "leon",
+              "h": "52ba4881ca",
+              "sek": 32.22
+            },
+            {
+              "pause": 15
+            },
+            {
+              "id": "1d",
+              "text": "Warum der Nacken? Bei Irimi-Nage führt Tori den Kopf von Uke an die eigene Schulter. Wer als Uke einen steifen Nacken hat, fällt hart.",
+              "stimme": "laura",
+              "h": "0dccf8b5c9",
+              "sek": 12.3
+            },
+            {
+              "id": "1d2",
+              "text": "Jetzt die Hüfte. Hände an die Hüfte, kreise gross und langsam, fünfmal nach rechts, fünfmal nach links.",
+              "stimme": "leon",
+              "h": "c95c5785d5",
+              "sek": 13.51
+            },
+            {
+              "pause": 25
+            }
+          ],
+          "ab": 68.62
         },
         {
           "titel": "Tenkan",
-          "karten": ["Vorderer Fuss bleibt stehen: die Türangel.", "Der hintere schwingt im Bogen herum.", "Am Ende schaust du in die andere Richtung.", "Achtmal, links und rechts im Wechsel."],
-          "bild": {"art": "guide", "key": "Tenkan"},
+          "karten": [
+            "Vorderer Fuss bleibt stehen: die Türangel.",
+            "Der hintere schwingt im Bogen herum.",
+            "Am Ende schaust du in die andere Richtung.",
+            "Achtmal, links und rechts im Wechsel."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenkan"
+          },
           "ton": [
-            {"id": "1e", "text": "Tenkan, die Drehung. Iriminage beginnt mit genau dieser Bewegung. <break time=\"1.0s\" /> Linker Fuss vorn. Der vordere Fuss ist die Türangel, er bleibt stehen. <break time=\"0.8s\" /> Der hintere Fuss schwingt im grossen Bogen nach hinten herum. <break time=\"0.8s\" /> Jetzt schaust du in die andere Richtung. <break time=\"1.5s\" /> Ich zähle. Bei jeder Zahl eine Drehung, dann Fuss wechseln."},
-            {"id": "1f", "text": "Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Wechsel: rechter Fuss vorn. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Sechs. <break time=\"3s\" /> Sieben. <break time=\"3s\" /> Acht. <break time=\"2s\" /> Gut. Die Hüfte hat geführt, nicht die Schultern."},
-            {"pause": 5}
-          ]
+            {
+              "id": "1e",
+              "text": "Tenkan, die Drehung. Irimi-Nage beginnt mit genau dieser Bewegung. <break time=\"1.0s\" /> Linker Fuss vorn. Der vordere Fuss ist die Türangel, er bleibt stehen. <break time=\"0.8s\" /> Der hintere Fuss schwingt im grossen Bogen nach hinten herum. <break time=\"0.8s\" /> Jetzt schaust du in die andere Richtung. <break time=\"1.5s\" /> Ich zähle. Bei jeder Zahl eine Drehung, dann Fuss wechseln.",
+              "stimme": "laura",
+              "h": "d9204efe92",
+              "sek": 30.93
+            },
+            {
+              "id": "1f",
+              "text": "Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Wechsel: rechter Fuss vorn. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Sechs. <break time=\"3s\" /> Sieben. <break time=\"3s\" /> Acht. <break time=\"2s\" /> Gut. Die Hüfte hat geführt, nicht die Schultern.",
+              "stimme": "leon",
+              "h": "82c0971c7f",
+              "sek": 49.43
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 169.66
         },
         {
           "titel": "Ushiro Ukemi",
-          "karten": ["Uke fällt bei Iriminage rückwärts.", "Aus der Hocke: rund nach hinten, Kinn an die Brust.", "Über eine Schulter abrollen, nicht über den Kopf.", "Sechsmal. Ohne Matte: nur hinsetzen und rund zurückschaukeln."],
-          "bild": {"art": "guide", "key": "Ushiro ukemi"},
+          "karten": [
+            "Uke fällt bei Iriminage rückwärts.",
+            "Aus der Hocke: rund nach hinten, Kinn an die Brust.",
+            "Über eine Schulter abrollen, nicht über den Kopf.",
+            "Sechsmal. Ohne Matte: nur hinsetzen und rund zurückschaukeln."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
           "ton": [
-            {"id": "1g", "text": "Zum Schluss des Aufwärmens: rückwärts fallen. Bei Irimi-Nage fällt Uke nach hinten. <break time=\"1.0s\" /> Geh in die Hocke. Kinn an die Brust, der Rücken wird rund. <break time=\"1.0s\" /> Setz dich nah an der Ferse ab und rolle rund nach hinten, über eine Schulter, nicht über den Kopf. <break time=\"1.0s\" /> Hast du keine Matte, setz dich nur hin und schaukle rund zurück und wieder hoch. <break time=\"1.5s\" /> Sechsmal, in deinem Tempo."},
-            {"pause": 45}
-          ]
+            {
+              "id": "1g",
+              "text": "Zum Schluss des Aufwärmens: rückwärts fallen. Bei Irimi-Nage fällt Uke nach hinten. <break time=\"1.0s\" /> Geh in die Hocke. Kinn an die Brust, der Rücken wird rund. <break time=\"1.0s\" /> Setz dich nah an der Ferse ab und rolle rund nach hinten, über eine Schulter, nicht über den Kopf. <break time=\"1.0s\" /> Hast du keine Matte, setz dich nur hin und schaukle rund zurück und wieder hoch. <break time=\"1.5s\" /> Sechsmal, in deinem Tempo.",
+              "stimme": "leon",
+              "h": "09b61008f1",
+              "sek": 44.2
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 257.17
         }
       ]
     },
@@ -76,23 +172,66 @@
       "stationen": [
         {
           "titel": "Kiawase: das Treffen",
-          "karten": ["Ki = Energie, awase = zusammenfügen.", "Beide in Hanmi, gleicher Fuss vorn.", "Aus der Hüfte mit der Handkante zum Kinn (Graf-Kärtchen).", "Die Handkanten treffen sich vor den Gesichtern."],
-          "bild": {"art": "ikeda", "key": "Shomenuchi Kiawase"},
-          "bild2": {"art": "graf", "key": "Shomenuchi Kiawase"},
+          "karten": [
+            "Ki = Energie, awase = zusammenfügen.",
+            "Beide in Hanmi, gleicher Fuss vorn.",
+            "Aus der Hüfte mit der Handkante zum Kinn (Graf-Kärtchen).",
+            "Die Handkanten treffen sich vor den Gesichtern."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shomenuchi Kiawase"
+          },
+          "bild2": {
+            "art": "graf",
+            "key": "Shomenuchi Kiawase"
+          },
           "ton": [
-            {"id": "2a", "text": "Der Angriff heisst Schomen-Utschi Ki-Awase. <break time=\"0.8s\" /> Schomen-Utschi ist der gerade Schlag zur Mitte des Kopfes. Ki-Awase heisst: die Energie zusammenfügen. <break time=\"1.0s\" /> Ihr steht in Hanmi, beide mit dem gleichen Fuss vorn. <break time=\"0.8s\" /> Auf dem Kärtchen von Eric Graf steht: aus der Hüfte mit der Handkante zum Kinn. <break time=\"0.8s\" /> Die Handkanten treffen sich vor den Gesichtern. Dieses Treffen ist Ki-Awase. Niemand weicht zurück."},
-            {"pause": 5}
-          ]
+            {
+              "id": "2a",
+              "text": "Der Angriff heisst Schomen-Utschi Ki-Awase. <break time=\"0.8s\" /> Schomen-Utschi ist der gerade Schlag zur Mitte des Kopfes. Ki-Awase heisst: die Energie zusammenfügen. <break time=\"1.0s\" /> Ihr steht in Hanmi, beide mit dem gleichen Fuss vorn. <break time=\"0.8s\" /> Auf dem Kärtchen von Eric Graf steht: aus der Hüfte mit der Handkante zum Kinn. <break time=\"0.8s\" /> Die Handkanten treffen sich vor den Gesichtern. Dieses Treffen ist Ki-Awase. Niemand weicht zurück.",
+              "stimme": "laura",
+              "h": "d8fd5ca9e3",
+              "sek": 35.91
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 348.28
         },
         {
           "titel": "Allein üben",
-          "karten": ["Handkante hebt sich aus der Hüfte.", "Kleiner Schritt mit dem vorderen Fuss.", "Treffpunkt: vor deiner Stirn.", "Zehnmal, fünf je Seite."],
-          "bild": {"art": "ikeda", "key": "Shomenuchi Kiawase"},
+          "karten": [
+            "Handkante hebt sich aus der Hüfte.",
+            "Kleiner Schritt mit dem vorderen Fuss.",
+            "Treffpunkt: vor deiner Stirn.",
+            "Zehnmal, fünf je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shomenuchi Kiawase"
+          },
           "ton": [
-            {"id": "2b", "text": "Jetzt allein. Linker Fuss vorn. <break time=\"0.8s\" /> Die linke Handkante hebt sich aus der Hüfte nach vorn oben, als würdest du ein Schwert ziehen. Dazu ein kleiner Schritt mit dem vorderen Fuss. <break time=\"0.8s\" /> Stell dir vor, deine Handkante trifft vor deiner Stirn auf die Handkante des Partners. <break time=\"1.0s\" /> Ich zähle fünf, dann wechselst du die Seite."},
-            {"id": "2c", "text": "Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Fünf. <break time=\"2s\" /> Seite wechseln, rechter Fuss vorn. <break time=\"2s\" /> Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Fünf."},
-            {"pause": 30}
-          ]
+            {
+              "id": "2b",
+              "text": "Jetzt allein. Linker Fuss vorn. <break time=\"0.8s\" /> Die linke Handkante hebt sich aus der Hüfte nach vorn oben, als würdest du ein Schwert ziehen. Dazu ein kleiner Schritt mit dem vorderen Fuss. <break time=\"0.8s\" /> Stell dir vor, deine Handkante trifft vor deiner Stirn auf die Handkante des Partners. <break time=\"1.0s\" /> Ich zähle fünf, dann wechselst du die Seite.",
+              "stimme": "leon",
+              "h": "21331f2686",
+              "sek": 34.95
+            },
+            {
+              "id": "2c",
+              "text": "Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Fünf. <break time=\"2s\" /> Seite wechseln, rechter Fuss vorn. <break time=\"2s\" /> Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"3s\" /> Fünf.",
+              "stimme": "leon",
+              "h": "bb9ccca0bf",
+              "sek": 49.07
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 391.1
         }
       ]
     },
@@ -104,67 +243,232 @@
       "stationen": [
         {
           "titel": "Schicht 1 · Das Bild",
-          "karten": ["Eine offene Tür direkt neben Uke: geh hindurch.", "Drei Bilder bei Ikeda: hinter Uke drehen, Uke herumführen, nach vorn durchtreten.", "Uke fällt rückwärts."],
-          "bild": {"art": "ikeda", "key": "Iriminage"},
-          "bild2": {"art": "graf", "key": "Iriminage"},
+          "karten": [
+            "Eine offene Tür direkt neben Uke: geh hindurch.",
+            "Drei Bilder bei Ikeda: hinter Uke drehen, Uke herumführen, nach vorn durchtreten.",
+            "Uke fällt rückwärts."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Iriminage"
+          },
+          "bild2": {
+            "art": "graf",
+            "key": "Iriminage"
+          },
           "ton": [
-            {"id": "3a", "text": "Schicht eins: das Bild. <break time=\"1.0s\" /> Irimi heisst eintreten, Nage heisst Wurf. <break time=\"0.8s\" /> Stell dir eine offene Tür direkt neben deinem Partner vor. Du gehst einfach hindurch, an ihm vorbei, bis du hinter ihm stehst. <break time=\"1.5s\" /> Die Zeichnung aus dem Ikeda-Dojo zeigt drei Bilder. <break time=\"0.8s\" /> Erstens: Tori ist eingetreten und dreht sich hinter Uke, der Kreis am Boden ist die Drehung. <break time=\"1.0s\" /> Zweitens: Uke wird im grossen Bogen herumgeführt. <break time=\"1.0s\" /> Drittens: Tori tritt nach vorn durch, der Arm geht über Uke hinweg nach unten, und Uke fällt nach hinten. <break time=\"2.0s\" /> Schau dir die drei Bilder jetzt in Ruhe an."},
-            {"pause": 25}
-          ]
+            {
+              "id": "3a",
+              "text": "Schicht eins: das Bild. <break time=\"1.0s\" /> Irimi heisst eintreten, Nage heisst Wurf. <break time=\"0.8s\" /> Stell dir eine offene Tür direkt neben deinem Partner vor. Du gehst einfach hindurch, an ihm vorbei, bis du hinter ihm stehst. <break time=\"1.5s\" /> Die Zeichnung aus dem Ikeda-Dojo zeigt drei Bilder. <break time=\"0.8s\" /> Erstens: Tori ist eingetreten und dreht sich hinter Uke, der Kreis am Boden ist die Drehung. <break time=\"1.0s\" /> Zweitens: Uke wird im grossen Bogen herumgeführt. <break time=\"1.0s\" /> Drittens: Tori tritt nach vorn durch, der Arm geht über Uke hinweg nach unten, und Uke fällt nach hinten. <break time=\"2.0s\" /> Schau dir die drei Bilder jetzt in Ruhe an.",
+              "stimme": "laura",
+              "h": "913c39a092",
+              "sek": 54.65
+            },
+            {
+              "pause": 25
+            }
+          ],
+          "ab": 507.26
         },
         {
           "titel": "Schicht 2 · Die Füsse allein",
-          "karten": ["1 · Treffen: kleiner Schritt vor.", "2 · Eintreten: vorderer Fuss tief neben und hinter Uke.", "3 · Drehen: Tenkan auf diesem Fuss.", "4 · Führen: ein Schritt zurück im Bogen.", "5 · Durchtreten: grosser Schritt nach vorn, hinter Uke durch."],
-          "bild": {"art": "guide", "key": "Iriminage"},
+          "karten": [
+            "1 · Treffen: kleiner Schritt vor.",
+            "2 · Eintreten: vorderer Fuss tief neben und hinter Uke.",
+            "3 · Drehen: Tenkan auf diesem Fuss.",
+            "4 · Führen: ein Schritt zurück im Bogen.",
+            "5 · Durchtreten: grosser Schritt nach vorn, hinter Uke durch."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Iriminage"
+          },
           "ton": [
-            {"id": "3b", "text": "Schicht zwei: die Füsse allein. Hier lernt dein Körper am meisten. Lass die Hände einfach hängen. <break time=\"1.0s\" /> Linker Fuss vorn. Dein Partner steht vor dir, auch mit links vorn. <break time=\"1.0s\" /> Ich sage die fünf Schritte einmal langsam an. Mach jeden mit."},
-            {"id": "3c", "text": "Eins: Treffen. Ein kleiner Schritt nach vorn, Handkante hoch. <break time=\"3s\" /> Zwei: Eintreten. Dein vorderer Fuss geht tief an Uke vorbei, neben seinen vorderen Fuss und ein Stück dahinter. <break time=\"3s\" /> Drei: Drehen. Tenkan auf diesem Fuss. Jetzt stehst du hinter Uke und schaust in seine Richtung. <break time=\"3s\" /> Vier: Führen. Ein Schritt zurück im Bogen, du nimmst Uke im Kreis mit. <break time=\"3s\" /> Fünf: Durchtreten. Ein grosser Schritt nach vorn, durch den Platz, an dem Uke gerade noch stand. <break time=\"2s\" /> Zurück zum Anfang."},
-            {"pause": 6},
-            {"id": "3d", "text": "Jetzt nur noch die Zahlen. Fünf Durchgänge auf der linken Seite. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Allein weiter, drei Durchgänge in deinem Tempo."},
-            {"pause": 30},
-            {"id": "3e", "text": "Seite wechseln: rechter Fuss vorn. Fünf Durchgänge, in deinem Tempo. Sag die Zahlen leise mit."},
-            {"pause": 60}
-          ]
+            {
+              "id": "3b",
+              "text": "Schicht zwei: die Füsse allein. Hier lernt dein Körper am meisten. Lass die Hände einfach hängen. <break time=\"1.0s\" /> Linker Fuss vorn. Dein Partner steht vor dir, auch mit links vorn. <break time=\"1.0s\" /> Ich sage die fünf Schritte einmal langsam an. Mach jeden mit.",
+              "stimme": "laura",
+              "h": "e50d80d505",
+              "sek": 22.3
+            },
+            {
+              "id": "3c",
+              "text": "Eins: Treffen. Ein kleiner Schritt nach vorn, Handkante hoch. <break time=\"3s\" /> Zwei: Eintreten. Dein vorderer Fuss geht tief an Uke vorbei, neben seinen vorderen Fuss und ein Stück dahinter. <break time=\"3s\" /> Drei: Drehen. Tenkan auf diesem Fuss. Jetzt stehst du hinter Uke und schaust in seine Richtung. <break time=\"3s\" /> Vier: Führen. Ein Schritt zurück im Bogen, du nimmst Uke im Kreis mit. <break time=\"3s\" /> Fünf: Durchtreten. Ein grosser Schritt nach vorn, durch den Platz, an dem Uke gerade noch stand. <break time=\"2s\" /> Zurück zum Anfang.",
+              "stimme": "leon",
+              "h": "711d045885",
+              "sek": 71.29
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "text": "Jetzt nur noch die Zahlen. Fünf Durchgänge auf der linken Seite. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Allein weiter, drei Durchgänge in deinem Tempo.",
+              "stimme": "leon",
+              "h": "c96725878a",
+              "sek": 51.83
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "3e",
+              "text": "Seite wechseln: rechter Fuss vorn. Fünf Durchgänge, in deinem Tempo. Sag die Zahlen leise mit.",
+              "stimme": "leon",
+              "h": "6685deb33c",
+              "sek": 15.49
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 588.71
         },
         {
           "titel": "Schicht 3 · Die Hände",
-          "karten": ["Treffhand gleitet an Ukes Arm nach unten und führt ihn im Bogen mit.", "Andere Hand an Ukes Nacken, Kopf an deine Schulter.", "Wurfarm hebt sich vor Ukes Gesicht und schneidet im Bogen nach unten.", "Nicht schlagen, nicht drücken: führen."],
-          "bild": {"art": "ikeda", "key": "Iriminage"},
+          "karten": [
+            "Treffhand gleitet an Ukes Arm nach unten und führt ihn im Bogen mit.",
+            "Andere Hand an Ukes Nacken, Kopf an deine Schulter.",
+            "Wurfarm hebt sich vor Ukes Gesicht und schneidet im Bogen nach unten.",
+            "Nicht schlagen, nicht drücken: führen."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Iriminage"
+          },
           "ton": [
-            {"id": "3f", "text": "Schicht drei: die Hände. <break time=\"1.0s\" /> Die Hand, die den Schlag getroffen hat, bleibt an Ukes Arm. Sie gleitet nach unten und führt den Arm im Bogen mit, wie ein Schwert, das zu Boden schneidet. <break time=\"1.5s\" /> Die andere Hand legt sich beim Eintreten an Ukes Nacken. Sie bringt seinen Kopf an deine Schulter. Nicht ziehen. Sein Kopf kommt mit, weil du dich drehst. <break time=\"1.5s\" /> Zum Wurf hebt sich die erste Hand von unten vor Ukes Gesicht, und mit dem Schritt nach vorn schneidet sie im Bogen über ihn hinweg nach unten. <break time=\"1.5s\" /> Üb das jetzt im Stand, ohne Schritte. Fünfmal: gleiten, Nacken, heben, schneiden."},
-            {"pause": 40},
-            {"id": "3g", "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Drei Durchgänge je Seite."},
-            {"pause": 45}
-          ]
+            {
+              "id": "3f",
+              "text": "Schicht drei: die Hände. <break time=\"1.0s\" /> Die Hand, die den Schlag getroffen hat, bleibt an Ukes Arm. Sie gleitet nach unten und führt den Arm im Bogen mit, wie ein Schwert, das zu Boden schneidet. <break time=\"1.5s\" /> Die andere Hand legt sich beim Eintreten an Ukes Nacken. Sie bringt seinen Kopf an deine Schulter. Nicht ziehen. Sein Kopf kommt mit, weil du dich drehst. <break time=\"1.5s\" /> Zum Wurf hebt sich die erste Hand von unten vor Ukes Gesicht, und mit dem Schritt nach vorn schneidet sie im Bogen über ihn hinweg nach unten.",
+              "stimme": "laura",
+              "h": "7b7582066a",
+              "sek": 44.75
+            },
+            {
+              "id": "3f2",
+              "text": "Üb das jetzt im Stand, ohne Schritte. Fünfmal: gleiten, Nacken, heben, schneiden.",
+              "stimme": "leon",
+              "h": "f98565752c",
+              "sek": 12.43
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "3g",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Drei Durchgänge je Seite.",
+              "stimme": "leon",
+              "h": "b5debda860",
+              "sek": 7.76
+            },
+            {
+              "pause": 45
+            }
+          ],
+          "ab": 848.71
         },
         {
           "titel": "Schicht 4 · Der ganze Ablauf, langsam",
-          "karten": ["Video: Trnava, Wiederholung 1 (0–4 s), halbe Geschwindigkeit.", "Achte auf Toris vorderen Fuss beim Eintreten.", "Dann selber mitgehen, gleich langsam."],
-          "bild": {"art": "video", "nr": 1, "a": 0, "b": 4.2, "rate": 0.5},
+          "karten": [
+            "Video: Trnava, Wiederholung 1 (0–4 s), halbe Geschwindigkeit.",
+            "Achte auf Toris vorderen Fuss beim Eintreten.",
+            "Dann selber mitgehen, gleich langsam."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 1,
+            "a": 0,
+            "b": 4.2,
+            "rate": 0.5
+          },
           "ton": [
-            {"id": "3h", "text": "Schicht vier: der ganze Ablauf, langsam. <break time=\"1.0s\" /> Schau aufs Video. Es läuft in halber Geschwindigkeit und wiederholt den ersten Durchgang. <break time=\"1.0s\" /> Achte nur auf eines: wohin Toris vorderer Fuss beim Eintreten geht. <break time=\"1.0s\" /> Tief hinter Uke, nicht vor ihn."},
-            {"pause": 20},
-            {"id": "3i", "text": "Jetzt geh selber mit, so langsam wie im Video. Treffen, eintreten, drehen, führen, durchtreten. Fünf Durchgänge je Seite."},
-            {"pause": 90}
-          ]
+            {
+              "id": "3h",
+              "text": "Schicht vier: der ganze Ablauf, langsam. <break time=\"1.0s\" /> Schau aufs Video. Es läuft in halber Geschwindigkeit und wiederholt den ersten Durchgang. <break time=\"1.0s\" /> Achte nur auf eines: wohin Toris vorderer Fuss beim Eintreten geht. <break time=\"1.0s\" /> Tief hinter Uke, nicht vor ihn.",
+              "stimme": "laura",
+              "h": "6215d2cea8",
+              "sek": 23.69
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "3i",
+              "text": "Jetzt geh selber mit, so langsam wie im Video. Treffen, eintreten, drehen, führen, durchtreten. Fünf Durchgänge je Seite.",
+              "stimme": "leon",
+              "h": "ffd215ecfe",
+              "sek": 17.32
+            },
+            {
+              "pause": 90
+            }
+          ],
+          "ab": 1001.7
         },
         {
           "titel": "Schicht 5 · Als Uke",
-          "karten": ["Schlag ehrlich zur Stirnmitte.", "Lass dich mitführen, Kopf bleibt an Toris Schulter.", "Am Ende: Kinn an die Brust, rückwärts abrollen.", "Wer gut fällt, lernt die Technik von innen."],
-          "bild": {"art": "ikeda", "key": "Shomenuchi Kiawase"},
+          "karten": [
+            "Schlag ehrlich zur Stirnmitte.",
+            "Lass dich mitführen, Kopf bleibt an Toris Schulter.",
+            "Am Ende: Kinn an die Brust, rückwärts abrollen.",
+            "Wer gut fällt, lernt die Technik von innen."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shomenuchi Kiawase"
+          },
           "ton": [
-            {"id": "3j", "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, er zielt auf die Mitte der Stirn. <break time=\"1.0s\" /> Wenn Tori eintritt, lass dich mitführen. Dein Kopf bleibt an seiner Schulter, du gehst den Kreis mit. <break time=\"1.0s\" /> Wenn der Arm über dich kommt, Kinn an die Brust, und rückwärts abrollen, wie im Aufwärmen. <break time=\"1.5s\" /> Üb das allein: Schlag, drei Schritte im Bogen rückwärts, setzen und abrollen. Dreimal."},
-            {"pause": 40}
-          ]
+            {
+              "id": "3j",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, er zielt auf die Mitte der Stirn. <break time=\"1.0s\" /> Wenn Tori eintritt, lass dich mitführen. Dein Kopf bleibt an seiner Schulter, du gehst den Kreis mit. <break time=\"1.0s\" /> Wenn der Arm über dich kommt, Kinn an die Brust, und rückwärts abrollen, wie im Aufwärmen.",
+              "stimme": "laura",
+              "h": "6d3efc38be",
+              "sek": 26.88
+            },
+            {
+              "id": "3j2",
+              "text": "Üb das allein: Schlag, drei Schritte im Bogen rückwärts, setzen und abrollen. Dreimal.",
+              "stimme": "leon",
+              "h": "eb4cc609b5",
+              "sek": 10.68
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1155.2
         },
         {
           "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
-          "karten": ["Fehler 1: vor Uke stehen bleiben. → Tief eintreten, bis hinter seine Schulter.", "Fehler 2: mit dem Arm werfen. → Der Schritt nach vorn wirft, der Arm begleitet.", "Fehler 3: am Kopf ziehen. → Drehen, der Kopf kommt mit."],
-          "bild": {"art": "ikeda", "key": "Iriminage"},
+          "karten": [
+            "Fehler 1: vor Uke stehen bleiben. → Tief eintreten, bis hinter seine Schulter.",
+            "Fehler 2: mit dem Arm werfen. → Der Schritt nach vorn wirft, der Arm begleitet.",
+            "Fehler 3: am Kopf ziehen. → Drehen, der Kopf kommt mit."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Iriminage"
+          },
           "ton": [
-            {"id": "3k", "text": "Schicht sechs: drei Fehler, die fast alle am Anfang machen. <break time=\"1.0s\" /> Erstens: vor Uke stehen bleiben. Dann schlägt er dich weiter. Korrektur: tief eintreten, bis hinter seine Schulter. <break time=\"1.5s\" /> Zweitens: mit dem Arm werfen. Das kostet Kraft und geht nicht. Korrektur: der Schritt nach vorn wirft, der Arm begleitet nur. <break time=\"1.5s\" /> Drittens: am Kopf ziehen. Das tut Uke weh und weckt Widerstand. Korrektur: du drehst dich, und der Kopf kommt mit. <break time=\"1.5s\" /> Mach zum Schluss zwei Durchgänge je Seite und prüf bei jedem einen Fehler."},
-            {"pause": 30}
-          ]
+            {
+              "id": "3k",
+              "text": "Schicht sechs: drei Fehler, die fast alle am Anfang machen. <break time=\"1.0s\" /> Erstens: vor Uke stehen bleiben. Dann schlägt er dich weiter. Korrektur: tief eintreten, bis hinter seine Schulter. <break time=\"1.5s\" /> Zweitens: mit dem Arm werfen. Das kostet Kraft und geht nicht. Korrektur: der Schritt nach vorn wirft, der Arm begleitet nur. <break time=\"1.5s\" /> Drittens: am Kopf ziehen. Das tut Uke weh und weckt Widerstand. Korrektur: du drehst dich, und der Kopf kommt mit.",
+              "stimme": "laura",
+              "h": "f9d83d01fb",
+              "sek": 44.21
+            },
+            {
+              "id": "3k2",
+              "text": "Mach zum Schluss zwei Durchgänge je Seite und prüf bei jedem einen Fehler.",
+              "stimme": "leon",
+              "h": "87ffc51f6f",
+              "sek": 6.95
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1235.26
         }
       ]
     },
@@ -176,13 +480,35 @@
       "stationen": [
         {
           "titel": "Morgen: Kotegaeshi",
-          "karten": ["Gleicher Angriff, andere Technik.", "Kote = Handgelenk, gaeshi = umkehren.", "Nur ansehen, nicht üben."],
-          "bild": {"art": "ikeda", "key": "Kotegaeshi"},
-          "bild2": {"art": "video", "nr": 2, "a": 0, "b": 5.6, "rate": 0.5},
+          "karten": [
+            "Gleicher Angriff, andere Technik.",
+            "Kote = Handgelenk, gaeshi = umkehren.",
+            "Nur ansehen, nicht üben."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "bild2": {
+            "art": "video",
+            "nr": 2,
+            "a": 0,
+            "b": 5.6,
+            "rate": 0.5
+          },
           "ton": [
-            {"id": "4a", "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Morgen bleibt der Angriff gleich, Schomen-Utschi Ki-Awase. Die Technik heisst Kote-Gaeschi: Kote ist das Handgelenk, Gaeschi heisst umkehren. <break time=\"1.0s\" /> Du drehst sein Handgelenk nach aussen, bis er nach vorn abrollen muss. <break time=\"1.5s\" /> Heute nur ansehen, nicht üben. Schau dir die Zeichnung an und das Video in halber Geschwindigkeit. Achte darauf: Der Anfang ist fast derselbe wie bei Irimi-Nage."},
-            {"pause": 60}
-          ]
+            {
+              "id": "4a",
+              "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Morgen bleibt der Angriff gleich, Schomen-Utschi Ki-Awase. Die Technik heisst Kote-Gaeschi: Kote ist das Handgelenk, Gaeschi heisst umkehren. <break time=\"1.0s\" /> Du drehst sein Handgelenk nach aussen, bis er nach vorn abrollen muss. <break time=\"1.5s\" /> Heute nur ansehen, nicht üben. Schau dir die Zeichnung an und das Video in halber Geschwindigkeit. Achte darauf: Der Anfang ist fast derselbe wie bei Irimi-Nage.",
+              "stimme": "laura",
+              "h": "ad45352681",
+              "sek": 39.68
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 1318.92
         }
       ]
     },
@@ -194,30 +520,84 @@
       "stationen": [
         {
           "titel": "Dehnen",
-          "karten": ["Nacken: Ohr zur Schulter, je 20 Sekunden.", "Hüfte: grosser Ausfallschritt, Knie hinten ab.", "Rücken: in der Hocke rund werden."],
-          "bild": {"art": "guide", "key": "Hanmi"},
+          "karten": [
+            "Nacken: Ohr zur Schulter, je 20 Sekunden.",
+            "Hüfte: grosser Ausfallschritt, Knie hinten ab.",
+            "Rücken: in der Hocke rund werden."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
           "ton": [
-            {"id": "5a", "text": "Abschluss. Wir dehnen, was heute gearbeitet hat. <break time=\"1.0s\" /> Der Nacken: Ohr zur rechten Schulter, ruhig atmen. <break time=\"8s\" /> Und zur linken. <break time=\"8s\" /> Die Hüfte: ein grosser Ausfallschritt, das hintere Knie geht zum Boden. Halten."},
-            {"pause": 20},
-            {"id": "5b", "text": "Andere Seite."},
-            {"pause": 20},
-            {"id": "5c", "text": "Zum Schluss geh in die Hocke, lass den Kopf hängen und werde rund wie bei der Rückwärtsrolle. Atme ein paar Mal in den Rücken."},
-            {"pause": 20}
-          ]
+            {
+              "id": "5a",
+              "text": "Abschluss. Wir dehnen, was heute gearbeitet hat. <break time=\"1.0s\" /> Der Nacken: Ohr zur rechten Schulter, ruhig atmen. <break time=\"8s\" /> Und zur linken. <break time=\"8s\" /> Die Hüfte: ein grosser Ausfallschritt, das hintere Knie geht zum Boden. Halten.",
+              "stimme": "leon",
+              "h": "66db7f5721",
+              "sek": 45.1
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "5b",
+              "text": "Andere Seite.",
+              "stimme": "leon",
+              "h": "448274ac78",
+              "sek": 1.33
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "5c",
+              "text": "Zum Schluss geh in die Hocke, lass den Kopf hängen und werde rund wie bei der Rückwärtsrolle. Atme ein paar Mal in den Rücken.",
+              "stimme": "leon",
+              "h": "06a538fff5",
+              "sek": 11.1
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 1420.56
         },
         {
           "titel": "Ansage und Notiz",
-          "karten": ["Hör die Ansage wie in der Prüfung.", "Zeig die Technik einmal ganz, ohne Hilfe.", "Schreib eine Frage auf, die du im Training stellen willst."],
+          "karten": [
+            "Hör die Ansage wie in der Prüfung.",
+            "Zeig die Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
           "ansage": true,
           "notiz": "Meine Frage zu Iriminage",
           "ton": [
-            {"id": "5d", "text": "Jetzt wie in der Prüfung. Gleich hörst du die Ansage. Zeig die Technik einmal ganz, ohne Hilfe, auf deiner besseren Seite."},
-            {"ansage": 1},
-            {"pause": 25},
-            {"id": "5e", "text": "Gut. <break time=\"1.0s\" /> Zum Schluss: schreib eine Frage auf, die du im Training stellen willst. Etwas, das dir heute nicht klar wurde. <break time=\"1.5s\" /> Morgen wiederholen wir Irimi-Nage kurz aus dem Gedächtnis. Danke fürs Mitüben."}
-          ]
+            {
+              "id": "5d",
+              "text": "Jetzt wie in der Prüfung. Gleich hörst du die Ansage. Zeig die Technik einmal ganz, ohne Hilfe, auf deiner besseren Seite.",
+              "stimme": "leon",
+              "h": "86f1ef94de",
+              "sek": 12.96
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "5e",
+              "text": "Gut. <break time=\"1.0s\" /> Zum Schluss: schreib eine Frage auf, die du im Training stellen willst. Etwas, das dir heute nicht klar wurde. <break time=\"1.5s\" /> Morgen wiederholen wir Irimi-Nage kurz aus dem Gedächtnis. Danke fürs Mitüben.",
+              "stimme": "laura",
+              "h": "d11cf9c207",
+              "sek": 18.15
+            }
+          ],
+          "ab": 1541.17
         }
       ]
     }
-  ]
+  ],
+  "tonSek": 1604.94
 }
