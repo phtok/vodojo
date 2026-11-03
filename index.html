@@ -1989,7 +1989,7 @@ function bildVoll(src, cap){
   const ov=document.createElement('div'); ov.className='bild-voll'; ov.setAttribute('role','dialog');
   ov.innerHTML=`<button class="bv-x" aria-label="Schliessen">×</button>${cap?`<div class="bv-cap">${cap.split(' · ').map((t,k,l)=>`<span style="white-space:nowrap">${t}${k<l.length-1?' ·':''}</span>`).join(' ')}</div>`:''}`;
   let lage='', zeit=0;
-  const schliessen=()=>{ ov.remove(); document.documentElement.classList.remove('bild-voll-on'); document.removeEventListener('keydown',esc); removeEventListener('resize',neuAusrichten); };
+  const schliessen=()=>{ ov.remove(); document.documentElement.classList.remove('bild-voll-on'); document.removeEventListener('keydown',esc); removeEventListener('resize',neuAusrichten); vollAus(); };
   const esc=e=>{ if(e.key==='Escape') schliessen(); };
   ov.querySelector('.bv-x').onclick=schliessen;
   ov.onclick=e=>{ if(e.target===ov) schliessen(); };
@@ -2018,7 +2018,18 @@ function bildVoll(src, cap){
   im.onload=()=>{ ausrichten(); addEventListener('resize',neuAusrichten); };
   im.src=src;
   document.body.appendChild(ov); document.documentElement.classList.add('bild-voll-on');
+  vollAn(ov);
 }
+/* Echtes Vollbild ohne Browserleisten, wo der Browser es erlaubt (iPad-Safari, Android, Desktop; iPhone-Safari nur für Videos).
+   Muss aus dem Antippen heraus aufgerufen werden. */
+function vollAn(el){ try{
+  if(document.fullscreenEnabled&&el.requestFullscreen) el.requestFullscreen({navigationUI:'hide'}).catch(()=>{});
+  else if(document.webkitFullscreenEnabled&&el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+}catch(e){} }
+function vollAus(){ try{
+  if(document.fullscreenElement&&document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+  else if(document.webkitFullscreenElement&&document.webkitExitFullscreen) document.webkitExitFullscreen();
+}catch(e){} }
 document.getElementById('detail').addEventListener('click',e=>{
   const img=e.target.closest('.dt-foto img'); if(!img) return;
   const sec=img.closest('.dt-sec'); const h=sec&&sec.querySelector('h4'); const q=sec&&sec.querySelector('.dt-quelle');
