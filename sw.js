@@ -1,4 +1,4 @@
-const C='dojo-v49';
+const C='dojo-v50';
 const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-180.png',
   'bilder/angriff-shomenuchi-kiawase.png','bilder/angriff-katatetori-aihanmi.png',
   'bilder/angriff-katatetori-gyakuhanmi.png','bilder/angriff-ryotetori.png',
@@ -7,14 +7,19 @@ const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.
   'bilder/angriff-strich-shomenuchi-kiawase.png','bilder/angriff-strich-katatetori-aihanmi.png',
   'bilder/angriff-strich-katatetori-gyakuhanmi.png','bilder/angriff-strich-ryotetori.png',
   'bilder/ablauf-iriminage.png','bilder/ablauf-kotegaeshi.png','bilder/ablauf-ikkyo-omote.png','bilder/ablauf-ikkyo-ura.png',
-  'bilder/ablauf-shihonage-omote.png','bilder/ablauf-shihonage-ura.png','bilder/ablauf-tenchinage.png','bilder/ablauf-genkeikokyunage.png',
-  'lektionen/tag-1.json'];
+  'bilder/ablauf-shihonage-omote.png','bilder/ablauf-shihonage-ura.png','bilder/ablauf-tenchinage.png','bilder/ablauf-genkeikokyunage.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{
   const u=new URL(e.request.url);
   if(e.request.method!=='GET'||u.origin!==location.origin||u.pathname.startsWith('/api/')||u.pathname.startsWith('/videos/')||u.pathname.startsWith('/audio/'))return;   // Videos und Lektionston direkt vom Server (Range-Requests, iOS)
   // Die App-Seite selbst: zuerst frisch aus dem Netz (neue Versionen sofort sichtbar), offline aus dem Cache
+  // Lektionsskripte: ebenfalls zuerst frisch (sonst bleibt ein Skript ohne Tondatei hängen), offline aus dem Cache
+  if(u.pathname.startsWith('/lektionen/')){
+    e.respondWith(fetch(e.request,{cache:'no-cache'}).then(r=>{ const c=r.clone(); caches.open(C).then(ca=>ca.put(e.request,c)).catch(()=>{}); return r; })
+      .catch(()=>caches.match(e.request)));
+    return;
+  }
   if(e.request.mode==='navigate'||u.pathname==='/'||u.pathname.endsWith('/index.html')){
     e.respondWith(fetch(e.request).then(r=>{ const c=r.clone(); caches.open(C).then(ca=>ca.put('./',c)).catch(()=>{}); return r; })
       .catch(()=>caches.match('./').then(r=>r||caches.match('index.html'))));

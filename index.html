@@ -1792,7 +1792,7 @@ function renderWoche(){
 let LE=null;   // {skript, tag, stationen:[{teil,st,von}], i, sek, laeuft, schritt, token, timer, uhr, audio}
 async function openLektion(tag){
   let skript;
-  try{ skript=await (await fetch(`lektionen/tag-${tag}.json`)).json(); }catch(e){ alert('Lektion konnte nicht geladen werden.'); return; }
+  try{ skript=await (await fetch(`lektionen/tag-${tag}.json`,{cache:'no-cache'})).json(); }catch(e){ alert('Lektion konnte nicht geladen werden.'); return; }
   const stationen=[];
   const datei = skript.tonSek ? `audio/tag-${tag}.mp3` : null;   // eine durchgehende Datei (ton-erzeugen.js), sonst Browser-Stimme
   skript.teile.forEach(teil=>{ const n=teil.stationen.length, a=zuSek(teil.von), b=zuSek(teil.bis);
