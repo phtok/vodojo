@@ -131,7 +131,16 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
   kein eigenes Video, nur YouTube-Ersatz); zwei Ansagen (Nr. 3 und 4).
 - 3. 11. 2026: Tage 1 bis 3 deployt (PR 50). Der Inhaber übt drei Tage
   und gibt dann Rückmeldung.
-- Nächster Schritt: Rückmeldung des Inhabers einarbeiten, dann Tage 4
+- 4. 11. 2026: Lektion 4 (Shihonage Omote und Ura) gebaut, auf Wunsch
+  des Inhabers schon vor dem Ende der Rückschau: `lektionen/tag-4.json`,
+  `audio/tag-4.mp3` (28:22). Erste Lektion mit Rückmeldung 1: Schicht 1
+  heisst «Die inneren Bilder» (Schwert, Tor, Drehtür, im Skript unter
+  `innereBilder`), die Bilder kehren in Aufwärmen, Füssen, Händen, Uke
+  und Fehlern wieder. Kein Trnava-Video zu Nr. 5/6: Schicht 4 geht die
+  Ikeda-Zeichnung Bild für Bild nach, dazu ein YouTube-Link auf den
+  Ersatz (neue Bildart `youtube`).
+- Nächster Schritt: Rückmeldungen weiter sammeln, dann einarbeiten (auch
+  Schicht 1 der Tage 1 bis 3 auf innere Bilder umstellen), dann Tage 5
   bis 7.
 - Offen: die Wunschtechnik.
 

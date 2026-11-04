@@ -1,0 +1,614 @@
+{
+  "tag": 4,
+  "titel": "Shihonage Omote und Ura",
+  "angriff": "Katatetori Gyakuhanmi",
+  "nr": 5,
+  "minuten": 30,
+  "satz": "Ukes Arm wird zum Schwert, das du hebst, und zum Tor, unter dem du hindurchgehst. Dann schneidest du in die neue Richtung.",
+  "wiederholung": "Ikkyo",
+  "vorgriff": "Tenchinage",
+  "innereBilder": {
+    "Schwert": "Ukes Handgelenk ist der Griff deines Schwerts: heben über den Kopf, umdrehen, schneiden. Daher der Name: in vier Richtungen schneiden.",
+    "Tor": "Dein und Ukes erhobener Arm bilden einen Torbogen. Du gehst darunter hindurch, nicht daran vorbei.",
+    "Drehtür": "Bei Ura bist du die Achse einer Drehtür: Du drehst dich auf der Stelle, Uke schwingt mit."
+  },
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 5 und 6: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Angriffszeichnung Katatetori Gyakuhanmi und Ablaufzeichnungen Shihonage Omote (fünf Bilder: zur Seite, Irimi, unter dem Arm, drehen, schneiden) und Shihonage Ura (vier Bilder, im Original gespiegelt gedruckt, liest sich von rechts nach links: Tenkan, drehen, heben, schneiden): Aikido Ikeda Dojo Zürich, Gedankenstütze 6. Kyu (quellen/ikeda-dojo/)",
+    "Kärtchen Shiho Nage: Eric Graf, Dojo de Bienne (bilder/technik-shihonage.png)",
+    "Video: Trnava hat zu Nr. 5 und 6 kein Video. Ersatz in der App: Paul Muller Aikido auf YouTube (W4vZQZ977cM, Q9QMM9xJtAw), hier nur als Link.",
+    "Innere Bilder (Schwert, Tor, Drehtür): nach Rückmeldung 1 des Inhabers (lektionen/KONZEPT.md § Rückmeldungen)",
+    "Vorgriff: Ablaufzeichnung Tenchinage (Ikeda) und Video Nr. 7 (Trnava, 5,7 s, zwei Wiederholungen: 0–3 und 3–5,7 s)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, innere Bilder, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Schiho-Nage, Katate-Tori Gjaku-Hanmi). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}. {\"ansage\": N} spielt die Prüfungsansage von Nr. N."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "5:00",
+      "stationen": [
+        {
+          "titel": "Ankommen",
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Heute: Uke fasst gerade gegenüber."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Katatetori Gyakuhanmi"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag vier. Heute geht es um Schiho-Nage, den Wurf in vier Richtungen, in zwei Formen: Omote und Ura. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum. Atme dreimal tief aus.",
+              "h": "4ba75f5086",
+              "sek": 20.56
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 0
+        },
+        {
+          "titel": "Schultern drehen",
+          "karten": [
+            "Arme seitlich, Ellbogen rechtwinklig: Unterarme nach oben und unten drehen.",
+            "Hand hinter den Kopf, Ellbogen zur Decke.",
+            "Warum: Bei Shihonage wird Ukes Arm hinter seine Schulter gefaltet. Das braucht bewegliche Schultern."
+          ],
+          "ton": [
+            {
+              "id": "1b",
+              "stimme": "laura",
+              "text": "Bei Schiho-Nage faltet sich Ukes Arm hinter seine eigene Schulter. Das geht nur mit beweglichen Schultern, als Uke wie als Tori.",
+              "h": "d3db82b998",
+              "sek": 10.68
+            },
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Heb die Arme seitlich auf Schulterhöhe, die Ellbogen rechtwinklig, die Hände zeigen nach oben. <break time=\"1.0s\" /> Dreh die Unterarme langsam nach vorn unten, und wieder nach oben. <break time=\"3s\" /> Unten. <break time=\"3s\" /> Oben. <break time=\"3s\" /> Unten. <break time=\"3s\" /> Oben. <break time=\"3s\" /> Unten. <break time=\"3s\" /> Oben. <break time=\"2s\" /> Lösen.",
+              "h": "d4ff3979ab",
+              "sek": 50.24
+            },
+            {
+              "id": "1d",
+              "stimme": "leon",
+              "text": "Leg die rechte Hand hinter den Kopf, der Ellbogen zeigt zur Decke. Mit der linken Hand den Ellbogen sanft nach hinten führen. Halten. <break time=\"10s\" /> Andere Seite. <break time=\"10s\" /> Gut.",
+              "h": "e057d25a85",
+              "sek": 41.05
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 37.61
+        },
+        {
+          "titel": "Unter dem eigenen Tor",
+          "karten": [
+            "Hände über dem Kopf verschränken.",
+            "Unter den Armen hindurch umdrehen, Füsse drehen auf den Ballen.",
+            "Am Ende schaust du in die andere Richtung, die Hände sind noch oben.",
+            "Achtmal, die Richtung wechselt."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "ton": [
+            {
+              "id": "1e",
+              "stimme": "laura",
+              "text": "Jetzt das erste innere Bild für heute: das Tor. <break time=\"1.0s\" /> Stell dir vor, deine erhobenen Arme sind ein Torbogen, und du gehst darunter hindurch. Genau das tust du bei Schiho-Nage, nur dass später Ukes Arm zum Tor gehört.",
+              "h": "9541ca1928",
+              "sek": 18.5
+            },
+            {
+              "id": "1f",
+              "stimme": "leon",
+              "text": "Fass mit der rechten Hand dein linkes Handgelenk und heb beide Hände über die Stirn. <break time=\"1.0s\" /> Dreh dich unter dem Tor hindurch, auf den Fussballen, bis du in die andere Richtung schaust. Die Hände bleiben über dem Kopf. <break time=\"1.0s\" /> Ich zähle. <break time=\"1.0s\" /> Eins. <break time=\"4s\" /> Zwei. <break time=\"4s\" /> Drei. <break time=\"4s\" /> Vier. <break time=\"2s\" /> Hände wechseln. <break time=\"2s\" /> Fünf. <break time=\"4s\" /> Sechs. <break time=\"4s\" /> Sieben. <break time=\"4s\" /> Acht.",
+              "h": "c4a8355fcd",
+              "sek": 70.44
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 147.36
+        },
+        {
+          "titel": "Ushiro Ukemi",
+          "karten": [
+            "Uke fällt bei Shihonage rückwärts.",
+            "Aus der Hocke: Kinn an die Brust, rund nach hinten rollen.",
+            "Sechsmal."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "1g",
+              "stimme": "leon",
+              "text": "Bei Schiho-Nage fällt Uke nach hinten, wie bei Irimi-Nage. <break time=\"1.0s\" /> Geh in die Hocke, Kinn an die Brust, und rolle rund nach hinten über eine Schulter. Ohne Matte nur rund zurückschaukeln. <break time=\"1.0s\" /> Sechsmal, in deinem Tempo.",
+              "h": "4357ddc0c8",
+              "sek": 23.71
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 243.51
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Wiederholung: Ikkyo",
+      "von": "5:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Aus dem Gedächtnis",
+          "karten": [
+            "Hör die Ansage.",
+            "Erst im Kopf: heben, Ellbogen, schneiden, knien.",
+            "Dann bewegen, Omote und Ura.",
+            "Danach die Zeichnungen als Kontrolle."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "bild2": {
+            "art": "ikeda",
+            "key": "Ikkyo Ura"
+          },
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Wiederholung von gestern, nur aus dem Gedächtnis. Schau noch nicht auf den Bildschirm. Gleich hörst du die Ansage.",
+              "h": "9f37606a25",
+              "sek": 8.31
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "id": "2b",
+              "stimme": "leon",
+              "text": "Erst im Kopf: heben, Ellbogen fassen, schneiden, knien. <break time=\"6s\" /> Jetzt bewegen. Zwei Mal Omote je Seite.",
+              "h": "76f3189a29",
+              "sek": 21.86
+            },
+            {
+              "pause": 40
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "id": "2c",
+              "stimme": "leon",
+              "text": "Jetzt Ura, zwei Mal je Seite.",
+              "h": "13bdd1ecc0",
+              "sek": 2.51
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "2d",
+              "stimme": "laura",
+              "text": "Schau auf die Zeichnungen. Hast du mit dem Körper gehoben, nicht mit dem Arm? Und bei Ura: erst neben Uke eingetreten, dann gedreht?",
+              "h": "5cec29235c",
+              "sek": 11
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 309.21
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Shihonage in Schichten",
+      "von": "8:00",
+      "bis": "23:00",
+      "stationen": [
+        {
+          "titel": "Schicht 1 · Die inneren Bilder",
+          "karten": [
+            "Das Schwert: Ukes Handgelenk ist der Griff. Heben, umdrehen, schneiden.",
+            "Das Tor: Unter dem erhobenen Arm gehst du hindurch, nicht daran vorbei.",
+            "Die Drehtür (Ura): Du bist die Achse, Uke schwingt mit.",
+            "Shihonage heisst: in vier Richtungen schneiden."
+          ],
+          "bild": {
+            "art": "graf",
+            "key": "Shihonage"
+          },
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "laura",
+              "text": "Schicht eins: die inneren Bilder. Schliess kurz die Augen, wenn du magst. <break time=\"2.0s\" /> Das erste Bild ist das Schwert. Stell dir vor, Ukes Handgelenk ist der Griff deines Schwerts. Du hebst das Schwert über deinen Kopf, drehst dich um, und schneidest in die neue Richtung nach unten. <break time=\"1.5s\" /> Schiho-Nage heisst: in vier Richtungen schneiden. Mit dem Schwert kannst du dich in jede Richtung drehen und schneiden, und Uke geht mit. <break time=\"2.0s\" /> Das zweite Bild ist das Tor. Wenn du das Schwert hebst, bilden dein Arm und Ukes Arm einen Torbogen. Du gehst darunter hindurch, mitten hindurch, nicht daran vorbei. <break time=\"2.0s\" /> Und für Ura ein drittes Bild: die Drehtür. Du bist die Achse. Du drehst dich auf der Stelle, und Uke schwingt mit wie der Flügel einer Drehtür. <break time=\"2.0s\" /> Schwert, Tor, Drehtür. Diese drei Bilder begleiten dich durch die ganze Lektion.",
+              "h": "8ddc3eebb3",
+              "sek": 79.77
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 465.87
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse: Omote",
+          "karten": [
+            "1 · Zur Seite: vorderer Fuss schräg nach aussen, neben Ukes Arm.",
+            "2 · Irimi: hinterer Fuss tritt vor Uke, unter das Tor.",
+            "3 · Umdrehen: auf beiden Fussballen, unter dem Tor hindurch.",
+            "4 · Schneiden: ein Schritt nach vorn, durch Uke hindurch."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "ton": [
+            {
+              "id": "3b",
+              "stimme": "laura",
+              "text": "Schicht zwei: die Füsse, zuerst Omote. Die Ikeda-Zeichnung zeigt dafür fünf Bilder. Denk beim Gehen an das Tor.",
+              "h": "da7c26f34a",
+              "sek": 10.81
+            },
+            {
+              "id": "3c",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn, Uke fasst dein linkes Handgelenk mit seiner rechten Hand. <break time=\"1.0s\" /> Eins: Zur Seite. Dein vorderer Fuss geht schräg nach aussen, neben Ukes Arm. <break time=\"3s\" /> Zwei: Irimi. Der hintere Fuss tritt nach vorn, vor Uke, unter das Tor. <break time=\"3s\" /> Drei: Umdrehen. Auf beiden Fussballen drehst du dich unter dem Tor hindurch. Jetzt schaust du in die Richtung, aus der du kamst. <break time=\"3s\" /> Vier: Schneiden. Ein Schritt nach vorn, durch Uke hindurch. <break time=\"3s\" /> Zurück zum Anfang.",
+              "h": "46769a406a",
+              "sek": 68.03
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "stimme": "leon",
+              "text": "Jetzt nur die Zahlen, vier Durchgänge links. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, dann Seite wechseln.",
+              "h": "f12f088977",
+              "sek": 44.14
+            },
+            {
+              "pause": 50
+            }
+          ],
+          "ab": 562.51
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse: Ura",
+          "karten": [
+            "1 · Eintreten: vorderer Fuss neben Uke.",
+            "2 · Tenkan: du stehst neben Uke, gleiche Blickrichtung.",
+            "3 · Umdrehen: auf den Fussballen, unter dem Tor hindurch.",
+            "4 · Schneiden: hinterer Fuss zieht zurück, Uke fällt vor dir."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Ura"
+          },
+          "ton": [
+            {
+              "id": "3e",
+              "stimme": "laura",
+              "text": "Jetzt Ura, mit dem Bild der Drehtür. Das Ikeda-Blatt ist gespiegelt gedruckt, es beginnt rechts mit dem Wort Tenkan und liest sich nach links.",
+              "h": "96967c238e",
+              "sek": 12.36
+            },
+            {
+              "id": "3f",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. <break time=\"1.0s\" /> Eins: Eintreten. Der vordere Fuss geht neben Uke. <break time=\"3s\" /> Zwei: Tenkan. Du drehst dich, jetzt stehst du neben Uke und schaust in seine Richtung. <break time=\"3s\" /> Drei: Umdrehen. Auf den Fussballen, unter dem Tor hindurch, wie eine Drehtür. <break time=\"3s\" /> Vier: Schneiden. Dein hinterer Fuss zieht im Bogen zurück, Uke fällt vor dir. <break time=\"3s\" /> Zurück zum Anfang.",
+              "h": "59e35f8344",
+              "sek": 59.71
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3g",
+              "stimme": "leon",
+              "text": "Allein weiter: drei Durchgänge links, dann drei rechts. Sag die Zahlen leise mit.",
+              "h": "97ccaa5d43",
+              "sek": 11.1
+            },
+            {
+              "pause": 55
+            }
+          ],
+          "ab": 744.11
+        },
+        {
+          "titel": "Schicht 3 · Die Hände",
+          "karten": [
+            "Gefasste Hand öffnen, Handkante: sie greift Ukes Handgelenk zurück.",
+            "Zweite Hand dazu: beide Hände halten das Schwert.",
+            "Heben: Schwert vor der Stirn, Ellbogen tief.",
+            "Schneiden: nach unten, Ukes Hand neben seiner Schulter."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Shihonage"
+          },
+          "ton": [
+            {
+              "id": "3h",
+              "stimme": "laura",
+              "text": "Schicht drei: die Hände, mit dem Bild des Schwerts. <break time=\"1.0s\" /> Uke hält dein Handgelenk. Öffne die Hand zur Handkante und dreh sie so, dass du sein Handgelenk zurückfassen kannst. <break time=\"1.0s\" /> Die andere Hand kommt dazu. Jetzt halten beide Hände den Griff des Schwerts. <break time=\"1.5s\" /> Heb das Schwert vor deine Stirn, die Ellbogen bleiben tief, nah am Körper. Dann gehst du unter dem Tor hindurch. <break time=\"1.5s\" /> Nach dem Umdrehen schneidest du nach unten. Ukes Hand kommt neben seine eigene Schulter, und er fällt nach hinten. Das Schwert schneidet, du ziehst nicht.",
+              "h": "11286cd26f",
+              "sek": 49.04
+            },
+            {
+              "id": "3i",
+              "stimme": "leon",
+              "text": "Üb das jetzt im Stand, mit dem eigenen Handgelenk als Schwertgriff. Fünfmal: zurückfassen, zweite Hand, heben, schneiden.",
+              "h": "3f2786b33e",
+              "sek": 14.24
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "3j",
+              "stimme": "leon",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Zwei Mal Omote, zwei Mal Ura, je Seite. Denk an Schwert, Tor und Drehtür.",
+              "h": "459b093233",
+              "sek": 17.58
+            },
+            {
+              "pause": 70
+            }
+          ],
+          "ab": 891.26
+        },
+        {
+          "titel": "Schicht 4 · Der ganze Ablauf, langsam",
+          "karten": [
+            "Zeichnung Omote Bild für Bild nachgehen, dann Ura.",
+            "Bei jedem Bild kurz anhalten.",
+            "Video nur als Ersatz: Paul Muller Aikido auf YouTube."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "bild2": {
+            "art": "youtube",
+            "nr": 5
+          },
+          "ton": [
+            {
+              "id": "3k",
+              "stimme": "laura",
+              "text": "Schicht vier: der ganze Ablauf, langsam. Für Schiho-Nage gibt es kein Video aus Trnava. Wir gehen darum die Zeichnung Bild für Bild nach. <break time=\"1.0s\" /> Ich sage das Bild, du nimmst die Stellung ein und hältst sie kurz.",
+              "h": "1eaf1394af",
+              "sek": 18.92
+            },
+            {
+              "id": "3l",
+              "stimme": "leon",
+              "text": "Omote. <break time=\"1.0s\" /> Bild eins: neben Ukes Arm, beide Hände am Griff. <break time=\"5s\" /> Bild zwei: Irimi, vor Uke, das Schwert steigt. <break time=\"5s\" /> Bild drei: unter dem Tor, die Hände über dir. <break time=\"5s\" /> Bild vier: umgedreht, das Schwert über dem Kopf. <break time=\"5s\" /> Bild fünf: geschnitten, Uke fällt. <break time=\"4s\" /> Noch einmal, fliessend und langsam, je Seite zwei Mal.",
+              "h": "99f4b635ef",
+              "sek": 76.86
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "3m",
+              "stimme": "leon",
+              "text": "Jetzt Ura, gleich langsam. Eintreten, Tenkan, umdrehen, schneiden. Zwei Mal je Seite.",
+              "h": "a48e84dbfc",
+              "sek": 13.19
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1085.16
+        },
+        {
+          "titel": "Schicht 5 · Als Uke",
+          "karten": [
+            "Fass fest, mit gestrecktem Arm.",
+            "Wenn Tori das Schwert hebt: mitgehen, auf die Zehen.",
+            "Wenn Tori schneidet: Kinn an die Brust, rückwärts abrollen.",
+            "Schulter nicht festhalten. Abklopfen, wenn es zu viel wird."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Katatetori Gyakuhanmi"
+          },
+          "ton": [
+            {
+              "id": "3n",
+              "stimme": "laura",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Du fasst Toris Handgelenk gerade gegenüber, deine rechte Hand an sein linkes Handgelenk, mit gestrecktem Arm. <break time=\"1.0s\" /> Wenn Tori das Schwert hebt, geh mit, bis auf die Zehen. Wenn er schneidet, gib die Schulter frei: Kinn an die Brust, und rückwärts abrollen. <break time=\"1.0s\" /> Wer die Schulter festhält, wird verletzt. Wird es zu viel, klopf ab, Tori lässt sofort nach.",
+              "h": "466c7a80d6",
+              "sek": 34.58
+            },
+            {
+              "id": "3o",
+              "stimme": "leon",
+              "text": "Üb das allein: fassen, auf die Zehen, Hand neben die Schulter, Kinn an die Brust, rückwärts abrollen. Dreimal.",
+              "h": "becaf36ec6",
+              "sek": 13.56
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1277.02
+        },
+        {
+          "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
+          "karten": [
+            "Fehler 1: am Tor vorbeigehen statt hindurch. → Mitten unter dem Arm durch.",
+            "Fehler 2: Ukes Arm weit weg vom Kopf. → Ukes Hand neben seiner Schulter.",
+            "Fehler 3: mit den Armen werfen. → Das Schwert schneidet mit dem Schritt."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "ton": [
+            {
+              "id": "3p",
+              "stimme": "laura",
+              "text": "Schicht sechs: drei Fehler, und welches Bild dagegen hilft. <break time=\"1.0s\" /> Erstens: am Tor vorbeigehen statt hindurch. Dann verdreht sich Ukes Arm, und er kommt frei. Korrektur: mitten unter dem Tor durch. <break time=\"1.5s\" /> Zweitens: Ukes Arm weit weg von seinem Kopf. Dann reisst es an der Schulter. Korrektur: das Schwert bleibt nah, Ukes Hand kommt neben seine eigene Schulter. <break time=\"1.5s\" /> Drittens: mit den Armen werfen. Korrektur: das Schwert schneidet mit deinem Schritt nach vorn, nicht mit Kraft.",
+              "h": "47a59c5ac3",
+              "sek": 44.64
+            },
+            {
+              "id": "3q",
+              "stimme": "leon",
+              "text": "Mach zum Schluss je einmal Omote und Ura pro Seite und prüf bei jedem einen Fehler.",
+              "h": "6abb9ea47d",
+              "sek": 7.94
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1367.62
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Vorgriff: Tenchinage",
+      "von": "23:00",
+      "bis": "26:00",
+      "stationen": [
+        {
+          "titel": "Morgen: Tenchinage",
+          "karten": [
+            "Neuer Angriff: Ryotetori, Uke fasst beide Handgelenke.",
+            "Tenchinage = Himmel-Erde-Wurf: eine Hand zum Himmel, eine zur Erde.",
+            "Nur ansehen, nicht üben."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Tenchinage"
+          },
+          "bild2": {
+            "art": "video",
+            "nr": 7,
+            "a": 0,
+            "b": 3,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Morgen fasst Uke beide Handgelenke: Rjote-Tori. <break time=\"1.0s\" /> Die Technik heisst Tentschi-Nage, der Himmel-Erde-Wurf. Eine Hand steigt zum Himmel, die andere sinkt zur Erde, und du trittst zwischen beiden hindurch. <break time=\"1.5s\" /> Heute nur ansehen. Schau dir die Zeichnung an und das Video in halber Geschwindigkeit.",
+              "h": "d2d6c5d492",
+              "sek": 29.96
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 1452.71
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "26:00",
+      "bis": "30:00",
+      "stationen": [
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Schultern: Hand hinter den Kopf, Ellbogen sanft nach hinten.",
+            "Brust öffnen: Hände hinter dem Rücken verschränken.",
+            "Handgelenke ausschütteln."
+          ],
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Abschluss. Wir dehnen, was heute gearbeitet hat. <break time=\"1.0s\" /> Rechte Hand hinter den Kopf, den Ellbogen sanft nach hinten führen. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Hände hinter dem Rücken verschränken und die Brust öffnen. <break time=\"8s\" /> Lösen und die Handgelenke ausschütteln.",
+              "h": "a265b8ad22",
+              "sek": 47.9
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 1544.61
+        },
+        {
+          "titel": "Ansage und Notiz",
+          "karten": [
+            "Zwei Ansagen wie in der Prüfung: Omote, dann Ura.",
+            "Zeig jede Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
+          "ansage": 5,
+          "notiz": "Meine Frage zu Shihonage",
+          "ton": [
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Jetzt wie in der Prüfung. Du hörst zwei Ansagen. Zeig jede Technik einmal ganz, ohne Hilfe.",
+              "h": "b71001a418",
+              "sek": 9.64
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "pause": 25
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "5c",
+              "stimme": "laura",
+              "text": "Gut. <break time=\"1.0s\" /> Nimm zum Schluss die drei Bilder mit: Schwert, Tor, Drehtür. <break time=\"1.0s\" /> Und schreib eine Frage auf, die du im Training stellen willst. <break time=\"1.5s\" /> Morgen wiederholen wir Schiho-Nage kurz aus dem Gedächtnis. Danke fürs Mitüben.",
+              "h": "e784b5c40d",
+              "sek": 20.28
+            }
+          ],
+          "ab": 1609.43
+        }
+      ]
+    }
+  ],
+  "tonSek": 1702.16
+}

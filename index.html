@@ -1762,7 +1762,7 @@ const WOCHE=[
   {tag:1,a:'Shomenuchi Kiawase',t:'Iriminage',nr:'1',aktiv:true},
   {tag:2,a:'Shomenuchi Kiawase',t:'Kotegaeshi',nr:'2',aktiv:true},
   {tag:3,a:'Katatetori Aihanmi',t:'Ikkyo Omote und Ura',nr:'3, 4',aktiv:true},
-  {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6'},
+  {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6',aktiv:true},
   {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7'},
   {tag:6,a:'Ryotetori',t:'Genkeikokyunage',nr:'8'},
   {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8'}
@@ -1823,6 +1823,8 @@ function bildHTML(b){
     const bl= g.phases ? g.phases.map((p,k)=>`<figure>${p.img}<figcaption>${k+1}. ${p.cap}</figcaption></figure>`).join('')
             : g.diagram ? `<figure style="max-width:190px">${g.diagram.img}<figcaption>${g.diagram.cap}</figcaption></figure>` : '';
     return `<div class="dt-sec"><h4>Skizze · ${b.key}</h4><div class="le-guide">${bl}</div><div class="dt-legend"><span><i style="background:${C_TORI}"></i>du (Tori)</span><span><i style="background:${C_UKE}"></i>Partner (Uke)</span></div></div>`; }
+  if(b.art==='youtube'){ const e=EXAM.find(x=>x.n===b.nr); if(!e||!e.vid) return '';
+    return `<div class="dt-sec"><h4>Video Nr.&nbsp;${e.n} · ${e.t}${e.d&&e.d!=='—'?' '+e.d:''}</h4><a class="le-ansage" style="display:block;text-align:center;text-decoration:none" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener">Auf YouTube ansehen ↗</a><div class="dt-quelle">Ersatz: ${e.quelle||'YouTube'} · nicht aus der Auswahl der Meisterin</div></div>`; }
   if(b.art==='video'){ const e=EXAM.find(x=>x.n===b.nr); if(!e) return '';
     return `<div class="dt-sec le-video"><h4>Video Nr.&nbsp;${e.n} · ${e.t} · ${String(b.rate).replace('.',',')}×</h4>
       <video src="videos/nr-${e.n}.mp4" poster="videos/nr-${e.n}.jpg" muted playsinline webkit-playsinline preload="metadata" data-a="${b.a}" data-b="${b.b}" data-rate="${b.rate}"></video>
@@ -1847,7 +1849,7 @@ function zeichneLektion(){
   const bahn=skript.teile.map(t=>{ const a=t._von, b=t._bis; const p=Math.max(0,Math.min(1,(LE.sek-a)/(b-a)));
     return `<i style="flex:${b-a}"><u style="width:${p*100}%"></u></i>`; }).join('');
   let h=`<button class="dt-back" id="le-back">← Woche</button>
-    <div class="dt-seal" style="text-align:center">Tag&nbsp;${skript.tag} · ${skript.angriff} · ${skript.titel}</div>
+    <div class="dt-seal" style="text-align:center;text-wrap:balance">Tag&nbsp;${skript.tag} · ${skript.angriff} · ${skript.titel}</div>
     <div class="le-uhr"><b id="le-uhr">${mmss(LE.sek)}</b><span>von ${mmss(total)}</span></div>
     <div class="le-bahn">${bahn}</div>`;
   if(ende){
