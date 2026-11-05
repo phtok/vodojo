@@ -1763,9 +1763,9 @@ const WOCHE=[
   {tag:2,a:'Shomenuchi Kiawase',t:'Kotegaeshi',nr:'2',aktiv:true},
   {tag:3,a:'Katatetori Aihanmi',t:'Ikkyo Omote und Ura',nr:'3, 4',aktiv:true},
   {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6',aktiv:true},
-  {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7'},
-  {tag:6,a:'Ryotetori',t:'Genkeikokyunage',nr:'8'},
-  {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8'}
+  {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7',aktiv:true},
+  {tag:6,a:'Ryotetori',t:'Genkeikokyunage',nr:'8',aktiv:true},
+  {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8',aktiv:true}
 ];
 let woStand={};             // {tag:{st:Stationsindex, sek:Uhr, fertig:bool, notiz:''}}
 const nbsp=s=>String(s).replace(/(\d)\s(?=\S)/g,'$1 ').replace(/\b(je|Nr\.|Tag|Teil|Schicht) (?=\d)/g,'$1 ').replace(/(\d)–(\d)/g,'$1\u2060–\u2060$2');
@@ -1853,7 +1853,7 @@ function zeichneLektion(){
     <div class="le-uhr"><b id="le-uhr">${mmss(LE.sek)}</b><span>von ${mmss(total)}</span></div>
     <div class="le-bahn">${bahn}</div>`;
   if(ende){
-    h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">Morgen wiederholt Tag&nbsp;${skript.tag+1} ${skript.titel} kurz aus dem Gedächtnis.</p></div>
+    h+=`<div class="le-ende"><b>Lektion fertig. Danke fürs Mitüben.</b><p class="prog-note" style="text-wrap:balance">${skript.ende||`Morgen wiederholt Tag&nbsp;${skript.tag+1} ${skript.titel} kurz aus dem Gedächtnis.`}</p></div>
       <div class="le-ctl"><button class="le-play" id="le-zu">Zur Woche</button><button class="le-klein" id="le-neu">Neu beginnen</button></div>`;
   } else {
     h+=`<div class="le-teil"><div class="dt-seal">Teil&nbsp;${x.teil.nr} von ${skript.teile.length} · ${mmss(x.teil._von)}–${mmss(x.teil._bis)}</div>

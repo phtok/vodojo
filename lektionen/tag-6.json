@@ -1,0 +1,528 @@
+{
+  "tag": 6,
+  "titel": "Genkeikokyunage",
+  "angriff": "Ryotetori",
+  "nr": 8,
+  "minuten": 30,
+  "satz": "Kein Hebel, kein Griff: Der Atem hebt die Hände wie eine Welle, und die Welle bricht hinter Uke.",
+  "wiederholung": "Tenchinage",
+  "vorgriff": "Prüfungstag",
+  "innereBilder": {
+    "Welle": "Einatmen hebt deine Hände wie eine Welle, die sich aufbaut. Ausatmen lässt sie hinter Uke brechen.",
+    "Flügel": "Beim Eintreten öffnet sich dein Arm wie ein Flügel, quer vor Ukes Brust, nach hinten."
+  },
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 8: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Ablaufzeichnung Genkeikokyunage (zwei Bilder: Hände steigen vor der Brust, nah bei Uke; Tori tief hinter Uke, der Arm offen nach hinten, Uke fällt rückwärts): Aikido Ikeda Dojo Zürich, Gedankenstütze 6. Kyu (quellen/ikeda-dojo/)",
+    "Kärtchen Genkei Kokyu Nage: Eric Graf, Dojo de Bienne (bilder/technik-genkeikokyunage.png)",
+    "Video Nr. 8: Aikido Dojo Trnava, Auswahl der Meisterin (videos/nr-8.mp4, 8,4 s, zwei Wiederholungen: 0–4 und 4–8,4 s)",
+    "Innere Bilder (Welle, Flügel): nach Rückmeldung 1 des Inhabers (lektionen/KONZEPT.md § Rückmeldungen)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, innere Bilder, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Genkei-Kokju-Nage, Rjote-Tori). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}. {\"ansage\": N} spielt die Prüfungsansage von Nr. N."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "5:00",
+      "stationen": [
+        {
+          "titel": "Ankommen",
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Heute: der Atem-Wurf."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ryotetori"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag sechs, dem letzten Übungstag vor der Prüfung. Heute geht es um Genkei-Kokju-Nage, den Atem-Wurf. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum. Atme dreimal tief aus.",
+              "h": "f27a12c598",
+              "sek": 19.29
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 0
+        },
+        {
+          "titel": "Atem und Zentrum",
+          "karten": [
+            "Einatmen: Hände steigen, Handflächen zu dir.",
+            "Ausatmen: Hände öffnen sich nach aussen.",
+            "Das Zentrum bleibt tief und ruhig.",
+            "Warum: Bei diesem Wurf trägt der Atem, nicht die Kraft."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "1b",
+              "stimme": "laura",
+              "text": "Bei Genkei-Kokju-Nage gibt es keinen Hebel und keinen Griff am Gelenk. Was wirft, ist der Atem, getragen vom Zentrum. Darum atmen wir uns heute warm.",
+              "h": "9f8c391d83",
+              "sek": 13.51
+            },
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Stell dich in Hanmi, die Hände locker vor dem Bauch. <break time=\"1.0s\" /> Einatmen, die Hände steigen bis vor die Brust, die Handflächen zeigen zu dir. <break time=\"4s\" /> Ausatmen, die Hände öffnen sich nach aussen, wie ein Wasser, das sich ausbreitet. <break time=\"4s\" /> Einatmen. <break time=\"4s\" /> Ausatmen. <break time=\"4s\" /> Einatmen. <break time=\"4s\" /> Ausatmen. <break time=\"3s\" /> Noch fünfmal in deinem Atem. Das Zentrum bleibt tief.",
+              "h": "f8c759ad04",
+              "sek": 65.99
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 36.31
+        },
+        {
+          "titel": "Tenkan mit Atem",
+          "karten": [
+            "Tenkan wie an Tag 1.",
+            "Einatmen beim Drehen, die Hände steigen.",
+            "Ausatmen am Ende, die Hände öffnen sich.",
+            "Achtmal, die Seite wechselt."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenkan"
+          },
+          "ton": [
+            {
+              "id": "1d",
+              "stimme": "leon",
+              "text": "Jetzt Tenkan, mit dem Atem. Beim Drehen einatmen, die Hände steigen. Am Ende ausatmen, die Hände öffnen sich. <break time=\"1.0s\" /> Eins. <break time=\"4s\" /> Zwei. <break time=\"4s\" /> Drei. <break time=\"4s\" /> Vier. <break time=\"2s\" /> Seite wechseln. <break time=\"2s\" /> Fünf. <break time=\"4s\" /> Sechs. <break time=\"4s\" /> Sieben. <break time=\"4s\" /> Acht.",
+              "h": "a9c9e01c89",
+              "sek": 59.7
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 148.17
+        },
+        {
+          "titel": "Ushiro Ukemi",
+          "karten": [
+            "Uke fällt rückwärts, oft über Toris Bein.",
+            "Kinn an die Brust, rund nach hinten rollen.",
+            "Sechsmal."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "1e",
+              "stimme": "leon",
+              "text": "Uke fällt bei diesem Wurf rückwärts. Geh in die Hocke, Kinn an die Brust, und rolle rund nach hinten über eine Schulter. Ohne Matte nur rund zurückschaukeln. Sechsmal, in deinem Tempo.",
+              "h": "a2aef31d01",
+              "sek": 19.77
+            },
+            {
+              "pause": 35
+            }
+          ],
+          "ab": 214.57
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Wiederholung: Tenchinage",
+      "von": "5:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Aus dem Gedächtnis",
+          "karten": [
+            "Hör die Ansage.",
+            "Erst die inneren Bilder: Baum und Spalt.",
+            "Dann bewegen, drei je Seite.",
+            "Danach die Zeichnung als Kontrolle."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Wiederholung von gestern, nur aus dem Gedächtnis. Ruf zuerst die beiden Bilder auf: der Baum und der Spalt. <break time=\"5s\" /> Gleich hörst du die Ansage.",
+              "h": "b24b539a6c",
+              "sek": 15.42
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "id": "2b",
+              "stimme": "leon",
+              "text": "Drei Durchgänge je Seite, langsam.",
+              "h": "6518ee1d8f",
+              "sek": 4.49
+            },
+            {
+              "pause": 60
+            },
+            {
+              "id": "2c",
+              "stimme": "laura",
+              "text": "Schau auf die Zeichnung. Haben beide Hände zugleich gearbeitet? Und bist du tief in den Spalt getreten?",
+              "h": "dc111612c7",
+              "sek": 8.12
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "2d",
+              "stimme": "leon",
+              "text": "Noch zwei Durchgänge je Seite, mit dem, was dir die Zeichnung gezeigt hat.",
+              "h": "792882120e",
+              "sek": 6.92
+            },
+            {
+              "pause": 35
+            }
+          ],
+          "ab": 271.41
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Genkeikokyunage in Schichten",
+      "von": "8:00",
+      "bis": "23:00",
+      "stationen": [
+        {
+          "titel": "Schicht 1 · Die inneren Bilder",
+          "karten": [
+            "Die Welle: Einatmen hebt die Hände, Ausatmen lässt die Welle hinter Uke brechen.",
+            "Der Flügel: Beim Eintreten öffnet sich dein Arm quer vor Ukes Brust nach hinten.",
+            "Kokyu = Atem, nage = Wurf."
+          ],
+          "bild": {
+            "art": "graf",
+            "key": "Genkeikokyunage"
+          },
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "laura",
+              "text": "Schicht eins: die inneren Bilder. Schliess kurz die Augen, wenn du magst. <break time=\"2.0s\" /> Kokju heisst Atem, Nage heisst Wurf. <break time=\"1.5s\" /> Das erste Bild ist die Welle. Uke hält deine Hände. Mit dem Einatmen baut sich eine Welle auf: Deine Hände steigen, nah an deinem Körper, und Uke wird von der Welle mit nach oben getragen. <break time=\"1.5s\" /> Mit dem Ausatmen bricht die Welle, nicht vor Uke, sondern hinter ihm. <break time=\"2.0s\" /> Das zweite Bild ist der Flügel. Wenn du hinter Uke eintrittst, öffnet sich dein Arm wie ein Flügel, quer vor seiner Brust, nach hinten. Der Flügel schlägt nicht, er breitet sich aus. <break time=\"2.0s\" /> Welle und Flügel. Diese beiden Bilder begleiten dich durch die Lektion.",
+              "h": "a72c2eb218",
+              "sek": 63.16
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 428.57
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse allein",
+          "karten": [
+            "1 · Stehen: Hanmi, Uke hält beide Hände.",
+            "2 · Ausweichen und drehen: vorderer Fuss zur Seite, Tenkan, Uke geht an dir vorbei.",
+            "3 · Eintreten: hinterer Fuss tief hinter Uke.",
+            "4 · Stehen bleiben: tief, Uke fällt über dein Bein nach hinten."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Genkeikokyunage"
+          },
+          "ton": [
+            {
+              "id": "3b",
+              "stimme": "laura",
+              "text": "Schicht zwei: die Füsse allein. Die Ikeda-Zeichnung zeigt nur zwei Bilder: vorn die steigenden Hände, hinten Tori tief hinter Uke. Dazwischen liegt der Weg deiner Füsse.",
+              "h": "36b30786b2",
+              "sek": 16.43
+            },
+            {
+              "id": "3c",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Uke hält beide Handgelenke. <break time=\"1.0s\" /> Eins: Stehen. Gewicht in den Füssen. <break time=\"3s\" /> Zwei: Ausweichen und drehen. Dein vorderer Fuss geht zur Seite, du drehst dich mit Tenkan, und Uke geht an dir vorbei. <break time=\"3s\" /> Drei: Eintreten. Der hintere Fuss geht tief hinter Uke, hinter seine Füsse. <break time=\"3s\" /> Vier: Stehen bleiben. Tief und ruhig. Uke fällt über dein Bein nach hinten. <break time=\"3s\" /> Zurück zum Anfang.",
+              "h": "df585146e0",
+              "sek": 64.03
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "stimme": "leon",
+              "text": "Jetzt nur die Zahlen, vier Durchgänge. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, dann Seite wechseln: rechter Fuss vorn.",
+              "h": "0ae83946a2",
+              "sek": 50.49
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 508.59
+        },
+        {
+          "titel": "Schicht 3 · Die Hände",
+          "karten": [
+            "Nicht losreissen: die Hände bleiben in Ukes Griff.",
+            "Einatmen: beide Hände steigen nah am Körper bis vor die Brust.",
+            "Eintreten: der vordere Arm öffnet sich quer vor Ukes Brust.",
+            "Ausatmen: der Arm breitet sich nach hinten aus, Uke fällt."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Genkeikokyunage"
+          },
+          "ton": [
+            {
+              "id": "3e",
+              "stimme": "laura",
+              "text": "Schicht drei: die Hände, mit dem Bild der Welle. <break time=\"1.0s\" /> Uke hält beide Handgelenke. Reiss dich nicht los. Die Hände bleiben in seinem Griff, sie bewegen sich mit ihm. <break time=\"1.5s\" /> Beim Einatmen steigen beide Hände, nah an deinem Körper, bis vor deine Brust. Uke wird leicht und richtet sich auf. <break time=\"1.5s\" /> Wenn du hinter ihn trittst, öffnet sich dein vorderer Arm wie ein Flügel quer vor seiner Brust. Beim Ausatmen breitet er sich nach hinten aus, und die Welle bricht hinter Uke.",
+              "h": "82dac0a315",
+              "sek": 44.66
+            },
+            {
+              "id": "3f",
+              "stimme": "leon",
+              "text": "Üb das jetzt im Stand, ohne Schritte. Einatmen, die Hände steigen. Ausatmen, der Flügel öffnet sich. Fünfmal je Seite.",
+              "h": "1c072f67aa",
+              "sek": 17.16
+            },
+            {
+              "pause": 45
+            },
+            {
+              "id": "3g",
+              "stimme": "leon",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Drei Durchgänge je Seite. Die Welle baut sich beim Drehen auf und bricht beim Eintreten.",
+              "h": "32b45d517d",
+              "sek": 15.07
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 708.1
+        },
+        {
+          "titel": "Schicht 4 · Der ganze Ablauf, langsam",
+          "karten": [
+            "Video: Trnava Nr. 8, erste Wiederholung (0–4 s), halbe Geschwindigkeit.",
+            "Achte auf den Moment, in dem Tori hinter Uke steht: Da öffnet sich der Arm.",
+            "Dann selber mitgehen."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 8,
+            "a": 0,
+            "b": 4,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "3h",
+              "stimme": "laura",
+              "text": "Schicht vier: der ganze Ablauf, langsam. <break time=\"1.0s\" /> Achte im Video auf einen Moment: wenn Tori hinter Uke steht. Erst dann öffnet sich der Arm, und Uke fällt.",
+              "h": "fb066a2417",
+              "sek": 14.16
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "3i",
+              "stimme": "leon",
+              "text": "Jetzt geh selber mit, so langsam wie im Video. Drehen, eintreten, ausatmen. Fünf Durchgänge je Seite.",
+              "h": "ce4179646b",
+              "sek": 13.79
+            },
+            {
+              "pause": 85
+            }
+          ],
+          "ab": 893.09
+        },
+        {
+          "titel": "Schicht 5 · Als Uke",
+          "karten": [
+            "Fass beide Handgelenke, gestreckte Arme.",
+            "Folge den steigenden Händen, richte dich auf.",
+            "Wenn Tori hinter dir steht: Kinn an die Brust, rückwärts abrollen.",
+            "Hände loslassen beim Fallen."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ryotetori"
+          },
+          "ton": [
+            {
+              "id": "3j",
+              "stimme": "laura",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Du fasst beide Handgelenke und gehst mit, wenn Tori sich dreht. Wenn seine Hände steigen, richtest du dich auf. <break time=\"1.0s\" /> Steht Tori hinter dir und öffnet den Arm vor deiner Brust, dann gib nach: Kinn an die Brust, und rückwärts abrollen. Lass die Hände los, wenn du fällst.",
+              "h": "8601f08e11",
+              "sek": 26.87
+            },
+            {
+              "id": "3k",
+              "stimme": "leon",
+              "text": "Üb das allein: fassen, mitdrehen, aufrichten, Kinn an die Brust, rückwärts abrollen. Dreimal.",
+              "h": "ae85c9e4b7",
+              "sek": 12.9
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1033.64
+        },
+        {
+          "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
+          "karten": [
+            "Fehler 1: die Hände losreissen. → Im Griff bleiben, mit Uke steigen.",
+            "Fehler 2: vor Uke werfen. → Erst hinter ihm stehen, dann öffnen.",
+            "Fehler 3: mit dem Arm stossen. → Der Flügel breitet sich aus, der Atem wirft."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Genkeikokyunage"
+          },
+          "ton": [
+            {
+              "id": "3l",
+              "stimme": "laura",
+              "text": "Schicht sechs: drei Fehler, und welches Bild dagegen hilft. <break time=\"1.0s\" /> Erstens: die Hände losreissen. Dann ist die Verbindung weg, und Uke greift neu. Korrektur: die Welle trägt Ukes Hände mit nach oben. <break time=\"1.5s\" /> Zweitens: vor Uke werfen. Dann stemmt er sich dagegen. Korrektur: erst hinter ihm stehen, dann bricht die Welle. <break time=\"1.5s\" /> Drittens: mit dem Arm stossen. Korrektur: der Flügel breitet sich aus, und der Atem wirft, nicht die Kraft.",
+              "h": "769a004ffd",
+              "sek": 42.61
+            },
+            {
+              "id": "3m",
+              "stimme": "leon",
+              "text": "Mach zum Schluss zwei Durchgänge je Seite und prüf bei jedem einen Fehler.",
+              "h": "87ffc51f6f",
+              "sek": 7.18
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1115.95
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Vorgriff: Prüfungstag",
+      "von": "23:00",
+      "bis": "26:00",
+      "stationen": [
+        {
+          "titel": "Morgen: alle acht",
+          "karten": [
+            "Morgen kommt keine neue Technik.",
+            "Du hörst die Ansagen wie in der Prüfung und zeigst alle acht.",
+            "Heute Abend: einmal die Woche im Kopf durchgehen."
+          ],
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Ein Blick auf morgen. Morgen kommt keine neue Technik. Morgen ist Prüfungstag: Du hörst die Ansagen in der Reihenfolge der Prüfung und zeigst alle acht Techniken, danach noch einmal in gemischter Folge. <break time=\"1.5s\" /> Geh heute die Woche im Kopf durch, mit den Bildern: die offene Tür, das Schwert, das Tor, der Baum, die Welle. <break time=\"2s\" /> Probier es jetzt: Schliess die Augen und geh die acht Nummern einmal still durch.",
+              "h": "4f1d396714",
+              "sek": 39.15
+            },
+            {
+              "pause": 70
+            }
+          ],
+          "ab": 1198.24
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "26:00",
+      "bis": "30:00",
+      "stationen": [
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Brust öffnen wie ein Flügel: Arme seitlich nach hinten.",
+            "Rücken rund machen, dann lang.",
+            "Drei ruhige Atemzüge."
+          ],
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Abschluss. Breite die Arme seitlich aus und führe sie sanft nach hinten, die Brust öffnet sich wie ein Flügel. Halten. <break time=\"8s\" /> Jetzt die Arme vor dir verschränken und den Rücken rund machen. <break time=\"8s\" /> Lösen, lang werden, und drei ruhige Atemzüge nehmen.",
+              "h": "e57f252202",
+              "sek": 45.65
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 1309.36
+        },
+        {
+          "titel": "Ansage und Notiz",
+          "karten": [
+            "Hör die Ansage wie in der Prüfung.",
+            "Zeig die Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
+          "ansage": 8,
+          "notiz": "Meine Frage zu Genkeikokyunage",
+          "ton": [
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Jetzt wie in der Prüfung. Gleich hörst du die Ansage. Zeig die Technik einmal ganz, auf beiden Seiten.",
+              "h": "0c2bcb63f6",
+              "sek": 10.27
+            },
+            {
+              "ansage": 8
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "5c",
+              "stimme": "laura",
+              "text": "Gut. <break time=\"1.0s\" /> Nimm die beiden Bilder mit: Welle und Flügel. Und schreib eine Frage auf, die du im Training stellen willst. <break time=\"1.5s\" /> Morgen ist Prüfungstag. Danke fürs Mitüben.",
+              "h": "876c868f8f",
+              "sek": 15.74
+            }
+          ],
+          "ab": 1377
+        }
+      ]
+    }
+  ],
+  "ende": "Morgen ist Prüfungstag: alle acht Techniken nach Ansage.",
+  "tonSek": 1440.63
+}
