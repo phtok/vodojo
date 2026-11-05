@@ -1,0 +1,549 @@
+{
+  "tag": 5,
+  "titel": "Tenchinage",
+  "angriff": "Ryotetori",
+  "nr": 7,
+  "minuten": 30,
+  "satz": "Eine Hand wächst zum Himmel, die andere sinkt zur Erde, und du trittst zwischen beiden hindurch.",
+  "wiederholung": "Shihonage",
+  "vorgriff": "Genkeikokyunage",
+  "innereBilder": {
+    "Baum": "Du bist ein Baum: Die Himmelshand wächst wie ein Ast nach oben, die Erdhand sinkt wie eine Wurzel nach unten. Der Stamm, dein Zentrum, bleibt ruhig.",
+    "Spalt": "Zwischen Himmelshand und Erdhand öffnet sich ein Spalt in Uke. In diesen Spalt trittst du hinein."
+  },
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 7: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Angriffszeichnung Ryotetori und Ablaufzeichnung Tenchinage (vier Bilder: Uke hält beide Hände, eine Hand steigt und eine sinkt, Eintreten, Uke fällt nach hinten): Aikido Ikeda Dojo Zürich, Gedankenstütze 6. Kyu (quellen/ikeda-dojo/)",
+    "Kärtchen Tenchi Nage: Eric Graf, Dojo de Bienne (bilder/technik-tenchinage.png)",
+    "Video Nr. 7: Aikido Dojo Trnava, Auswahl der Meisterin (videos/nr-7.mp4, 5,7 s, zwei Wiederholungen: 0–2,8 und 2,8–5,7 s)",
+    "Innere Bilder (Baum, Spalt): nach Rückmeldung 1 des Inhabers (lektionen/KONZEPT.md § Rückmeldungen)",
+    "Vorgriff: Ablaufzeichnung Genkeikokyunage (Ikeda) und Video Nr. 8 (Trnava, 8,4 s, zwei Wiederholungen: 0–4 und 4–8,4 s)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, innere Bilder, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter stehen im Tontext in deutscher Lautschrift (Tentschi-Nage, Rjote-Tori). Kurze Pausen als <break time=\"…s\" />, längere Übungszeit als eigener Eintrag {\"pause\": Sekunden}. {\"ansage\": N} spielt die Prüfungsansage von Nr. N."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "5:00",
+      "stationen": [
+        {
+          "titel": "Ankommen",
+          "karten": [
+            "Stehen, Füsse hüftbreit.",
+            "Dreimal tief ausatmen.",
+            "Heute fasst Uke beide Handgelenke."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ryotetori"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag fünf. Heute fasst Uke beide Handgelenke, und die Technik heisst Tentschi-Nage, der Himmel-Erde-Wurf. <break time=\"1.0s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum. Atme dreimal tief aus.",
+              "h": "c422e320cc",
+              "sek": 20.99
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 0
+        },
+        {
+          "titel": "Haltung und Zentrum",
+          "karten": [
+            "Gewicht sinkt in die Füsse.",
+            "Zentrum: eine Handbreit unter dem Nabel.",
+            "Kopf wie an einem Faden aufgehängt.",
+            "Warum: Wenn Uke beide Hände hält, trägt nur das Zentrum."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "1b",
+              "stimme": "laura",
+              "text": "Wenn Uke beide Hände hält, kommst du mit Armkraft nicht weiter. Was trägt, ist dein Zentrum, eine Handbreit unter dem Nabel. Darum wärmen wir heute zuerst die Haltung auf.",
+              "h": "daf4e26c5a",
+              "sek": 14.99
+            },
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Stell dich in Hanmi. Lass dein Gewicht in die Füsse sinken, als würden sie in den Boden wachsen. <break time=\"3s\" /> Leg eine Hand eine Handbreit unter den Nabel. Dort ist dein Zentrum. <break time=\"3s\" /> Der Kopf ist wie an einem Faden aufgehängt, der Nacken lang. <break time=\"3s\" /> Jetzt geh langsam fünf Schritte vor und fünf zurück, und halte dabei das Zentrum ruhig, auf gleicher Höhe.",
+              "h": "ae901da2e4",
+              "sek": 46.2
+            },
+            {
+              "pause": 25
+            }
+          ],
+          "ab": 38.02
+        },
+        {
+          "titel": "Kokyu-Atmung",
+          "karten": [
+            "Einatmen: beide Hände steigen vor dir, Handflächen nach oben.",
+            "Ausatmen: die Hände sinken, Handflächen nach unten.",
+            "Dann eine Hand steigt, die andere sinkt.",
+            "Achtmal, ruhig."
+          ],
+          "ton": [
+            {
+              "id": "1d",
+              "stimme": "laura",
+              "text": "Kokju heisst Atem. Bei Tentschi-Nage und morgen bei Genkei-Kokju-Nage führt der Atem die Hände, nicht die Muskeln.",
+              "h": "f01e7c61b5",
+              "sek": 9.22
+            },
+            {
+              "id": "1e",
+              "stimme": "leon",
+              "text": "Hände locker vor dem Bauch. <break time=\"1.0s\" /> Einatmen, die Hände steigen bis vor die Brust. <break time=\"4s\" /> Ausatmen, die Hände sinken. <break time=\"4s\" /> Einatmen. <break time=\"4s\" /> Ausatmen. <break time=\"4s\" /> Jetzt geteilt: Beim Einatmen steigt die linke Hand zum Himmel, die rechte sinkt zur Erde. <break time=\"5s\" /> Ausatmen, zurück zur Mitte. <break time=\"4s\" /> Andere Seite: rechts zum Himmel, links zur Erde. <break time=\"5s\" /> Zurück zur Mitte. <break time=\"3s\" /> Noch zweimal je Seite, in deinem Atem.",
+              "h": "51327f1641",
+              "sek": 82.64
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 126.69
+        },
+        {
+          "titel": "Ushiro Ukemi",
+          "karten": [
+            "Uke fällt bei Tenchinage nach hinten.",
+            "Aus der Hocke: Kinn an die Brust, rund nach hinten rollen.",
+            "Sechsmal."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "1f",
+              "stimme": "leon",
+              "text": "Uke fällt bei Tentschi-Nage nach hinten. Geh in die Hocke, Kinn an die Brust, und rolle rund nach hinten über eine Schulter. Ohne Matte nur rund zurückschaukeln. Sechsmal, in deinem Tempo.",
+              "h": "dbae14b178",
+              "sek": 19.41
+            },
+            {
+              "pause": 35
+            }
+          ],
+          "ab": 250.87
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Wiederholung: Shihonage",
+      "von": "5:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Aus dem Gedächtnis",
+          "karten": [
+            "Hör die Ansagen.",
+            "Erst die inneren Bilder: Schwert, Tor, Drehtür.",
+            "Dann bewegen, Omote und Ura.",
+            "Danach die Zeichnungen als Kontrolle."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "bild2": {
+            "art": "ikeda",
+            "key": "Shihonage Ura"
+          },
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Wiederholung von gestern, nur aus dem Gedächtnis. Ruf zuerst die drei Bilder auf: das Schwert, das Tor, die Drehtür. <break time=\"5s\" /> Gleich hörst du die Ansage.",
+              "h": "7bf304d556",
+              "sek": 17.8
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "id": "2b",
+              "stimme": "leon",
+              "text": "Zwei Mal je Seite, langsam.",
+              "h": "9203e8973b",
+              "sek": 4.02
+            },
+            {
+              "pause": 40
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "id": "2c",
+              "stimme": "leon",
+              "text": "Zwei Mal je Seite.",
+              "h": "55de154eb2",
+              "sek": 2.17
+            },
+            {
+              "pause": 40
+            },
+            {
+              "id": "2d",
+              "stimme": "laura",
+              "text": "Schau auf die Zeichnungen. Bist du mitten unter dem Tor hindurchgegangen? Und kam Ukes Hand neben seine eigene Schulter?",
+              "h": "94e7bc452c",
+              "sek": 9.01
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 307.34
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Tenchinage in Schichten",
+      "von": "8:00",
+      "bis": "23:00",
+      "stationen": [
+        {
+          "titel": "Schicht 1 · Die inneren Bilder",
+          "karten": [
+            "Der Baum: Himmelshand wächst wie ein Ast, Erdhand sinkt wie eine Wurzel. Der Stamm bleibt ruhig.",
+            "Der Spalt: Zwischen den Händen öffnet sich Uke. Dort trittst du hinein.",
+            "Ten = Himmel, chi = Erde, nage = Wurf."
+          ],
+          "bild": {
+            "art": "graf",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "laura",
+              "text": "Schicht eins: die inneren Bilder. Schliess kurz die Augen, wenn du magst. <break time=\"2.0s\" /> Ten heisst Himmel, Tschi heisst Erde. <break time=\"1.5s\" /> Das erste Bild ist der Baum. Du bist ein Baum. Eine Hand wächst wie ein Ast zum Himmel, leicht und ohne Mühe. Die andere sinkt wie eine Wurzel zur Erde, schwer und ruhig. Dein Stamm, dein Zentrum, steht still dazwischen. <break time=\"2.0s\" /> Uke hält beide Äste fest. Aber ein Baum wächst trotzdem, er drückt nicht, er wächst. <break time=\"2.0s\" /> Das zweite Bild ist der Spalt. Wenn die eine Hand steigt und die andere sinkt, öffnet sich zwischen ihnen ein Spalt in Ukes Haltung. In diesen Spalt trittst du hinein, tief, an Ukes Seite. <break time=\"2.0s\" /> Baum und Spalt. Diese beiden Bilder begleiten dich durch die Lektion.",
+              "h": "5c088fb75e",
+              "sek": 66.11
+            },
+            {
+              "pause": 15
+            }
+          ],
+          "ab": 454.05
+        },
+        {
+          "titel": "Schicht 2 · Die Füsse allein",
+          "karten": [
+            "1 · Stehen: Hanmi, Uke hält beide Hände.",
+            "2 · Wachsen: kleiner Schritt zur Seite der Erdhand.",
+            "3 · Eintreten: hinterer Fuss tief hinter Uke, in den Spalt.",
+            "4 · Durchtreten: noch ein Schritt, Uke fällt nach hinten."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "id": "3b",
+              "stimme": "laura",
+              "text": "Schicht zwei: die Füsse allein. Die Hände hängen locker. Denk beim Gehen an den Spalt.",
+              "h": "8eafe83532",
+              "sek": 7.76
+            },
+            {
+              "id": "3c",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Uke steht vor dir und hält beide Handgelenke. <break time=\"1.0s\" /> Eins: Stehen. Gewicht in den Füssen, Zentrum ruhig. <break time=\"3s\" /> Zwei: Wachsen. Ein kleiner Schritt mit dem vorderen Fuss zur Seite, dorthin, wo deine Erdhand sinkt. <break time=\"3s\" /> Drei: Eintreten. Der hintere Fuss geht tief nach vorn, neben und hinter Uke, in den Spalt. <break time=\"3s\" /> Vier: Durchtreten. Noch ein Schritt nach vorn, durch Ukes Platz hindurch. Uke fällt nach hinten. <break time=\"3s\" /> Zurück zum Anfang.",
+              "h": "b2462324c3",
+              "sek": 69.18
+            },
+            {
+              "pause": 6
+            },
+            {
+              "id": "3d",
+              "stimme": "leon",
+              "text": "Jetzt nur die Zahlen, vier Durchgänge. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, dann Seite wechseln: rechter Fuss vorn.",
+              "h": "635502d2f1",
+              "sek": 48.67
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 537.03
+        },
+        {
+          "titel": "Schicht 3 · Die Hände",
+          "karten": [
+            "Erdhand: Handfläche nach unten, sinkt neben deinem Knie.",
+            "Himmelshand: Handfläche nach oben, steigt an Ukes Schulter vorbei zum Himmel.",
+            "Beide bewegen sich zugleich, mit dem Atem.",
+            "Wurf: die Himmelshand öffnet sich nach hinten über Ukes Schulter."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "id": "3e",
+              "stimme": "laura",
+              "text": "Schicht drei: die Hände, mit dem Bild des Baums. <break time=\"1.0s\" /> Uke hält beide Handgelenke. Nicht losreissen, nicht drücken. <break time=\"1.0s\" /> Die Erdhand öffnet sich, die Handfläche zeigt nach unten, und sie sinkt wie eine Wurzel neben dein Knie. Ukes Arm geht mit nach unten. <break time=\"1.5s\" /> Die Himmelshand öffnet sich, die Handfläche nach oben, und wächst wie ein Ast an Ukes Schulter vorbei zum Himmel. <break time=\"1.5s\" /> Beide Hände bewegen sich zugleich, getragen vom Einatmen. Beim Eintreten atmest du aus, und die Himmelshand öffnet sich nach hinten über Ukes Schulter. Uke fällt.",
+              "h": "59c26cc7f5",
+              "sek": 55.1
+            },
+            {
+              "id": "3f",
+              "stimme": "leon",
+              "text": "Üb das jetzt im Stand, ohne Schritte. Einatmen: Erdhand sinkt, Himmelshand steigt. Ausatmen: die Himmelshand öffnet sich nach hinten. Fünfmal je Seite.",
+              "h": "cb430e8a5c",
+              "sek": 23.72
+            },
+            {
+              "pause": 45
+            },
+            {
+              "id": "3g",
+              "stimme": "leon",
+              "text": "Jetzt Hände und Füsse zusammen, ganz langsam. Drei Durchgänge je Seite. Erst wachsen, dann in den Spalt.",
+              "h": "6ab9397f5c",
+              "sek": 12.56
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 731.26
+        },
+        {
+          "titel": "Schicht 4 · Der ganze Ablauf, langsam",
+          "karten": [
+            "Video: Trnava Nr. 7, erste Wiederholung (0–2,8 s), halbe Geschwindigkeit.",
+            "Achte auf die Himmelshand: Sie geht an Ukes Kopf vorbei, nicht gegen ihn.",
+            "Dann selber mitgehen."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 7,
+            "a": 0,
+            "b": 2.8,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "3h",
+              "stimme": "laura",
+              "text": "Schicht vier: der ganze Ablauf, langsam. Das Video ist sehr kurz, schau es mehrmals. <break time=\"1.0s\" /> Achte auf die Himmelshand: Sie geht an Ukes Kopf vorbei, nicht gegen ihn, und Tori tritt tief hinein.",
+              "h": "56bfed584f",
+              "sek": 19.1
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "3i",
+              "stimme": "leon",
+              "text": "Jetzt geh selber mit, so langsam wie im Video. Wachsen, eintreten, durchtreten. Fünf Durchgänge je Seite.",
+              "h": "e843902fd8",
+              "sek": 19.46
+            },
+            {
+              "pause": 85
+            }
+          ],
+          "ab": 930.65
+        },
+        {
+          "titel": "Schicht 5 · Als Uke",
+          "karten": [
+            "Fass beide Handgelenke, gestreckte Arme.",
+            "Wenn eine Hand sinkt: mitgehen, nach vorn.",
+            "Wenn Tori eintritt: Kinn an die Brust, rückwärts abrollen.",
+            "Nicht an den Händen festhalten, wenn du fällst."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ryotetori"
+          },
+          "ton": [
+            {
+              "id": "3j",
+              "stimme": "laura",
+              "text": "Schicht fünf: als Uke. <break time=\"1.0s\" /> Du fasst beide Handgelenke, die Arme gestreckt, und gehst auf Tori zu. <break time=\"1.0s\" /> Wenn seine Erdhand sinkt, geh mit nach vorn. Wenn seine Himmelshand an deiner Schulter vorbei steigt, richtet sich dein Oberkörper auf, und wenn er eintritt, fällst du nach hinten. Kinn an die Brust, und rückwärts abrollen. <break time=\"1.0s\" /> Lass die Hände los, wenn du fällst. Wer festhält, reisst Tori mit.",
+              "h": "65330fa3eb",
+              "sek": 34.53
+            },
+            {
+              "id": "3k",
+              "stimme": "leon",
+              "text": "Üb das allein: fassen, mit nach vorn, aufrichten, Kinn an die Brust, rückwärts abrollen. Dreimal.",
+              "h": "f1bbae6aee",
+              "sek": 11.83
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1081.78
+        },
+        {
+          "titel": "Schicht 6 · Drei Fehler und ihre Korrektur",
+          "karten": [
+            "Fehler 1: die Hände nacheinander bewegen. → Beide zugleich, mit einem Atem.",
+            "Fehler 2: vor Uke stehen bleiben. → Tief in den Spalt, neben und hinter Uke.",
+            "Fehler 3: Uke mit der Himmelshand ins Gesicht schlagen. → Am Kopf vorbei, die Hand öffnet sich."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "id": "3l",
+              "stimme": "laura",
+              "text": "Schicht sechs: drei Fehler, und welches Bild dagegen hilft. <break time=\"1.0s\" /> Erstens: die Hände nacheinander bewegen. Dann spürt Uke jede Hand einzeln und hält dagegen. Korrektur: der Baum wächst in beide Richtungen zugleich, mit einem Atem. <break time=\"1.5s\" /> Zweitens: vor Uke stehen bleiben. Dann wirfst du gegen ihn statt mit ihm. Korrektur: tief in den Spalt, neben und hinter Uke. <break time=\"1.5s\" /> Drittens: Uke mit der Himmelshand ins Gesicht schlagen. Korrektur: der Ast wächst am Kopf vorbei, und die Hand öffnet sich nach hinten.",
+              "h": "9330c63303",
+              "sek": 51.33
+            },
+            {
+              "id": "3m",
+              "stimme": "leon",
+              "text": "Mach zum Schluss zwei Durchgänge je Seite und prüf bei jedem einen Fehler.",
+              "h": "87ffc51f6f",
+              "sek": 7.13
+            },
+            {
+              "pause": 30
+            }
+          ],
+          "ab": 1170.67
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Vorgriff: Genkeikokyunage",
+      "von": "23:00",
+      "bis": "26:00",
+      "stationen": [
+        {
+          "titel": "Morgen: Genkeikokyunage",
+          "karten": [
+            "Gleicher Angriff: Ryotetori.",
+            "Kokyunage = Atem-Wurf.",
+            "Nur ansehen, nicht üben."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Genkeikokyunage"
+          },
+          "bild2": {
+            "art": "video",
+            "nr": 8,
+            "a": 0,
+            "b": 4,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Ein Blick auf morgen. <break time=\"1.0s\" /> Der Angriff bleibt: Uke fasst beide Handgelenke. Die Technik heisst Genkei-Kokju-Nage, ein Atem-Wurf. Es gibt keinen Griff am Gelenk und keinen Hebel. Du führst Ukes Kraft mit dem Atem weiter, bis er von selbst fällt. <break time=\"1.5s\" /> Heute nur ansehen. Schau dir die Zeichnung an und das Video in halber Geschwindigkeit.",
+              "h": "79e42fcacd",
+              "sek": 30.48
+            },
+            {
+              "pause": 60
+            }
+          ],
+          "ab": 1261.67
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "26:00",
+      "bis": "30:00",
+      "stationen": [
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Arme: eine nach oben, eine nach unten strecken, wie der Baum.",
+            "Seitlich dehnen, je Seite 20 Sekunden.",
+            "Drei ruhige Atemzüge."
+          ],
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Abschluss. Wir dehnen wie der Baum. <break time=\"1.0s\" /> Streck den linken Arm zum Himmel und den rechten zur Erde, so weit es geht. Halten. <break time=\"8s\" /> Wechseln. <break time=\"8s\" /> Jetzt beide Arme über den Kopf und sanft zur rechten Seite neigen. <break time=\"8s\" /> Zur linken Seite. <break time=\"8s\" /> Arme sinken lassen und drei ruhige Atemzüge nehmen.",
+              "h": "6bd27d274e",
+              "sek": 65.25
+            },
+            {
+              "pause": 20
+            }
+          ],
+          "ab": 1354.13
+        },
+        {
+          "titel": "Ansage und Notiz",
+          "karten": [
+            "Hör die Ansage wie in der Prüfung.",
+            "Zeig die Technik einmal ganz, ohne Hilfe.",
+            "Schreib eine Frage auf, die du im Training stellen willst."
+          ],
+          "ansage": 7,
+          "notiz": "Meine Frage zu Tenchinage",
+          "ton": [
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Jetzt wie in der Prüfung. Gleich hörst du die Ansage. Zeig die Technik einmal ganz, ohne Hilfe, auf beiden Seiten.",
+              "h": "53545b4682",
+              "sek": 11.73
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "5c",
+              "stimme": "laura",
+              "text": "Gut. <break time=\"1.0s\" /> Nimm die beiden Bilder mit: Baum und Spalt. Und schreib eine Frage auf, die du im Training stellen willst. <break time=\"1.5s\" /> Morgen wiederholen wir Tentschi-Nage kurz aus dem Gedächtnis. Danke fürs Mitüben.",
+              "h": "5d6b03d149",
+              "sek": 17.76
+            }
+          ],
+          "ab": 1441.23
+        }
+      ]
+    }
+  ],
+  "tonSek": 1503.79
+}

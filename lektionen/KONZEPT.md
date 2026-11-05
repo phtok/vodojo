@@ -139,9 +139,19 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
   und Fehlern wieder. Kein Trnava-Video zu Nr. 5/6: Schicht 4 geht die
   Ikeda-Zeichnung Bild für Bild nach, dazu ein YouTube-Link auf den
   Ersatz (neue Bildart `youtube`).
+- 5. 11. 2026: Lektionen 5 bis 7 gebaut, auf Wunsch des Inhabers
+  («Bau die Verbleibenden»). Tag 5 Tenchinage (25:04, innere Bilder Baum
+  und Spalt), Tag 6 Genkeikokyunage (24:01, Welle und Flügel, Vorgriff auf
+  den Prüfungstag), Tag 7 Prüfungstag (20:03): kurzes Aufwärmen,
+  Abfrage der inneren Bilder der Woche (Laura nennt das Bild, die Antwort
+  kommt als Ansage), alle acht Nummern in der Reihenfolge des Programms
+  (je 45 s), dann gemischt (5, 2, 8, 3, 7, 1, 6, 4; je 30 s), Rückblick
+  mit Notiz. `ende` im Skript ersetzt den Satz «Morgen wiederholt …».
+  `ton-erzeugen.js` wiederholt Anfragen bei Netzfehlern, speichert nach
+  jedem Eintrag und übernimmt mit `--vorhandene` nach einem Abbruch die
+  schon gesprochenen Stücke.
 - Nächster Schritt: Rückmeldungen weiter sammeln, dann einarbeiten (auch
-  Schicht 1 der Tage 1 bis 3 auf innere Bilder umstellen), dann Tage 5
-  bis 7.
+  Schicht 1 der Tage 1 bis 3 auf innere Bilder umstellen).
 - Offen: die Wunschtechnik.
 
 ## Rückmeldungen des Inhabers (gesammelt, noch nicht eingearbeitet)

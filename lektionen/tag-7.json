@@ -1,0 +1,423 @@
+{
+  "tag": 7,
+  "titel": "Prüfungstag",
+  "angriff": "alle vier Angriffe",
+  "nr": 1,
+  "minuten": 30,
+  "satz": "Ansage hören, Technik zeigen. Alle acht, zuerst in der Reihenfolge der Prüfung, dann gemischt.",
+  "ende": "Die Woche ist geschafft. Schreib deine Fragen ins Training mit.",
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 1–8: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Ansagen: die japanischen Aufnahmen der App (window.AUDIO, wie speakName)",
+    "Innere Bilder der Woche: tag-1.json bis tag-6.json; Rückmeldung 1 des Inhabers (lektionen/KONZEPT.md § Rückmeldungen)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, Abfrage der Bilder, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Aufwärmen, Prüfung"
+    },
+    "hinweis": "Die Antworten der Bilder-Abfrage und die Prüfung kommen als Ansage ({\"ansage\": N}) aus den Aufnahmen der App."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "4:00",
+      "stationen": [
+        {
+          "titel": "Ankommen und Aufwärmen",
+          "karten": [
+            "Schultern, Handgelenke, Atem.",
+            "Tenkan, vier je Seite.",
+            "Ukemi rückwärts und seitlich, je drei."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenkan"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen zu Tag sieben, dem Prüfungstag. Heute lernst du nichts Neues. Du zeigst, was die Woche dir gegeben hat. <break time=\"1.0s\" /> Zuerst ein kurzes Aufwärmen.",
+              "h": "22b4afe42a",
+              "sek": 13.72
+            },
+            {
+              "id": "1b",
+              "stimme": "leon",
+              "text": "Kreise die Schultern, fünfmal nach hinten. <break time=\"6s\" /> Falte die Hände und kreise die Handgelenke. <break time=\"8s\" /> Drei tiefe Atemzüge, die Hände steigen beim Einatmen und sinken beim Ausatmen. <break time=\"12s\" /> Jetzt Tenkan, vier je Seite, in deinem Tempo.",
+              "h": "ccfa9b026e",
+              "sek": 53.64
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Zum Schluss fallen: dreimal rückwärts, dreimal seitlich über die Hand wie bei Kote-Gaeschi. Kinn an die Brust.",
+              "h": "a764c778e5",
+              "sek": 11.83
+            },
+            {
+              "pause": 50
+            }
+          ],
+          "ab": 0
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Die Bilder der Woche",
+      "von": "4:00",
+      "bis": "9:00",
+      "stationen": [
+        {
+          "titel": "Welche Technik ist es?",
+          "karten": [
+            "Laura nennt ein inneres Bild.",
+            "Du sagst laut den Namen der Technik.",
+            "Dann kommt die Antwort als Ansage.",
+            "Zwischen den Bildern: die Technik einmal in der Luft andeuten."
+          ],
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Jetzt die Bilder der Woche. Ich nenne ein Bild, und du sagst laut, welche Technik dazu gehört. Dann hörst du die Antwort. <break time=\"1.5s\" /> Erstes Bild: eine offene Tür direkt neben Uke. Du gehst hindurch, bis hinter ihn, und trittst nach vorn durch.",
+              "h": "a8234f7c28",
+              "sek": 20.18
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2b",
+              "stimme": "laura",
+              "text": "Zweites Bild: Du weichst aus wie eine Tür, die aufschwingt, nimmst die Hand vor deinen Bauch und kehrst sie nach aussen.",
+              "h": "c3858881e5",
+              "sek": 9.8
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2c",
+              "stimme": "laura",
+              "text": "Drittes Bild: Du hebst den gefassten Arm wie ein Schwert und schneidest vorn durch Uke hindurch.",
+              "h": "f0ffcbff73",
+              "sek": 7.89
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2d",
+              "stimme": "laura",
+              "text": "Viertes Bild: dasselbe Schwert, aber du trittst neben Uke und drehst dich, er kreist um dich nach unten.",
+              "h": "6844bb4424",
+              "sek": 9.14
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2e",
+              "stimme": "laura",
+              "text": "Fünftes Bild: Ukes Arm ist ein Tor. Du gehst mitten darunter hindurch, drehst dich um und schneidest.",
+              "h": "2e97473c7d",
+              "sek": 9.51
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2f",
+              "stimme": "laura",
+              "text": "Sechstes Bild: die Drehtür. Du bist die Achse, Uke schwingt mit, und dann schneidest du.",
+              "h": "c6c4064898",
+              "sek": 7.47
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2g",
+              "stimme": "laura",
+              "text": "Siebtes Bild: der Baum. Eine Hand wächst zum Himmel, eine sinkt zur Erde, und du trittst in den Spalt.",
+              "h": "10339e355c",
+              "sek": 9.93
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "pause": 8
+            },
+            {
+              "id": "2h",
+              "stimme": "laura",
+              "text": "Achtes Bild: die Welle. Der Atem hebt die Hände, und die Welle bricht hinter Uke.",
+              "h": "4d07fc527d",
+              "sek": 6.45
+            },
+            {
+              "pause": 5
+            },
+            {
+              "ansage": 8
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 162.22
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Prüfung in der Reihenfolge",
+      "von": "9:00",
+      "bis": "17:00",
+      "stationen": [
+        {
+          "titel": "Nr. 1 bis 8",
+          "karten": [
+            "Ansage hören, Technik zeigen, beide Seiten.",
+            "Kein Blick auf den Bildschirm.",
+            "Jede Technik so, als sähe die Prüferin zu: ruhig, ganz, mit Ukemi.",
+            "Rund 45 Sekunden je Nummer."
+          ],
+          "ton": [
+            {
+              "id": "3a",
+              "stimme": "leon",
+              "text": "Jetzt die Prüfung, in der Reihenfolge des Programms. Du hörst die Ansage und zeigst die Technik auf beiden Seiten. Leg das Telefon weg. <break time=\"1.5s\" /> Verbeugung. <break time=\"3s\" /> Wir beginnen.",
+              "h": "5734e2e791",
+              "sek": 20.51
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "pause": 45
+            },
+            {
+              "ansage": 8
+            },
+            {
+              "pause": 45
+            },
+            {
+              "id": "3b",
+              "stimme": "leon",
+              "text": "Verbeugung. <break time=\"2s\" /> Atme durch.",
+              "h": "22ecb7f255",
+              "sek": 5.42
+            },
+            {
+              "pause": 10
+            }
+          ],
+          "ab": 386.9
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Prüfung gemischt",
+      "von": "17:00",
+      "bis": "24:00",
+      "stationen": [
+        {
+          "titel": "Gemischte Folge",
+          "karten": [
+            "Jetzt kommen die Nummern durcheinander.",
+            "Hör genau auf den Angriff, dann auf die Technik.",
+            "Rund 30 Sekunden je Nummer, eine Seite reicht."
+          ],
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "leon",
+              "text": "Noch einmal, in gemischter Folge, wie es eine Prüferin auch tun kann. Hör zuerst auf den Angriff, dann auf die Technik. Eine Seite reicht.",
+              "h": "6769f32510",
+              "sek": 14.76
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 8
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "pause": 30
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "4b",
+              "stimme": "leon",
+              "text": "Verbeugung. Die Prüfung ist vorbei.",
+              "h": "fac10d2e89",
+              "sek": 3.79
+            },
+            {
+              "pause": 5
+            }
+          ],
+          "ab": 822.67
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Abschluss",
+      "von": "24:00",
+      "bis": "28:00",
+      "stationen": [
+        {
+          "titel": "Rückblick und Notiz",
+          "karten": [
+            "Welche Nummer ging leicht?",
+            "Bei welcher hast du gezögert?",
+            "Schreib die Nummer und deine Frage auf, fürs Training."
+          ],
+          "notiz": "Wo ich gezögert habe, und meine Frage",
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "laura",
+              "text": "Setz dich, und lass den Atem ruhig werden. <break time=\"3s\" /> Welche Nummer ging leicht? <break time=\"4s\" /> Und bei welcher hast du gezögert? <break time=\"4s\" /> Schreib diese Nummer auf und dazu eine Frage, die du im Training stellen willst. Dort bekommt sie die Antwort, die keine App geben kann. <break time=\"2s\" /> Eine Woche, acht Techniken, viele Bilder. Danke fürs Mitüben.",
+              "h": "6d6269817a",
+              "sek": 38
+            },
+            {
+              "pause": 40
+            }
+          ],
+          "ab": 1126.2
+        }
+      ]
+    }
+  ],
+  "tonSek": 1202.78
+}

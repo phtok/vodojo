@@ -36,6 +36,8 @@ const RATE = 44100;
 const tag = process.argv[2];
 const neu = process.argv.includes('--neu');
 const nurZusammen = process.argv.includes('--nur-zusammensetzen');
+// --vorhandene: nach einem Abbruch schon gesprochene Stücke ohne Hash übernehmen (spart Credits)
+const vorhandene = process.argv.includes('--vorhandene');
 if (!tag) { console.error('Tag fehlt: node lektionen/ton-erzeugen.js 1'); process.exit(1); }
 const key = process.env.ELEVENLABS_API_KEY;
 if (!key && !nurZusammen) { console.error('ELEVENLABS_API_KEY fehlt. Key im Schlüsselbund: https://schluessel.saetzerei.com'); process.exit(1); }
@@ -60,13 +62,16 @@ if (!nurZusammen) for (const teil of skript.teile) for (const st of teil.station
   const h = crypto.createHash('sha1').update(stimme + MODELL + JSON.stringify(EINSTELLUNG) + t.text).digest('hex').slice(0, 10);
   const sp = stuecke(t.text).filter(x => x.s);
   const ziele = sp.map((_, k) => path.join(clipOrdner, `${t.id}-${k + 1}.mp3`));
-  if (!neu && t.h === h && ziele.every(f => fs.existsSync(f))) continue;
+  if (!neu && (t.h === h || (vorhandene && !t.h)) && ziele.every(f => fs.existsSync(f))) {
+    if (!t.h) { t.h = h; t.sek = +(ziele.reduce((a, f) => a + dauer(f), 0) + stuecke(t.text).reduce((a, x) => a + (x.p || 0), 0)).toFixed(2); sichern(); console.log(`${t.id} übernommen`); }
+    continue;
+  }
   let sek = 0;
   sp.forEach((x, k) => {
     const body = JSON.stringify({ text: x.s, model_id: MODELL, language_code: 'de', voice_settings: EINSTELLUNG,
       previous_text: sp[k - 1] ? sp[k - 1].s : undefined, next_text: sp[k + 1] ? sp[k + 1].s : undefined });
     const tmp = ziele[k] + '.tmp';
-    const status = execFileSync('curl', ['-sS', '-o', tmp, '-w', '%{http_code}', '-X', 'POST',
+    const status = execFileSync('curl', ['-sS', '--retry', '4', '--retry-all-errors', '--retry-delay', '3', '-o', tmp, '-w', '%{http_code}', '-X', 'POST',
       `https://api.elevenlabs.io/v1/text-to-speech/${stimme}?output_format=mp3_44100_128`,
       '-H', 'Content-Type: application/json', '-H', '@-', '--data-binary', body],
       { input: `xi-api-key: ${key}\n` }).toString().trim();
@@ -79,7 +84,7 @@ if (!nurZusammen) for (const teil of skript.teile) for (const st of teil.station
     if (d < x.s.length / 25) console.warn(`  Achtung ${t.id}-${k + 1}: ${d}s für ${x.s.length} Zeichen – abgeschnitten?`);
   });
   sek += stuecke(t.text).reduce((a, x) => a + (x.p || 0), 0);
-  t.h = h; t.sek = +sek.toFixed(2); neuGesprochen++;
+  t.h = h; t.sek = +sek.toFixed(2); neuGesprochen++; sichern();
   console.log(`${t.id} (${t.stimme})  ${sp.length} Stück(e), ${t.sek}s`);
 }
 sichern();
