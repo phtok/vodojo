@@ -1778,7 +1778,7 @@ function woSpeichern(){ Store.set('aikido_woche',woStand); }
 function renderWoche(){
   const fertig=WOCHE.filter(w=>woStand[w.tag]&&woStand[w.tag].fertig).length;
   view.innerHTML=`<div class="wo-head fade"><h2>Eine Woche durch den 6.&nbsp;Kyu</h2>
-    <p>Jeden Tag eine Lektion, bis 30&nbsp;Minuten.<br>Ton an, Bildschirm weg, mitbewegen.${fertig?`<br>${fertig}&nbsp;von&nbsp;${WOCHE.length} erledigt.`:''}</p></div>
+    <p>Jeden Tag eine Lektion, bis 30&nbsp;Minuten.<br>Tag&nbsp;8: eine Stunde Auffrischung.<br>Ton an, Bildschirm weg, mitbewegen.${fertig?`<br>${fertig}&nbsp;von&nbsp;${WOCHE.length} erledigt.`:''}</p></div>
     ${WOCHE.map(w=>{ const s=woStand[w.tag]||{};
       const st= s.fertig?'✓': s.sek?mmss(s.sek):'';
       return `<button class="wo-tag${w.aktiv?' aktiv':''}${s.fertig?' fertig':''}" data-tag="${w.tag}" ${w.aktiv?'':'disabled'}>

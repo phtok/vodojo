@@ -74,7 +74,8 @@
             {
               "pause": 40
             }
-          ]
+          ],
+          "ab": 0
         },
         {
           "titel": "Handgelenke",
@@ -131,7 +132,8 @@
             {
               "pause": 25
             }
-          ]
+          ],
+          "ab": 94.34
         },
         {
           "titel": "Tenkan",
@@ -162,7 +164,8 @@
             {
               "pause": 45
             }
-          ]
+          ],
+          "ab": 231.99
         },
         {
           "titel": "Fallen",
@@ -201,9 +204,10 @@
               "sek": 23.22
             },
             {
-              "pause": 70
+              "pause": 55
             }
-          ]
+          ],
+          "ab": 342.99
         }
       ]
     },
@@ -320,7 +324,8 @@
               "h": "87cbc8a596",
               "sek": 13.01
             }
-          ]
+          ],
+          "ab": 488.25
         }
       ]
     },
@@ -363,17 +368,22 @@
             {
               "id": "3a2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Treffen, Handkante hoch. Zwei: Eintreten, durch die Tür, tief neben und hinter Uke. Drei: Drehen, Tenkan. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Treffen, Handkante hoch. Zwei: Eintreten, durch die Tür, tief neben und hinter Uke. Drei: Drehen, Tenkan. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "61e94f4bbc",
+              "sek": 69.06
             },
             {
               "id": "3a3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.15
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 780.35
         },
         {
           "titel": "Nr. 2 · Kotegaeshi",
@@ -394,22 +404,29 @@
             {
               "id": "3b1",
               "stimme": "laura",
-              "text": "Die Tür schwingt auf. Der Schlag geht vorbei, und Ukes Hand kommt vor deinen Bauch."
+              "text": "Die Tür schwingt auf. Der Schlag geht vorbei, und Ukes Hand kommt vor deinen Bauch.",
+              "h": "b67688817d",
+              "sek": 6.03
             },
             {
               "id": "3b2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Treffen. Zwei: Aufschwingen, der vordere Fuss geht aus der Linie. Drei: Ukes Hand vor deinen Bauch. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Treffen. Zwei: Aufschwingen, der vordere Fuss geht aus der Linie. Drei: Ukes Hand vor deinen Bauch. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "b9da1cf6b4",
+              "sek": 69.07
             },
             {
               "id": "3b3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.2
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 947.93
         },
         {
           "titel": "Nr. 3 · Ikkyo Omote",
@@ -430,22 +447,29 @@
             {
               "id": "3c1",
               "stimme": "laura",
-              "text": "Das Schwert hebt sich aus der Hüfte. Die Mitte geht nach vorn, und die Hand steigt mit."
+              "text": "Das Schwert hebt sich aus der Hüfte. Die Mitte geht nach vorn, und die Hand steigt mit.",
+              "h": "d2e0592714",
+              "sek": 6.11
             },
             {
               "id": "3c2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Heben, die Hüfte geht vor, das Schwert steigt. Zwei: Eintreten, tief zu Uke hin. Drei: Schneiden, nach unten. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Heben, die Hüfte geht vor, das Schwert steigt. Zwei: Eintreten, tief zu Uke hin. Drei: Schneiden, nach unten. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "324d49bf51",
+              "sek": 70.24
             },
             {
               "id": "3c3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 4.6
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1096.24
         },
         {
           "titel": "Nr. 4 · Ikkyo Ura",
@@ -466,22 +490,29 @@
             {
               "id": "3d1",
               "stimme": "laura",
-              "text": "Am Schwert vorbei, und dann die Drehtür. Du gehst nicht hindurch, sondern daneben."
+              "text": "Am Schwert vorbei, und dann die Drehtür. Du gehst nicht hindurch, sondern daneben.",
+              "h": "168c94b024",
+              "sek": 6.09
             },
             {
               "id": "3d2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Heben. Zwei: Vorbei, der vordere Fuss geht neben Uke. Drei: Drehen, Tenkan, du bist die Drehtür. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Heben. Zwei: Vorbei, der vordere Fuss geht neben Uke. Drei: Drehen, Tenkan, du bist die Drehtür. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "e76e268bfd",
+              "sek": 70.3
             },
             {
               "id": "3d3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.2
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1244.66
         },
         {
           "titel": "Nr. 5 · Shihonage Omote",
@@ -502,22 +533,29 @@
             {
               "id": "3e1",
               "stimme": "laura",
-              "text": "Den Schwertgriff fassen, dann durch das Tor. Ukes Handgelenk ist der Griff."
+              "text": "Den Schwertgriff fassen, dann durch das Tor. Ukes Handgelenk ist der Griff.",
+              "h": "c5f65cdcbd",
+              "sek": 6.64
             },
             {
               "id": "3e2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Zur Seite, der vordere Fuss schräg nach aussen. Zwei: Griff, du fasst Ukes Handgelenk. Drei: Durchs Tor, der hintere Fuss tritt vor Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Zur Seite, der vordere Fuss schräg nach aussen. Zwei: Griff, du fasst Ukes Handgelenk. Drei: Durchs Tor, der hintere Fuss tritt vor Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "04a336eb8b",
+              "sek": 66.78
             },
             {
               "id": "3e3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.38
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1393.53
         },
         {
           "titel": "Nr. 6 · Shihonage Ura",
@@ -538,22 +576,29 @@
             {
               "id": "3f1",
               "stimme": "laura",
-              "text": "Die Drehtür. Du trittst neben Uke und bist die Achse."
+              "text": "Die Drehtür. Du trittst neben Uke und bist die Achse.",
+              "h": "3df038918f",
+              "sek": 4.78
             },
             {
               "id": "3f2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Eintreten, der vordere Fuss neben Uke. Zwei: Drehen, Tenkan. Drei: Griff, das Schwert liegt in deinen Händen. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Eintreten, der vordere Fuss neben Uke. Zwei: Drehen, Tenkan. Drei: Griff, das Schwert liegt in deinen Händen. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "10a80f8a98",
+              "sek": 69.52
             },
             {
               "id": "3f3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.28
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1540.23
         },
         {
           "titel": "Nr. 7 · Tenchinage",
@@ -574,22 +619,29 @@
             {
               "id": "3g1",
               "stimme": "laura",
-              "text": "Der Baum wächst. Der Ast steigt, die Wurzel sinkt, und dazwischen öffnet sich der Spalt."
+              "text": "Der Baum wächst. Der Ast steigt, die Wurzel sinkt, und dazwischen öffnet sich der Spalt.",
+              "h": "a469244e35",
+              "sek": 7.29
             },
             {
               "id": "3g2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Wachsen, eine Hand steigt, eine sinkt. Zwei: Seitenschritt zur Erdhand. Drei: In den Spalt, der hintere Fuss tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Wachsen, eine Hand steigt, eine sinkt. Zwei: Seitenschritt zur Erdhand. Drei: In den Spalt, der hintere Fuss tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "521fef9f3d",
+              "sek": 68.47
             },
             {
               "id": "3g3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 5.15
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1687.47
         },
         {
           "titel": "Nr. 8 · Genkeikokyunage",
@@ -610,22 +662,29 @@
             {
               "id": "3h1",
               "stimme": "laura",
-              "text": "Die Welle holt Atem. Einatmen hebt die Hände nah am Körper, bevor du dich bewegst."
+              "text": "Die Welle holt Atem. Einatmen hebt die Hände nah am Körper, bevor du dich bewegst.",
+              "h": "4a524b5058",
+              "sek": 7.05
             },
             {
               "id": "3h2",
               "stimme": "leon",
-              "text": "Nur der Einstieg. Eins: Einatmen, die Hände steigen. Zwei: Ausweichen und drehen. Drei: Eintreten, tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+              "text": "Nur der Einstieg. Eins: Einatmen, die Hände steigen. Zwei: Ausweichen und drehen. Drei: Eintreten, tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut.",
+              "h": "fc5f5c992a",
+              "sek": 68.47
             },
             {
               "id": "3h3",
               "stimme": "leon",
-              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite.",
+              "h": "9d45f18ae3",
+              "sek": 4.86
             },
             {
-              "pause": 75
+              "pause": 60
             }
-          ]
+          ],
+          "ab": 1834.65
         }
       ]
     },
@@ -654,17 +713,22 @@
             {
               "id": "4a",
               "stimme": "laura",
-              "text": "Jetzt der Schwerpunkt: Kote-Gaeschi. Wir zerlegen den Einstieg in vier Anker. Wer den Anfang hat, hat die halbe Technik. <break time=\"2.0s\" /> Der erste Anker ist die Kreuzung. Uke schlägt von oben zur Stirn. Du wartest nicht, du gehst ihm entgegen, und eure Handkanten treffen sich vor deiner Stirn, wie zwei Schwerter, die sich kreuzen. <break time=\"1.5s\" /> Das ist Ki-Awase: Ihr trefft euch. Du wehrst nicht ab, du triffst."
+              "text": "Jetzt der Schwerpunkt: Kote-Gaeschi. Wir zerlegen den Einstieg in vier Anker. Wer den Anfang hat, hat die halbe Technik. <break time=\"2.0s\" /> Der erste Anker ist die Kreuzung. Uke schlägt von oben zur Stirn. Du wartest nicht, du gehst ihm entgegen, und eure Handkanten treffen sich vor deiner Stirn, wie zwei Schwerter, die sich kreuzen. <break time=\"1.5s\" /> Das ist Ki-Awase: Ihr trefft euch. Du wehrst nicht ab, du triffst.",
+              "h": "7882c713be",
+              "sek": 35.42
             },
             {
               "id": "4b",
               "stimme": "leon",
-              "text": "Linker Fuss vorn. Handkante hoch, ein kleiner Schritt vor, und halte die Kreuzung. <break time=\"3s\" /> Lösen. <break time=\"1.5s\" /> Fünfmal, beide Seiten. Spür, wo die Kreuzung ist: vor deiner Stirn, nicht über dem Kopf."
+              "text": "Linker Fuss vorn. Handkante hoch, ein kleiner Schritt vor, und halte die Kreuzung. <break time=\"3s\" /> Lösen. <break time=\"1.5s\" /> Fünfmal, beide Seiten. Spür, wo die Kreuzung ist: vor deiner Stirn, nicht über dem Kopf.",
+              "h": "1e518a8ef8",
+              "sek": 31.64
             },
             {
-              "pause": 45
+              "pause": 40
             }
-          ]
+          ],
+          "ab": 1982.09
         },
         {
           "titel": "Anker 2 · Der Regentropfen",
@@ -681,17 +745,22 @@
             {
               "id": "4c",
               "stimme": "laura",
-              "text": "Der zweite Anker ist der Regentropfen. <break time=\"1.0s\" /> Von der Kreuzung rinnt deine Hand an Ukes Arm hinunter, wie ein Regentropfen an einem Ast. Ohne Druck, ohne zu greifen, immer in Kontakt. <break time=\"1.0s\" /> Unten kommt der Tropfen an Ukes Handgelenk an, und dort bleibt er liegen."
+              "text": "Der zweite Anker ist der Regentropfen. <break time=\"1.0s\" /> Von der Kreuzung rinnt deine Hand an Ukes Arm hinunter, wie ein Regentropfen an einem Ast. Ohne Druck, ohne zu greifen, immer in Kontakt. <break time=\"1.0s\" /> Unten kommt der Tropfen an Ukes Handgelenk an, und dort bleibt er liegen.",
+              "h": "78fab38d85",
+              "sek": 24.89
             },
             {
               "id": "4d",
               "stimme": "leon",
-              "text": "Leg deine linke Hand an den rechten Unterarm, als wäre er Ukes Arm. Lass sie hinunterrinnen bis zum Handgelenk. <break time=\"4s\" /> Noch einmal, langsam. <break time=\"4s\" /> Jetzt mit der Kreuzung zusammen: Kreuzung, und der Tropfen rinnt. Fünfmal je Seite."
+              "text": "Leg deine linke Hand an den rechten Unterarm, als wäre er Ukes Arm. Lass sie hinunterrinnen bis zum Handgelenk. <break time=\"4s\" /> Noch einmal, langsam. <break time=\"4s\" /> Jetzt mit der Kreuzung zusammen: Kreuzung, und der Tropfen rinnt. Fünfmal je Seite.",
+              "h": "a43fcfaf5d",
+              "sek": 35.82
             },
             {
-              "pause": 45
+              "pause": 40
             }
-          ]
+          ],
+          "ab": 2091.63
         },
         {
           "titel": "Anker 3 · Die Tür schwingt auf",
@@ -708,17 +777,22 @@
             {
               "id": "4e",
               "stimme": "laura",
-              "text": "Der dritte Anker: Die Tür schwingt auf. <break time=\"1.0s\" /> Während der Tropfen rinnt, geht dein vorderer Fuss schräg nach aussen, aus der Linie. Dein Körper schwingt auf wie eine Tür, und Ukes Schlag fällt ins Leere, dorthin, wo du eben noch standest. <break time=\"1.5s\" /> Die Tür schlägt nicht zu, sie öffnet sich. Uke geht hindurch."
+              "text": "Der dritte Anker: Die Tür schwingt auf. <break time=\"1.0s\" /> Während der Tropfen rinnt, geht dein vorderer Fuss schräg nach aussen, aus der Linie. Dein Körper schwingt auf wie eine Tür, und Ukes Schlag fällt ins Leere, dorthin, wo du eben noch standest. <break time=\"1.5s\" /> Die Tür schlägt nicht zu, sie öffnet sich. Uke geht hindurch.",
+              "h": "6809dc158a",
+              "sek": 28.5
             },
             {
               "id": "4f",
               "stimme": "leon",
-              "text": "Nur die Füsse. Linker Fuss vorn. <break time=\"1.0s\" /> Kreuzung. <break time=\"2s\" /> Die Tür schwingt auf. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Noch einmal: Kreuzung. <break time=\"2s\" /> Aufschwingen. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Allein weiter, fünfmal je Seite."
+              "text": "Nur die Füsse. Linker Fuss vorn. <break time=\"1.0s\" /> Kreuzung. <break time=\"2s\" /> Die Tür schwingt auf. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Noch einmal: Kreuzung. <break time=\"2s\" /> Aufschwingen. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Allein weiter, fünfmal je Seite.",
+              "h": "bad9a594be",
+              "sek": 39.19
             },
             {
-              "pause": 45
+              "pause": 40
             }
-          ]
+          ],
+          "ab": 2194.82
         },
         {
           "titel": "Anker 4 · Laterne vor dem Bauch",
@@ -735,17 +809,22 @@
             {
               "id": "4g",
               "stimme": "laura",
-              "text": "Der vierte Anker: die Laterne vor dem Bauch. <break time=\"1.0s\" /> Der Tropfen ist am Handgelenk angekommen, die Tür hat sich geöffnet. Jetzt trägst du Ukes Hand wie eine Laterne, nah vor deinem Bauch. <break time=\"1.0s\" /> Eine Laterne trägst du ruhig und vor der Mitte, sonst schwankt das Licht. Nicht draussen, nicht hoch. Wenn du dich drehst, dreht sich die Laterne mit dir."
+              "text": "Der vierte Anker: die Laterne vor dem Bauch. <break time=\"1.0s\" /> Der Tropfen ist am Handgelenk angekommen, die Tür hat sich geöffnet. Jetzt trägst du Ukes Hand wie eine Laterne, nah vor deinem Bauch. <break time=\"1.0s\" /> Eine Laterne trägst du ruhig und vor der Mitte, sonst schwankt das Licht. Nicht draussen, nicht hoch. Wenn du dich drehst, dreht sich die Laterne mit dir.",
+              "h": "01c5a7a1e2",
+              "sek": 32.8
             },
             {
               "id": "4h",
               "stimme": "leon",
-              "text": "Halte die eigene linke Hand vor deinen Bauch, eine Handbreit davor. Dreh dich mit Tenkan, und die Laterne bleibt, wo sie ist: vor deiner Mitte. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Fünfmal je Seite."
+              "text": "Halte die eigene linke Hand vor deinen Bauch, eine Handbreit davor. Dreh dich mit Tenkan, und die Laterne bleibt, wo sie ist: vor deiner Mitte. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Fünfmal je Seite.",
+              "h": "9367ea38a0",
+              "sek": 27.02
             },
             {
               "pause": 40
             }
-          ]
+          ],
+          "ab": 2304.75
         },
         {
           "titel": "Der Einstieg, gezählt",
@@ -764,17 +843,22 @@
             {
               "id": "4i",
               "stimme": "laura",
-              "text": "Jetzt die vier Anker hintereinander. Das ist der ganze Einstieg in Kote-Gaeschi. Danach kommt nichts Neues mehr, nur noch Griff und Kehren."
+              "text": "Jetzt die vier Anker hintereinander. Das ist der ganze Einstieg in Kote-Gaeschi. Danach kommt nichts Neues mehr, nur noch Griff und Kehren.",
+              "h": "64b0cbf6b7",
+              "sek": 11.28
             },
             {
               "id": "4j",
               "stimme": "leon",
-              "text": "Linker Fuss vorn. Ich zähle. <break time=\"1.5s\" /> Eins: Kreuzung. <break time=\"3s\" /> Zwei: Regentropfen. <break time=\"3s\" /> Drei: Die Tür schwingt auf. <break time=\"3s\" /> Vier: Laterne. <break time=\"4s\" /> Zurück. <break time=\"2s\" /> Jetzt nur die Zahlen. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Seite wechseln: rechter Fuss vorn. <break time=\"2s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, fliessend, aus vier Zahlen wird eine Bewegung."
+              "text": "Linker Fuss vorn. Ich zähle. <break time=\"1.5s\" /> Eins: Kreuzung. <break time=\"3s\" /> Zwei: Regentropfen. <break time=\"3s\" /> Drei: Die Tür schwingt auf. <break time=\"3s\" /> Vier: Laterne. <break time=\"4s\" /> Zurück. <break time=\"2s\" /> Jetzt nur die Zahlen. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Seite wechseln: rechter Fuss vorn. <break time=\"2s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, fliessend, aus vier Zahlen wird eine Bewegung.",
+              "h": "2772d555a1",
+              "sek": 162.34
             },
             {
               "pause": 60
             }
-          ]
+          ],
+          "ab": 2407.06
         },
         {
           "titel": "Der Griff",
@@ -791,17 +875,22 @@
             {
               "id": "4k",
               "stimme": "laura",
-              "text": "Der Griff. Er ist derselbe wie beim Aufwärmen am eigenen Handgelenk. <break time=\"1.0s\" /> Dein Daumen liegt auf Ukes Handrücken, zwischen den Knöcheln von Mittel- und Ringfinger. Die Finger umfassen seinen Daumenballen. <break time=\"1.0s\" /> Du greifst, ohne die Laterne zu bewegen: Sie bleibt vor deinem Bauch."
+              "text": "Der Griff. Er ist derselbe wie beim Aufwärmen am eigenen Handgelenk. <break time=\"1.0s\" /> Dein Daumen liegt auf Ukes Handrücken, zwischen den Knöcheln von Mittel- und Ringfinger. Die Finger umfassen seinen Daumenballen. <break time=\"1.0s\" /> Du greifst, ohne die Laterne zu bewegen: Sie bleibt vor deinem Bauch.",
+              "h": "eb9772e2ab",
+              "sek": 24.39
             },
             {
               "id": "4l",
               "stimme": "leon",
-              "text": "Üb den Griff am eigenen Handgelenk, vor dem Bauch. Fünfmal: Tropfen, ankommen, Daumen auf den Handrücken. Dann Seite wechseln."
+              "text": "Üb den Griff am eigenen Handgelenk, vor dem Bauch. Fünfmal: Tropfen, ankommen, Daumen auf den Handrücken. Dann Seite wechseln.",
+              "h": "46abdbe4f4",
+              "sek": 17.55
             },
             {
               "pause": 40
             }
-          ]
+          ],
+          "ab": 2642.1
         },
         {
           "titel": "Das Kehren",
@@ -819,12 +908,16 @@
             {
               "id": "4m",
               "stimme": "laura",
-              "text": "Das Kehren. <break time=\"1.0s\" /> Dein hinterer Fuss zieht im Kreis zurück, du drehst dich ein zweites Mal. Deine andere Hand kommt von oben dazu. <break time=\"1.0s\" /> Und dann: Zeig Uke seine Handfläche. Seine Hand dreht sich so, dass er in seine eigene Handfläche schaut, und sie geht zu seiner Schulter hin. <break time=\"1.5s\" /> Die Hände halten nur. Es ist dein Körper, der dreht."
+              "text": "Das Kehren. <break time=\"1.0s\" /> Dein hinterer Fuss zieht im Kreis zurück, du drehst dich ein zweites Mal. Deine andere Hand kommt von oben dazu. <break time=\"1.0s\" /> Und dann: Zeig Uke seine Handfläche. Seine Hand dreht sich so, dass er in seine eigene Handfläche schaut, und sie geht zu seiner Schulter hin. <break time=\"1.5s\" /> Die Hände halten nur. Es ist dein Körper, der dreht.",
+              "h": "4ea802a044",
+              "sek": 32.11
             },
             {
               "id": "4n",
               "stimme": "leon",
-              "text": "Am eigenen Handgelenk: Laterne vor dem Bauch, zweite Hand von oben, und zeig dir die Handfläche. Langsam, fünfmal je Seite."
+              "text": "Am eigenen Handgelenk: Laterne vor dem Bauch, zweite Hand von oben, und zeig dir die Handfläche. Langsam, fünfmal je Seite.",
+              "h": "3372ce5670",
+              "sek": 16.56
             },
             {
               "pause": 30
@@ -832,12 +925,15 @@
             {
               "id": "4o",
               "stimme": "leon",
-              "text": "Jetzt mit den Füssen: Laterne, zurückdrehen, zeig Uke seine Handfläche. Drei je Seite."
+              "text": "Jetzt mit den Füssen: Laterne, zurückdrehen, zeig Uke seine Handfläche. Drei je Seite.",
+              "h": "629e38c708",
+              "sek": 11.83
             },
             {
               "pause": 35
             }
-          ]
+          ],
+          "ab": 2726.56
         },
         {
           "titel": "Der ganze Ablauf",
@@ -857,7 +953,9 @@
             {
               "id": "4p",
               "stimme": "laura",
-              "text": "Jetzt der ganze Ablauf. Das Video läuft in halber Geschwindigkeit. <break time=\"1.0s\" /> Schau nur auf den Anfang: Wo treffen sich die Handkanten? Wann geht Toris Fuss aus der Linie? Wo ist Ukes Hand, wenn Tori sich dreht?"
+              "text": "Jetzt der ganze Ablauf. Das Video läuft in halber Geschwindigkeit. <break time=\"1.0s\" /> Schau nur auf den Anfang: Wo treffen sich die Handkanten? Wann geht Toris Fuss aus der Linie? Wo ist Ukes Hand, wenn Tori sich dreht?",
+              "h": "e09ebff6dd",
+              "sek": 17.61
             },
             {
               "pause": 25
@@ -865,12 +963,15 @@
             {
               "id": "4q",
               "stimme": "leon",
-              "text": "Jetzt selber, langsam. Kreuzung, Tropfen, Tür, Laterne, Griff, zurückdrehen, kehren. <break time=\"1.5s\" /> Fünf Durchgänge je Seite."
+              "text": "Jetzt selber, langsam. Kreuzung, Tropfen, Tür, Laterne, Griff, zurückdrehen, kehren. <break time=\"1.5s\" /> Fünf Durchgänge je Seite.",
+              "h": "a9b2a9313b",
+              "sek": 22.11
             },
             {
-              "pause": 120
+              "pause": 100
             }
-          ]
+          ],
+          "ab": 2855.15
         },
         {
           "titel": "Als Uke",
@@ -888,17 +989,22 @@
             {
               "id": "4r",
               "stimme": "laura",
-              "text": "Als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, zur Mitte der Stirn. Er fällt ins Leere, weil die Tür aufschwingt, und du gehst mit. <break time=\"1.0s\" /> Wenn Tori dir deine Handfläche zeigt, folgst du der Hand, setzt dich seitlich ab und rollst nach hinten. <break time=\"1.0s\" /> Wird es zu viel, klopf ab. Tori lässt sofort nach."
+              "text": "Als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, zur Mitte der Stirn. Er fällt ins Leere, weil die Tür aufschwingt, und du gehst mit. <break time=\"1.0s\" /> Wenn Tori dir deine Handfläche zeigt, folgst du der Hand, setzt dich seitlich ab und rollst nach hinten. <break time=\"1.0s\" /> Wird es zu viel, klopf ab. Tori lässt sofort nach.",
+              "h": "072adc7651",
+              "sek": 27.33
             },
             {
               "id": "4s",
               "stimme": "leon",
-              "text": "Allein: Schlag, zwei Schritte im Bogen, die Hand kehren lassen, seitlich absetzen und abrollen. Dreimal je Seite."
+              "text": "Allein: Schlag, zwei Schritte im Bogen, die Hand kehren lassen, seitlich absetzen und abrollen. Dreimal je Seite.",
+              "h": "8b92a8efad",
+              "sek": 13.22
             },
             {
               "pause": 45
             }
-          ]
+          ],
+          "ab": 3022.41
         },
         {
           "titel": "Drei Fehler",
@@ -915,17 +1021,22 @@
             {
               "id": "4t",
               "stimme": "laura",
-              "text": "Drei Fehler, alle am Anfang. <break time=\"1.0s\" /> Erstens: abwehren statt treffen. Du hältst die Hand hoch und wartest. Korrektur: die Kreuzung, du gehst entgegen. <break time=\"1.5s\" /> Zweitens: greifen statt rinnen. Du packst Ukes Arm oben und ziehst. Korrektur: der Regentropfen, erst unten ankommen, dann greifen. <break time=\"1.5s\" /> Drittens: die Laterne draussen. Ukes Hand ist weit weg, du reisst mit dem Arm. Korrektur: nah vor dem Bauch, und der Körper dreht."
+              "text": "Drei Fehler, alle am Anfang. <break time=\"1.0s\" /> Erstens: abwehren statt treffen. Du hältst die Hand hoch und wartest. Korrektur: die Kreuzung, du gehst entgegen. <break time=\"1.5s\" /> Zweitens: greifen statt rinnen. Du packst Ukes Arm oben und ziehst. Korrektur: der Regentropfen, erst unten ankommen, dann greifen. <break time=\"1.5s\" /> Drittens: die Laterne draussen. Ukes Hand ist weit weg, du reisst mit dem Arm. Korrektur: nah vor dem Bauch, und der Körper dreht.",
+              "h": "46b143b12e",
+              "sek": 45.04
             },
             {
               "id": "4u",
               "stimme": "leon",
-              "text": "Zwei Durchgänge je Seite. Prüf bei jedem einen Fehler."
+              "text": "Zwei Durchgänge je Seite. Prüf bei jedem einen Fehler.",
+              "h": "9eea5641ca",
+              "sek": 6.16
             },
             {
               "pause": 40
             }
-          ]
+          ],
+          "ab": 3110.45
         }
       ]
     },
@@ -946,60 +1057,64 @@
             {
               "id": "5a",
               "stimme": "leon",
-              "text": "Zum Schluss der Prüfungsdurchgang. Alle acht Ansagen in der Reihenfolge, Kote-Gaeschi kommt zweimal. Zuerst der Anker, dann die Technik, beide Seiten. Leg das Telefon weg. <break time=\"1.5s\" /> Verbeugung. <break time=\"3s\" />"
+              "text": "Zum Schluss der Prüfungsdurchgang. Alle acht Ansagen in der Reihenfolge, Kote-Gaeschi kommt zweimal. Zuerst der Anker, dann die Technik, beide Seiten. Leg das Telefon weg. <break time=\"1.5s\" /> Verbeugung. <break time=\"3s\" />",
+              "h": "52fb0cf63e",
+              "sek": 22.5
             },
             {
               "ansage": 1
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 2
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 3
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 4
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 5
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 6
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 7
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "ansage": 8
             },
             {
-              "pause": 26
+              "pause": 23
             },
             {
               "id": "5b",
               "stimme": "leon",
-              "text": "Und noch einmal Kote-Gaeschi. Denk nur an den Anfang: Kreuzung."
+              "text": "Und noch einmal Kote-Gaeschi. Denk nur an den Anfang: Kreuzung.",
+              "h": "4674b8cb3f",
+              "sek": 8.49
             },
             {
               "ansage": 2
@@ -1010,9 +1125,12 @@
             {
               "id": "5c",
               "stimme": "leon",
-              "text": "Verbeugung. <break time=\"2s\" /> Atme durch."
+              "text": "Verbeugung. <break time=\"2s\" /> Atme durch.",
+              "h": "22ecb7f255",
+              "sek": 5.42
             }
-          ]
+          ],
+          "ab": 3204.14
         },
         {
           "titel": "Dehnen",
@@ -1029,12 +1147,15 @@
             {
               "id": "5d",
               "stimme": "leon",
-              "text": "Streck den rechten Arm nach vorn, die Handfläche nach vorn. Zieh die Finger sanft zu dir. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Handfläche nach unten. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Schüttle die Unterarme aus, und roll die Schultern nach hinten."
+              "text": "Streck den rechten Arm nach vorn, die Handfläche nach vorn. Zieh die Finger sanft zu dir. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Handfläche nach unten. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Schüttle die Unterarme aus, und roll die Schultern nach hinten.",
+              "h": "a18693a728",
+              "sek": 54.21
             },
             {
               "pause": 10
             }
-          ]
+          ],
+          "ab": 3505.26
         },
         {
           "titel": "Notiz",
@@ -1048,14 +1169,18 @@
             {
               "id": "5e",
               "stimme": "laura",
-              "text": "Setz dich, und lass den Atem ruhig werden. <break time=\"3s\" /> Welcher Anker hat heute getragen? <break time=\"4s\" /> Und wo hast du gezögert? <break time=\"4s\" /> Schreib es auf, mit einer Frage fürs Training. <break time=\"2s\" /> Kote-Gaeschi beginnt an der Kreuzung. Danke fürs Mitüben."
+              "text": "Setz dich, und lass den Atem ruhig werden. <break time=\"3s\" /> Welcher Anker hat heute getragen? <break time=\"4s\" /> Und wo hast du gezögert? <break time=\"4s\" /> Schreib es auf, mit einer Frage fürs Training. <break time=\"2s\" /> Kote-Gaeschi beginnt an der Kreuzung. Danke fürs Mitüben.",
+              "h": "03553f26b6",
+              "sek": 30.31
             },
             {
               "pause": 20
             }
-          ]
+          ],
+          "ab": 3571.37
         }
       ]
     }
-  ]
+  ],
+  "tonSek": 3633.01
 }
