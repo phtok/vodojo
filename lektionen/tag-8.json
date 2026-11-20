@@ -1,0 +1,1061 @@
+{
+  "tag": 8,
+  "titel": "Auffrischung · Schwerpunkt Kotegaeshi",
+  "angriff": "alle vier Angriffe",
+  "nr": 2,
+  "minuten": 60,
+  "satz": "Alle acht Techniken auffrischen, jede mit einem Anker für den ersten Moment. Dann Kotegaeshi: den Einstieg in vier Anker zerlegt.",
+  "ende": "Kotegaeshi beginnt an der Kreuzung: Regentropfen, Tür, Laterne. Nimm die vier Anker mit ins Training.",
+  "innereBilder": {
+    "Kreuzung": "Eure Handkanten treffen sich vor deiner Stirn wie zwei Schwerter, die sich kreuzen: Kiawase, treffen statt abwehren.",
+    "Regentropfen": "Von der Kreuzung rinnt deine Hand an Ukes Arm hinunter wie ein Tropfen an einem Ast, ohne Druck, bis zum Handgelenk.",
+    "Die Tür schwingt auf": "Der vordere Fuss geht aus der Linie, dein Körper schwingt auf wie eine Tür, Ukes Schlag fällt ins Leere.",
+    "Laterne vor dem Bauch": "Ukes Hand trägst du nah vor dem Bauch wie eine Laterne: ruhig, vor der Mitte, sie dreht sich mit dir.",
+    "Einstiegs-Anker": {
+      "1 Iriminage": "Die offene Tür neben Uke.",
+      "2 Kotegaeshi": "Die Tür schwingt auf.",
+      "3 Ikkyo Omote": "Das Schwert hebt sich aus der Hüfte.",
+      "4 Ikkyo Ura": "Am Schwert vorbei, Drehtür.",
+      "5 Shihonage Omote": "Den Schwertgriff fassen, Tor.",
+      "6 Shihonage Ura": "Drehtür.",
+      "7 Tenchinage": "Der Baum wächst.",
+      "8 Genkeikokyunage": "Die Welle holt Atem."
+    }
+  },
+  "quellen": [
+    "Prüfungsprogramm ACSA (M. Ikeda, 23.10.1999), 6. Kyu Nr. 1–8: quellen/acsa-pruefungsprogramm-ikeda.md",
+    "Innere Bilder der Woche: tag-1.json bis tag-6.json; Rückmeldung 1 des Inhabers (lektionen/KONZEPT.md § Rückmeldungen)",
+    "Ablauf Kotegaeshi: tag-2.json (Füsse, Hände, Griff, Fehler); Ablaufzeichnung Ikeda-Dojo Zürich; Kärtchen Eric Graf",
+    "Video Nr. 2: Aikido Dojo Trnava (videos/nr-2.mp4, 0–5,6 s)",
+    "Ansagen: die japanischen Aufnahmen der App (window.AUDIO, wie speakName)"
+  ],
+  "stimme": {
+    "dienst": "ElevenLabs",
+    "modell": "eleven_multilingual_v2",
+    "rollen": {
+      "laura": "Laura Vox (Qy4b2JlSGxY7I9M9Bqxb): erklärt – Begrüssung, Anker, Prinzip, Fehler, Abschied",
+      "leon": "Leon (MJ0RnG71ty4LH3dvNfSd): leitet die Bewegung – Anweisungen, Zählen, Prüfung"
+    },
+    "hinweis": "Japanische Wörter im Tontext in Lautschrift. {\"ansage\": N} spielt die Prüfungsansage von Nr. N, {\"pause\": s} ist Übungsstille."
+  },
+  "teile": [
+    {
+      "nr": 1,
+      "titel": "Ankommen und Aufwärmen",
+      "von": "0:00",
+      "bis": "8:00",
+      "stationen": [
+        {
+          "titel": "Ankommen und Atem",
+          "karten": [
+            "Füsse hüftbreit, Platz um dich.",
+            "Einatmen: Hände steigen. Ausatmen: Hände sinken.",
+            "Fünf Atemzüge."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "1a",
+              "stimme": "laura",
+              "text": "Willkommen. Heute frischst du alle acht Techniken des sechsten Kju auf, und der Schwerpunkt liegt auf Kote-Gaeschi. Eine Stunde. <break time=\"1.0s\" /> Bei jeder Technik geht es heute vor allem um den Anfang: Wie fängt sie an? Dafür bekommst du Anker, kleine innere Bilder für den ersten Moment. <break time=\"1.5s\" /> Stell dich hin, die Füsse hüftbreit, mit Platz um dich herum.",
+              "h": "8ee8d6cf4e",
+              "sek": 31.55
+            },
+            {
+              "id": "1b",
+              "stimme": "leon",
+              "text": "Atme ein, und lass die Hände vor dir steigen, bis auf Brusthöhe. <break time=\"2s\" /> Atme aus, die Hände sinken. <break time=\"2s\" /> Noch viermal, in deinem Tempo.",
+              "h": "4742ec9507",
+              "sek": 20.35
+            },
+            {
+              "pause": 40
+            }
+          ]
+        },
+        {
+          "titel": "Handgelenke",
+          "karten": [
+            "Kreisen, beide Richtungen.",
+            "Kotegaeshi am eigenen Handgelenk: Daumen auf den Handrücken, Hand nach aussen kehren.",
+            "Nur bis zum Ziehen, nie bis zum Schmerz."
+          ],
+          "ton": [
+            {
+              "id": "1c",
+              "stimme": "leon",
+              "text": "Schüttle die Hände aus, locker aus dem Handgelenk.",
+              "h": "3611c6ef44",
+              "sek": 4.91
+            },
+            {
+              "pause": 10
+            },
+            {
+              "id": "1d",
+              "stimme": "leon",
+              "text": "Falte die Hände und kreise die Handgelenke, zehnmal in jede Richtung.",
+              "h": "97faf3acf2",
+              "sek": 6.45
+            },
+            {
+              "pause": 20
+            },
+            {
+              "id": "1e",
+              "stimme": "laura",
+              "text": "Jetzt Kote-Gaeschi am eigenen Handgelenk. Das ist derselbe Griff, den du nachher an Uke brauchst.",
+              "h": "9dc9c758a9",
+              "sek": 7.13
+            },
+            {
+              "id": "1f",
+              "stimme": "leon",
+              "text": "Die linke Hand zeigt mit dem Handrücken zu dir. <break time=\"1.0s\" /> Leg den rechten Daumen auf den linken Handrücken, zwischen die Knöchel von Mittel- und Ringfinger. Die Finger umfassen den Daumenballen. <break time=\"1.5s\" /> Kehre die linke Hand langsam nach aussen, bis es zieht. Halten. <break time=\"5s\" /> Lösen.",
+              "h": "61137d3e44",
+              "sek": 32.03
+            },
+            {
+              "pause": 5
+            },
+            {
+              "id": "1g",
+              "stimme": "leon",
+              "text": "Andere Seite. Linker Daumen auf den rechten Handrücken, und langsam nach aussen kehren. Halten. <break time=\"5s\" /> Lösen. <break time=\"1.0s\" /> Noch je einmal pro Seite, allein.",
+              "h": "f0dc4d0d5a",
+              "sek": 22.96
+            },
+            {
+              "pause": 25
+            }
+          ]
+        },
+        {
+          "titel": "Tenkan",
+          "karten": [
+            "Vorderer Fuss bleibt, der hintere schwingt im Bogen herum.",
+            "Vier je Seite.",
+            "Danach zweimal hintereinander, wie bei Kotegaeshi."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Tenkan"
+          },
+          "ton": [
+            {
+              "id": "1h",
+              "stimme": "leon",
+              "text": "Tenkan. Linker Fuss vorn. Bei jeder Zahl eine Drehung. <break time=\"1.0s\" /> Eins. <break time=\"3s\" /> Zwei. <break time=\"3s\" /> Drei. <break time=\"3s\" /> Vier. <break time=\"2s\" /> Wechsel: rechter Fuss vorn. <break time=\"2s\" /> Fünf. <break time=\"3s\" /> Sechs. <break time=\"3s\" /> Sieben. <break time=\"3s\" /> Acht.",
+              "h": "5dc0ed1c07",
+              "sek": 48.96
+            },
+            {
+              "id": "1i",
+              "stimme": "leon",
+              "text": "Jetzt zweimal hintereinander, so wie Kote-Gaeschi es braucht: drehen, und noch einmal zurückdrehen. Drei je Seite, in deinem Tempo.",
+              "h": "92a1066d5e",
+              "sek": 14.76
+            },
+            {
+              "pause": 45
+            }
+          ]
+        },
+        {
+          "titel": "Fallen",
+          "karten": [
+            "Rückwärts: Kinn an die Brust, rund rollen.",
+            "Seitlich: über die eigene Hand, neben der Ferse absetzen.",
+            "Je drei. Ohne Matte: nur absetzen und schaukeln."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "1j",
+              "stimme": "laura",
+              "text": "Heute fällt Uke rückwärts, bei Irimi-Nage, Tentschi-Nage und Genkei-Kokju-Nage, und seitlich über die eigene Hand bei Kote-Gaeschi.",
+              "h": "5e4fb11d2c",
+              "sek": 13.37
+            },
+            {
+              "id": "1k",
+              "stimme": "leon",
+              "text": "Zuerst rückwärts. Geh in die Hocke, Kinn an die Brust, und roll rund nach hinten. Dreimal. <break time=\"1.0s\" /> Ohne Matte: nur absetzen und zurückschaukeln.",
+              "h": "0234ff3f39",
+              "sek": 20.54
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "1l",
+              "stimme": "leon",
+              "text": "Jetzt seitlich. Streck den linken Arm nach vorn, als würde jemand die Hand nach aussen kehren. Folge der Hand, setz dich links neben der Ferse ab und roll nach hinten. Dreimal links, dann dreimal rechts.",
+              "h": "26d4c51c90",
+              "sek": 23.22
+            },
+            {
+              "pause": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Einstiegs-Anker",
+      "von": "8:00",
+      "bis": "13:00",
+      "stationen": [
+        {
+          "titel": "Acht Anker für den ersten Moment",
+          "karten": [
+            "1 · Iriminage: Die offene Tür neben Uke.",
+            "2 · Kotegaeshi: Die Tür schwingt auf.",
+            "3 · Ikkyo Omote: Das Schwert hebt sich aus der Hüfte.",
+            "4 · Ikkyo Ura: Am Schwert vorbei, Drehtür.",
+            "5 · Shihonage Omote: Den Schwertgriff fassen, Tor.",
+            "6 · Shihonage Ura: Drehtür.",
+            "7 · Tenchinage: Der Baum wächst.",
+            "8 · Genkeikokyunage: Die Welle holt Atem."
+          ],
+          "ton": [
+            {
+              "id": "2a",
+              "stimme": "laura",
+              "text": "Jetzt die Anker. Für jede Technik ein Bild für den ersten Moment, gebaut aus den Bildern der Woche. <break time=\"1.0s\" /> Ich nenne das Bild. Du deutest nur den Anfang in der Luft an, eine Bewegung, nicht mehr. <break time=\"1.5s\" />",
+              "h": "f2ad427ab2",
+              "sek": 18.46
+            },
+            {
+              "id": "2b",
+              "stimme": "laura",
+              "text": "Erstes Bild, Irimi-Nage: Neben Uke steht eine Tür offen. Du gehst hindurch, tief, bis hinter ihn.",
+              "h": "e1750ad38f",
+              "sek": 9.14
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2c",
+              "stimme": "laura",
+              "text": "Zweites Bild, Kote-Gaeschi: Du bist die Tür, die aufschwingt. Der Schlag geht an dir vorbei, und du nimmst ihn mit.",
+              "h": "310dd95863",
+              "sek": 9.46
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2d",
+              "stimme": "laura",
+              "text": "Drittes Bild, Ikkjo Omote: Das Schwert hebt sich aus deiner Hüfte. Die gefasste Hand steigt, weil die Mitte nach vorn geht.",
+              "h": "9c2bf2e224",
+              "sek": 10.68
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2e",
+              "stimme": "laura",
+              "text": "Viertes Bild, Ikkjo Ura: Dasselbe Schwert, aber du gehst daran vorbei und wirst zur Drehtür.",
+              "h": "2419eb483a",
+              "sek": 7.52
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2f",
+              "stimme": "laura",
+              "text": "Fünftes Bild, Schiho-Nage Omote: Du fasst Ukes Handgelenk wie den Griff eines Schwerts, und unter dem erhobenen Arm öffnet sich ein Tor.",
+              "h": "8eb454a321",
+              "sek": 12.07
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2g",
+              "stimme": "laura",
+              "text": "Sechstes Bild, Schiho-Nage Ura: die Drehtür. Du trittst neben Uke und bist die Achse.",
+              "h": "992f9fee0c",
+              "sek": 8.67
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2h",
+              "stimme": "laura",
+              "text": "Siebtes Bild, Tentschi-Nage: Der Baum wächst. Eine Hand steigt wie ein Ast, die andere sinkt wie eine Wurzel.",
+              "h": "8237edb332",
+              "sek": 9.22
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2i",
+              "stimme": "laura",
+              "text": "Achtes Bild, Genkei-Kokju-Nage: Die Welle holt Atem. Einatmen, und die Hände steigen nah am Körper.",
+              "h": "4b134350b3",
+              "sek": 10.81
+            },
+            {
+              "pause": 22
+            },
+            {
+              "id": "2j",
+              "stimme": "laura",
+              "text": "Acht Anker. Tür, Tür, Schwert, Schwert, Griff, Drehtür, Baum, Welle. <break time=\"1.0s\" /> Mit ihnen fängst du jetzt jede Technik an.",
+              "h": "87cbc8a596",
+              "sek": 13.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Alle acht auffrischen",
+      "von": "13:00",
+      "bis": "33:00",
+      "stationen": [
+        {
+          "titel": "Nr. 1 · Iriminage",
+          "karten": [
+            "Angriff: Shomenuchi Kiawase.",
+            "Anker: Die offene Tür neben Uke.",
+            "Einstieg dreimal: Treffen, Eintreten, Drehen.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Iriminage"
+          },
+          "ton": [
+            {
+              "id": "3-0",
+              "stimme": "leon",
+              "text": "Jetzt alle acht, in der Reihenfolge der Prüfung. Bei jeder zuerst die Ansage, dann der Anker, dann dreimal nur der Einstieg, dann die ganze Technik.",
+              "h": "81e7536499",
+              "sek": 18.47
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "id": "3a1",
+              "stimme": "laura",
+              "text": "Die offene Tür neben Uke. Der vordere Fuss geht hindurch, bis hinter ihn.",
+              "h": "dae28315d1",
+              "sek": 6.5
+            },
+            {
+              "id": "3a2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Treffen, Handkante hoch. Zwei: Eintreten, durch die Tür, tief neben und hinter Uke. Drei: Drehen, Tenkan. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3a3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 2 · Kotegaeshi",
+          "karten": [
+            "Angriff: Shomenuchi Kiawase.",
+            "Anker: Die Tür schwingt auf.",
+            "Einstieg dreimal: Treffen, Aufschwingen, Vor den Bauch.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "ansage": 2
+            },
+            {
+              "id": "3b1",
+              "stimme": "laura",
+              "text": "Die Tür schwingt auf. Der Schlag geht vorbei, und Ukes Hand kommt vor deinen Bauch."
+            },
+            {
+              "id": "3b2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Treffen. Zwei: Aufschwingen, der vordere Fuss geht aus der Linie. Drei: Ukes Hand vor deinen Bauch. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3b3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 3 · Ikkyo Omote",
+          "karten": [
+            "Angriff: Katatetori Aihanmi.",
+            "Anker: Das Schwert hebt sich aus der Hüfte.",
+            "Einstieg dreimal: Heben, Eintreten, Schneiden.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Omote"
+          },
+          "ton": [
+            {
+              "ansage": 3
+            },
+            {
+              "id": "3c1",
+              "stimme": "laura",
+              "text": "Das Schwert hebt sich aus der Hüfte. Die Mitte geht nach vorn, und die Hand steigt mit."
+            },
+            {
+              "id": "3c2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Heben, die Hüfte geht vor, das Schwert steigt. Zwei: Eintreten, tief zu Uke hin. Drei: Schneiden, nach unten. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3c3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 4 · Ikkyo Ura",
+          "karten": [
+            "Angriff: Katatetori Aihanmi.",
+            "Anker: Am Schwert vorbei, und dann die Drehtür.",
+            "Einstieg dreimal: Heben, Vorbei, Drehen.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Ikkyo Ura"
+          },
+          "ton": [
+            {
+              "ansage": 4
+            },
+            {
+              "id": "3d1",
+              "stimme": "laura",
+              "text": "Am Schwert vorbei, und dann die Drehtür. Du gehst nicht hindurch, sondern daneben."
+            },
+            {
+              "id": "3d2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Heben. Zwei: Vorbei, der vordere Fuss geht neben Uke. Drei: Drehen, Tenkan, du bist die Drehtür. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3d3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 5 · Shihonage Omote",
+          "karten": [
+            "Angriff: Katatetori Gyakuhanmi.",
+            "Anker: Den Schwertgriff fassen, dann durch das Tor.",
+            "Einstieg dreimal: Zur Seite, Griff, Durchs Tor.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Omote"
+          },
+          "ton": [
+            {
+              "ansage": 5
+            },
+            {
+              "id": "3e1",
+              "stimme": "laura",
+              "text": "Den Schwertgriff fassen, dann durch das Tor. Ukes Handgelenk ist der Griff."
+            },
+            {
+              "id": "3e2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Zur Seite, der vordere Fuss schräg nach aussen. Zwei: Griff, du fasst Ukes Handgelenk. Drei: Durchs Tor, der hintere Fuss tritt vor Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3e3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 6 · Shihonage Ura",
+          "karten": [
+            "Angriff: Katatetori Gyakuhanmi.",
+            "Anker: Die Drehtür.",
+            "Einstieg dreimal: Eintreten, Drehen, Griff.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shihonage Ura"
+          },
+          "ton": [
+            {
+              "ansage": 6
+            },
+            {
+              "id": "3f1",
+              "stimme": "laura",
+              "text": "Die Drehtür. Du trittst neben Uke und bist die Achse."
+            },
+            {
+              "id": "3f2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Eintreten, der vordere Fuss neben Uke. Zwei: Drehen, Tenkan. Drei: Griff, das Schwert liegt in deinen Händen. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3f3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 7 · Tenchinage",
+          "karten": [
+            "Angriff: Ryotetori.",
+            "Anker: Der Baum wächst.",
+            "Einstieg dreimal: Wachsen, Seitenschritt, In den Spalt.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Tenchinage"
+          },
+          "ton": [
+            {
+              "ansage": 7
+            },
+            {
+              "id": "3g1",
+              "stimme": "laura",
+              "text": "Der Baum wächst. Der Ast steigt, die Wurzel sinkt, und dazwischen öffnet sich der Spalt."
+            },
+            {
+              "id": "3g2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Wachsen, eine Hand steigt, eine sinkt. Zwei: Seitenschritt zur Erdhand. Drei: In den Spalt, der hintere Fuss tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3g3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        },
+        {
+          "titel": "Nr. 8 · Genkeikokyunage",
+          "karten": [
+            "Angriff: Ryotetori.",
+            "Anker: Die Welle holt Atem.",
+            "Einstieg dreimal: Einatmen, Ausweichen, Eintreten.",
+            "Dann ganz, zwei je Seite."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Genkeikokyunage"
+          },
+          "ton": [
+            {
+              "ansage": 8
+            },
+            {
+              "id": "3h1",
+              "stimme": "laura",
+              "text": "Die Welle holt Atem. Einatmen hebt die Hände nah am Körper, bevor du dich bewegst."
+            },
+            {
+              "id": "3h2",
+              "stimme": "leon",
+              "text": "Nur der Einstieg. Eins: Einatmen, die Hände steigen. Zwei: Ausweichen und drehen. Drei: Eintreten, tief hinter Uke. <break time=\"2s\" /> Dreimal, ich zähle. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"4s\" /> Gut."
+            },
+            {
+              "id": "3h3",
+              "stimme": "leon",
+              "text": "Jetzt die ganze Technik, zwei Durchgänge je Seite."
+            },
+            {
+              "pause": 75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Schwerpunkt Kotegaeshi",
+      "von": "33:00",
+      "bis": "53:00",
+      "stationen": [
+        {
+          "titel": "Anker 1 · Die Kreuzung",
+          "karten": [
+            "Uke schlägt Shomenuchi, du gehst ihm entgegen.",
+            "Eure Handkanten treffen sich: ein Kreuz vor deiner Stirn.",
+            "Kiawase: Ki trifft sich. Nicht abwehren, treffen."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Shomenuchi Kiawase"
+          },
+          "bild2": {
+            "art": "graf",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4a",
+              "stimme": "laura",
+              "text": "Jetzt der Schwerpunkt: Kote-Gaeschi. Wir zerlegen den Einstieg in vier Anker. Wer den Anfang hat, hat die halbe Technik. <break time=\"2.0s\" /> Der erste Anker ist die Kreuzung. Uke schlägt von oben zur Stirn. Du wartest nicht, du gehst ihm entgegen, und eure Handkanten treffen sich vor deiner Stirn, wie zwei Schwerter, die sich kreuzen. <break time=\"1.5s\" /> Das ist Ki-Awase: Ihr trefft euch. Du wehrst nicht ab, du triffst."
+            },
+            {
+              "id": "4b",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Handkante hoch, ein kleiner Schritt vor, und halte die Kreuzung. <break time=\"3s\" /> Lösen. <break time=\"1.5s\" /> Fünfmal, beide Seiten. Spür, wo die Kreuzung ist: vor deiner Stirn, nicht über dem Kopf."
+            },
+            {
+              "pause": 45
+            }
+          ]
+        },
+        {
+          "titel": "Anker 2 · Der Regentropfen",
+          "karten": [
+            "Von der Kreuzung rinnt deine Hand an Ukes Arm hinunter.",
+            "Wie ein Tropfen an einem Ast: ohne Druck, immer in Kontakt.",
+            "Unten liegt Ukes Handgelenk in deiner Hand."
+          ],
+          "bild": {
+            "art": "graf",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4c",
+              "stimme": "laura",
+              "text": "Der zweite Anker ist der Regentropfen. <break time=\"1.0s\" /> Von der Kreuzung rinnt deine Hand an Ukes Arm hinunter, wie ein Regentropfen an einem Ast. Ohne Druck, ohne zu greifen, immer in Kontakt. <break time=\"1.0s\" /> Unten kommt der Tropfen an Ukes Handgelenk an, und dort bleibt er liegen."
+            },
+            {
+              "id": "4d",
+              "stimme": "leon",
+              "text": "Leg deine linke Hand an den rechten Unterarm, als wäre er Ukes Arm. Lass sie hinunterrinnen bis zum Handgelenk. <break time=\"4s\" /> Noch einmal, langsam. <break time=\"4s\" /> Jetzt mit der Kreuzung zusammen: Kreuzung, und der Tropfen rinnt. Fünfmal je Seite."
+            },
+            {
+              "pause": 45
+            }
+          ]
+        },
+        {
+          "titel": "Anker 3 · Die Tür schwingt auf",
+          "karten": [
+            "Gleichzeitig mit dem Tropfen: vorderer Fuss schräg nach aussen.",
+            "Du gehst aus der Linie, Ukes Schlag fällt ins Leere.",
+            "Die Angel ist dein Fuss, die Tür dein Körper."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4e",
+              "stimme": "laura",
+              "text": "Der dritte Anker: Die Tür schwingt auf. <break time=\"1.0s\" /> Während der Tropfen rinnt, geht dein vorderer Fuss schräg nach aussen, aus der Linie. Dein Körper schwingt auf wie eine Tür, und Ukes Schlag fällt ins Leere, dorthin, wo du eben noch standest. <break time=\"1.5s\" /> Die Tür schlägt nicht zu, sie öffnet sich. Uke geht hindurch."
+            },
+            {
+              "id": "4f",
+              "stimme": "leon",
+              "text": "Nur die Füsse. Linker Fuss vorn. <break time=\"1.0s\" /> Kreuzung. <break time=\"2s\" /> Die Tür schwingt auf. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Noch einmal: Kreuzung. <break time=\"2s\" /> Aufschwingen. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Allein weiter, fünfmal je Seite."
+            },
+            {
+              "pause": 45
+            }
+          ]
+        },
+        {
+          "titel": "Anker 4 · Laterne vor dem Bauch",
+          "karten": [
+            "Ukes Hand liegt jetzt nah vor deinem Bauch.",
+            "Wie eine Laterne, die du trägst: nah, ruhig, vor der Mitte.",
+            "Nicht draussen, nicht hoch. Der Körper trägt, nicht der Arm."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4g",
+              "stimme": "laura",
+              "text": "Der vierte Anker: die Laterne vor dem Bauch. <break time=\"1.0s\" /> Der Tropfen ist am Handgelenk angekommen, die Tür hat sich geöffnet. Jetzt trägst du Ukes Hand wie eine Laterne, nah vor deinem Bauch. <break time=\"1.0s\" /> Eine Laterne trägst du ruhig und vor der Mitte, sonst schwankt das Licht. Nicht draussen, nicht hoch. Wenn du dich drehst, dreht sich die Laterne mit dir."
+            },
+            {
+              "id": "4h",
+              "stimme": "leon",
+              "text": "Halte die eigene linke Hand vor deinen Bauch, eine Handbreit davor. Dreh dich mit Tenkan, und die Laterne bleibt, wo sie ist: vor deiner Mitte. <break time=\"3s\" /> Zurück. <break time=\"2s\" /> Fünfmal je Seite."
+            },
+            {
+              "pause": 40
+            }
+          ]
+        },
+        {
+          "titel": "Der Einstieg, gezählt",
+          "karten": [
+            "1 · Kreuzung",
+            "2 · Regentropfen",
+            "3 · Die Tür schwingt auf",
+            "4 · Laterne vor dem Bauch",
+            "Erst langsam, dann fliessend."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4i",
+              "stimme": "laura",
+              "text": "Jetzt die vier Anker hintereinander. Das ist der ganze Einstieg in Kote-Gaeschi. Danach kommt nichts Neues mehr, nur noch Griff und Kehren."
+            },
+            {
+              "id": "4j",
+              "stimme": "leon",
+              "text": "Linker Fuss vorn. Ich zähle. <break time=\"1.5s\" /> Eins: Kreuzung. <break time=\"3s\" /> Zwei: Regentropfen. <break time=\"3s\" /> Drei: Die Tür schwingt auf. <break time=\"3s\" /> Vier: Laterne. <break time=\"4s\" /> Zurück. <break time=\"2s\" /> Jetzt nur die Zahlen. <break time=\"1.5s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Seite wechseln: rechter Fuss vorn. <break time=\"2s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Eins. <break time=\"2s\" /> Zwei. <break time=\"2s\" /> Drei. <break time=\"2s\" /> Vier. <break time=\"4s\" /> Allein weiter, fliessend, aus vier Zahlen wird eine Bewegung."
+            },
+            {
+              "pause": 60
+            }
+          ]
+        },
+        {
+          "titel": "Der Griff",
+          "karten": [
+            "Daumen auf Ukes Handrücken, zwischen den Knöcheln von Mittel- und Ringfinger.",
+            "Finger um den Daumenballen.",
+            "Die Laterne bleibt vor dem Bauch, während du greifst."
+          ],
+          "bild": {
+            "art": "graf",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4k",
+              "stimme": "laura",
+              "text": "Der Griff. Er ist derselbe wie beim Aufwärmen am eigenen Handgelenk. <break time=\"1.0s\" /> Dein Daumen liegt auf Ukes Handrücken, zwischen den Knöcheln von Mittel- und Ringfinger. Die Finger umfassen seinen Daumenballen. <break time=\"1.0s\" /> Du greifst, ohne die Laterne zu bewegen: Sie bleibt vor deinem Bauch."
+            },
+            {
+              "id": "4l",
+              "stimme": "leon",
+              "text": "Üb den Griff am eigenen Handgelenk, vor dem Bauch. Fünfmal: Tropfen, ankommen, Daumen auf den Handrücken. Dann Seite wechseln."
+            },
+            {
+              "pause": 40
+            }
+          ]
+        },
+        {
+          "titel": "Das Kehren",
+          "karten": [
+            "Zweite Drehung: der hintere Fuss zieht im Kreis zurück.",
+            "Die zweite Hand kommt von oben dazu.",
+            "Zeig Uke seine Handfläche: Kehren zu seiner Schulter hin.",
+            "Der Körper dreht, die Hände halten nur."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4m",
+              "stimme": "laura",
+              "text": "Das Kehren. <break time=\"1.0s\" /> Dein hinterer Fuss zieht im Kreis zurück, du drehst dich ein zweites Mal. Deine andere Hand kommt von oben dazu. <break time=\"1.0s\" /> Und dann: Zeig Uke seine Handfläche. Seine Hand dreht sich so, dass er in seine eigene Handfläche schaut, und sie geht zu seiner Schulter hin. <break time=\"1.5s\" /> Die Hände halten nur. Es ist dein Körper, der dreht."
+            },
+            {
+              "id": "4n",
+              "stimme": "leon",
+              "text": "Am eigenen Handgelenk: Laterne vor dem Bauch, zweite Hand von oben, und zeig dir die Handfläche. Langsam, fünfmal je Seite."
+            },
+            {
+              "pause": 30
+            },
+            {
+              "id": "4o",
+              "stimme": "leon",
+              "text": "Jetzt mit den Füssen: Laterne, zurückdrehen, zeig Uke seine Handfläche. Drei je Seite."
+            },
+            {
+              "pause": 35
+            }
+          ]
+        },
+        {
+          "titel": "Der ganze Ablauf",
+          "karten": [
+            "Video: Trnava, Nr. 2, halbe Geschwindigkeit.",
+            "Schau nur auf den Einstieg: Kreuzung, Tropfen, Tür, Laterne.",
+            "Dann selber, fünf je Seite."
+          ],
+          "bild": {
+            "art": "video",
+            "nr": 2,
+            "a": 0,
+            "b": 5.6,
+            "rate": 0.5
+          },
+          "ton": [
+            {
+              "id": "4p",
+              "stimme": "laura",
+              "text": "Jetzt der ganze Ablauf. Das Video läuft in halber Geschwindigkeit. <break time=\"1.0s\" /> Schau nur auf den Anfang: Wo treffen sich die Handkanten? Wann geht Toris Fuss aus der Linie? Wo ist Ukes Hand, wenn Tori sich dreht?"
+            },
+            {
+              "pause": 25
+            },
+            {
+              "id": "4q",
+              "stimme": "leon",
+              "text": "Jetzt selber, langsam. Kreuzung, Tropfen, Tür, Laterne, Griff, zurückdrehen, kehren. <break time=\"1.5s\" /> Fünf Durchgänge je Seite."
+            },
+            {
+              "pause": 120
+            }
+          ]
+        },
+        {
+          "titel": "Als Uke",
+          "karten": [
+            "Schlag ehrlich zur Stirnmitte.",
+            "Mitgehen, wenn die Tür aufschwingt.",
+            "Der eigenen Hand folgen, seitlich absetzen, rückwärts rollen.",
+            "Abklopfen, wenn es zu viel wird."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Ushiro ukemi"
+          },
+          "ton": [
+            {
+              "id": "4r",
+              "stimme": "laura",
+              "text": "Als Uke. <break time=\"1.0s\" /> Dein Schlag ist ehrlich, zur Mitte der Stirn. Er fällt ins Leere, weil die Tür aufschwingt, und du gehst mit. <break time=\"1.0s\" /> Wenn Tori dir deine Handfläche zeigt, folgst du der Hand, setzt dich seitlich ab und rollst nach hinten. <break time=\"1.0s\" /> Wird es zu viel, klopf ab. Tori lässt sofort nach."
+            },
+            {
+              "id": "4s",
+              "stimme": "leon",
+              "text": "Allein: Schlag, zwei Schritte im Bogen, die Hand kehren lassen, seitlich absetzen und abrollen. Dreimal je Seite."
+            },
+            {
+              "pause": 45
+            }
+          ]
+        },
+        {
+          "titel": "Drei Fehler",
+          "karten": [
+            "1 · Abwehren statt treffen. → Kreuzung: entgegengehen.",
+            "2 · Greifen statt rinnen. → Regentropfen: erst ankommen, dann greifen.",
+            "3 · Laterne draussen. → Nah vor dem Bauch, der Körper dreht."
+          ],
+          "bild": {
+            "art": "ikeda",
+            "key": "Kotegaeshi"
+          },
+          "ton": [
+            {
+              "id": "4t",
+              "stimme": "laura",
+              "text": "Drei Fehler, alle am Anfang. <break time=\"1.0s\" /> Erstens: abwehren statt treffen. Du hältst die Hand hoch und wartest. Korrektur: die Kreuzung, du gehst entgegen. <break time=\"1.5s\" /> Zweitens: greifen statt rinnen. Du packst Ukes Arm oben und ziehst. Korrektur: der Regentropfen, erst unten ankommen, dann greifen. <break time=\"1.5s\" /> Drittens: die Laterne draussen. Ukes Hand ist weit weg, du reisst mit dem Arm. Korrektur: nah vor dem Bauch, und der Körper dreht."
+            },
+            {
+              "id": "4u",
+              "stimme": "leon",
+              "text": "Zwei Durchgänge je Seite. Prüf bei jedem einen Fehler."
+            },
+            {
+              "pause": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Prüfungsdurchgang",
+      "von": "53:00",
+      "bis": "60:00",
+      "stationen": [
+        {
+          "titel": "Alle acht, Kotegaeshi zweimal",
+          "karten": [
+            "Ansage hören, Anker denken, Technik zeigen.",
+            "Beide Seiten, rund 30 Sekunden je Nummer.",
+            "Am Ende Kotegaeshi noch einmal."
+          ],
+          "ton": [
+            {
+              "id": "5a",
+              "stimme": "leon",
+              "text": "Zum Schluss der Prüfungsdurchgang. Alle acht Ansagen in der Reihenfolge, Kote-Gaeschi kommt zweimal. Zuerst der Anker, dann die Technik, beide Seiten. Leg das Telefon weg. <break time=\"1.5s\" /> Verbeugung. <break time=\"3s\" />"
+            },
+            {
+              "ansage": 1
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 3
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 4
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 5
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 6
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 7
+            },
+            {
+              "pause": 26
+            },
+            {
+              "ansage": 8
+            },
+            {
+              "pause": 26
+            },
+            {
+              "id": "5b",
+              "stimme": "leon",
+              "text": "Und noch einmal Kote-Gaeschi. Denk nur an den Anfang: Kreuzung."
+            },
+            {
+              "ansage": 2
+            },
+            {
+              "pause": 35
+            },
+            {
+              "id": "5c",
+              "stimme": "leon",
+              "text": "Verbeugung. <break time=\"2s\" /> Atme durch."
+            }
+          ]
+        },
+        {
+          "titel": "Dehnen",
+          "karten": [
+            "Handgelenke: Finger sanft zu dir ziehen, je Seite.",
+            "Unterarme ausschütteln.",
+            "Schultern rollen, tief ausatmen."
+          ],
+          "bild": {
+            "art": "guide",
+            "key": "Hanmi"
+          },
+          "ton": [
+            {
+              "id": "5d",
+              "stimme": "leon",
+              "text": "Streck den rechten Arm nach vorn, die Handfläche nach vorn. Zieh die Finger sanft zu dir. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Jetzt die Handfläche nach unten. <break time=\"8s\" /> Andere Seite. <break time=\"8s\" /> Schüttle die Unterarme aus, und roll die Schultern nach hinten."
+            },
+            {
+              "pause": 10
+            }
+          ]
+        },
+        {
+          "titel": "Notiz",
+          "karten": [
+            "Welcher Anker hat getragen?",
+            "Wo hast du gezögert?",
+            "Eine Frage fürs Training."
+          ],
+          "notiz": "Welcher Anker hat getragen, und meine Frage",
+          "ton": [
+            {
+              "id": "5e",
+              "stimme": "laura",
+              "text": "Setz dich, und lass den Atem ruhig werden. <break time=\"3s\" /> Welcher Anker hat heute getragen? <break time=\"4s\" /> Und wo hast du gezögert? <break time=\"4s\" /> Schreib es auf, mit einer Frage fürs Training. <break time=\"2s\" /> Kote-Gaeschi beginnt an der Kreuzung. Danke fürs Mitüben."
+            },
+            {
+              "pause": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

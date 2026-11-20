@@ -150,6 +150,16 @@ Sechs Teile, immer dieselbe Reihenfolge. Die App führt durch, mit Uhr.
   `ton-erzeugen.js` wiederholt Anfragen bei Netzfehlern, speichert nach
   jedem Eintrag und übernimmt mit `--vorhandene` nach einem Abbruch die
   schon gesprochenen Stücke.
+- 20. 11. 2026: Lektion 8 gebaut, auf Wunsch des Inhabers für denselben
+  Tag: «Auffrischung · Schwerpunkt Kotegaeshi» (`lektionen/tag-8.json`,
+  `audio/tag-8.mp3`, rund 60 Minuten). Aufwärmen 8 Min., Einstiegs-Anker
+  5 Min. (je Technik ein inneres Bild für den ersten Moment, aus den
+  Bildern der Woche), alle acht auffrischen 20 Min. (Ansage, Anker,
+  dreimal nur der Einstieg, dann ganz), Kotegaeshi 20 Min. (Einstieg in
+  vier Anker: Kreuzung, Regentropfen, Die Tür schwingt auf, Laterne vor
+  dem Bauch; dann Griff, Kehren «zeig Uke seine Handfläche», Video
+  Nr. 2, Uke, drei Fehler am Anfang), Prüfungsdurchgang 7 Min. In der
+  Woche als achte Karte; der Zähler «von N erledigt» folgt `WOCHE.length`.
 - Nächster Schritt: Rückmeldungen weiter sammeln, dann einarbeiten (auch
   Schicht 1 der Tage 1 bis 3 auf innere Bilder umstellen).
 - Offen: die Wunschtechnik.
