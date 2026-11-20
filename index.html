@@ -1765,7 +1765,8 @@ const WOCHE=[
   {tag:4,a:'Katatetori Gyakuhanmi',t:'Shihonage Omote und Ura',nr:'5, 6',aktiv:true},
   {tag:5,a:'Ryotetori',t:'Tenchinage',nr:'7',aktiv:true},
   {tag:6,a:'Ryotetori',t:'Genkeikokyunage',nr:'8',aktiv:true},
-  {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8',aktiv:true}
+  {tag:7,a:'alle vier Angriffe',t:'Prüfungstag',nr:'1–8',aktiv:true},
+  {tag:8,a:'alle acht',t:'Auffrischung · Schwerpunkt Kotegaeshi',nr:'1–8',aktiv:true}
 ];
 let woStand={};             // {tag:{st:Stationsindex, sek:Uhr, fertig:bool, notiz:''}}
 const nbsp=s=>String(s).replace(/(\d)\s(?=\S)/g,'$1 ').replace(/\b(je|Nr\.|Tag|Teil|Schicht) (?=\d)/g,'$1 ').replace(/(\d)–(\d)/g,'$1\u2060–\u2060$2');
@@ -1777,7 +1778,7 @@ function woSpeichern(){ Store.set('aikido_woche',woStand); }
 function renderWoche(){
   const fertig=WOCHE.filter(w=>woStand[w.tag]&&woStand[w.tag].fertig).length;
   view.innerHTML=`<div class="wo-head fade"><h2>Eine Woche durch den 6.&nbsp;Kyu</h2>
-    <p>Jeden Tag eine Lektion, bis 30&nbsp;Minuten.<br>Ton an, Bildschirm weg, mitbewegen.${fertig?`<br>${fertig}&nbsp;von&nbsp;7 erledigt.`:''}</p></div>
+    <p>Jeden Tag eine Lektion, bis 30&nbsp;Minuten.<br>Tag&nbsp;8: eine Stunde Auffrischung.<br>Ton an, Bildschirm weg, mitbewegen.${fertig?`<br>${fertig}&nbsp;von&nbsp;${WOCHE.length} erledigt.`:''}</p></div>
     ${WOCHE.map(w=>{ const s=woStand[w.tag]||{};
       const st= s.fertig?'✓': s.sek?mmss(s.sek):'';
       return `<button class="wo-tag${w.aktiv?' aktiv':''}${s.fertig?' fertig':''}" data-tag="${w.tag}" ${w.aktiv?'':'disabled'}>
